@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Refresh" content="5;URL=login">
+<meta http-equiv="Refresh" content="3;URL=login">
 <title>ログアウト画面</title>
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 </head>
