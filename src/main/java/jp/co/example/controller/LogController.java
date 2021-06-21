@@ -19,11 +19,11 @@ public class LogController {
 	ICategoryService ICService;
 
 	//logCategory.jsp
-	@RequestMapping(value="/logCategory", method=RequestMethod.GET)
+	@RequestMapping(value="/log", method=RequestMethod.GET)
 	public String logCategory(@ModelAttribute("logCategory") LogForm form, Model model) {
 		//ユーザーがログインしているか確認
 		//sessionにログイン情報が保存されているか確認
-		if(/*sessionにログイン情報が保存されていない条件*/ == NULL) {
+		if(false) {
 			return "redirect:/login";
 		}
 
@@ -38,12 +38,14 @@ public class LogController {
 	}
 
 	//logList.jsp
-	@RequestMapping(value="/logList", method=RequestMethod.GET)
+	@RequestMapping(value="/log", method=RequestMethod.GET)
 	public String logList(@ModelAttribute("logList") LogForm form, Model model) {
 		//ユーザーがログインしているか確認
 		//sessionにログイン情報が保存されているか確認
-		if(/*sessionにログイン情報が保存されていない条件*/ == NULL) {
+		if(false) {
 			return "redirect:/login";
 		}
+
+		return "logList";
 	}
 }
