@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.AdminForm;
-import jp.co.example.dao.QuizDao;
 import jp.co.example.dto.entity.Category;
 import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.ICategoryService;
+import jp.co.example.service.IQuizSelectService;
 import jp.co.example.service.IUserInfoService;
+import jp.co.example.service.QuizService;
 
 @Controller
 public class AdminController {
@@ -25,7 +26,9 @@ public class AdminController {
 	@Autowired
 	private IUserInfoService userInfoService;
 	@Autowired
-	private QuizDao QuizDaoImpl;
+	private IQuizSelectService quizSelectService;
+	@Autowired
+	private QuizService quizService;
 	@Autowired
 	private HttpSession session;
 
@@ -64,7 +67,9 @@ public class AdminController {
 			return "admin";
 		}
 
-		
+		if ( !quizService.findByQuizTitle(form.getCreateQuizTitle()).isEmpty() ) {
+			model.addAttribute("isQuizTitleExists", quizTitleFlg);
+		}
 
 
 		return "admin";
