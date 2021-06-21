@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>クイズ画面</title>
 </head>
-<body>
+<body onload="countdown();">
 <form:form >
 <header>
   <h1>研修道場</h1>
@@ -18,13 +18,18 @@
   </nav>
   </header>
 <h1>:</h1>
+<c:forEach items="${ }" var=""></c:forEach>
 
 
 
+<form:radiobuttons path="choiceId" items="${ }"/>
 
-<form:radiobuttons path="choiceId"/>
 
-
+<p>残り時間</p>
+<p>
+  <span id="min"></span>分
+  <span id="sec"></span>秒
+</p>
 <form:button name= "return">←前へ</form:button>>
 <p></p>
 <form:button name= "next">次へ→</form:button>>
@@ -32,5 +37,6 @@
 <div><form:button name="finish">終了</form:button></div>
 
 </form:form>
+<script src="js/quiz.js"></script>
 </body>
 </html>

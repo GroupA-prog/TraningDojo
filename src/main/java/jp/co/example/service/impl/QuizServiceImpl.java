@@ -15,14 +15,24 @@ public class QuizServiceImpl implements QuizService{
 	@Autowired
 	private QuizDao quizDao;
 
+	@Override
 	public List<Quiz> findByCategoryQuiz(Integer categoryId, Integer quizNum){
 		return quizDao.findByCategoryQuiz(categoryId, quizNum);
 	}
-
+	@Override
 	public List<Quiz> findByRankCategory(Integer categoryId){
 		return quizDao.findByRankCategory(categoryId);
 	}
 
+	@Override
+	public String selectMode(Integer modeId) {
+		if(modeId == 1) {
+			return "学習";
+		}else {
+			return "ランキング";
+		}
+
+	}
 
 	@Override
 	public List<Quiz> findByQuizTitle(String quizTitle) {
