@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.QuizForm;
+<<<<<<< HEAD
+=======
+=======
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.service.QuizService;
 
+>>>>>>> branch 'main' of https://github.com/GroupA-prog/TraningDojo.git
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 >>>>>>> branch 'main' of https://github.com/GroupA-prog/TraningDojo.git
@@ -55,9 +59,18 @@ public class QuizTamayoseController{
 	public String quizPostReturn() {
 		return "quiz";
 	}
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
+=======
+	@RequestMapping(value="/quiz",param="finish",method=RequestMethod.POST)
+>>>>>>> branch 'main' of https://github.com/GroupA-prog/TraningDojo.git
+=======
 
 
 	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
+>>>>>>> branch 'main' of https://github.com/GroupA-prog/TraningDojo.git
 	public String quizPostFinish() {
 		return "quiz";
 	}

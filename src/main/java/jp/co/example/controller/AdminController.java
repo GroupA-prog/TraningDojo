@@ -12,13 +12,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.AdminForm;
+import jp.co.example.dao.QuizDao;
 import jp.co.example.dto.entity.Category;
+import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.ICategoryService;
+import jp.co.example.service.IUserInfoService;
 
 @Controller
 public class AdminController {
 	@Autowired
 	private ICategoryService categoryService;
+	@Autowired
+	private IUserInfoService userInfoService;
+	@Autowired
+	private QuizDao QuizDaoImpl;
 	@Autowired
 	private HttpSession session;
 
@@ -26,17 +33,40 @@ public class AdminController {
 	public String adminGet(@ModelAttribute("admin") AdminForm form, Model model) {
 		/*ログインユーザーの情報が歩かないかの判断*/
 
-		List<Category> categoryList = categoryService.selectAll();
-		List<Category> parentCategoryList = categoryService.selectParentCategory();
+		List<Category> categoryList 			= categoryService.selectAll();
+		List<Category> parentCategoryList 	= categoryService.selectParentCategory();
+		List<UserInfo> userInfoList 			= userInfoService.selectAll();
 		session.setAttribute("categoryList", categoryList);
 		session.setAttribute("parentCategoryList", parentCategoryList);
+		session.setAttribute("userInfoList", userInfoList);
+		//初期値設定
+		form.setRole( userInfoList.get(0).getRole());
 		return "admin";
 	}
 
 	@RequestMapping(value="/admin", params="quizCreate", method=RequestMethod.POST)
 	public String adminPostQuizCreate(@ModelAttribute("admin") AdminForm form, Model model) {
-		System.out.println("quizCreate");
-		System.out.println(form);
+		boolean categoryFlg 	     = form.getQuizCategoryId() == null ? true : false;
+		boolean quizTitleFlg 	 = form.getCreateQuizTitle().isEmpty();
+		boolean problemStatementFlg = form.getCreateProblemStatement().isEmpty();
+		boolean choice1Flg  = form.getCreateChoice1().isEmpty();
+		boolean choice2Flg  = form.getCreateChoice2().isEmpty();
+		boolean choice3Flg  = form.getCreateChoice3().isEmpty();
+		boolean choice4Flg  = form.getCreateChoice4().isEmpty();
+
+		//入力チェック
+		if ( categoryFlg || quizTitleFlg || problemStatementFlg || choice1Flg
+				|| choice2Flg || choice3Flg || choice4Flg) {
+			model.addAttribute("isNotCategory", categoryFlg);
+			model.addAttribute("isNotSentence", problemStatementFlg);
+			model.addAttribute("isNotChoices", choice1Flg || choice2Flg || choice3Flg || choice4Flg);
+			model.addAttribute("isNotQuizTitle", quizTitleFlg);
+			return "admin";
+		}
+
+		
+
+
 		return "admin";
 	}
 
@@ -99,9 +129,8 @@ public class AdminController {
 
 	@RequestMapping(value="/admin", params="userEdit", method=RequestMethod.POST)
 	public String adminPostUserEdit(@ModelAttribute("admin") AdminForm form, Model model) {
-		System.out.println("userEdit");
-		System.out.println(form);
-		return "admin";
+		userInfoService.updateRole(form.getLoginId(), form.getRole());
+		return "redirect:/admin";
 	}
 
 
