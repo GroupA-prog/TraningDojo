@@ -12,8 +12,13 @@
 <form action="">
 ログインID<input type="text"><br>
 パスワード<input type="password"><br>
-<input type="submit">
+<input type="submit" value="ログイン">
+</form><br>
+<form action="">
+アカウントをお持ちでない方は、こちらから登録してください<br>
+<input type="submit" value="新規登録">
 </form>
+
 <body>
 
 </body>
