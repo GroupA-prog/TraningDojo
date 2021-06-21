@@ -23,6 +23,7 @@ public class QuizServiceImpl implements QuizService{
 		return quizDao.findByRankCategory(categoryId);
 	}
 
+
 	@Override
 	public List<Quiz> findByQuizTitle(String quizTitle) {
 		return quizDao.findByQuizTitle(quizTitle);
