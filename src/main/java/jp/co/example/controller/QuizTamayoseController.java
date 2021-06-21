@@ -1,7 +1,11 @@
 package jp.co.example.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 @Controller
-public class QuizController{
+public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
 	public String quizGet() {
@@ -18,7 +22,7 @@ public class QuizController{
 		return "quiz";
 	}
 
-	@RequestMapping(value="/quiz"param="finish",method=RequestMethod.POST)
+	@RequestMapping(value="/quiz",param="finish",method=RequestMethod.POST)
 	public String quizPostFinish() {
 		return "quiz";
 	}
