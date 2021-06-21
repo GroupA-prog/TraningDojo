@@ -28,7 +28,7 @@ public class LoginController {
     private UserInfoService service;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@Validated @ModelAttribute("login") LoginForm form, BindingResult bindingResult,
+	public String login(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult,
 			Model model) {
 
 		String errMsg = messageSource.getMessage("login.error", null, Locale.getDefault());
@@ -46,8 +46,8 @@ public class LoginController {
         }
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public String signUp(@Validated @ModelAttribute("signUp") LoginForm form, BindingResult bindingResult,
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String signUp(@Validated @ModelAttribute("InsertForm") LoginForm form, BindingResult bindingResult,
 			Model model) {
 		return "signUp";
 	}

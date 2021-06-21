@@ -28,7 +28,7 @@
 		<button class="btn login">ログイン</button>
 	</form>
 	<br>
-	<form action="signUp">
+	<form action="insert">
 		アカウントをお持ちでない方は、こちらから登録してください
 		<p>
 			<button class="btn new-update">新規登録</button>
