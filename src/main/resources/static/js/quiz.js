@@ -13,3 +13,17 @@ document.getElementById("sec").textContent=String(sec).padStart(2,"0");
 setTimeout(countdown,1000);
 }
 countdown();
+
+
+var btn = document.getElementById('retired');
+
+btn.addEventListener('click', function() {
+	var result = window.confirm('本当に諦めるんですか？');
+
+	if(result) {
+		location.href = 'quizConfig';
+	}
+	else {
+		location.href = 'quiz';
+	}
+})
