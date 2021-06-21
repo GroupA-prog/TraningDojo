@@ -12,11 +12,13 @@
 </head>
 <body>
 	<h2>カテゴリを選択してください</h2>
-	<form:form action="logCategory" modelAttribute="categoryList" method="get">
+	<form:form action="log" modelAttribute="logList" method="get">
 		<c:forEach var="category" items="${categoryList}">
-			<a href="/logList?categoryId=category.categoryId">${fn:escapeXml(category.categoryName)}</a>
+			<a href="/logList?categoryId=${fn:escapeXml(category.categoryId)}">${fn:escapeXml(category.categoryName)}</a>
+
 			<br>
 		</c:forEach>
 	</form:form>
+
 </body>
 </html>
