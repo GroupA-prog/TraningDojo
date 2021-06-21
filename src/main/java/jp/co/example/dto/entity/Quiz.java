@@ -3,14 +3,15 @@ package jp.co.example.dto.entity;
 public class Quiz {
 	private Integer quizId;
 	private Integer categoryId;
-	private Integer quizChoiceId;
-	private Integer correctAnswer;
-	private Integer userAnswer;
-	private String quizStatement;
-	private String choice;
-	private String commentary;
 	private String quizTitle;
+	private String quizStatement;
+	private Integer correctAnswer;
+	private String commentary;
 	private Integer display;
+	private Integer quizChoiceId;
+	private String choice;
+	private Integer userAnswer;
+
 
 
 	public String getQuizTitle() {
