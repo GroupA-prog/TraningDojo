@@ -1,0 +1,65 @@
+.arrayContiner li {
+    list-style: none;
+}
+
+.arrayContiner {
+    display: flex;
+    flex-direction: row;
+}
+.item {
+    width: 200px;
+    height: 1em;
+    padding: 1em;
+    margin-top: 10%;
+    margin-left: 20%;
+    background-color: #ffa500;
+    text-align: center;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.items:after {
+    display:block;
+}
+
+/*モーダル内のdiv要素を非表示*/
+.createQuiz, .editQuiz, .createCategory, .editCategory, .editUser {
+    display: none;
+}
+#modal-content h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.description ul{
+    margin: auto;
+}
+.description h3 {
+    font-size: 36px;
+    margin-bottom: 0.3em;
+}
+.description li {
+    font-size: 30px;
+}
+
+
+#createProblemStatement {
+	resize: none;
+	width: 100%;
+	height: 300px;
+
+}
+
+
+
+
+
+
+
