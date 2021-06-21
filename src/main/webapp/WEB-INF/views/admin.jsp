@@ -15,21 +15,36 @@
   crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>
+	<!--
+        	<header>
             <th>研修道場</th>
         </header>
-        <div id="modal-overlay"></div>
+          -->
+	<div id="modal-overlay"></div>
 		<div id="modal-content">
 			<form:form action="/admin" modelAttribute="admin">
 				<div class="createQuiz">
 					<h3>クイズの作成</h3>
 					<hr>
+					<c:if test="${ isNotCategory }">
+						<p class="error">カテゴリを選択してください</p>
+					</c:if>
+					<c:if test="${ isNotSentence }">
+						<p class="error">問題文を入力してください</p>
+					</c:if>
+					<c:if test="${ isNotChoices }">
+						<p class="error">選択肢は必須です</p>
+					</c:if>
+					<c:if test="${ isNotQuizTitle }">
+						<p class="error">クイズタイトルは必須です</p>
+					</c:if>
+
 					<div>
 						<label>
 							カテゴリの選択
 							<br>
 							<form:select path="quizCategoryId">
-								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId"/>
 							</form:select>
 						</label>
 					</div>
@@ -81,6 +96,7 @@
 					</div>
 					<div>
 						解説
+						<br>
 						<form:textarea path="createCommentary" />
 					</div>
 					<button type="button" class="return">戻る</button>
@@ -238,13 +254,15 @@
 				<div class="editUser">
 					<h3>ユーザーの編集</h3>
 					<hr>
+					<c:if test="${ isChoiceLoginId }">
+						<p class="error">ログインIDを選択してください。</p>
+					</c:if>
 					<div>
 						<label>
 							ログインID
 							<br>
 							<form:select path="loginId">
-								<form:option value="1">aaa</form:option>
-								<form:option value="2">bbb</form:option>
+								<form:options items="${ userInfoList }" itemLabel="loginId" itemValue="loginId"/>
 							</form:select>
 						</label>
 					</div>

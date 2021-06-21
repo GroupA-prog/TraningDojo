@@ -57,9 +57,22 @@
 
 }
 
+#createQuizTitle {
+	width: 100%;
+}
 
+table td {
+	width: 100%;
+}
+#createChoice1, #createChoice2, #createChoice3, #createChoice4 {
+	width: 100%;
+}
 
-
+#createCommentary {
+	resize: none;
+	width: 100%;
+	height: 200px;
+}
 
 
 
