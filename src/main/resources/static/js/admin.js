@@ -13,21 +13,20 @@ window.onload = function() {
 	$('#editCategoryId').change(function() {
 		request = { categoryId: $('#editCategoryId').val() };
 		AsyncCommunication('/categoryName', request, function(data) {
-														$('#editCategoryName').val(data.categoryName);
-														$('#editCategoryParentCategoryId').val(data.parentCategoryId);
-														$('[name=categoryDisplay]').val([data.display + '']);
-													});
+			$('#editCategoryName').val(data.categoryName);
+			$('#editCategoryParentCategoryId').val(data.parentCategoryId);
+			$('[name=categoryDisplay]').val([data.display + '']);
+		});
 	});
 
 	$('#loginId').change(function() {
-		request = { userId: $('#loginId').val() };
+		request = { loginId: $('#loginId').val() };
 		AsyncCommunication('/userRole', request, function(data) {
 			$('#role').val(data.role);
 		});
-
 	});
 
-}
+};
 
 
 
