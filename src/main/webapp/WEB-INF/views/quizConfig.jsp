@@ -25,7 +25,7 @@
 	<h2>カテゴリを選んでください</h2>
 	<br>
 	<form:select path="">
-		<form =option item="" itemLabel="" itemValue="" />
+		<form =option item="" itemLabel="カテゴリ" itemValue="" />
 	</form:select>
 	<br>
 	<h3>問題数を選んでください</h3>
