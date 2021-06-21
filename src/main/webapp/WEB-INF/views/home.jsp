@@ -8,20 +8,31 @@
 <head>
 <meta charset="UTF-8">
 <title>ホーム画面</title>
-<link rel="stylesheet" type="style/css">
+<link rel="stylesheet" href="css/common.css" />
 </head>
 <body>
 	<header>
-		<th>研修道場</th>
-		<button class="btn admin" href="">管理者</button>
-		<button class="btn warning" href="">ログアウト</button>
+		<a>研修道場</a>
+		<form action="/admin" method="GET">
+			<button type="submit" class="btn admin">管理者</button>
+		</form>
+		<form action="/logout" method="GET">
+			<button  type="submit" class="btn warning">ログアウト</button>
+		</form>
 	</header>
 
 
-
-	<button class="btn quiz" href="">クイズ</button>
-	<button class="btn ranking" href="">ランキング</button>
-	<button class="btn history" href="">履歴</button>
-	<button class="btn profile" href="">プロフィール</button>
+	<form action="/quiz" method="GET">
+		<button type="submit" class="btn quiz">クイズ</button>
+	</form>
+	<form action="/ranking" method="GET">
+		<button type="submit" class="btn ranking">ランキング</button>
+	</form>
+	<form action="/history" method="GET">
+		<button type="submit" class="btn history">履歴</button>
+	</form>
+	<form action="/profile" method="GET">
+		<button type="submit" class="btn profile">プロフィール</button>
+	</form>
 </body>
 </html>

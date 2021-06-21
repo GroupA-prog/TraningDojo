@@ -10,10 +10,11 @@
 <title>クイズ画面</title>
 </head>
 <body>
+<form:form >
 <header>
   <h1>研修道場</h1>
   <nav>
-    <button>リタイア</button>
+    <form:button name="retired">リタイア</form:button>
   </nav>
   </header>
 <h1>:</h1>
@@ -21,11 +22,15 @@
 
 
 
+<form:radiobuttons path="choiceId"/>
 
-<a>←前へ</a>
+
+<form:button name= "return">←前へ</form:button>>
 <p></p>
-<a>次へ→</a>
+<form:button name= "next">次へ→</form:button>>
 
-<div><button>終了</button></div>
+<div><form:button name="finish">終了</form:button></div>
+
+</form:form>
 </body>
 </html>
