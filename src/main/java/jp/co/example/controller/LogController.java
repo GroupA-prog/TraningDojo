@@ -36,9 +36,9 @@ public class LogController {
 		List<Category> categoryList = ICService.selectParentCategory();
 
 		//取得したカテゴリ一覧をmodelに格納
-		model.addAttribute(categoryList);
+		model.addAttribute("categoryList", categoryList);
 
-		return "logCategory";
+		return "historyCategory";
 
 	}
 
