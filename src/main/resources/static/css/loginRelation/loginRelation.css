@@ -1,0 +1,14 @@
+.systemName{
+    color: white;
+    text-decoration: none;
+}
+header{
+    background-color:blue;
+    height: 60px;
+    margin-left: auto;
+    padding: auto;
+}
+
+body{
+    margin-left: 20px;
+}
