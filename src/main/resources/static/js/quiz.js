@@ -27,3 +27,17 @@ btn.addEventListener('click', function() {
 		location.href = 'quiz';
 	}
 })
+
+
+var btn = document.getElementById('finish');
+
+btn.addEventListener('click', function() {
+	var result = window.confirm('解答を保存してクイズを終了しますか？');
+
+	if(result) {
+		location.href = 'quiz';
+	}
+	else {
+		location.href = 'quiz';
+	}
+})
