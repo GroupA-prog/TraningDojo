@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>履歴一覧選択画面</title>
+<title>signUpDone</title>
 </head>
 <body>
 

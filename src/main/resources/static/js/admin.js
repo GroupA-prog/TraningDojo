@@ -19,6 +19,14 @@ window.onload = function() {
 													});
 	});
 
+	$('#loginId').change(function() {
+		request = { userId: $('#loginId').val() };
+		AsyncCommunication('/userRole', request, function(data) {
+			$('#role').val(data.role);
+		});
+
+	});
+
 }
 
 

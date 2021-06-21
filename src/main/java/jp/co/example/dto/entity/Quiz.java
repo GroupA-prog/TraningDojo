@@ -1,18 +1,27 @@
 package jp.co.example.dto.entity;
 
+import java.util.ArrayList;
+
 public class Quiz {
 	private Integer quizId;
 	private Integer categoryId;
-	private Integer quizChoiceId;
-	private Integer correctAnswer;
-	private Integer userAnswer;
-	private String quizStatement;
-	private String choice;
-	private String commentary;
 	private String quizTitle;
+	private String quizStatement;
+	private Integer correctAnswer;
+	private String commentary;
 	private Integer display;
+	private Integer quizChoiceId;
+	private String choice;
+	private Integer userAnswer;
+	private ArrayList<QuizSelect> quizSelect;
 
 
+	public ArrayList<QuizSelect> getQuizSelect() {
+		return quizSelect;
+	}
+	public void setQuizSelect(ArrayList<QuizSelect> quizSelect) {
+		this.quizSelect = quizSelect;
+	}
 	public String getQuizTitle() {
 		return quizTitle;
 	}
@@ -72,6 +81,13 @@ public class Quiz {
 	}
 	public void setCommentary(String commentary) {
 		this.commentary = commentary;
+	}
+	@Override
+	public String toString() {
+		return "Quiz [quizId=" + quizId + ", categoryId=" + categoryId + ", quizTitle=" + quizTitle + ", quizStatement="
+				+ quizStatement + ", correctAnswer=" + correctAnswer + ", commentary=" + commentary + ", display="
+				+ display + ", quizChoiceId=" + quizChoiceId + ", choice=" + choice + ", userAnswer=" + userAnswer
+				+ ", quizSelect=" + quizSelect + "]";
 	}
 
 
