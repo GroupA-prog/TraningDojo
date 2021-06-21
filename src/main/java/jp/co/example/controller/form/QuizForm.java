@@ -12,7 +12,7 @@ public class QuizForm{
 	private Integer quizChoiceId;
 	private String choice;
 	private Integer mode;
-	private String caztegoryName;
+	private String categoryName;
 	private Integer quizNum;
 
 	public Integer getQuizId() {
@@ -75,11 +75,11 @@ public class QuizForm{
 	public void setMode(Integer mode) {
 		this.mode = mode;
 	}
-	public String getCaztegoryName() {
-		return caztegoryName;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setCaztegoryName(String caztegoryName) {
-		this.caztegoryName = caztegoryName;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public Integer getQuizNum() {
 		return quizNum;

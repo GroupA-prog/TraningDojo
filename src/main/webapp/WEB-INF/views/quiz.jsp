@@ -18,13 +18,12 @@
   </nav>
   </header>
 <h1>:</h1>
-<c:forEach items="${ }" var=""></c:forEach>
-
-
-
-<form:radiobuttons path="choiceId" items="${ }"/>
-
-
+<c:forEach items="${quizList}" var="quiz">
+  <p>${quiz.quizStatement}</p>
+  <c:forEach items="${quiz.quizSelect}" var="select">
+    <form:radiobuttons path="choiceId" items="${select}"/>
+  </c:forEach>
+</c:forEach>
 <p>残り時間</p>
 <p>
   <span id="min"></span>分

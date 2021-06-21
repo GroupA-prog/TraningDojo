@@ -31,15 +31,13 @@ public class QuizTamayoseController{
 		session.setAttribute("mode", quizService.selectMode(form.getMode()));
 		if(form.getMode() == 1) {
 			List<Quiz> quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
-
-		}
-		if(form.getMode() == 2) {
-
+			session.setAttribute("quizList", quizList);
+			return "quiz";
+		}else {
 			List<Quiz> quizList = quizService.findByRankCategory(form.getCategoryId());
-
+			session.setAttribute("quizList", quizList);
+			return "quiz";
 		}
-
-		return "quiz";
 	}
 
 	@RequestMapping(value="/quiz",params="next",method=RequestMethod.POST)
