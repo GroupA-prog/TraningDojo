@@ -8,4 +8,7 @@ public interface QuizService {
 	public List<Quiz> findByCategoryQuiz(Integer categoryId, Integer quizNum);
 
 	public List<Quiz> findByRankCategory(Integer categoryId);
+
+	public List<Quiz> findByQuizTitle(String quizTitle);
+	public int insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display);
 }

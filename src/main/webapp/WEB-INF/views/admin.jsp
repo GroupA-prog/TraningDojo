@@ -38,6 +38,9 @@
 					<c:if test="${ isNotQuizTitle }">
 						<p class="error">クイズタイトルは必須です</p>
 					</c:if>
+					<c:if test="${ isQuizTitleExists }">
+						<p class="error">そのクイズタイトルは既に存在します</p>
+					</c:if>
 
 					<div>
 						<label>

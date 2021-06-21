@@ -16,4 +16,6 @@ public class QuizSelectService implements IQuizSelectService {
 		return quizSelectDao.insertQuizSelect(quizId, choiceId, choice);
 	}
 
+
+
 }
