@@ -27,7 +27,8 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
 	public String quizGet(@ModelAttribute("quiz")QuizForm form,Model model) {
-		session.setAttribute("mode", form.getMode());
+		session.setAttribute("time", form.getQuizNum()*2);
+		session.setAttribute("mode", quizService.selectMode(form.getMode()));
 		if(form.getMode() == 1) {
 			List<Quiz> quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
 
@@ -55,8 +56,8 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
 	public String quizPostFinish() {
-		int mode = (int) session.getAttribute("mode");
-		if(mode == 1) {
+		String mode = (String) session.getAttribute("mode");
+		if(mode.equals("学習")) {
 
 			return "";
 		}
@@ -66,7 +67,7 @@ public class QuizTamayoseController{
 	@RequestMapping(value="/retired",method=RequestMethod.GET)
 	public String retiredGet() {
 		session.removeAttribute("mode");
-
+		session.removeAttribute("time");
 		return "quizConfig";
 	}
 
