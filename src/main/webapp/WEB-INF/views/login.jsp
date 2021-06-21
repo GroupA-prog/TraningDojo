@@ -11,17 +11,27 @@
 </head>
 <body>
 	<header>
-		<h1><a href="">研修道場</a></h1>
+		<h1>
+			<a href="" class="systemName">研修道場</a>
+		</h1>
 	</header>
 	<form action="">
-		ログインID<input type="text"><br> パスワード<input type="password"><br>
-		<input type="submit" value="ログイン">
+		<p>アカウントをお持ちの方はこちらからログインしてください</p>
+		<p>
+			ログインID<input type="text">
+		</p>
+		<p>
+			パスワード<input type="password">
+		</p>
+		<br>
+		<button class="btn login">ログイン</button>
 	</form>
 	<br>
 	<form action="">
-		アカウントをお持ちでない方は、こちらから登録してください<br> <input type="submit"
-			value="新規登録">
+		アカウントをお持ちでない方は、こちらから登録してください
+		<p>
+			<button class="btn new-update">新規登録</button>
+		</p>
 	</form>
-
 </body>
 </html>
