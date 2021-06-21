@@ -27,3 +27,13 @@
 
 	position: absolute;
 }
+
+.learningNum{
+	display: block;
+
+}
+
+.rankNum{
+	display: none;
+
+}

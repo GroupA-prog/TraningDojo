@@ -13,14 +13,14 @@ import jp.co.example.dto.entity.Category;
 @Repository
 public class QuizConfigDaoImpl implements QuizConfigDao {
 
-	private static final String CategoryAll = "select category_name from category";
+	private static final String CategoryName = "select category_id,category_name from category";
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	public List<Category> categoryNameAll() {
 
-		return jdbcTemplate.query(CategoryAll, new BeanPropertyRowMapper<Category>(Category.class));
+		return jdbcTemplate.query(CategoryName, new BeanPropertyRowMapper<Category>(Category.class));
 	}
 
 }
