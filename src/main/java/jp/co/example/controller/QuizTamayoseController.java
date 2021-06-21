@@ -36,10 +36,15 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
 	public String quizGet(@ModelAttribute("quiz")QuizForm form,Model model) {
-		if(form.getMode()==1) {
+		if(form.getMode() == 1) {
 			List<Quiz> quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
+			//	選択肢
+		}
+		if(form.getMode() == 2) {
 
-			
+			List<Quiz> quizList = quizService.findByRankCategory(form.getCategoryId());
+
+
 		}
 
 		return "quiz";

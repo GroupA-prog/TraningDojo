@@ -1,5 +1,7 @@
 package jp.co.example.dto.entity;
 
+import java.util.ArrayList;
+
 public class Quiz {
 	private Integer quizId;
 	private Integer categoryId;
@@ -11,9 +13,15 @@ public class Quiz {
 	private Integer quizChoiceId;
 	private String choice;
 	private Integer userAnswer;
+	private ArrayList<QuizSelect> quizSelect;
 
 
-
+	public ArrayList<QuizSelect> getQuizSelect() {
+		return quizSelect;
+	}
+	public void setQuizSelect(ArrayList<QuizSelect> quizSelect) {
+		this.quizSelect = quizSelect;
+	}
 	public String getQuizTitle() {
 		return quizTitle;
 	}

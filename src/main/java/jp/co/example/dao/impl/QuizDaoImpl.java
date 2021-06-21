@@ -13,8 +13,10 @@ import jp.co.example.dto.entity.Quiz;
 
 @Repository
 public class QuizDaoImpl implements QuizDao{
+
+	private static final String SELECT_QUIZ = "SELECT * FROM (SELECT * FROM quiz WHERE category_id = :categoryId ORDER BY random() LIMIT :quizNum) AS quiz JOIN quiz_select qs ON quiz.quiz_id = qs.quiz_id";
+	private static final String SELECT_RANK_CATEGORY = "SELECT * FROM (SELECT * FROM quiz WHERE category_id = :categoryId) AS quiz ORDER BY random() LIMIT 10";
 	private static final String INSERT_QUIZ = "INSERT INTO quiz (category_id, quiz_title, quiz_statment, correct_answer, commentary, display) VALUES (:category_id, :quiz_title, :quiz_statment, :correct_answer, :commentary, :display);";
-	private static final String SELECT_QUIZ = "SELECT * FROM (SELECT * FROM quiz WHERE category_id = :categoryId) AS quiz ORDER BY random() LIMIT :quizNum";
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -30,7 +32,7 @@ public class QuizDaoImpl implements QuizDao{
 
 		return jdbcTemplate.update(INSERT_QUIZ, param);
 	}
-	//
+	//学習モード
 	public List<Quiz> findByCategoryQuiz(Integer categoryId,Integer quizNum){
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("categoryId", categoryId);
@@ -38,5 +40,14 @@ public class QuizDaoImpl implements QuizDao{
 
 		return jdbcTemplate.query(SELECT_QUIZ, param,
 				new BeanPropertyRowMapper<Quiz>(Quiz.class));
+	}
+	//ランキングモード（カテゴリあり）
+	public List<Quiz> findByRankCategory(Integer categoryId){
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("categoryId", categoryId);
+
+		return jdbcTemplate.query(SELECT_RANK_CATEGORY, param,
+				new BeanPropertyRowMapper<Quiz>(Quiz.class));
+
 	}
 }
