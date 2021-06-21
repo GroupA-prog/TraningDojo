@@ -3,13 +3,15 @@ package jp.co.example.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.example.dao.QuizDao;
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.service.QuizService;
 
-@Repository
+@Transactional
+@Service
 public class QuizServiceImpl implements QuizService{
 
 	@Autowired
@@ -40,8 +42,9 @@ public class QuizServiceImpl implements QuizService{
 	}
 
 	@Override
-	public int insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
-		return quizDao.insertQuiz(categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
+	public List<Quiz> insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
+		quizDao.insertQuiz(categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
+		return findByQuizTitle(quizTitle);
 	}
 
 }

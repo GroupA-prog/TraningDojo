@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.AdminForm;
 import jp.co.example.dto.entity.Category;
+import jp.co.example.dto.entity.Quiz;
 import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.IQuizSelectService;
@@ -70,9 +71,18 @@ public class AdminController {
 		if ( !quizService.findByQuizTitle(form.getCreateQuizTitle()).isEmpty() ) {
 			model.addAttribute("isQuizTitleExists", quizTitleFlg);
 		}
+		System.out.println(form);
 
+		List<Quiz> newQuiz = quizService.insertQuiz(
+												form.getQuizCategoryId(),
+												form.getCreateQuizTitle(),
+												form.getCreateProblemStatement(),
+												form.getCreateAnswer(),
+												form.getCreateCommentary(),
+												1);
+		quizSelectService.insertAll(form, newQuiz.get(0));
 
-		return "admin";
+		return "redirect:/admin";
 	}
 
 	@RequestMapping(value="/admin", params="quizEdit", method=RequestMethod.POST)

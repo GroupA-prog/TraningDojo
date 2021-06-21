@@ -82,6 +82,13 @@ public class Quiz {
 	public void setCommentary(String commentary) {
 		this.commentary = commentary;
 	}
+	@Override
+	public String toString() {
+		return "Quiz [quizId=" + quizId + ", categoryId=" + categoryId + ", quizTitle=" + quizTitle + ", quizStatement="
+				+ quizStatement + ", correctAnswer=" + correctAnswer + ", commentary=" + commentary + ", display="
+				+ display + ", quizChoiceId=" + quizChoiceId + ", choice=" + choice + ", userAnswer=" + userAnswer
+				+ ", quizSelect=" + quizSelect + "]";
+	}
 
 
 }
