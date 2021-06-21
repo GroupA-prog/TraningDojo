@@ -7,14 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ログイン画面</title>
+<title>ログアウト画面</title>
 </head>
-<form action="">
-ログインID<input type="text"><br>
-パスワード<input type="password"><br>
-<input type="submit">
-</form>
 <body>
-
+<header>
+<h1>研修道場</h1>
+</header>
+ご利用ありがとうございました
 </body>
 </html>
