@@ -40,6 +40,7 @@ $('.return').click(
 	function() {
 		$('.createQuiz').fadeOut('slow');
 		$('.editQuiz').fadeOut('slow');
+		$('.editQuizList').fadeOut('slow');
 		$('.createCategory').fadeOut('slow');
 		$('.editCategory').fadeOut('slow');
 		$('.editUser').fadeOut('slow');
@@ -55,7 +56,7 @@ $('#createQuiz').click(
 );
 $('#editQuiz').click(
 	function() {
-		$('.editQuiz').css('display', 'block');
+		$('.editQuizList').css('display', 'block');
 	}
 );
 $('#createCategory').click(

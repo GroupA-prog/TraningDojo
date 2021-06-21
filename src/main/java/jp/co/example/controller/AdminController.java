@@ -44,7 +44,6 @@ public class AdminController {
 		session.setAttribute("parentCategoryList", parentCategoryList);
 		session.setAttribute("userInfoList", userInfoList);
 		//初期値設定
-		//form.setRole( userInfoList.get(0).getRole());
 		return "admin";
 	}
 
@@ -119,6 +118,7 @@ public class AdminController {
 		List<Category> findCategory = categoryService.findByCategoryName(form.getEditCategoryName());
 		//System.out.println(form);
 		//System.out.println(findCategory.get(0));
+
 		if (!findCategory.isEmpty()) {
 			if (form.getEditCategoryName().equals(findCategory.get(0).getCategoryName()) &&
 				form.getEditCategoryParentCategoryId().equals(findCategory.get(0).getParentCategoryId()) &&
@@ -144,6 +144,11 @@ public class AdminController {
 
 	@RequestMapping(value="/admin", params="userEdit", method=RequestMethod.POST)
 	public String adminPostUserEdit(@ModelAttribute("admin") AdminForm form, Model model) {
+		if ( userInfoService.findByLoginId(form.getLoginId()) == null) {
+			model.addAttribute("isChoiceLoginId", true);
+			return "admin";
+		}
+
 		userInfoService.updateRole(form.getLoginId(), form.getRole());
 		return "redirect:/admin";
 	}
