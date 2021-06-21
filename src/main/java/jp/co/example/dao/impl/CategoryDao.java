@@ -60,6 +60,6 @@ public class CategoryDao implements ICategoryDao {
 	}
 
 	public List<Category> findByParentCategory(){
-		return jdbcTemplate(FIND_BY_PARENT_CATEGORY,new BeanPropertyRowMapper<Category>(Category.class));
+		return jdbcTemplate.query(FIND_BY_PARENT_CATEGORY,new BeanPropertyRowMapper<Category>(Category.class));
 	}
 }
