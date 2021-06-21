@@ -67,26 +67,34 @@ public class AdminController {
 	public String adminPostCategoryEdit(@ModelAttribute("admin") AdminForm form, Model model) {
 		if (form.getEditCategoryName().isEmpty()) {
 			model.addAttribute("isEmptyEditCategoryName", true);
+			model.addAttribute("admin", form);
 			return "admin";
 		}
 
 		List<Category> findCategory = categoryService.findByCategoryName(form.getEditCategoryName());
-		if ( findCategory.isEmpty() &&
-				!form.getEditCategoryName().equals(findCategory.get(0).getCategoryName()) &&
-				form.getEditCategoryParentCategoryId() != findCategory.get(0).getParentCategoryId() ) {
-			categoryService.update(
-								form.getEditCategoryId(),
-								form.getEditCategoryName(),
-								form.getCategoryDisplay(),
-								form.getEditCategoryParentCategoryId());
-			return "redirect:/admin";
-		} else if ( !form.getEditCategoryName().equals(findCategory.get(0).getCategoryName()) ) {
-			model.addAttribute("categoryEditNameExists", true);
-		} else {
-			model.addAttribute("isChanged", true);
-		}
+		//System.out.println(form);
+		//System.out.println(findCategory.get(0));
+		if (!findCategory.isEmpty()) {
+			if (form.getEditCategoryName().equals(findCategory.get(0).getCategoryName()) &&
+				form.getEditCategoryParentCategoryId().equals(findCategory.get(0).getParentCategoryId()) &&
+				form.getCategoryDisplay().equals(findCategory.get(0).getDisplay()) ) {
 
-		return "admin";
+				model.addAttribute("isChanged", true);
+				return "admin";
+			} else if ( form.getEditCategoryName().equals(findCategory.get(0).getCategoryName()) &&
+						 !form.getEditCategoryId().equals(findCategory.get(0).getCategoryId()) ) {
+				model.addAttribute("categoryEditNameExists", true);
+				return "admin";
+			}
+		}
+		//データの更新
+		categoryService.update(
+				form.getEditCategoryId(),
+				form.getEditCategoryName(),
+				form.getCategoryDisplay(),
+				form.getEditCategoryParentCategoryId());
+
+		return "redirect:/admin";
 	}
 
 	@RequestMapping(value="/admin", params="userEdit", method=RequestMethod.POST)

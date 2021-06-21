@@ -196,7 +196,6 @@ public class AdminForm {
 	public void setCategoryDisplay(Integer categoryDisplay) {
 		this.categoryDisplay = categoryDisplay;
 	}
-
 	@Override
 	public String toString() {
 		return "AdminForm [quizCategoryId=" + quizCategoryId + ", createQuizTitle=" + createQuizTitle
@@ -208,9 +207,9 @@ public class AdminForm {
 				+ editChoice2 + ", editChoice3=" + editChoice3 + ", editChoice4=" + editChoice4 + ", editAnswer="
 				+ editAnswer + ", quizDisplay=" + quizDisplay + ", editCommentary=" + editCommentary
 				+ ", categoryParentCategoryId=" + categoryParentCategoryId + ", categoryName=" + categoryName
-				+ ", editCategoryParentCategoryId=" + editCategoryParentCategoryId + ", editCategoryName="
-				+ editCategoryName + ", categoryDisplay=" + categoryDisplay + ", loginId=" + loginId + ", role=" + role
-				+ "]";
+				+ ", editCategoryId=" + editCategoryId + ", editCategoryParentCategoryId="
+				+ editCategoryParentCategoryId + ", editCategoryName=" + editCategoryName + ", categoryDisplay="
+				+ categoryDisplay + ", loginId=" + loginId + ", role=" + role + "]";
 	}
 
 

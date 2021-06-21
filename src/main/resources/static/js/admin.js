@@ -15,6 +15,7 @@ window.onload = function() {
 		AsyncCommunication('/categoryName', request, function(data) {
 														$('#editCategoryName').val(data.categoryName);
 														$('#editCategoryParentCategoryId').val(data.parentCategoryId);
+														$('[name=categoryDisplay]').val([data.display + '']);
 													});
 	});
 
