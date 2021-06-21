@@ -18,6 +18,14 @@ window.onload = function() {
 													});
 	});
 
+	$('#loginId').change(function() {
+		request = { loginId: $('#loginId').val() };
+		console.log(request);
+		AsyncCommunication('/userRole',request, function(data) {
+														$('#role').val(data.role);
+												});
+	});
+
 }
 
 

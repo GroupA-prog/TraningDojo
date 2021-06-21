@@ -23,8 +23,8 @@ public class UserInfoService implements IUserInfoService {
 	}
 
 	@Override
-	public UserInfo findByUserId(Integer userId) {
-		List<UserInfo> list = userInfoDao.findByUserId(userId);
+	public UserInfo findByLoginId(String loginId) {
+		List<UserInfo> list = userInfoDao.findByLoginId(loginId);
 
 		return list.isEmpty() ? null : list.get(0);
 	}
