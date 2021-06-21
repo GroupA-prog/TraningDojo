@@ -22,7 +22,15 @@ requestObj　内容
 */
 
 function AsyncCommunication(url, requestObj, func) {
-	fetch(url, requestObj)
+	request = {
+		method: 'POST',
+		headers: {
+					'Content-Type': 'application/json'
+				},
+		body: JSON.stringify(requestObj)
+	};
+
+	fetch(url, request)
 	.then( res => {
 				console.log(res);
 				return res.json().then( data => {

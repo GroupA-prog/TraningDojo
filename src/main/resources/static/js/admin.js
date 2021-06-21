@@ -11,14 +11,7 @@ window.onload = function() {
 	}
 
 	$('#editCategoryId').change(function() {
-		data = { categoryId: $('#editCategoryId').val() };
-		request = {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(data)
-				};
+		request = { categoryId: $('#editCategoryId').val() };
 		AsyncCommunication('/categoryName', request, function(data) {
 														$('#editCategoryName').val(data.categoryName);
 														$('#editCategoryParentCategoryId').val(data.parentCategoryId);
