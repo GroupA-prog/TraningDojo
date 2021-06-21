@@ -18,6 +18,7 @@ public class CategoryDao implements ICategoryDao {
 	private static final String UPDATE = "UPDATE category SET category_name = :category_name, display = :display, parent_category_id = :parent_category_id WHERE category_id = :category_id;";
 	private static final String FIND_BY_CATEGORY_NAME = "SELECT * FROM category WHERE category_name = :category_name;";
 	private static final String FIND_BY_CATEGORY_ID = "SELECT * FROM category WHERE category_id = :category_id;";
+	private static final String FIND_BY_PARENT_CATEGORY = "SELECT * FROM category WHERE parent_category_id IS NULL";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -58,4 +59,7 @@ public class CategoryDao implements ICategoryDao {
 		return jdbcTemplate.query(FIND_BY_CATEGORY_ID, param, new BeanPropertyRowMapper<Category>(Category.class));
 	}
 
+	public List<Category> findByParentCategory(){
+		return jdbcTemplate(FIND_BY_PARENT_CATEGORY,new BeanPropertyRowMapper<Category>(Category.class));
+	}
 }
