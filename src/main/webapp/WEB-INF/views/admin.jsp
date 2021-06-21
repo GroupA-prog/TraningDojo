@@ -164,7 +164,7 @@
 						<p class="error">そのカテゴリ名は既に存在します。</p>
 					</c:if>
 					<c:if test="${ isEmptyCategoryName }">
-						<p class="error">カテゴリ名に文字列を入力してください。</p>
+						<p class="error">カテゴリ名を入力してください。</p>
 					</c:if>
 					<div>
 						<label>
@@ -193,7 +193,7 @@
 						<p class="error">そのカテゴリ名は既に存在します。</p>
 					</c:if>
 					<c:if test="${ isEmptyEditCategoryName }">
-						<p class="error">カテゴリ名に文字列を入力してください。</p>
+						<p class="error">カテゴリ名を入力してください。</p>
 					</c:if>
 					<c:if test="${ isChanged }">
 						<p class="error">一項目以上変更してください。</p>
