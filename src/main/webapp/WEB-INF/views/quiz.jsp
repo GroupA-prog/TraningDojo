@@ -18,20 +18,19 @@
   </nav>
   </header>
 <h1>:</h1>
-<c:forEach items="${ }" var=""></c:forEach>
-
-
-
-<form:radiobuttons path="choiceId" items="${ }"/>
-
-
+<c:forEach items="${quizList}" var="quiz">
+  <p>${quiz.quizStatement}</p>
+  <c:forEach items="${quiz.quizSelect}" var="select">
+    <form:radiobuttons path="choiceId" items="${select.choice}"/>
+  </c:forEach>
+</c:forEach>
 <p>残り時間</p>
 <p>
   <span id="min"></span>分
   <span id="sec"></span>秒
 </p>
 <form:button name= "return">←前へ</form:button>>
-<p></p>
+<p>/${maxLength}</p>
 <form:button name= "next">次へ→</form:button>>
 
 <div><form:button name="finish">終了</form:button></div>
