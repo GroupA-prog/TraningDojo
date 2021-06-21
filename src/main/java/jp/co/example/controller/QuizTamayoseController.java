@@ -1,5 +1,6 @@
 package jp.co.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,15 +30,16 @@ public class QuizTamayoseController{
 	public String quizGet(@ModelAttribute("quiz")QuizForm form,Model model) {
 		session.setAttribute("time", form.getQuizNum()*2);
 		session.setAttribute("mode", quizService.selectMode(form.getMode()));
+		List<Quiz> quizList = new ArrayList<Quiz>();
 		if(form.getMode() == 1) {
-			List<Quiz> quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
+			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
 			session.setAttribute("quizList", quizList);
-			return "quiz";
 		}else {
-			List<Quiz> quizList = quizService.findByRankCategory(form.getCategoryId());
+			quizList = quizService.findByRankCategory(form.getCategoryId());
 			session.setAttribute("quizList", quizList);
-			return "quiz";
 		}
+		session.setAttribute("maxLength", quizList.size());
+		return "quiz";
 	}
 
 	@RequestMapping(value="/quiz",params="next",method=RequestMethod.POST)
