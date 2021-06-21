@@ -16,6 +16,12 @@ public class Quiz {
 	private ArrayList<QuizSelect> quizSelect;
 
 
+	public ArrayList<QuizSelect> getQuizSelect() {
+		return quizSelect;
+	}
+	public void setQuizSelect(ArrayList<QuizSelect> quizSelect) {
+		this.quizSelect = quizSelect;
+	}
 	public String getQuizTitle() {
 		return quizTitle;
 	}

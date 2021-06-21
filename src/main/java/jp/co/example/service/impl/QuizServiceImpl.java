@@ -17,6 +17,6 @@ public class QuizServiceImpl implements QuizService{
 		return quizDao.findByCategoryQuiz(categoryId, quizNum);
 	}
 
-	public List<Quiz> findByCategory(Integer categoryId);
+	public List<Quiz> findByRankCategory(Integer categoryId);
 
 }
