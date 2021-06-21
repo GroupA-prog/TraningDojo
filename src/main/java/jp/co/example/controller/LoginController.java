@@ -21,7 +21,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult,
 			Model model) {
-		return null;
+		return "login";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)

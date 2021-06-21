@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 public class LoginForm {
 	@NotBlank
 	private String loginId;
+	@NotBlank
+	private String password;
 
 	public String getLoginId() {
 		return loginId;
@@ -21,7 +23,4 @@ public class LoginForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	@NotBlank
-	private String password;
 }
