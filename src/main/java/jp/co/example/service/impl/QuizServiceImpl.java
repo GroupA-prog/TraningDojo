@@ -19,12 +19,8 @@ public class QuizServiceImpl implements QuizService{
 		return quizDao.findByCategoryQuiz(categoryId, quizNum);
 	}
 
-<<<<<<< HEAD
 	public List<Quiz> findByRankCategory(Integer categoryId){
 		return quizDao.findByRankCategory(categoryId);
-=======
-	public List<Quiz> findByRankCategory(Integer categoryId) {
-		return null;
 	}
 
 	@Override
@@ -35,7 +31,6 @@ public class QuizServiceImpl implements QuizService{
 	@Override
 	public int insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
 		return quizDao.insertQuiz(categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
->>>>>>> branch 'main' of https://github.com/GroupA-prog/TraningDojo.git
 	}
 
 }
