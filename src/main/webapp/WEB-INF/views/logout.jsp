@@ -7,19 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ログイン画面</title>
+<title>ログアウト画面</title>
 </head>
-<form action="">
-ログインID<input type="text"><br>
-パスワード<input type="password"><br>
-<input type="submit" value="ログイン">
-</form><br>
-<form action="">
-アカウントをお持ちでない方は、こちらから登録してください<br>
-<input type="submit" value="新規登録">
-</form>
-
 <body>
-
+<header>
+<h1>研修道場</h1>
+</header>
+<p>
+ご利用ありがとうございました
+</p>
 </body>
 </html>
