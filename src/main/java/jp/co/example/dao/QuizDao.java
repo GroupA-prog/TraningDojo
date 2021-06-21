@@ -1,5 +1,9 @@
 package jp.co.example.dao;
 
-public interface QuizDao {
+import java.util.List;
 
+import jp.co.example.dto.entity.Quiz;
+
+public interface QuizDao {
+	public List<Quiz> findByCategoryQuiz(Integer categoryId, Integer quizNum);
 }
