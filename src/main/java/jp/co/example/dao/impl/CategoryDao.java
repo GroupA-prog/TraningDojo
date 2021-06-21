@@ -15,7 +15,7 @@ import jp.co.example.dto.entity.Category;
 public class CategoryDao implements ICategoryDao {
 	private static final String SELECT_All = "WITH RECURSIVE category_list(category_id, category_name) AS ( SELECT category_id, CAST(category_name AS TEXT) FROM category WHERE parent_category_id IS NULL UNION ALL SELECT c.category_id, concat(cl.category_name,'->', c.category_name) FROM category c JOIN category_list cl ON cl.category_id = c.parent_category_id ) SELECT * FROM category_list ORDER BY category_name;";
 	private static final String INSERT = "INSERT INTO category (category_name, display, parent_category_id) VALUES (:category_name, :display, :parent_category_id);";
-	private static final String UPDATE = "UPDATE category SET category_name = :category_name, display = :display, parent_category_id = :parent_category_id WHERE category_id = :category_id;";
+	private static final String UPDATE = "UPDATE category SET category_name = :category_name, display = :display, parent_category_id = CASE WHEN :parent_category_id = -1 THEN NULL ELSE :parent_category_id END WHERE category_id = :category_id;";
 	private static final String FIND_BY_CATEGORY_NAME = "SELECT * FROM category WHERE category_name = :category_name;";
 	private static final String FIND_BY_CATEGORY_ID = "SELECT * FROM category WHERE category_id = :category_id;";
 	private static final String FIND_BY_PARENT_CATEGORY = "SELECT * FROM category WHERE parent_category_id IS NULL";
