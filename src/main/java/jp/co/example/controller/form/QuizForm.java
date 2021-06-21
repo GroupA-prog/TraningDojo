@@ -76,6 +76,7 @@ public class QuizForm{
 		this.mode = mode;
 	}
 
+
 	public Integer getQuizNum() {
 		return quizNum;
 	}

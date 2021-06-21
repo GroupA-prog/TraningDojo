@@ -28,6 +28,10 @@
     display:block;
 }
 
+option {
+	cursor: pointer;
+}
+
 /*モーダル内のdiv要素を非表示*/
 .createQuiz, .editQuiz, .createCategory, .editCategory, .editUser {
     display: none;

@@ -44,7 +44,7 @@ public class AdminController {
 		session.setAttribute("parentCategoryList", parentCategoryList);
 		session.setAttribute("userInfoList", userInfoList);
 		//初期値設定
-		form.setRole( userInfoList.get(0).getRole());
+		//form.setRole( userInfoList.get(0).getRole());
 		return "admin";
 	}
 
