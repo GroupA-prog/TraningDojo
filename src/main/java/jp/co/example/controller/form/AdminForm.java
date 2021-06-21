@@ -26,6 +26,7 @@ public class AdminForm {
 	private Integer categoryParentCategoryId;
 	private String categoryName;
 	//カテゴリ編集
+	private Integer editCategoryId;
 	private Integer editCategoryParentCategoryId;
 	private String editCategoryName;
 	private Integer categoryDisplay;
@@ -128,12 +129,6 @@ public class AdminForm {
 	public void setEditAnswer(Integer editAnswer) {
 		this.editAnswer = editAnswer;
 	}
-	public Integer getQuizDisplay() {
-		return quizDisplay;
-	}
-	public void setQuizDisplay(Integer quizDisplay) {
-		this.quizDisplay = quizDisplay;
-	}
 	public Integer getCategoryParentCategoryId() {
 		return categoryParentCategoryId;
 	}
@@ -157,12 +152,6 @@ public class AdminForm {
 	}
 	public void setEditCategoryName(String editCategoryName) {
 		this.editCategoryName = editCategoryName;
-	}
-	public Integer getCategoryDisplay() {
-		return categoryDisplay;
-	}
-	public void setCategoryDisplay(Integer categoryDisplay) {
-		this.categoryDisplay = categoryDisplay;
 	}
 	public String getLoginId() {
 		return loginId;
@@ -188,6 +177,26 @@ public class AdminForm {
 	public void setCreateCommentary(String createCommentary) {
 		this.createCommentary = createCommentary;
 	}
+
+	public Integer getEditCategoryId() {
+		return editCategoryId;
+	}
+	public void setEditCategoryId(Integer editCategoryId) {
+		this.editCategoryId = editCategoryId;
+	}
+	public Integer getQuizDisplay() {
+		return quizDisplay;
+	}
+	public void setQuizDisplay(Integer quizDisplay) {
+		this.quizDisplay = quizDisplay;
+	}
+	public Integer getCategoryDisplay() {
+		return categoryDisplay;
+	}
+	public void setCategoryDisplay(Integer categoryDisplay) {
+		this.categoryDisplay = categoryDisplay;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminForm [quizCategoryId=" + quizCategoryId + ", createQuizTitle=" + createQuizTitle

@@ -9,3 +9,30 @@ $('.return').click(
         $('#modal-overlay, #modal-content').fadeOut("slow");
     }
 );
+
+/*
+requestObj　内容
+	{
+		method: 'POST',
+		headers: {
+					'Content-Type': 'application/json'
+				},
+		body: JSON.stringify(data)
+	}
+*/
+
+function AsyncCommunication(url, requestObj, func) {
+	fetch(url, requestObj)
+	.then( res => {
+				console.log(res);
+				return res.json().then( data => {
+					console.log(data);
+					func(data);
+				});
+	})
+	.catch( res => {
+		console.log(res);
+	});
+}
+
+

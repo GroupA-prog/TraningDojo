@@ -25,3 +25,7 @@
     border-radius: 20px;
     overflow: scroll;
 }
+
+.error {
+	color: red;
+}
