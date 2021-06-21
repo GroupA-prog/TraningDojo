@@ -24,7 +24,7 @@ public class LogController {
 		//ユーザーがログインしているか確認
 		//sessionにログイン情報が保存されているか確認
 		if(/*sessionにログイン情報が保存されていない条件*/ == NULL) {
-			return "login";
+			return "redirect:/login";
 		}
 
 		//カテゴリ一覧を取得
@@ -35,5 +35,15 @@ public class LogController {
 
 		return "logCategory";
 
+	}
+
+	//logList.jsp
+	@RequestMapping(value="/logList", method=RequestMethod.GET)
+	public String logList(@ModelAttribute("logList") LogForm form, Model model) {
+		//ユーザーがログインしているか確認
+		//sessionにログイン情報が保存されているか確認
+		if(/*sessionにログイン情報が保存されていない条件*/ == NULL) {
+			return "redirect:/login";
+		}
 	}
 }
