@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.AdminForm;
+import jp.co.example.dao.QuizDao;
 import jp.co.example.dto.entity.Category;
 import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.ICategoryService;
@@ -23,6 +24,8 @@ public class AdminController {
 	private ICategoryService categoryService;
 	@Autowired
 	private IUserInfoService userInfoService;
+	@Autowired
+	private QuizDao QuizDaoImpl;
 	@Autowired
 	private HttpSession session;
 
