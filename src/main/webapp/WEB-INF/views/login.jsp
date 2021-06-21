@@ -16,7 +16,7 @@
 			<a href="" class="systemName">研修道場</a>
 		</h1>
 	</header>
-	<form action="">
+	<form action="login">
 		<p>アカウントをお持ちの方はこちらからログインしてください</p>
 		<p>
 			ログインID<input type="text">
@@ -28,7 +28,7 @@
 		<button class="btn login">ログイン</button>
 	</form>
 	<br>
-	<form action="">
+	<form action="signUp">
 		アカウントをお持ちでない方は、こちらから登録してください
 		<p>
 			<button class="btn new-update">新規登録</button>
