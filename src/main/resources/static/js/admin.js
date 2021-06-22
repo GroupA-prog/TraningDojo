@@ -41,7 +41,7 @@ window.onload = function() {
 				$('.editQuizList').fadeOut('fast');
 				$('.editQuiz').fadeIn('slow');
 
-				//console.log(e);
+				console.log($(this).attr('id'));
 				let request = { quizId: $(this).attr('id')};
 				AsyncCommunication('/getQuiz', request, function(data) {
 					$('#editQuizCategoryId').val(data.categoryId);

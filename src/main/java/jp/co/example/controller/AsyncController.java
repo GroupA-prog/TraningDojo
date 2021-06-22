@@ -2,6 +2,8 @@ package jp.co.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +23,13 @@ import jp.co.example.service.QuizService;
 @RestController
 public class AsyncController {
 	@Autowired
-	ICategoryService categoryService;
+	private ICategoryService categoryService;
 	@Autowired
-	IUserInfoService userInfoService;
+	private IUserInfoService userInfoService;
 	@Autowired
-	QuizService quizService;
+	private QuizService quizService;
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping(value="/categoryName", method=RequestMethod.POST)
 	public Category categoryNamePost(@RequestBody CategoryIdDTO dto) {
@@ -47,6 +51,8 @@ public class AsyncController {
 	@RequestMapping(value="/getQuiz", method=RequestMethod.POST)
 	public Quiz getQuizPost(@RequestBody QuizIdDTO dto) {
 		System.out.println(dto);
-		return quizService.findByQuizId(dto.getQuizId());
+		Quiz editQuiz = quizService.findByQuizId(dto.getQuizId());
+		session.setAttribute("editQuiz", editQuiz);
+		return editQuiz;
 	}
 }
