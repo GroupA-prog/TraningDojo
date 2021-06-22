@@ -27,13 +27,13 @@
 			<form:errors path="loginId" cssStyle="color: red"/>
 		</p>
 		<br>
-		<form:button>ログイン</form:button>
+		<button class="loginbtn">ログイン</button>
 	</form:form>
 	<br>
 	<form:form action="/signUp" modelAttribute="signUp" method="get">
 		アカウントをお持ちでない方は、こちらから登録してください
 		<p>
-			<button type="submit">新規登録</button>
+			<button type="submit" class="signupbtn">新規登録</button>
 		</p>
 	</form:form>
 </body>
