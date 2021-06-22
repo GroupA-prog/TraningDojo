@@ -69,6 +69,11 @@ select {
 table td {
 	width: 100%;
 }
+
+#quizListTable td {
+	width: auto;
+}
+
 #createChoice1, #createChoice2, #createChoice3, #createChoice4 {
 	width: 100%;
 }

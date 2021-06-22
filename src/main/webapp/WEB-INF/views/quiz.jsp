@@ -10,13 +10,14 @@
 <title>クイズ画面</title>
 </head>
 <body onload="countdown();">
-<form:form >
+
 <header>
   <h1>研修道場</h1>
   <nav>
-    <form:button name="retired">リタイア</form:button>
+    <button name="retired">リタイア</button>
   </nav>
   </header>
+<form:form action="quiz" modelAttribute="quiz">
 <h1>${mode}:${categoryName}</h1>
 
 <c:forEach items="${quizList}" var="quiz">
@@ -25,12 +26,13 @@
     <form:radiobuttons path="choiceId" items="${select.choice}"/>
   </c:forEach>
 </c:forEach>
-
+<c:if test="${not empty time}">
 <p>残り時間</p>
-<p>
-  <span id="min"></span>分
-  <span id="sec"></span>秒
-</p>
+  <p>
+    <span id="min"></span>分
+    <span id="sec"></span>秒
+  </p>
+</c:if>
 
 <c:if test="${returnDisplay != 0}">
   <form:button name= "return">←前へ</form:button>>
