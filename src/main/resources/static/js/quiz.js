@@ -1,4 +1,4 @@
-
+//制限時間
 function countdown(){
 var time = window.sessionStorage.getItem(['time']);
 const now = new Date();
@@ -14,30 +14,30 @@ setTimeout(countdown,1000);
 }
 countdown();
 
-
+//リタイア
 var btn = document.getElementByName('retired');
 
 btn.addEventListener('click', function() {
 	var result = window.confirm('本当に諦めるんですか？');
 
 	if(result) {
-		location.href = 'retired';
+		window.location.href = 'retired';
 	}
 	else {
-		location.href = 'quiz';
+		alert('最後まで頑張って！');
 	}
 })
 
-
+//終了
 var btn = document.getElementByName('finish');
 
 btn.addEventListener('click', function() {
 	var result = window.confirm('解答を保存してクイズを終了しますか？');
 
 	if(result) {
-		location.href = 'quiz';
+		window.location.href = 'quiz';
 	}
 	else {
-		location.href = 'quiz';
+		alert('最後まで頑張って！');
 	}
 })

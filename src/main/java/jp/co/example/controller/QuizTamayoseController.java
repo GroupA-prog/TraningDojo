@@ -66,7 +66,7 @@ public class QuizTamayoseController{
 		return "quiz";
 	}
 
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="next",method=RequestMethod.POST)
 	public String quizPostNext(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
@@ -87,7 +87,7 @@ public class QuizTamayoseController{
 		return "quiz";
 	}
 
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="return",method=RequestMethod.POST)
 	public String quizPostReturn(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
@@ -109,7 +109,7 @@ public class QuizTamayoseController{
 	}
 
 
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
 	public String quizPostFinish(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
