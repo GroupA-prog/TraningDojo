@@ -13,20 +13,20 @@ window.onload = function() {
 	$('#editCategoryId').change(function() {
 		request = { categoryId: $('#editCategoryId').val() };
 		AsyncCommunication('/categoryName', request, function(data) {
-														$('#editCategoryName').val(data.categoryName);
-														$('#editCategoryParentCategoryId').val(data.parentCategoryId);
-													});
+			$('#editCategoryName').val(data.categoryName);
+			$('#editCategoryParentCategoryId').val(data.parentCategoryId);
+			$('[name=categoryDisplay]').val([data.display + '']);
+		});
 	});
 
 	$('#loginId').change(function() {
 		request = { loginId: $('#loginId').val() };
-		console.log(request);
-		AsyncCommunication('/userRole',request, function(data) {
-														$('#role').val(data.role);
-												});
+		AsyncCommunication('/userRole', request, function(data) {
+			$('#role').val(data.role);
+		});
 	});
 
-}
+};
 
 
 
@@ -40,6 +40,7 @@ $('.return').click(
 	function() {
 		$('.createQuiz').fadeOut('slow');
 		$('.editQuiz').fadeOut('slow');
+		$('.editQuizList').fadeOut('slow');
 		$('.createCategory').fadeOut('slow');
 		$('.editCategory').fadeOut('slow');
 		$('.editUser').fadeOut('slow');
@@ -55,7 +56,7 @@ $('#createQuiz').click(
 );
 $('#editQuiz').click(
 	function() {
-		$('.editQuiz').css('display', 'block');
+		$('.editQuizList').css('display', 'block');
 	}
 );
 $('#createCategory').click(

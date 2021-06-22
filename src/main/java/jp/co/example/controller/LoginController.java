@@ -1,7 +1,5 @@
 package jp.co.example.controller;
 
-import java.util.Locale;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.example.controller.form.InsertForm;
 import jp.co.example.controller.form.LoginForm;
 import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.impl.UserInfoService;
@@ -27,18 +26,16 @@ public class LoginController {
 	@Autowired
     private UserInfoService service;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult,
+	@RequestMapping(value = "/login")
+	public String login(@Validated @ModelAttribute("login") LoginForm form, BindingResult bindingResult,
 			Model model) {
-
-		String errMsg = messageSource.getMessage("login.error", null, Locale.getDefault());
 
 		if (bindingResult.hasErrors()) {
             return "login";
         }
 		UserInfo user = service.authentication(form.getLoginId(), form.getPassword());
 		if (user == null) {
-            model.addAttribute("errMsg", errMsg);
+            model.addAttribute("errMsg","");
             return "login";
         } else {
         	session.setAttribute("userInfo",user);
@@ -46,10 +43,15 @@ public class LoginController {
         }
 	}
 
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String signUp(@Validated @ModelAttribute("InsertForm") LoginForm form, BindingResult bindingResult,
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+	public String signUp(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
 		return "signUp";
+	}
+	@RequestMapping(value = "/signUpDone", method = RequestMethod.POST)
+	public String signUpDone(@Validated @ModelAttribute("signUpDone") InsertForm form, BindingResult bindingResult,
+			Model model) {
+		return "signUpDone";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
