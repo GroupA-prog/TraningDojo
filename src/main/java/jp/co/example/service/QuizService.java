@@ -10,4 +10,6 @@ public interface QuizService {
 	public List<Quiz> findByQuizTitle(String quizTitle);
 	public String selectMode(Integer modeId);
 	public List<Quiz> insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display);
+	public List<Quiz> findByCategoryId(Integer categoryId);
+	public Quiz findByQuizId(Integer quizId);
 }

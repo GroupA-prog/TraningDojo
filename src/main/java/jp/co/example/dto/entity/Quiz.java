@@ -6,7 +6,7 @@ public class Quiz {
 	private Integer quizId;
 	private Integer categoryId;
 	private String quizTitle;
-	private String quizStatement;
+	private String quizStatment;
 	private Integer correctAnswer;
 	private String commentary;
 	private Integer display;
@@ -49,11 +49,11 @@ public class Quiz {
 	public void setCorrectAnswer(Integer correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
-	public String getQuizStatement() {
-		return quizStatement;
+	public String getQuizStatment() {
+		return quizStatment;
 	}
-	public void setQuizStatement(String quizStatement) {
-		this.quizStatement = quizStatement;
+	public void setQuizStatment(String quizStatement) {
+		this.quizStatment = quizStatement;
 	}
 	public String getCommentary() {
 		return commentary;
@@ -64,7 +64,7 @@ public class Quiz {
 	@Override
 	public String toString() {
 		return "Quiz [quizId=" + quizId + ", categoryId=" + categoryId + ", quizTitle=" + quizTitle + ", quizStatement="
-				+ quizStatement + ", correctAnswer=" + correctAnswer + ", commentary=" + commentary + ", display="
+				+ quizStatment + ", correctAnswer=" + correctAnswer + ", commentary=" + commentary + ", display="
 				+ display + ", quizSelect=" + quizSelect + "]";
 	}
 
