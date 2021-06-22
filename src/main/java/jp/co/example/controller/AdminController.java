@@ -67,10 +67,11 @@ public class AdminController {
 			return "admin";
 		}
 
-		if ( !quizService.findByQuizTitle(form.getEditCategoryId(), form.getCreateQuizTitle()).isEmpty() ) {
-			model.addAttribute("isQuizTitleExists", quizTitleFlg);
+		if ( !quizService.findByQuizTitle(form.getQuizCategoryId(), form.getCreateQuizTitle()).isEmpty() ) {
+			model.addAttribute("isQuizTitleExists", true);
+			return "admin";
 		}
-		System.out.println(form);
+
 
 		Quiz newQuiz = quizService.insertQuiz(
 												form.getQuizCategoryId(),
@@ -86,9 +87,34 @@ public class AdminController {
 
 	@RequestMapping(value="/admin", params="quizEdit", method=RequestMethod.POST)
 	public String adminPostQuizEdit(@ModelAttribute("admin") AdminForm form, Model model) {
-		System.out.println("quizEdit");
-		System.out.println(form);
-		return "admin";
+		boolean quizTitleFlg 	 = form.getEditQuizTitle().isEmpty();
+		boolean problemStatementFlg = form.getEditProblemStatement().isEmpty();
+		boolean choice1Flg  = form.getEditChoice1().isEmpty();
+		boolean choice2Flg  = form.getEditChoice2().isEmpty();
+		boolean choice3Flg  = form.getEditChoice3().isEmpty();
+		boolean choice4Flg  = form.getEditChoice4().isEmpty();
+
+		//入力チェック
+		if (quizTitleFlg || problemStatementFlg || choice1Flg
+				|| choice2Flg || choice3Flg || choice4Flg) {
+			model.addAttribute("isNotEditSentence", problemStatementFlg);
+			model.addAttribute("isNotEditChoices", choice1Flg || choice2Flg || choice3Flg || choice4Flg);
+			model.addAttribute("isNotEditQuizTitle", quizTitleFlg);
+			return "admin";
+		}
+
+		List<Quiz> list = quizService.findByQuizTitle(form.getEditQuizCategoryId(), form.getEditQuizTitle());
+		if ( !list.isEmpty() ) {
+			Quiz editQuiz = (Quiz) session.getAttribute("editQuiz");
+			if( !list.get(0).getQuizId().equals(editQuiz.getQuizId()) ) {
+				model.addAttribute("isEditQuizTitleExists", true);
+			}
+			return "admin";
+		}
+
+
+
+		return "redirect:/admin";
 	}
 
 	@RequestMapping(value="/admin", params="categoryCreate", method=RequestMethod.POST)

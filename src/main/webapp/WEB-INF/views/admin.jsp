@@ -131,6 +131,18 @@
 				<div class="editQuiz">
 					<h3>クイズの編集</h3>
 					<hr>
+					<c:if test="${ isNotEditSentence }">
+						<p class="error">問題文を入力してください</p>
+					</c:if>
+					<c:if test="${ isNotEditChoices }">
+						<p class="error">選択肢は必須です</p>
+					</c:if>
+					<c:if test="${ isNotEditQuizTitle }">
+						<p class="error">クイズタイトルは必須です</p>
+					</c:if>
+					<c:if test="${ isEditQuizTitleExists }">
+						<p class="error">そのクイズタイトルは既に存在します</p>
+					</c:if>
 					<div>
 						<form:input path="quizId" hidden="true" />
 						<label>

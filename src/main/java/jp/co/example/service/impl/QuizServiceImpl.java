@@ -119,26 +119,28 @@ public class QuizServiceImpl implements QuizService{
 
 	public Quiz findByQuizId(Integer quizId) {
 		List<QuizJoinQuizSelect> list = quizDao.findByQuizId(quizId);
-		QuizJoinQuizSelect qs = list.get(0);
-
 		Quiz quiz = new Quiz();
-		quiz.setQuizId(qs.getQuizId());
-		quiz.setCategoryId(qs.getCategoryId());
-		quiz.setQuizTitle(qs.getQuizTitle());
-		quiz.setQuizStatment(qs.getQuizStatment());
-		quiz.setCorrectAnswer(qs.getCorrectAnswer());
-		quiz.setCommentary(qs.getCommentary());
-		quiz.setDisplay(qs.getDisplay());
 
-		ArrayList<QuizSelect> quizSelectList = new ArrayList<QuizSelect>();
-		for ( QuizJoinQuizSelect q : list ) {
-			QuizSelect quizSelect = new QuizSelect();
-			quizSelect.setQuizId(q.getQuizId());
-			quizSelect.setQuizChoiceId(q.getQuizChoiceId());
-			quizSelect.setChoice(q.getChoice());
-			quizSelectList.add(quizSelect);
+		if (!list.isEmpty()) {
+			QuizJoinQuizSelect qs = list.get(0);
+			quiz.setQuizId(qs.getQuizId());
+			quiz.setCategoryId(qs.getCategoryId());
+			quiz.setQuizTitle(qs.getQuizTitle());
+			quiz.setQuizStatment(qs.getQuizStatment());
+			quiz.setCorrectAnswer(qs.getCorrectAnswer());
+			quiz.setCommentary(qs.getCommentary());
+			quiz.setDisplay(qs.getDisplay());
+
+			ArrayList<QuizSelect> quizSelectList = new ArrayList<QuizSelect>();
+			for ( QuizJoinQuizSelect q : list ) {
+				QuizSelect quizSelect = new QuizSelect();
+				quizSelect.setQuizId(q.getQuizId());
+				quizSelect.setQuizChoiceId(q.getQuizChoiceId());
+				quizSelect.setChoice(q.getChoice());
+				quizSelectList.add(quizSelect);
+			}
+			quiz.setQuizSelect(quizSelectList);
 		}
-		quiz.setQuizSelect(quizSelectList);
 
 		return quiz;
 	}
