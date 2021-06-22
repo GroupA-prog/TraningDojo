@@ -9,7 +9,6 @@ public class InsertForm {
 	private String newPassword;
 	@NotBlank
 	private String newUserName;
-	@NotBlank
 	private String newPasswordRe;
 
 	public String getNewLoginId() {

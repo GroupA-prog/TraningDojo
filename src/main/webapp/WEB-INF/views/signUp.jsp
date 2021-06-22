@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>signUp</title>
+<title>新規登録画面</title>
+<link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 </head>
 <body>
 	<p>ユーザー情報を入力してください</p>
