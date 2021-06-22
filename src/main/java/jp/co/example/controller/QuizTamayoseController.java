@@ -43,17 +43,21 @@ public class QuizTamayoseController{
 		//モード分岐、制限時間・問題数（5問分け済み）を保存
 		if(form.getMode() == 1) {
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
-			session.setAttribute("quizList", quizList.get(quizIndex));
+			session.setAttribute("quizList", quizList);
+			model.addAttribute("quiz",quizList.get(quizIndex));
 		}else if(form.getMode() == 2){
 			quizList = quizService.findByRankCategory(form.getCategoryId());
 			session.setAttribute("time", form.getQuizNum()*2);
-			session.setAttribute("quizList", quizList.get(quizIndex));
+			session.setAttribute("quizList", quizList);
+			model.addAttribute("quiz",quizList.get(quizIndex));
 		}
 		//問題数・解答セッションを作成、保存
+		int nowSize = (1 + quizIndex) * 5;
 		int maxSize = quizService.ListSize(quizList);
 		List<List<Integer>>answerList = quizService.answerList(maxSize);
+		model.addAttribute("nowSize", nowSize);
+		model.addAttribute("maxSize", maxSize);
 		session.setAttribute("answerList", answerList);
-		session.setAttribute("maxSize", maxSize);
 		return "quiz";
 	}
 
@@ -67,11 +71,14 @@ public class QuizTamayoseController{
 		//次の5問へセッションを更新
 		quizIndex++;
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		session.setAttribute("quizList",quizList.get(quizIndex) );
+		model.addAttribute("quiz",quizList.get(quizIndex) );
 		//次へボタン表示判断
 		if(quizIndex == (quizList.size() - 1)) {
 			model.addAttribute("nextDisplay",0);
 		}
+		//問題数の更新
+		int nowSize = (1 + quizIndex) * 5;
+		model.addAttribute("nowSize", nowSize);
 		return "quiz";
 	}
 
@@ -85,11 +92,14 @@ public class QuizTamayoseController{
 		//前の5問へセッションを更新
 		quizIndex--;
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		session.setAttribute("quizList",quizList.get(quizIndex) );
+		model.addAttribute("quiz",quizList.get(quizIndex) );
 		//戻るボタン表示判断
 		if(quizIndex == 0) {
 			model.addAttribute("returnDisplay",0);
 		}
+		//問題数の更新
+		int nowSize = (1 + quizIndex) * 5;
+		model.addAttribute("nowSize", nowSize);
 		return "quiz";
 	}
 
@@ -122,7 +132,6 @@ public class QuizTamayoseController{
 		session.removeAttribute("quizList");
 		session.removeAttribute("categoryName");
 		session.removeAttribute("answerList");
-		session.removeAttribute("maxSize");
 		return "quizConfig";
 	}
 }

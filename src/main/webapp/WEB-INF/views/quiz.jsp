@@ -16,18 +16,20 @@
   <nav>
     <button name="retired">リタイア</button>
   </nav>
-  </header>
+</header>
+
 <form:form action="quiz" modelAttribute="quiz">
 <h1>${mode}:${categoryName}</h1>
 
-<c:forEach items="${quizList}" var="quiz">
+<c:forEach items="${quiz}" var="quiz">
   <p>${quiz.quizStatement}</p>
   <c:forEach items="${quiz.quizSelect}" var="select">
     <form:radiobuttons path="choiceId" items="${select.choice}"/>
   </c:forEach>
 </c:forEach>
+
 <c:if test="${not empty time}">
-<p>残り時間</p>
+  <p>残り時間</p>
   <p>
     <span id="min"></span>分
     <span id="sec"></span>秒
@@ -38,7 +40,7 @@
   <form:button name= "return">←前へ</form:button>>
 </c:if>
 
-<p>/${maxSize}</p>
+<p>${nowSize}/${maxSize}</p>
 
 <c:if test="${nextDisplay != 0}">
   <form:button name= "next">次へ→</form:button>>

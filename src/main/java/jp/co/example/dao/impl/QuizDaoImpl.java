@@ -16,7 +16,7 @@ import jp.co.example.dto.entity.QuizJoinQuizSelect;
 public class QuizDaoImpl implements QuizDao{
 
 	private static final String SELECT_QUIZ = "SELECT * FROM (SELECT * FROM quiz WHERE display = 1 AND category_id = :categoryId ORDER BY random() LIMIT :quizNum) AS quiz JOIN quiz_select qs ON quiz.quiz_id = qs.quiz_id";
-	private static final String SELECT_RANK_CATEGORY = "SELECT * FROM (SELECT * FROM quiz WHERE display = 1 category_id = :categoryId ORDER BY random() LIMIT 10) AS quiz JOIN quiz_select qs ON quiz.quiz_id = qs.quiz_id";
+	private static final String SELECT_RANK_CATEGORY = "SELECT * FROM (SELECT * FROM quiz WHERE display = 1 AND category_id = :categoryId ORDER BY random() LIMIT 10) AS quiz JOIN quiz_select qs ON quiz.quiz_id = qs.quiz_id";
 	private static final String INSERT_QUIZ = "INSERT INTO quiz (category_id, quiz_title, quiz_statment, correct_answer, commentary, display) VALUES (:category_id, :quiz_title, :quiz_statment, :correct_answer, :commentary, :display);";
 	private static final String SELECT_BY_QUIZ_TITLE = "SELECT * FROM quiz WHERE category_id = :category_id AND quiz_title = :quiz_title;";
 	private static final String SELECT_BY_CATEGORYID = "SELECT * FROM quiz WHERE category_id = :category_id ORDER BY quiz_id;";
