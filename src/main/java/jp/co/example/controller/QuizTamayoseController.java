@@ -33,6 +33,11 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
 	public String quizGet(@ModelAttribute("quiz")QuizForm form,Model model) {
+		return "quiz";
+	}
+
+	@RequestMapping(value="/quiz",method=RequestMethod.POST)
+	public String quizPost(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//クイズstart時刻取得・保持
 		long millis = System.currentTimeMillis();
 		Timestamp start = new Timestamp(millis);
@@ -63,10 +68,10 @@ public class QuizTamayoseController{
 		model.addAttribute("nowSize", nowSize);
 		model.addAttribute("maxSize", maxSize);
 		session.setAttribute("answerList", answerList);
-		return "quiz";
+		return "redirect:/quiz";
 	}
 
-	//@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="next",method=RequestMethod.POST)
 	public String quizPostNext(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
@@ -87,7 +92,7 @@ public class QuizTamayoseController{
 		return "quiz";
 	}
 
-	//@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="return",method=RequestMethod.POST)
 	public String quizPostReturn(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
@@ -109,7 +114,7 @@ public class QuizTamayoseController{
 	}
 
 
-	//@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
 	public String quizPostFinish(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
