@@ -112,7 +112,7 @@
 						<label>
 							カテゴリの選択
 							<br>
-							<form:select path="editQuizCategoryId">
+							<form:select path="selectQuizCategoryId">
 								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
 							</form:select>
 						</label>
