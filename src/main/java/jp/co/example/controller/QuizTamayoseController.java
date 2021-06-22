@@ -103,6 +103,9 @@ public class QuizTamayoseController{
 		quizService.answerUpdate(answer,quizIndex,form.getChoiceId());
 		session.setAttribute("answerList", answer);
 		String mode = (String) session.getAttribute("mode");
+		//答え合わせ
+
+
 		//モード判断
 		if(mode.equals("学習")) {
 
@@ -122,6 +125,4 @@ public class QuizTamayoseController{
 		session.removeAttribute("maxSize");
 		return "quizConfig";
 	}
-
-
 }
