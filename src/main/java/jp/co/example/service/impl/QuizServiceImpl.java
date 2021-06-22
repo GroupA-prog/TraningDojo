@@ -84,4 +84,12 @@ public class QuizServiceImpl implements QuizService{
 		List<List<Integer>>answerList = chopped(answer,5);
 		return answerList;
 	}
+
+	//answerList更新メソッド
+	@Override
+	public void answerUpdate(List<List<Integer>> answer,Integer quizIndex, List<Integer> choiceId){
+		for(int i = 0; i < choiceId.size();i++) {
+			answer.get(quizIndex).set(i,choiceId.get(i));
+		}
+	}
 }
