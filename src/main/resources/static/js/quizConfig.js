@@ -1,33 +1,45 @@
 
 var learning = document.getElementById("lea");
 var rank = document.getElementById("ran");
-var num = document.getElementById("num");
+var numDisp = document.getElementById("num");
 mode = document.getElementsByName("mode");
 
+
+//モード切り替え
 function changeBtn() {
 
 	if (mode[0].checked) {
 		learning.style.display = 'block';
 		rank.style.display = 'none';
-		num.style.display = 'block';
+		numDisp.style.display = 'block';
 
 	}
 	if (mode[1].checked) {
 		learning.style.display = 'none';
 		rank.style.display = 'block';
-		num.style.display = 'none';
+		numDisp.style.display = 'none';
 	}
 
 
 }
 window.onload = changeBtn;
 
-let select = document.querySelector("#num");
 
-select.addEventListener('change', function() {
-	var categoryName = document.getElementByName("categoryName");
+//学習モード
+function learningChangeCategory() {
+	var selectNum = document.getElementById('num');
+
+
+
+
+	while (selectNum.firstChild) {
+		selectNum.removeChild(selectNum.firstChild);
+	};
+
+
+	var categoryId = $("#lea").val();
 	let request = {
-		categoryName: categoryName,
+		categoryId: categoryId,
 	};
 	fetch("/numJs", {
 		method: "POST",
@@ -38,15 +50,68 @@ select.addEventListener('change', function() {
 	})
 		.then(function(res) {
 			console.log(res);
-			return res.json();
-		})
-		.then(function(data) {
-			console.log(data);
-			catNum = data;
+			res.json().then(function(data) {
+				console.log(data);
+				num = data;
+			});
+		});
+
+	document.createElement('option');
+
+	let option = document.createElement('option');
+	option.setAttribute('value', 0);
+	option.innerHTML = "選んでください";
+	selectNum.appendChild(option);
+
+
+
+	var i = 0;
+	option = document.createElement('option');
+	option.setAttribute('value', 1);
+	option.innerHTML = 1;
+	selectNum.appendChild(option);
+
+	while (i + 10 <= num) {
+		i += 10;
+		option = document.createElement('option');
+		option.setAttribute('value', i);
+		option.innerHTML = i;
+		selectNum.appendChild(option);
+
+	};
+
+
+}
+
+let select = document.querySelector("#lea");
+select.addEventListener('change', learningChangeCategory);
+window.onload = learningChangeCategory;
+
+
+function rankChangeCategory() {
+
+	var categoryId = $("#ran").val();
+	let request = {
+		categoryId: categoryId,
+	};
+	fetch("/numJs", {
+		method: "POST",
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(request)
+	})
+		.then(function(res) {
+			console.log(res);
+			res.json().then(function(data) {
+				console.log(data);
+				num = data;
+			});
 		});
 
 
-});
+
+}
 
 
 
@@ -55,8 +120,5 @@ select.addEventListener('change', function() {
 
 
 
-
-
-//問題数の表示
 
 
