@@ -31,7 +31,7 @@
 			<form:errors path="loginId" cssStyle="color: red"/>
 		</p>
 		<br>
-		<form:button>ログイン</form:button>
+		<form:button class="loginbtn">ログイン</form:button>
 	</form:form>
 </body>
 </html>

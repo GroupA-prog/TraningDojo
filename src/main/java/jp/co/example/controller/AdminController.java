@@ -103,16 +103,26 @@ public class AdminController {
 			return "admin";
 		}
 
+		Quiz editQuiz = (Quiz) session.getAttribute("editQuiz");
 		List<Quiz> list = quizService.findByQuizTitle(form.getEditQuizCategoryId(), form.getEditQuizTitle());
 		if ( !list.isEmpty() ) {
-			Quiz editQuiz = (Quiz) session.getAttribute("editQuiz");
 			if( !list.get(0).getQuizId().equals(editQuiz.getQuizId()) ) {
 				model.addAttribute("isEditQuizTitleExists", true);
+				return "admin";
 			}
-			return "admin";
 		}
 
+		//レコードのupdate
+		quizService.updateQuiz(
+				editQuiz.getQuizId(),
+				form.getEditQuizCategoryId(),
+				form.getEditQuizTitle(),
+				form.getEditProblemStatement(),
+				form.getEditAnswer(),
+				form.getEditCommentary(),
+				form.getQuizDisplay());
 
+		quizSelectService.updateAll(form, editQuiz);
 
 		return "redirect:/admin";
 	}
@@ -135,6 +145,7 @@ public class AdminController {
 
 	@RequestMapping(value="/admin", params="categoryEdit", method=RequestMethod.POST)
 	public String adminPostCategoryEdit(@ModelAttribute("admin") AdminForm form, Model model) {
+		System.out.println(form.getEditCategoryParentCategoryId());
 		if (form.getEditCategoryName().isEmpty()) {
 			model.addAttribute("isEmptyEditCategoryName", true);
 			model.addAttribute("admin", form);
@@ -147,7 +158,7 @@ public class AdminController {
 
 		if (!findCategory.isEmpty()) {
 			if (form.getEditCategoryName().equals(findCategory.get(0).getCategoryName()) &&
-				form.getEditCategoryParentCategoryId().equals(findCategory.get(0).getParentCategoryId()) &&
+				(form.getEditCategoryParentCategoryId() == null || form.getEditCategoryParentCategoryId().equals(findCategory.get(0).getParentCategoryId()) ) &&
 				form.getCategoryDisplay().equals(findCategory.get(0).getDisplay()) ) {
 
 				model.addAttribute("isChanged", true);

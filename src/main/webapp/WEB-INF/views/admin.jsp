@@ -47,6 +47,7 @@
 							カテゴリの選択
 							<br>
 							<form:select path="quizCategoryId">
+								<form:option label="選択してください" value="" />
 								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId"/>
 							</form:select>
 						</label>
@@ -113,6 +114,7 @@
 							カテゴリの選択
 							<br>
 							<form:select path="selectQuizCategoryId">
+								<form:option value="" label="選択してください"/>
 								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
 							</form:select>
 						</label>
@@ -259,6 +261,7 @@
 							編集対象カテゴリの選択
 							<br>
 							<form:select path="editCategoryId">
+								<form:option label="選択してください" value="" />
 								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
 							</form:select>
 						</label>
@@ -268,6 +271,7 @@
 							親カテゴリの選択
 							<br>
 							<form:select path="editCategoryParentCategoryId">
+								<form:option label="選択してください" value="-1" />
 								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId"/>
 							</form:select>
 						</label>

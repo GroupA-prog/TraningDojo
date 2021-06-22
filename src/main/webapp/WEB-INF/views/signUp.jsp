@@ -32,7 +32,7 @@
 			<form:errors path="newUserName" cssStyle="color: red" />
 		</p>
 		<p>
-			<form:button>新規登録</form:button>
+			<form:button class="signupbtn">新規登録</form:button>
 		</p>
 	</form:form>
 	<p>
