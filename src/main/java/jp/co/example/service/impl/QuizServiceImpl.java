@@ -40,8 +40,18 @@ public class QuizServiceImpl implements QuizService{
 		}else {
 			return "ランキング";
 		}
+	}
+
+	@Override
+	public int selectModeId(String mode) {
+		if(mode.equals("学習")) {
+			return 1;
+		}else {
+			return 2;
+		}
 
 	}
+
 
 	@Override
 	public List<Quiz> findByQuizTitle(Integer categoryId, String quizTitle) {
@@ -148,6 +158,11 @@ public class QuizServiceImpl implements QuizService{
 	@Override
 	public List<Quiz> findByCategoryId(Integer categoryId) {
 		return quizDao.findByCategoryId(categoryId);
+	}
+
+	@Override
+	public int updateQuiz(Integer quizId, Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
+		return quizDao.updateQuiz(quizId, categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
 	}
 
 
