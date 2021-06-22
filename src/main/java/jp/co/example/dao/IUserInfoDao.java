@@ -9,6 +9,5 @@ public interface IUserInfoDao {
 	public List<UserInfo> selectAll();
 	public List<UserInfo> findByLoginId (String loginId);
 	public int updateRole(String loginId, Integer role);
-	public UserInfo findByLoginIdAndPassword(String loginId, String pass);
 
 }

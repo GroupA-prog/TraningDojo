@@ -11,18 +11,18 @@
 </head>
 <body>
 	<p>ユーザー情報を入力してください</p>
-	<form:form action="/signUp" modelAttribute="signUpDone" method="post">
+	<form:form action="/signUp" modelAttribute="signUp" method="post">
 		<p>
 			ログインID
-			<form:input path="LoginId" />
+			<form:input path="newLoginId" />
 		</p>
 		<p>
 			パスワード
-			<form:password path="Password" />
+			<form:password path="newPassword" />
 		</p>
 		<p>
 			ユーザーネーム
-			<form:input path="UserName" />
+			<form:input path="newUserName" />
 		</p>
 		<p>
 			<form:button>新規登録</form:button>

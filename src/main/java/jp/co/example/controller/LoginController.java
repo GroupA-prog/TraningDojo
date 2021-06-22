@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.InsertForm;
 import jp.co.example.controller.form.LoginForm;
-import jp.co.example.dto.entity.UserInfo;
-import jp.co.example.service.impl.UserInfoService;
+import jp.co.example.dto.entity.Login;
+import jp.co.example.service.LoginService;
 
 @Controller
 public class LoginController {
@@ -24,7 +24,7 @@ public class LoginController {
 	@Autowired
     MessageSource messageSource;
 	@Autowired
-    private UserInfoService service;
+    private LoginService service;
 
 	@RequestMapping(value = "/login")
 	public String login(@Validated @ModelAttribute("login") LoginForm form, BindingResult bindingResult,
@@ -33,7 +33,7 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
             return "login";
         }
-		UserInfo user = service.authentication(form.getLoginId(), form.getPassword());
+		Login user = service.authentication(form.getLoginId(), form.getPassword());
 		if (user == null) {
             model.addAttribute("errMsg","");
             return "login";
@@ -46,6 +46,12 @@ public class LoginController {
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String signUp(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
+		if (bindingResult.hasErrors()) {
+            return "insert";
+        }
+		form.getNewLoginId();
+		form.getNewPassword();
+		form.getNewUserName();
 		return "signUp";
 	}
 	@RequestMapping(value = "/signUpDone", method = RequestMethod.POST)

@@ -10,17 +10,12 @@
 <title>signUpDone</title>
 </head>
 <body>
-	<header>
-		<h1>
-			<a href="">研修道場</a>
-		</h1>
-	</header>
 	<h1 class="DoneMsg">ご登録ありがとうございます</h1>
 	登録が完了しました
 	<br> こちらからログインしてください
 	<br>
 	<br>
-	<form:form action="/login" modelAttribute="login" method="post">
+	<form:form action="/login" modelAttribute="login">
 		<p>
 			ログインID
 			<form:input path="loginId" />
