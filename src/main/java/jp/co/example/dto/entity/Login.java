@@ -12,6 +12,8 @@ public class Login {
 		password = newPassword;
 		userName = newUserName;
 	}
+	public Login() {
+	}
 
 	public Integer getUserId() {
 		return userId;
