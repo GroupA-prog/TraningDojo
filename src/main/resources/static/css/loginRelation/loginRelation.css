@@ -1,14 +1,15 @@
-.systemName{
-    color: white;
-    text-decoration: none;
-}
-header{
-    background-color:blue;
-    height: 60px;
-    margin-left: auto;
-    padding: auto;
-}
-
 body{
-    margin-left: 20px;
+    margin: 0;
+    margin-top: 0;
+    padding: 0;
+}
+.logoutMsg{
+    text-align: center;
+    font-size: 70px;
+    font-weight: 100;
+}
+.DoneMsg{
+    text-align: center;
+    font-size: 70px;
+    font-weight: 100;
 }

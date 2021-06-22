@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -16,54 +17,82 @@ import jp.co.example.controller.form.LoginForm;
 import jp.co.example.dto.entity.Login;
 import jp.co.example.service.LoginService;
 
-//@Controller
+@Controller
 public class LoginController {
 	@Autowired
 	HttpSession session;
 	@Autowired
-    MessageSource messageSource;
+	MessageSource messageSource;
 	@Autowired
-    private LoginService service;
+	private LoginService service;
 
-	@RequestMapping(value = "/login")
+	@RequestMapping("/login")
+    public String login(@ModelAttribute("login") LoginForm form, Model model) {
+        return "login";
+    }
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@Validated @ModelAttribute("login") LoginForm form, BindingResult bindingResult,
 			Model model) {
 
 		if (bindingResult.hasErrors()) {
-            return "login";
-        }
+			return "login";
+		}
 		Login user = service.authentication(form.getLoginId(), form.getPassword());
 		if (user == null) {
-            model.addAttribute("errMsg","IDまたはパスワードが間違っています");
-            return "login";
-        } else {
-        	session.setAttribute("userInfo",user);
-        	return "home";
-        }
+			model.addAttribute("errMsg", "IDまたはパスワードが間違っています");
+			return "login";
+		} else {
+			session.setAttribute("userInfo", user);
+			return "home";
+		}
 	}
+
+	@RequestMapping("/signUp")
+    public String signUp(@ModelAttribute("signUp") InsertForm form, Model model) {
+        return "signUp";
+    }
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String signUp(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
+//		System.out.println("aaaa");
 		if (bindingResult.hasErrors()) {
-            return "signUp";
-        }
-		if(service.existsUserByLoginId(form.getNewLoginId())) {
-			model.addAttribute("errDuplicate","そのIDは使用できません");
 			return "signUp";
 		}
-		Login user = new Login(
-		form.getNewLoginId(),
-		form.getNewPassword(),
-		form.getNewUserName()
-				);
-		service.insert(user);
+		if (service.existsUserByLoginId(form.getNewLoginId())) {
+			model.addAttribute("errDuplicate", "そのIDは使用できません");
+			return "signUp";
+		} else {
+			Login user = new Login(
+					form.getNewLoginId(),
+					form.getNewPassword(),
+					form.getNewUserName());
+			service.insert(user);
+			return "redirect:/signUpDone";
+		}
+	}
+
+	@RequestMapping(value = "/signUpDone")
+	public String signUpDone(@ModelAttribute("signUpDone") LoginForm form, Model model) {
+//		System.out.println("cccc");
 		return "signUpDone";
 	}
+
 	@RequestMapping(value = "/signUpDone", method = RequestMethod.POST)
-	public String signUpDone(@Validated @ModelAttribute("signUpDone") InsertForm form, BindingResult bindingResult,
+	public String signUpDone(@Validated @ModelAttribute("signUpDone") LoginForm form, BindingResult bindingResult,
 			Model model) {
-		return "signUpDone";
+		if (bindingResult.hasErrors()) {
+			return "signUpDone";
+		}
+		Login user = service.authentication(form.getLoginId(), form.getPassword());
+		if (user == null) {
+			model.addAttribute("signUpErrMsg", "IDまたはパスワードが間違っています");
+			return "signUpDone";
+		} else {
+			session.setAttribute("userInfo", user);
+			return "home";
+		}
 	}
 
 	@RequestMapping(value = "/logout")

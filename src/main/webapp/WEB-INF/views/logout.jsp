@@ -12,9 +12,6 @@
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 </head>
 <body>
-	<header>
-		<h1>研修道場</h1>
-	</header>
 	<br>
 	<br>
 	<br>
@@ -22,6 +19,6 @@
 	<br>
 	<br>
 	<br>
-	<p>ご利用ありがとうございました</p>
+	<p class="logoutMsg">ご利用ありがとうございました</p>
 </body>
 </html>

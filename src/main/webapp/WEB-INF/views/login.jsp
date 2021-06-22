@@ -14,7 +14,7 @@
 	<c:if test="${not empty errMsg }">
 		<p>${fn:escapeXml(errMsg)}</p>
 	</c:if>
-	<form:form action="/login" modelAttribute="login">
+	<form:form action="/login" modelAttribute="login" method="post">
 		<p>アカウントをお持ちの方はこちらからログインしてください</p>
 		<p>
 			ログインID
@@ -30,11 +30,11 @@
 		<form:button>ログイン</form:button>
 	</form:form>
 	<br>
-	<form action="/signUp" method="post">
+	<form:form action="/signUp" modelAttribute="signUp" method="get">
 		アカウントをお持ちでない方は、こちらから登録してください
 		<p>
 			<button type="submit">新規登録</button>
 		</p>
-	</form>
+	</form:form>
 </body>
 </html>

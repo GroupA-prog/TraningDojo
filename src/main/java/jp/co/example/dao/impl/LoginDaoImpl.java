@@ -20,7 +20,7 @@ public class LoginDaoImpl implements LoginDao {
 
 	private static final String SELECT_BY_LOGIN_ID = "select * from user_info where login_id = :loginId";
 
-	private static final String INSERT = "insert into user_info (login_id, password, user_name, role) values (:loginId, password, userName, Role)";
+	private static final String INSERT = "insert into user_info (login_id, password, user_name, role) values (:loginId, :password, :userName, :role)";
 
 	@Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;

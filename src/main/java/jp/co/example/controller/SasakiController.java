@@ -1,13 +1,11 @@
 package jp.co.example.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,21 +32,5 @@ public class SasakiController {
 		return "quizConfig";
 	}
 
-	@RequestMapping(path = "/numJs", method = RequestMethod.POST)
-	public ArrayList<Integer> enemyJs(@RequestBody QuizForm form,Model model) {
-		int num = quizConfigService.categoryNum(form.getCategoryName());
-		ArrayList<Integer> array = new ArrayList<Integer>();
-
-		int i = 0;
-		while (i <= num) {
-
-			array.add(i);
-			i += 10;
-
-		}
-		model.addAttribute("num",array);
-
-		return array;
-	}
 
 }
