@@ -3,11 +3,11 @@ package jp.co.example.controller.form;
 import javax.validation.constraints.NotBlank;
 
 public class InsertForm {
-	@NotBlank
+	@NotBlank(message="ログインIDは必須です")
 	private String newLoginId;
-	@NotBlank
+	@NotBlank(message="パスワードは必須です")
 	private String newPassword;
-	@NotBlank
+	@NotBlank(message="ユーザーネームは必須です")
 	private String newUserName;
 	private String newPasswordRe;
 
