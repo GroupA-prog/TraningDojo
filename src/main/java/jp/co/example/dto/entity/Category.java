@@ -7,6 +7,7 @@ public class Category {
 	private Integer parentCategoryId;
 
 
+
 	public Integer getCategoryId() {
 		return categoryId;
 	}

@@ -1,7 +1,7 @@
 
 var learning = document.getElementById("lea");
 var rank = document.getElementById("ran");
-var num = document.getElementById("categoryId");
+var num = document.getElementById("num");
 mode = document.getElementsByName("mode");
 
 function changeBtn() {
@@ -22,7 +22,32 @@ function changeBtn() {
 }
 window.onload = changeBtn;
 
-let select = document.querySelector('[path="categoryId"]');
+let select = document.querySelector("#num");
+
+select.addEventListener('change', function() {
+	var categoryName = document.getElementByName("categoryName");
+	let request = {
+		categoryName: categoryName,
+	};
+	fetch("/numJs", {
+		method: "POST",
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(request)
+	})
+		.then(function(res) {
+			console.log(res);
+			return res.json();
+		})
+		.then(function(data) {
+			console.log(data);
+			catNum = data;
+		});
+
+
+});
+
 
 
 

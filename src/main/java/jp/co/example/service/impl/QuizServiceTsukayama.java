@@ -78,4 +78,14 @@ public class QuizServiceTsukayama implements QuizService {
 		return quiz;
 	}
 
+	public List<List<Quiz>> findByCategoryQuiz(Integer categoryId, Integer quizNum) {
+		return null;
+	}
+	public List<List<Quiz>> findByRankCategory(Integer categoryId) {
+		return null;
+	}
+	public int ListSize(List<List<Quiz>>quizList) {
+		return null;
+	}
+
 }
