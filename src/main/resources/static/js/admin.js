@@ -14,8 +14,10 @@ window.onload = function() {
 		request = { categoryId: $('#editCategoryId').val() };
 		AsyncCommunication('/categoryName', request, function(data) {
 			$('#editCategoryName').val(data.categoryName);
-			$('#editCategoryParentCategoryId').val(data.parentCategoryId);
+			$('#editCategoryParentCategoryId').val(data.parentCategoryId == null ? -1 : data.parentCategoryId);
 			$('[name=categoryDisplay]').val([data.display + '']);
+
+			console.log(data.parentCategoryId);
 		});
 	});
 

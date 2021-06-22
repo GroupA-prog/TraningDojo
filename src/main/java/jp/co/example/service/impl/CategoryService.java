@@ -23,10 +23,6 @@ public class CategoryService implements ICategoryService {
 
 	public List<Category> selectParentCategory() {
 		List<Category> list = categoryDao.selectAll();
-		Category category = new Category();
-		category.setCategoryName("選択しない");
-		category.setCategoryId(-1);
-		list.add(category);
 		return list;
 	}
 
