@@ -15,7 +15,7 @@ import jp.co.example.dto.entity.Category;
 public class QuizConfigDaoImpl implements QuizConfigDao {
 
 	private static final String rankCategoryName = "select category_id,category_name from category where parent_category_id is NULL;";
-	private static final String categoryNum = "select count() from category where category_name = :categoryName;";
+	private static final String categoryNum = "select count(*) from quiz where category_id = :categoryId;";
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -25,9 +25,9 @@ public class QuizConfigDaoImpl implements QuizConfigDao {
 		return jdbcTemplate.query(rankCategoryName, new BeanPropertyRowMapper<Category>(Category.class));
 	}
 
-	public int categoryNum(String categoryName){
+	public int categoryNum(Integer categoryId){
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("categoryName", categoryName);
+		param.addValue("categoryId", categoryId);
 		int result = jdbcTemplate.queryForObject(categoryNum, param, Integer.class);
 
 		return result;

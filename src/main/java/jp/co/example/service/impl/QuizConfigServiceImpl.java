@@ -20,9 +20,9 @@ public class QuizConfigServiceImpl implements QuizConfigService {
 		return quizConfigDao.categoryNameAll();
 	}
 
-	public int categoryNum(String categoryName) {
+	public int categoryNum(Integer categoryId) {
 
-		return quizConfigDao.categoryNum(categoryName);
+		return quizConfigDao.categoryNum(categoryId);
 	}
 
 }
