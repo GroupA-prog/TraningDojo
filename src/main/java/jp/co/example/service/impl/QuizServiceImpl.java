@@ -121,5 +121,11 @@ public class QuizServiceImpl implements QuizService{
 		return quiz;
 	}
 
+	@Override
+	public List<Quiz> findByCategoryId(Integer categoryId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 
 }
