@@ -31,7 +31,7 @@ function learningChangeCategory() {
 
 
 
-
+	//カテゴリ選択のプルダウンを削除
 	while (selectNum.firstChild) {
 		selectNum.removeChild(selectNum.firstChild);
 	};
@@ -41,6 +41,8 @@ function learningChangeCategory() {
 	let request = {
 		categoryId: categoryId,
 	};
+
+
 	fetch("/numJs", {
 		method: "POST",
 		headers: {
@@ -72,13 +74,22 @@ function learningChangeCategory() {
 	selectNum.appendChild(option);
 
 	while (i + 10 <= num) {
-		i += 10;
-		option = document.createElement('option');
-		option.setAttribute('value', i);
-		option.innerHTML = i;
-		selectNum.appendChild(option);
+		if (i + 10 <= num) {
+			i += 10;
+			option = document.createElement('option');
+			option.setAttribute('value', i);
+			option.innerHTML = i;
+			selectNum.appendChild(option);
+		} else {
+			option = document.createElement('option');
+			option.setAttribute('value', num);
+			option.innerHTML = num;
+			selectNum.appendChild(option);
+		}
+
 
 	};
+
 
 
 }
