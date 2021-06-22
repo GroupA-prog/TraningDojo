@@ -1,5 +1,6 @@
 package jp.co.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class AsyncController {
 
 	@RequestMapping(value="/getQuizList", method=RequestMethod.POST)
 	public List<Quiz> getQuizListPost(@RequestBody CategoryIdDTO dto) {
-		return null;
+		System.out.println(dto);
+		return new ArrayList();
 	}
 }

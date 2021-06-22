@@ -26,6 +26,13 @@ window.onload = function() {
 		});
 	});
 
+	$('#selectQuizCategoryId').change(function() {
+		request = { categoryId: $('#selectQuizCategoryId').val() };
+		AsyncCommunication('/getQuizList', request, function(data) {
+			console.log(data);
+		});
+	});
+
 };
 
 
