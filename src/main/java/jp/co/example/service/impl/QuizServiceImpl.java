@@ -97,6 +97,26 @@ public class QuizServiceImpl implements QuizService{
 		}
 	}
 
+	//答え合わせメソッド
+	@Override
+	public List<Integer> scoring(List<List<Quiz>> quizList,List<List<Integer>> answerList){
+		List<Integer> correct = new ArrayList<Integer>();
+		for(List<Quiz> quiz: quizList) {
+			for(Quiz q: quiz) {
+				for(List<Integer> answer: answerList) {
+					for(Integer a: answer) {
+						if(a == q.getCorrectAnswer()) {
+							correct.add(1);
+						}else {
+							correct.add(0);
+						}
+					}
+				}
+			}
+		}
+		return correct;
+	}
+
 	public Quiz findByQuizId(Integer quizId) {
 		List<QuizJoinQuizSelect> list = quizDao.findByQuizId(quizId);
 		QuizJoinQuizSelect qs = list.get(0);
