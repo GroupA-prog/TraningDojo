@@ -10,13 +10,14 @@
 <title>クイズ画面</title>
 </head>
 <body onload="countdown();">
-<form:form >
+
 <header>
   <h1>研修道場</h1>
   <nav>
-    <form:button name="retired">リタイア</form:button>
+    <button name="retired">リタイア</button>
   </nav>
   </header>
+<form:form action="quiz" modelAttribute="quiz">
 <h1>${mode}:${categoryName}</h1>
 
 <c:forEach items="${quizList}" var="quiz">
