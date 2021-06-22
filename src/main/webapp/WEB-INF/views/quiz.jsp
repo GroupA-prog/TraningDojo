@@ -26,12 +26,13 @@
     <form:radiobuttons path="choiceId" items="${select.choice}"/>
   </c:forEach>
 </c:forEach>
-
+<c:if test="${not empty time}">
 <p>残り時間</p>
-<p>
-  <span id="min"></span>分
-  <span id="sec"></span>秒
-</p>
+  <p>
+    <span id="min"></span>分
+    <span id="sec"></span>秒
+  </p>
+</c:if>
 
 <c:if test="${returnDisplay != 0}">
   <form:button name= "return">←前へ</form:button>>

@@ -43,11 +43,10 @@ public class QuizTamayoseController{
 		//モード分岐、制限時間・問題数（5問分け済み）を保存
 		if(form.getMode() == 1) {
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
-			session.setAttribute("time", form.getQuizNum()*2);
 			session.setAttribute("quizList", quizList.get(quizIndex));
 		}else if(form.getMode() == 2){
 			quizList = quizService.findByRankCategory(form.getCategoryId());
-			session.setAttribute("time", 20);
+			session.setAttribute("time", form.getQuizNum()*2);
 			session.setAttribute("quizList", quizList.get(quizIndex));
 		}
 		//問題数・解答セッションを作成、保存
@@ -106,7 +105,7 @@ public class QuizTamayoseController{
 		//答え合わせ
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
 		List<Integer>correct = quizService.scoring(quizList,answer);
-		
+
 		//モード判断
 		if(mode.equals("学習")) {
 
