@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.example.dao.QuizDao;
 import jp.co.example.dto.entity.Quiz;
+import jp.co.example.dto.entity.QuizJoinQuizSelect;
 
 @Repository
 public class QuizDaoImpl implements QuizDao{
@@ -18,6 +19,7 @@ public class QuizDaoImpl implements QuizDao{
 	private static final String SELECT_RANK_CATEGORY = "SELECT * FROM (SELECT * FROM quiz WHERE display = 1 category_id = :categoryId ORDER BY random() LIMIT 10) AS quiz JOIN quiz_select qs ON quiz.quiz_id = qs.quiz_id";
 	private static final String INSERT_QUIZ = "INSERT INTO quiz (category_id, quiz_title, quiz_statment, correct_answer, commentary, display) VALUES (:category_id, :quiz_title, :quiz_statment, :correct_answer, :commentary, :display);";
 	private static final String SELECT_BY_QUIZ_TITLE = "SELECT * FROM quiz WHERE quiz_title = :quiz_title;";
+	private static final String SELECT_BY_CATEGORYID = "SELECT * FROM quiz q INNER JOIN quiz_select qs ON q.quiz_id = qs.quiz_id WHERE q.category_id = :category_id; ORDER BY q.quiz_id;";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -39,6 +41,14 @@ public class QuizDaoImpl implements QuizDao{
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("quiz_title", quizTitle);
 		return jdbcTemplate.query(SELECT_BY_QUIZ_TITLE, param, new BeanPropertyRowMapper<Quiz>(Quiz.class));
+	}
+
+	//カテゴリごとのクイズを調べる
+	@Override
+	public List<QuizJoinQuizSelect> findByCategory(Integer categoryId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("category_id", categoryId);
+		return jdbcTemplate.query(SELECT_BY_CATEGORYID, param, new BeanPropertyRowMapper<QuizJoinQuizSelect>(QuizJoinQuizSelect.class));
 	}
 
 	//学習モード

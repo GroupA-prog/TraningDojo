@@ -15,21 +15,39 @@
   crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>
+	<!--
+        	<header>
             <th>研修道場</th>
         </header>
-        <div id="modal-overlay"></div>
+          -->
+	<div id="modal-overlay"></div>
 		<div id="modal-content">
 			<form:form action="/admin" modelAttribute="admin">
 				<div class="createQuiz">
 					<h3>クイズの作成</h3>
 					<hr>
+					<c:if test="${ isNotCategory }">
+						<p class="error">カテゴリを選択してください</p>
+					</c:if>
+					<c:if test="${ isNotSentence }">
+						<p class="error">問題文を入力してください</p>
+					</c:if>
+					<c:if test="${ isNotChoices }">
+						<p class="error">選択肢は必須です</p>
+					</c:if>
+					<c:if test="${ isNotQuizTitle }">
+						<p class="error">クイズタイトルは必須です</p>
+					</c:if>
+					<c:if test="${ isQuizTitleExists }">
+						<p class="error">そのクイズタイトルは既に存在します</p>
+					</c:if>
+
 					<div>
 						<label>
 							カテゴリの選択
 							<br>
 							<form:select path="quizCategoryId">
-								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId"/>
 							</form:select>
 						</label>
 					</div>
@@ -81,10 +99,31 @@
 					</div>
 					<div>
 						解説
+						<br>
 						<form:textarea path="createCommentary" />
 					</div>
 					<button type="button" class="return">戻る</button>
 					<form:button name="quizCreate" class="update">更新</form:button>
+				</div>
+				<div class="editQuizList">
+					<h3>クイズの編集</h3>
+					<hr>
+					<div>
+						<label>
+							カテゴリの選択
+							<br>
+							<form:select path="editQuizCategoryId">
+								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+							</form:select>
+						</label>
+						<table id="quizListTable">
+							<thead>
+								<th>クイズID</th>
+								<th>クイズタイトル</th>
+							</thead>
+						</table>
+						<button type="button" class="return">戻る</button>
+					</div>
 				</div>
 				<div class="editQuiz">
 					<h3>クイズの編集</h3>
@@ -164,7 +203,7 @@
 						<p class="error">そのカテゴリ名は既に存在します。</p>
 					</c:if>
 					<c:if test="${ isEmptyCategoryName }">
-						<p class="error">カテゴリ名に文字列を入力してください。</p>
+						<p class="error">カテゴリ名を入力してください。</p>
 					</c:if>
 					<div>
 						<label>
@@ -193,7 +232,7 @@
 						<p class="error">そのカテゴリ名は既に存在します。</p>
 					</c:if>
 					<c:if test="${ isEmptyEditCategoryName }">
-						<p class="error">カテゴリ名に文字列を入力してください。</p>
+						<p class="error">カテゴリ名を入力してください。</p>
 					</c:if>
 					<c:if test="${ isChanged }">
 						<p class="error">一項目以上変更してください。</p>
@@ -238,13 +277,16 @@
 				<div class="editUser">
 					<h3>ユーザーの編集</h3>
 					<hr>
+					<c:if test="${ isChoiceLoginId }">
+						<p class="error">ログインIDを選択してください。</p>
+					</c:if>
 					<div>
 						<label>
 							ログインID
 							<br>
 							<form:select path="loginId">
-								<form:option value="1">aaa</form:option>
-								<form:option value="2">bbb</form:option>
+								<form:option value="" label="選択してください"/>
+								<form:options items="${ userInfoList }" itemLabel="loginId" itemValue="loginId"/>
 							</form:select>
 						</label>
 					</div>

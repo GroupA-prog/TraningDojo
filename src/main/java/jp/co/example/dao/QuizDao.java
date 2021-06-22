@@ -3,6 +3,7 @@ package jp.co.example.dao;
 import java.util.List;
 
 import jp.co.example.dto.entity.Quiz;
+import jp.co.example.dto.entity.QuizJoinQuizSelect;
 
 public interface QuizDao {
 
@@ -10,4 +11,5 @@ public interface QuizDao {
 	public List<Quiz> findByQuizTitle(String quizTitle);
 	public List<Quiz> findByCategoryQuiz(Integer categoryId, Integer quizNum);
 	public List<Quiz> findByRankCategory(Integer categoryId);
+	public List<QuizJoinQuizSelect> findByCategory(Integer categoryId);
 }

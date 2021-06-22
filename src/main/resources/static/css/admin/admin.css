@@ -5,13 +5,14 @@
 .arrayContiner {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 .item {
     width: 200px;
     height: 1em;
     padding: 1em;
     margin-top: 10%;
-    margin-left: 20%;
+    margin-right: 20%;
     background-color: #ffa500;
     text-align: center;
     border-radius: 40px;
@@ -28,8 +29,12 @@
     display:block;
 }
 
+select {
+	overflow: scroll;
+}
+
 /*モーダル内のdiv要素を非表示*/
-.createQuiz, .editQuiz, .createCategory, .editCategory, .editUser {
+.createQuiz, .editQuiz, .createCategory, .editCategory, .editUser, .editQuizList {
     display: none;
 }
 #modal-content h3 {
@@ -50,14 +55,14 @@
 }
 
 
-#createProblemStatement {
+#createProblemStatement, #editProblemStatement {
 	resize: none;
 	width: 100%;
 	height: 300px;
 
 }
 
-#createQuizTitle {
+#createQuizTitle, #editQuizTitle {
 	width: 100%;
 }
 
@@ -67,8 +72,12 @@ table td {
 #createChoice1, #createChoice2, #createChoice3, #createChoice4 {
 	width: 100%;
 }
+#editChoice1, #editChoice2, #editChoice3, #editChoice4 {
+	width: 100%;
+}
 
-#createCommentary {
+
+#createCommentary, #editCommentary {
 	resize: none;
 	width: 100%;
 	height: 200px;

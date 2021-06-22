@@ -10,9 +10,6 @@ public class Quiz {
 	private Integer correctAnswer;
 	private String commentary;
 	private Integer display;
-	private Integer quizChoiceId;
-	private String choice;
-	private Integer userAnswer;
 	private ArrayList<QuizSelect> quizSelect;
 
 
@@ -34,12 +31,6 @@ public class Quiz {
 	public void setDisplay(Integer display) {
 		this.display = display;
 	}
-	public Integer getUserAnswer() {
-		return userAnswer;
-	}
-	public void setUserAnswer(Integer userAnswer) {
-		this.userAnswer = userAnswer;
-	}
 	public Integer getQuizId() {
 		return quizId;
 	}
@@ -51,12 +42,6 @@ public class Quiz {
 	}
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
-	}
-	public Integer getQuizChoiceId() {
-		return quizChoiceId;
-	}
-	public void setQuizChoiceId(Integer quizChoiceId) {
-		this.quizChoiceId = quizChoiceId;
 	}
 	public Integer getCorrectAnswer() {
 		return correctAnswer;
@@ -70,12 +55,6 @@ public class Quiz {
 	public void setQuizStatement(String quizStatement) {
 		this.quizStatement = quizStatement;
 	}
-	public String getChoice() {
-		return choice;
-	}
-	public void setChoice(String choice) {
-		this.choice = choice;
-	}
 	public String getCommentary() {
 		return commentary;
 	}
@@ -86,8 +65,7 @@ public class Quiz {
 	public String toString() {
 		return "Quiz [quizId=" + quizId + ", categoryId=" + categoryId + ", quizTitle=" + quizTitle + ", quizStatement="
 				+ quizStatement + ", correctAnswer=" + correctAnswer + ", commentary=" + commentary + ", display="
-				+ display + ", quizChoiceId=" + quizChoiceId + ", choice=" + choice + ", userAnswer=" + userAnswer
-				+ ", quizSelect=" + quizSelect + "]";
+				+ display + ", quizSelect=" + quizSelect + "]";
 	}
 
 

@@ -105,6 +105,26 @@
 					<button type="button" class="return">戻る</button>
 					<form:button name="quizCreate" class="update">更新</form:button>
 				</div>
+				<div class="editQuizList">
+					<h3>クイズの編集</h3>
+					<hr>
+					<div>
+						<label>
+							カテゴリの選択
+							<br>
+							<form:select path="selectQuizCategoryId">
+								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+							</form:select>
+						</label>
+						<table id="quizListTable">
+							<thead>
+								<th>クイズID</th>
+								<th>クイズタイトル</th>
+							</thead>
+						</table>
+						<button type="button" class="return">戻る</button>
+					</div>
+				</div>
 				<div class="editQuiz">
 					<h3>クイズの編集</h3>
 					<hr>
@@ -265,6 +285,7 @@
 							ログインID
 							<br>
 							<form:select path="loginId">
+								<form:option value="" label="選択してください"/>
 								<form:options items="${ userInfoList }" itemLabel="loginId" itemValue="loginId"/>
 							</form:select>
 						</label>

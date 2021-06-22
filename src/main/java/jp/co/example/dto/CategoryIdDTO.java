@@ -1,15 +1,21 @@
 package jp.co.example.dto;
 
 public class CategoryIdDTO {
-	private Integer CategoryId;
+	private Integer categoryId;
 
 	public Integer getCategoryId() {
-		return CategoryId;
+		return categoryId;
 	}
 
 	public void setCategoryId(Integer categoryId) {
-		CategoryId = categoryId;
+		this.categoryId = categoryId;
 	}
+
+	@Override
+	public String toString() {
+		return "CategoryIdDTO [CategoryId=" + categoryId + "]";
+	}
+
 
 
 }
