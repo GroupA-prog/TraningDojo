@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -17,7 +16,7 @@ import jp.co.example.controller.form.LoginForm;
 import jp.co.example.dto.entity.Login;
 import jp.co.example.service.LoginService;
 
-@Controller
+//@Controller
 public class LoginController {
 	@Autowired
 	HttpSession session;

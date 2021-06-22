@@ -44,14 +44,16 @@ public class QuizServiceImpl implements QuizService{
 	}
 
 	@Override
-	public List<Quiz> findByQuizTitle(String quizTitle) {
-		return quizDao.findByQuizTitle(quizTitle);
+	public List<Quiz> findByQuizTitle(Integer categoryId, String quizTitle) {
+		return quizDao.findByQuizTitle(categoryId, quizTitle);
 	}
 
 	@Override
-	public List<Quiz> insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
+	public Quiz insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
 		quizDao.insertQuiz(categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
-		return findByQuizTitle(quizTitle);
+
+		List<Quiz> list =  findByQuizTitle(categoryId, quizTitle);
+		return list.isEmpty() ? null : list.get(0);
 	}
 
 	//List分割メソッド
@@ -123,8 +125,7 @@ public class QuizServiceImpl implements QuizService{
 
 	@Override
 	public List<Quiz> findByCategoryId(Integer categoryId) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return quizDao.findByCategoryId(categoryId);
 	}
 
 
