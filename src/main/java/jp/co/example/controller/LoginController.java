@@ -34,7 +34,7 @@ public class LoginController {
         }
 		Login user = service.authentication(form.getLoginId(), form.getPassword());
 		if (user == null) {
-            model.addAttribute("errMsg","");
+            model.addAttribute("errMsg","IDまたはパスワードが間違っています");
             return "login";
         } else {
         	session.setAttribute("userInfo",user);
@@ -46,12 +46,19 @@ public class LoginController {
 	public String signUp(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-            return "insert";
+            return "signUp";
         }
-		form.getNewLoginId();
-		form.getNewPassword();
-		form.getNewUserName();
-		return "signUp";
+		if(service.existsUserByLoginId(form.getNewLoginId())) {
+			model.addAttribute("errDuplicate","そのIDは使用できません");
+			return "signUp";
+		}
+		Login user = new Login(
+		form.getNewLoginId(),
+		form.getNewPassword(),
+		form.getNewUserName()
+				);
+		service.insert(user);
+		return "signUpDone";
 	}
 	@RequestMapping(value = "/signUpDone", method = RequestMethod.POST)
 	public String signUpDone(@Validated @ModelAttribute("signUpDone") InsertForm form, BindingResult bindingResult,
@@ -59,7 +66,7 @@ public class LoginController {
 		return "signUpDone";
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	@RequestMapping(value = "/logout")
 	public String logout(Model model) {
 		session.invalidate();
 		return "logout";

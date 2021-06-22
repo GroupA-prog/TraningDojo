@@ -7,6 +7,12 @@ public class Login {
 	private String userName;
 	private Integer role;
 
+	public Login(String newLoginId, String newPassword, String newUserName) {
+		loginId = newLoginId;
+		password = newPassword;
+		userName = newUserName;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}

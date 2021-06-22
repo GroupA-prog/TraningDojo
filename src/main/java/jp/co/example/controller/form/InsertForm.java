@@ -1,20 +1,15 @@
 package jp.co.example.controller.form;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class InsertForm {
 	@NotBlank
-	@NotNull
 	private String newLoginId;
 	@NotBlank
-	@NotNull
 	private String newPassword;
 	@NotBlank
-	@NotNull
 	private String newUserName;
 	@NotBlank
-	@NotNull
 	private String newPasswordRe;
 
 	public String getNewLoginId() {

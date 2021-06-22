@@ -1,11 +1,12 @@
 package jp.co.example.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import jp.co.example.dao.LoginDao;
 import jp.co.example.dto.entity.Login;
 import jp.co.example.service.LoginService;
-
+@Service
 public class LoginServiceImpl implements LoginService {
 
 	@Autowired
@@ -24,6 +25,16 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Login findAll() {
 		return (Login) loginDao.findAll();
+	}
+
+	@Override
+	public void insert(Login user) {
+		loginDao.insert(user);
+	}
+
+	@Override
+	public boolean existsUserByLoginId(String loginId) {
+		return findByLoginId(loginId) != null;
 	}
 
 }

@@ -21,6 +21,7 @@ public class QuizDaoImpl implements QuizDao{
 	private static final String SELECT_BY_QUIZ_TITLE = "SELECT * FROM quiz WHERE category_id = :category_id AND quiz_title = :quiz_title;";
 	private static final String SELECT_BY_CATEGORYID = "SELECT * FROM quiz WHERE category_id = :category_id ORDER BY quiz_id;";
 	private static final String SELECT_BY_QUIZID = "SELECT * FROM quiz q INNER JOIN quiz_select qs ON q.quiz_id = qs.quiz_id WHERE q.quiz_id = :quiz_id ORDER BY qs.quiz_choice_id;";
+	private static final String UPDATE = "UPDATE quiz SET category_id = :category_id, quiz_title = :quiz_title, quiz_statment = :quiz_statment, correct_answer = :correct_answer, commentary = :commentary, display = :display WHERE quiz_id = :quiz_id;";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -50,6 +51,18 @@ public class QuizDaoImpl implements QuizDao{
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("quiz_id", quizId);
 		return jdbcTemplate.query(SELECT_BY_QUIZID, param, new BeanPropertyRowMapper<QuizJoinQuizSelect>(QuizJoinQuizSelect.class));
+	}
+
+	public int updateQuiz(Integer quizId, Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("quiz_id", quizId);
+		param.addValue("category_id", categoryId);
+		param.addValue("quiz_title", quizTitle);
+		param.addValue("quiz_statment", quizStatment);
+		param.addValue("correct_answer", correctAnswer);
+		param.addValue("commentary", commentary);
+		param.addValue("display", display);
+		return jdbcTemplate.update(UPDATE, param);
 	}
 
 	//カテゴリごとのクイズを調べる

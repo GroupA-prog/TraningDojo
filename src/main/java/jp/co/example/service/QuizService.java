@@ -16,4 +16,5 @@ public interface QuizService {
 	public Quiz insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display);
 	public List<Quiz> findByCategoryId(Integer categoryId);
 	public Quiz findByQuizId(Integer quizId);
+	public int updateQuiz(Integer quizId, Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display);
 }

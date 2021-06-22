@@ -11,15 +11,20 @@
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 </head>
 <body>
+	<c:if test="${not empty errMsg }">
+		<p>${fn:escapeXml(errMsg)}</p>
+	</c:if>
 	<form:form action="/login" modelAttribute="login">
 		<p>アカウントをお持ちの方はこちらからログインしてください</p>
 		<p>
 			ログインID
 			<form:input path="loginId" />
+			<form:errors path="loginId" cssStyle="color: red"/>
 		</p>
 		<p>
 			パスワード
 			<form:password path="password" />
+			<form:errors path="loginId" cssStyle="color: red"/>
 		</p>
 		<br>
 		<form:button>ログイン</form:button>
