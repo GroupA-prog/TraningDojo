@@ -13,6 +13,7 @@ public interface QuizService {
 	public List<Quiz> findByQuizTitle(Integer categoryId, String quizTitle);
 	public List<Integer> scoring(List<List<Quiz>> quizList,List<List<Integer>> answerList);
 	public String selectMode(Integer modeId);
+	public int selectModeId(String mode);
 	public Quiz insertQuiz(Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display);
 	public List<Quiz> findByCategoryId(Integer categoryId);
 	public Quiz findByQuizId(Integer quizId);

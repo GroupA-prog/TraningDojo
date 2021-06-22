@@ -1,5 +1,6 @@
 package jp.co.example.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,10 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
 	public String quizGet(@ModelAttribute("quiz")QuizForm form,Model model) {
+		//クイズstart時刻取得・保持
+		long millis = System.currentTimeMillis();
+		Timestamp start = new Timestamp(millis);
+		session.setAttribute("startTime", start);
 		//戻るボタン表示判断
 		model.addAttribute("returnDisplay",0);
 		//モード：カテゴリ名保存
@@ -111,14 +116,22 @@ public class QuizTamayoseController{
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("answerList");
 		quizService.answerUpdate(answer,quizIndex,form.getChoiceId());
 		session.setAttribute("answerList", answer);
+		//モードをIDに変換
 		String mode = (String) session.getAttribute("mode");
+		int modeId = quizService.selectModeId(mode);
+		//カテゴリ名からIDを取得
+		String categoryName = (String) session.getAttribute("categoryName");
+		int categoryId = categoryService.findByCategoryName(categoryName).get(0).getCategoryId();
+		//ユーザーId、日付を取得
+
+		Timestamp startTime = (Timestamp) session.getAttribute("startTime");
 		//答え合わせ
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
 		List<Integer>correct = quizService.scoring(quizList,answer);
 
-		//モード判断
-		if(mode.equals("学習")) {
 
+		//モード判断
+		if(modeId == 1) {
 			return "answerDatail";
 		}
 		return "rankingView";
@@ -132,6 +145,7 @@ public class QuizTamayoseController{
 		session.removeAttribute("quizList");
 		session.removeAttribute("categoryName");
 		session.removeAttribute("answerList");
+		session.removeAttribute("startTime");
 		return "quizConfig";
 	}
 }
