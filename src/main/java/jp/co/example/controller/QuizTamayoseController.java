@@ -104,7 +104,8 @@ public class QuizTamayoseController{
 		session.setAttribute("answerList", answer);
 		String mode = (String) session.getAttribute("mode");
 		//答え合わせ
-
+		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
+		List<Integer>correct = quizService.scoring(quizList,answer);
 
 		//モード判断
 		if(mode.equals("学習")) {
