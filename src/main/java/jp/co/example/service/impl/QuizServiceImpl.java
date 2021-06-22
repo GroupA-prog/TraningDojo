@@ -150,5 +150,10 @@ public class QuizServiceImpl implements QuizService{
 		return quizDao.findByCategoryId(categoryId);
 	}
 
+	@Override
+	public int updateQuiz(Integer quizId, Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
+		return quizDao.updateQuiz(quizId, categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
+	}
+
 
 }
