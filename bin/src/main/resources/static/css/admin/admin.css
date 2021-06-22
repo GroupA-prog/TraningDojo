@@ -28,12 +28,12 @@
     display:block;
 }
 
-option {
-	cursor: pointer;
+select {
+	overflow: scroll;
 }
 
 /*モーダル内のdiv要素を非表示*/
-.createQuiz, .editQuiz, .createCategory, .editCategory, .editUser {
+.createQuiz, .editQuiz, .createCategory, .editCategory, .editUser, .editQuizList {
     display: none;
 }
 #modal-content h3 {
@@ -54,16 +54,33 @@ option {
 }
 
 
-#createProblemStatement {
+#createProblemStatement, #editProblemStatement {
 	resize: none;
 	width: 100%;
 	height: 300px;
 
 }
 
+#createQuizTitle, #editQuizTitle {
+	width: 100%;
+}
+
+table td {
+	width: 100%;
+}
+#createChoice1, #createChoice2, #createChoice3, #createChoice4 {
+	width: 100%;
+}
+#editChoice1, #editChoice2, #editChoice3, #editChoice4 {
+	width: 100%;
+}
 
 
-
+#createCommentary, #editCommentary {
+	resize: none;
+	width: 100%;
+	height: 200px;
+}
 
 
 

@@ -11,27 +11,24 @@
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 </head>
 <body>
-	<header>
-		<h1>
-			<a href="" class="systemName">研修道場</a>
-		</h1>
-	</header>
-	<form action="login">
+	<form:form action="/login" modelAttribute="login">
 		<p>アカウントをお持ちの方はこちらからログインしてください</p>
 		<p>
-			ログインID<input type="text">
+			ログインID
+			<form:input path="loginId" />
 		</p>
 		<p>
-			パスワード<input type="password">
+			パスワード
+			<form:password path="password" />
 		</p>
 		<br>
-		<button class="btn login">ログイン</button>
-	</form>
+		<form:button>ログイン</form:button>
+	</form:form>
 	<br>
-	<form action="insert">
+	<form action="/signUp" method="post">
 		アカウントをお持ちでない方は、こちらから登録してください
 		<p>
-			<button class="btn new-update">新規登録</button>
+			<button type="submit">新規登録</button>
 		</p>
 	</form>
 </body>

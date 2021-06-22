@@ -34,9 +34,4 @@ public class UserInfoService implements IUserInfoService {
 		return userInfoDao.updateRole(loginId, role);
 	}
 
-	@Override
-	public UserInfo authentication(String loginId, String pass) {
-		return userInfoDao.findByLoginIdAndPassword(loginId, pass);
-	}
-
 }

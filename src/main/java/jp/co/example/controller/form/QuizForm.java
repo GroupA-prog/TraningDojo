@@ -1,5 +1,7 @@
 package jp.co.example.controller.form;
 
+import java.util.List;
+
 public class QuizForm{
 
 	private Integer quizId;
@@ -9,7 +11,7 @@ public class QuizForm{
 	private Integer correctAnswer;
 	private String commentary;
 	private Integer display;
-	private Integer quizChoiceId;
+	private List<Integer> choiceId;
 	private String choice;
 	private Integer mode;
 	private String categoryName;
@@ -57,11 +59,12 @@ public class QuizForm{
 	public void setDisplay(Integer display) {
 		this.display = display;
 	}
-	public Integer getQuizChoiceId() {
-		return quizChoiceId;
+
+	public List<Integer> getChoiceId() {
+		return choiceId;
 	}
-	public void setQuizChoiceId(Integer quizChoiceId) {
-		this.quizChoiceId = quizChoiceId;
+	public void setChoiceId(List<Integer> choiceId) {
+		this.choiceId = choiceId;
 	}
 	public String getChoice() {
 		return choice;

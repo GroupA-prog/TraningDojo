@@ -16,7 +16,6 @@ public class UserInfoDao implements IUserInfoDao {
 	private static final String SELECT_ALL = "SELECT user_id, login_id, role FROM user_info WHERE login_id <> 'administrator' ORDER BY login_id ASC;";
 	private static final String FIND_BY_LOGINID = "SELECT * FROM user_info WHERE login_id = :login_id;";
 	private static final String UPDATE_USER_ROLE = "UPDATE user_info SET role = :role WHERE login_id = :login_id;";
-	private static final String SELECT_BY_LOGIN_ID = "SELECT * FROM user_info WHERE login_id = :loginId";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -40,16 +39,5 @@ public class UserInfoDao implements IUserInfoDao {
 		param.addValue("role", role);
 
 		return jdbcTemplate.update(UPDATE_USER_ROLE, param);
-	}
-
-	@Override
-	public UserInfo findByLoginIdAndPassword(String loginId, String pass) {
-        MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("loginId", loginId);
-
-        List<UserInfo> resultList = jdbcTemplate.query(SELECT_BY_LOGIN_ID, param,
-                new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
-
-        return resultList.isEmpty() ? null : resultList.get(0);
 	}
 }
