@@ -7,5 +7,6 @@ import jp.co.example.dto.entity.Category;
 public interface QuizConfigDao {
 
 	public List<Category> categoryNameAll();
+	public int categoryNum(String categoryName);
 
 }
