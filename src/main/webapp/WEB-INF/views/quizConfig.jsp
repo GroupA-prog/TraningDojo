@@ -21,9 +21,9 @@
 	<form:form action="/quizConfig" modelAttribute="quizConfig" method="POST">
 		<h1>モードを選んでください</h1>
 		<br>
-		<form:radiobutton class="learning" path="mode" value="1" onclick="changeBtn();" />
+		<form:radiobutton class="learning" path="mode" value="1" onclick="changeBtn();" checked="checked"/>
 		<label class="learningLabel">学習</label>
-		<form:radiobutton class="rank" path="mode" value="2" onclick="changeBtn();" checked="checked"/>
+		<form:radiobutton class="rank" path="mode" value="2" onclick="changeBtn();"/>
 		<label class="rankLabel">ランキング</label>
 
 		<br>
@@ -46,8 +46,8 @@
 		<br>
 		<h3>問題数を選んでください</h3>
 		<br>
-		<form:select path="categoryId" class="num">
-			<form:options item="" itemLabel="4" itemValue="4" />
+		<form:select path="categoryId" name="categoryName" class="num" id="num">
+			<form:options items="${num}" itemLabel="${num}" itemValue="${num}" />
 		</form:select>
 
 	</form:form>
