@@ -15,13 +15,13 @@ setTimeout(countdown,1000);
 countdown();
 
 
-var btn = document.getElementById('retired');
+var btn = document.getElementByName('retired');
 
 btn.addEventListener('click', function() {
 	var result = window.confirm('本当に諦めるんですか？');
 
 	if(result) {
-		location.href = 'quizConfig';
+		location.href = 'retired';
 	}
 	else {
 		location.href = 'quiz';
@@ -29,7 +29,7 @@ btn.addEventListener('click', function() {
 })
 
 
-var btn = document.getElementById('finish');
+var btn = document.getElementByName('finish');
 
 btn.addEventListener('click', function() {
 	var result = window.confirm('解答を保存してクイズを終了しますか？');

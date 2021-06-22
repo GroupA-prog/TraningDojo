@@ -11,25 +11,30 @@
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 </head>
 <body>
-	<form:form action="/login" modelAttribute="login">
+	<c:if test="${not empty errMsg }">
+		<p>${fn:escapeXml(errMsg)}</p>
+	</c:if>
+	<form:form action="/login" modelAttribute="login" method="post">
 		<p>アカウントをお持ちの方はこちらからログインしてください</p>
 		<p>
 			ログインID
 			<form:input path="loginId" />
+			<form:errors path="loginId" cssStyle="color: red"/>
 		</p>
 		<p>
 			パスワード
 			<form:password path="password" />
+			<form:errors path="loginId" cssStyle="color: red"/>
 		</p>
 		<br>
 		<form:button>ログイン</form:button>
 	</form:form>
 	<br>
-	<form action="/signUp" method="post">
+	<form:form action="/signUp" modelAttribute="signUp" method="get">
 		アカウントをお持ちでない方は、こちらから登録してください
 		<p>
 			<button type="submit">新規登録</button>
 		</p>
-	</form>
+	</form:form>
 </body>
 </html>

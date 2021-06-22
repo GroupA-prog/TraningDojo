@@ -13,4 +13,5 @@ public interface QuizDao {
 	public List<Quiz> findByRankCategory(Integer categoryId);
 	public List<Quiz> findByCategoryId(Integer categoryId);
 	public List<QuizJoinQuizSelect> findByQuizId(Integer quizId);
+	public int updateQuiz(Integer quizId, Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display);
 }
