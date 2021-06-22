@@ -1,33 +1,31 @@
-var radioMode = element.mode;
-var mode = radioMode.value;
-var learning = document.getElementById("learningCategory");
-var rank = document.getElementById("rankCategory");
-var num = document.getElementById("num");
 
+var learning = document.getElementById("lea");
+var rank = document.getElementById("ran");
+var num = document.getElementById("categoryId");
+mode = document.getElementsByName("mode");
 
 function changeBtn() {
-	if (learning.checked) {
+
+	if (mode[0].checked) {
 		learning.style.display = 'block';
 		rank.style.display = 'none';
+		num.style.display = 'block';
 
 	}
-	if (rank.checked) {
+	if (mode[1].checked) {
 		learning.style.display = 'none';
 		rank.style.display = 'block';
-
+		num.style.display = 'none';
 	}
-}
 
-var btn = document.getElementById("mode");
-btn.addEventListener('change', changeBtn);
 
-if (mode == 1) {
-	num.style.display = 'block';
 }
+window.onload = changeBtn;
 
-if (mode == 2) {
-	num.style.display = 'none';
-}
+let select = document.querySelector('[path="categoryId"]');
+
+
+
 
 
 
@@ -35,7 +33,5 @@ if (mode == 2) {
 
 
 //問題数の表示
-let categorySelect = document.querySelector('[path="categoryId"]');
-categorySelect.onchange = event => {
 
-}
+
