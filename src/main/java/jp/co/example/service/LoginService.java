@@ -8,4 +8,8 @@ public interface LoginService {
     public Login findByLoginId(String loginId);
 
     public Login findAll();
+
+    public void insert(Login user);
+
+    public boolean existsUserByLoginId(String loginId);
 }

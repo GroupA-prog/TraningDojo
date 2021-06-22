@@ -8,4 +8,5 @@ public interface LoginDao {
 	public List<Login> findAll();
 	public Login findByLoginIdAndPassword(String loginId, String password);
 	public Login findByLoginId (String loginId);
+	public void insert(Login user);
 }
