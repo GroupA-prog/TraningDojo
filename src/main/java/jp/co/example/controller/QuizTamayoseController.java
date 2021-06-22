@@ -33,6 +33,11 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
 	public String quizGet(@ModelAttribute("quiz")QuizForm form,Model model) {
+		return "quiz";
+	}
+
+	@RequestMapping(value="/quiz",method=RequestMethod.POST)
+	public String quizPost(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//クイズstart時刻取得・保持
 		long millis = System.currentTimeMillis();
 		Timestamp start = new Timestamp(millis);
@@ -63,7 +68,7 @@ public class QuizTamayoseController{
 		model.addAttribute("nowSize", nowSize);
 		model.addAttribute("maxSize", maxSize);
 		session.setAttribute("answerList", answerList);
-		return "quiz";
+		return "redirect:/quiz";
 	}
 
 	@SuppressWarnings("unchecked")

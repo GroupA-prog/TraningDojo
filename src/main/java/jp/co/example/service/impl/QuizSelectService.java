@@ -34,4 +34,18 @@ public class QuizSelectService implements IQuizSelectService {
 		}
 	}
 
+	@Override
+	public void updateAll(AdminForm form, Quiz quiz) {
+		ArrayList<String> list = new ArrayList<String>();
+
+		list.add(form.getEditChoice1());
+		list.add(form.getEditChoice2());
+		list.add(form.getEditChoice3());
+		list.add(form.getEditChoice4());
+
+		for(int i = 0; i < list.size(); i++) {
+			quizSelectDao.updateQuiz(quiz.getQuizId(), i + 1, list.get(i));
+		}
+	}
+
 }
