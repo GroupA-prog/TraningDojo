@@ -1,6 +1,5 @@
 package jp.co.example.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.example.dto.CategoryIdDTO;
 import jp.co.example.dto.LoginIdDTO;
+import jp.co.example.dto.QuizIdDTO;
 import jp.co.example.dto.entity.Category;
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.IUserInfoService;
+import jp.co.example.service.QuizService;
 
 @RestController
 public class AsyncController {
@@ -23,6 +24,8 @@ public class AsyncController {
 	ICategoryService categoryService;
 	@Autowired
 	IUserInfoService userInfoService;
+	@Autowired
+	QuizService quizService;
 
 	@RequestMapping(value="/categoryName", method=RequestMethod.POST)
 	public Category categoryNamePost(@RequestBody CategoryIdDTO dto) {
@@ -38,6 +41,12 @@ public class AsyncController {
 	@RequestMapping(value="/getQuizList", method=RequestMethod.POST)
 	public List<Quiz> getQuizListPost(@RequestBody CategoryIdDTO dto) {
 		System.out.println(dto);
-		return new ArrayList();
+		return quizService.findByCategoryId(dto.getCategoryId());
+	}
+
+	@RequestMapping(value="/getQuiz", method=RequestMethod.POST)
+	public Quiz getQuizPost(@RequestBody QuizIdDTO dto) {
+		System.out.println(dto);
+		return quizService.findByQuizId(dto.getQuizId());
 	}
 }

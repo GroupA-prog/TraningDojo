@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -14,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.InsertForm;
 import jp.co.example.controller.form.LoginForm;
-import jp.co.example.dto.entity.UserInfo;
-import jp.co.example.service.impl.UserInfoService;
+import jp.co.example.dto.entity.Login;
+import jp.co.example.service.LoginService;
 
-@Controller
+//@Controller
 public class LoginController {
 	@Autowired
 	HttpSession session;
 	@Autowired
     MessageSource messageSource;
 	@Autowired
-    private UserInfoService service;
+    private LoginService service;
 
 	@RequestMapping(value = "/login")
 	public String login(@Validated @ModelAttribute("login") LoginForm form, BindingResult bindingResult,
@@ -33,7 +32,7 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
             return "login";
         }
-		UserInfo user = service.authentication(form.getLoginId(), form.getPassword());
+		Login user = service.authentication(form.getLoginId(), form.getPassword());
 		if (user == null) {
             model.addAttribute("errMsg","");
             return "login";
@@ -46,6 +45,12 @@ public class LoginController {
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String signUp(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
+		if (bindingResult.hasErrors()) {
+            return "insert";
+        }
+		form.getNewLoginId();
+		form.getNewPassword();
+		form.getNewUserName();
 		return "signUp";
 	}
 	@RequestMapping(value = "/signUpDone", method = RequestMethod.POST)

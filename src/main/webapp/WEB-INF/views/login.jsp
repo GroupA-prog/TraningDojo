@@ -11,11 +11,6 @@
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 </head>
 <body>
-	<header>
-		<h1>
-			<a href="" class="systemName">研修道場</a>
-		</h1>
-	</header>
 	<form:form action="/login" modelAttribute="login">
 		<p>アカウントをお持ちの方はこちらからログインしてください</p>
 		<p>

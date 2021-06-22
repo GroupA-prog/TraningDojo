@@ -12,6 +12,7 @@ public class AdminForm {
 	private Integer createAnswer;
 	private String createCommentary;
 	//クイズ編集
+	private Integer quizId;
 	private Integer selectQuizCategoryId;
 	private Integer editQuizCategoryId;
 	private String editQuizTitle;
@@ -203,6 +204,13 @@ public class AdminForm {
 	}
 	public void setSelectQuizCategoryId(Integer selectQuizCategoryId) {
 		this.selectQuizCategoryId = selectQuizCategoryId;
+	}
+
+	public Integer getQuizId() {
+		return quizId;
+	}
+	public void setQuizId(Integer quizId) {
+		this.quizId = quizId;
 	}
 	@Override
 	public String toString() {

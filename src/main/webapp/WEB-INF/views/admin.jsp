@@ -121,6 +121,9 @@
 								<th>クイズID</th>
 								<th>クイズタイトル</th>
 							</thead>
+							<tbody>
+
+							</tbody>
 						</table>
 						<button type="button" class="return">戻る</button>
 					</div>
@@ -129,6 +132,7 @@
 					<h3>クイズの編集</h3>
 					<hr>
 					<div>
+						<form:input path="quizId" hidden="true" />
 						<label>
 							カテゴリの選択
 							<br>
@@ -186,14 +190,15 @@
 						<label>
 							非表示/表示
 							<br>
-							<form:checkbox path="quizDisplay" value="true"/>
+							<form:radiobutton path="quizDisplay" label="非表示" value="0" />
+							<form:radiobutton path="quizDisplay" label="表示" value="1" />
 						</label>
 					</div>
 					<div>
 						解説
 						<form:textarea path="editCommentary" />
 					</div>
-					<button type="button" class="return">戻る</button>
+					<button type="button" class="returnQuizList">戻る</button>
 					<form:button name="quizEdit" class="update">更新</form:button>
 				</div>
 				<div class="createCategory">

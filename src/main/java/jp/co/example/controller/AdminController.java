@@ -67,19 +67,19 @@ public class AdminController {
 			return "admin";
 		}
 
-		if ( !quizService.findByQuizTitle(form.getCreateQuizTitle()).isEmpty() ) {
+		if ( !quizService.findByQuizTitle(form.getEditCategoryId(), form.getCreateQuizTitle()).isEmpty() ) {
 			model.addAttribute("isQuizTitleExists", quizTitleFlg);
 		}
 		System.out.println(form);
 
-		List<Quiz> newQuiz = quizService.insertQuiz(
+		Quiz newQuiz = quizService.insertQuiz(
 												form.getQuizCategoryId(),
 												form.getCreateQuizTitle(),
 												form.getCreateProblemStatement(),
 												form.getCreateAnswer(),
 												form.getCreateCommentary(),
 												1);
-		quizSelectService.insertAll(form, newQuiz.get(0));
+		quizSelectService.insertAll(form, newQuiz);
 
 		return "redirect:/admin";
 	}
