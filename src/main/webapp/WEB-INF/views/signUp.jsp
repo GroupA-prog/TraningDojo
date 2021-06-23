@@ -14,28 +14,28 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 	<div class="margin">
-		<p>ユーザー情報を入力してください</p>
+		<p><span class="font">ユーザー情報を入力してください</span></p>
 		<c:if test="${not empty errDuplicate}">
 			<p class="error">※${fn:escapeXml(errDuplicate)}</p>
 		</c:if>
 		<form:form action="/signUp" modelAttribute="signUp" method="post">
 			<p>
 				<span class="login">ログインID</span>
-				<form:input path="newLoginId" />
+				<form:input path="newLoginId" class="txt"/>
 				<br>
 			<div class="error2">
-				<form:errors path="newLoginId" class="error" />
+				<form:errors path="newLoginId" class="error"/>
 			</div>
 			<p>
 				<span class="pass">パスワード</span>
-				<form:password path="newPassword" />
+				<form:password path="newPassword" class="txt"/>
 				<br>
 			<div class="error2">
 				<form:errors path="newPassword" class="error" />
 			</div>
 			<p>
 				ユーザーネーム
-				<form:input path="newUserName" />
+				<form:input path="newUserName" class="txt"/>
 				<br>
 			<div class="error2">
 				<form:errors path="newUserName" class="error" />
@@ -47,7 +47,7 @@
 		</form:form>
 		<br>
 		<p class="clear">
-			<a href="login" class="return">戻る</a>
+			<a href="login" class="return"><span class="font">戻る</span></a>
 		</p>
 	</div>
 
