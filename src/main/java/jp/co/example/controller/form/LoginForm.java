@@ -3,9 +3,10 @@ package jp.co.example.controller.form;
 import javax.validation.constraints.NotBlank;
 
 public class LoginForm {
-	@NotBlank
+	@NotBlank(message="※ログインIDは必須です")
 	private String loginId;
-	@NotBlank
+
+	@NotBlank(message="※パスワードは必須です")
 	private String password;
 
 	public String getLoginId() {

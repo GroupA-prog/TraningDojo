@@ -12,29 +12,35 @@
 </head>
 <body>
 	<c:if test="${not empty errMsg }">
-		<p>${fn:escapeXml(errMsg)}</p>
+		<p class="error">※${fn:escapeXml(errMsg)}</p>
 	</c:if>
 	<form:form action="/login" modelAttribute="login" method="post">
-		<p>アカウントをお持ちの方はこちらからログインしてください</p>
+		<p>　アカウントをお持ちの方はこちらからログインしてください</p>
+		<div class = "btn">
 		<p>
-			ログインID
-			<form:input path="loginId" />
-			<form:errors path="loginId" cssStyle="color: red"/>
+			　ログインID
+			<form:input path="loginId" /><br>
+			<form:errors path="loginId" class="error"/>
 		</p>
 		<p>
-			パスワード
-			<form:password path="password" />
-			<form:errors path="loginId" cssStyle="color: red"/>
+			　パスワード
+			<form:password path="password" /><br>
+			<form:errors path="password" class="error"/>
 		</p>
+		</div>
 		<br>
-		<form:button>ログイン</form:button>
+		<button class="loginbtn" class = "btn">ログイン</button>
 	</form:form>
 	<br>
+	<br>
+	<div class="clear">
 	<form:form action="/signUp" modelAttribute="signUp" method="get">
-		アカウントをお持ちでない方は、こちらから登録してください
-		<p>
-			<button type="submit">新規登録</button>
+	　 アカウントをお持ちでない方は、こちらから登録してください<br>
+		<br>
+		<p class="btn2">
+			　<button type="submit" class="signupbtn">新規登録</button>
 		</p>
 	</form:form>
+	</div>
 </body>
 </html>
