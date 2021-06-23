@@ -103,7 +103,7 @@ select.addEventListener('change', learningChangeCategory);
 window.onload = learningChangeCategory;
 
 
-/*function rankChangeCategory() {
+function rankChangeCategory() {
 
 	var categoryId = $("#ran").val();
 	let request = {
@@ -126,7 +126,7 @@ window.onload = learningChangeCategory;
 
 
 
-}*/
+}
 
 
 
