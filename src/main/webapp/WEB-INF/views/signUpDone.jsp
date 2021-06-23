@@ -20,18 +20,22 @@
 		<p class="error">※${fn:escapeXml(signUpErrMsg)}</p>
 	</c:if>
 	<form:form action="/signUpDone" modelAttribute="signUpDone" method="post">
-		<p>
-			ログインID
-			<form:input path="loginId" /><br>
-			<form:errors path="loginId" class="error"/>
-		</p>
-		<p>
-			パスワード
-			<form:password path="password" /><br>
-			<form:errors path="loginId" class="error"/>
-		</p>
+		<div class="btn">
+			<p>
+				ログインID
+				<form:input path="loginId" />
+				<br>
+				<form:errors path="loginId" class="error" />
+			<p>
+				パスワード
+				<form:password path="password" />
+				<br>
+				<form:errors path="password" class="error" />
+		</div>
 		<br>
-		<form:button class="loginbtn">ログイン</form:button>
+		<div class = "btn">
+		<form:button class="loginbtn" >ログイン</form:button>
+		</div>
 	</form:form>
 </body>
 </html>
