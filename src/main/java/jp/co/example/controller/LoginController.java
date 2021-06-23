@@ -43,7 +43,7 @@ public class LoginController {
 			model.addAttribute("errMsg", "IDまたはパスワードが間違っています");
 			return "login";
 		} else {
-			session.setAttribute("userInfo", user);
+			session.setAttribute("loginUserInfo", user);
 			return "home";
 		}
 	}
