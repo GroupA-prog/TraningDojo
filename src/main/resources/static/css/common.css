@@ -63,16 +63,18 @@ header {
 }
 */
 
-.body {
-	margin: 0px;
-	padding: 0px;
+body {
+	margin: 0 0;
+	padding: 0 0;
 }
 
+
+
 .title-continar {
-	margin-top: 0px;
+
     display: flex;
     align-items: center;
-    background-color: #33CC99;
+    background-color: #5000cc;
 }
 
 .title-continar nav {
@@ -82,13 +84,19 @@ header {
 
 .title-continar ul {
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
+    margin-top: 0;
 }
 
 .title-continar li {
     list-style: none;
-    padding: 0.3em 0.5em;
-    margin: 0 0.2em;
+    padding: 0.1em 0.5em 0.1em 0.5em;
+    /*margin: 0.2em 0.2em 0em 0em;*/
+    margin-right: 1em;
+    margin-top: 1em;
     border: solid 2px white;
     border-radius: 5px;
     cursor: pointer;
@@ -101,4 +109,10 @@ header {
 .title-continar a {
     text-decoration: none;
     color: white;
+}
+
+#site-title {
+	font-size: 30px;
+	color: white;
+	margin-left: 0.5em;
 }
