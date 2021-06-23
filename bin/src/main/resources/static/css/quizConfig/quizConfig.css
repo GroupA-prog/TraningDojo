@@ -1,39 +1,57 @@
-.btn.admin{
-
+.btn.admin {
 	position: absolute;
 }
 
-.btn.warning{
-
+.btn.warning {
 	position: absolute;
 }
 
-.btn.quiz{
-
+.btn.quiz {
 	position: absolute;
 }
 
-.btn.ranking{
-
+.btn.ranking {
 	position: absolute;
 }
 
-.btn.history{
-
+.btn.history {
 	position: absolute;
 }
 
-.btn.profile{
-
+.btn.profile {
 	position: absolute;
 }
 
-.learningNum{
+.learningNum {
 	display: block;
-
 }
 
-.rankNum{
+.rankNum {
 	display: none;
+}
 
+h1 {
+	position: absolute;
+	top: 200px;
+}
+
+.learning {
+	position: absolute;
+	top: 200px;
+	left: 500px;
+}
+.learningLabel{
+	position: absolute;
+	top: 200px;
+	left: 530px;
+}
+.rank{
+	position: absolute;
+	top: 200px;
+	left: 700px;
+}
+.rankLabel{
+	position: absolute;
+	top: 200px;
+	left: 730px;
 }

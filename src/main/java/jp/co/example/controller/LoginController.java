@@ -68,7 +68,7 @@ public class LoginController {
 		return "signUpConfirm";
 	}
 
-	@RequestMapping(value = "/signUp", params="confirm", method = RequestMethod.POST)
+	@RequestMapping(value = "/signUpConfirm",method = RequestMethod.POST)
 	public String signUpConfirm(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
 
