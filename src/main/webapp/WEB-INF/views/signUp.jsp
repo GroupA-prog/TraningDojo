@@ -10,7 +10,6 @@
 <title>新規登録画面</title>
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 <link rel="stylesheet" href="css/common.css" />
-</head>
 <body>
 	<c:import url="header.jsp"></c:import>
 	<div class="margin">
@@ -43,20 +42,10 @@
 				<form:errors path="newUserName" class="error" />
 			</div>
 			<p>
-			<div id="open">新規登録</div>
-			<div id="mask"></div>
-			<section id="modal">
-				<p>
-				ログインID<br>
-				ユーザーネーム<br>
-				パスワード(確認用)<br>
-				</p>
-				<div id="close">閉じる</div>
-			</section>
-			<script src="script.js"></script>
 			<div class="btn3">
 				<form:button class="btn new-update">新規登録</form:button>
 			</div>
+
 		</form:form>
 		<br>
 		<p class="clear">
