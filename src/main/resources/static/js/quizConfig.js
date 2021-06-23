@@ -73,25 +73,25 @@ function learningChangeCategory() {
 	option.innerHTML = 1;
 	selectNum.appendChild(option);
 
-	while (i + 10 <= num) {
-		if (i + 10 <= num) {
-			i += 10;
-			option = document.createElement('option');
-			option.setAttribute('value', i);
-			option.innerHTML = i;
-			selectNum.appendChild(option);
-		} else {
+
+
+	while (i + 10 < num) {
+		i += 10;
+		option = document.createElement('option');
+		option.setAttribute('value', i);
+		option.innerHTML = i;
+		selectNum.appendChild(option);
+	}
+	if (i + 10 >= num) {
+
+		if (num !== 1 && num !== 0) {
+
 			option = document.createElement('option');
 			option.setAttribute('value', num);
 			option.innerHTML = num;
 			selectNum.appendChild(option);
 		}
-
-
-	};
-
-
-
+	}
 }
 
 let select = document.querySelector("#lea");

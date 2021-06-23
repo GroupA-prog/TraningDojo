@@ -2,13 +2,21 @@ package jp.co.example.controller.form;
 
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 public class InsertForm {
-	@NotBlank(message="ログインIDは必須です")
+	@NotBlank(message="※ログインIDは必須です")
+	@Length(min=4, max=30)
 	private String newLoginId;
-	@NotBlank(message="パスワードは必須です")
+
+	@NotBlank(message="※パスワードは必須です")
+	@Length(max=30)
 	private String newPassword;
-	@NotBlank(message="ユーザーネームは必須です")
+
+	@NotBlank(message="※ユーザーネームは必須です")
+	@Length(max=50)
 	private String newUserName;
+
 	private String newPasswordRe;
 
 	public String getNewLoginId() {

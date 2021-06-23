@@ -38,19 +38,16 @@ public class AsyncController {
 
 	@RequestMapping(value="/userRole", method=RequestMethod.POST)
 	public UserInfo userRolePost(@RequestBody LoginIdDTO dto) {
-		System.out.println(dto.getLoginId());
 		return userInfoService.findByLoginId(dto.getLoginId());
 	}
 
 	@RequestMapping(value="/getQuizList", method=RequestMethod.POST)
 	public List<Quiz> getQuizListPost(@RequestBody CategoryIdDTO dto) {
-		System.out.println(dto);
 		return quizService.findByCategoryId(dto.getCategoryId());
 	}
 
 	@RequestMapping(value="/getQuiz", method=RequestMethod.POST)
 	public Quiz getQuizPost(@RequestBody QuizIdDTO dto) {
-		System.out.println(dto);
 		Quiz editQuiz = quizService.findByQuizId(dto.getQuizId());
 		session.setAttribute("editQuiz", editQuiz);
 		return editQuiz;
