@@ -42,34 +42,37 @@ public class QuizTamayoseController{
 		long millis = System.currentTimeMillis();
 		Timestamp start = new Timestamp(millis);
 		session.setAttribute("startTime", start);
-		//戻るボタン表示判断
-		model.addAttribute("returnDisplay",0);
 		//モード：カテゴリ名保存
 		String categoryName = categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName();
 		session.setAttribute("categoryName", categoryName);
 		session.setAttribute("mode", quizService.selectMode(form.getMode()));
 		session.setAttribute("quizNum", form.getQuizNum());
 		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
+		System.out.println(form.getQuizNum());
+		System.out.println(form.getCategoryId());
+		System.out.println(form.getMode());
 		//モード分岐、制限時間・問題（5問分け済み）を保存
 		if(form.getMode() == 1) {
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
-			System.out.println(quizList.get(0).get(0).getQuizStatment());
-			//System.out.println(quizList.get(0).get(0).getQuizSelect().get(0).getChoice());
 			session.setAttribute("quizList", quizList);
-			session.setAttribute("quiz",quizList.get(quizIndex));
+			session.setAttribute("quizListHarf",quizList.get(quizIndex));
 
 		}else if(form.getMode() == 2){
+
 			quizList = quizService.findByRankCategory(form.getCategoryId());
-			session.setAttribute("time", form.getQuizNum()*2);
+			session.setAttribute("quizNum", 10);
+			session.setAttribute("time", 20);
 			session.setAttribute("quizList", quizList);
-			session.setAttribute("quiz",quizList.get(quizIndex));
+			session.setAttribute("quizListHarf",quizList.get(quizIndex));
 
 		}
 		//問題数・解答セッションを作成、保存
 		//nowSize修正あり
 		int nowSize = (1 + quizIndex) * 5;
 		List<List<Integer>>answerList = quizService.answerList(form.getQuizNum());
-		model.addAttribute("nowSize", nowSize);
+		System.out.println("解答ラン"+answerList.size());
+		System.out.println(answerList.get(0).size());
+		session.setAttribute("nowSize", nowSize);
 		session.setAttribute("answerList", answerList);
 		return "redirect:quiz";
 	}
@@ -79,19 +82,26 @@ public class QuizTamayoseController{
 	public String quizPostNext(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("answerList");
-		quizService.answerUpdate(answer,quizIndex,form.getChoiceId());
+		List<Integer> choiceList = new ArrayList<Integer>();
+		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
+		quizService.answerUpdate(answer,quizIndex,choiceList);
 		session.setAttribute("answerList", answer);
 		//次の5問へセッションを更新
 		quizIndex++;
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		model.addAttribute("quiz",quizList.get(quizIndex) );
-		//次へボタン表示判断
+		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
+		//次へ・前へボタン表示判断
 		if(quizIndex == (quizList.size() - 1)) {
-			model.addAttribute("nextDisplay",0);
+			model.addAttribute("nextDisplay",1);
 		}
+		model.addAttribute("returnDisplay",1);
 		//問題数の更新
+		int quizNum = (int) session.getAttribute("quizNum");
 		int nowSize = (1 + quizIndex) * 5;
-		model.addAttribute("nowSize", nowSize);
+		if(quizNum < nowSize) {
+			nowSize = quizNum;
+		}
+		session.setAttribute("nowSize", nowSize);
 		return "quiz";
 	}
 
@@ -100,19 +110,21 @@ public class QuizTamayoseController{
 	public String quizPostReturn(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("answerList");
-		quizService.answerUpdate(answer,quizIndex,form.getChoiceId());
+		List<Integer> choiceList = new ArrayList<Integer>();
+		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
+		quizService.answerUpdate(answer,quizIndex,choiceList);
 		session.setAttribute("answerList", answer);
 		//前の5問へセッションを更新
 		quizIndex--;
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		model.addAttribute("quiz",quizList.get(quizIndex) );
+		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
 		//戻るボタン表示判断
-		if(quizIndex == 0) {
-			model.addAttribute("returnDisplay",0);
+		if(quizIndex != 0) {
+			model.addAttribute("returnDisplay",1);
 		}
 		//問題数の更新
 		int nowSize = (1 + quizIndex) * 5;
-		model.addAttribute("nowSize", nowSize);
+		session.setAttribute("nowSize", nowSize);
 		return "quiz";
 	}
 
@@ -122,7 +134,10 @@ public class QuizTamayoseController{
 	public String quizPostFinish(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("answerList");
-		quizService.answerUpdate(answer,quizIndex,form.getChoiceId());
+		List<Integer> choiceList = new ArrayList<Integer>();
+		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
+		quizService.answerUpdate(answer,quizIndex,choiceList);
+		session.setAttribute("answerList", answer);
 		session.setAttribute("answerList", answer);
 		//モードをIDに変換
 		String mode = (String) session.getAttribute("mode");
@@ -137,6 +152,8 @@ public class QuizTamayoseController{
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
 		List<Integer>correct = quizService.scoring(quizList,answer);
 
+			System.out.println(correct.size());
+
 
 		//モード判断
 		if(modeId == 1) {
@@ -146,15 +163,17 @@ public class QuizTamayoseController{
 	}
 
 	@RequestMapping(value="/retired",method=RequestMethod.GET)
-	public String retiredGet() {
+	public String retiredGet(@ModelAttribute("quizConfig")QuizForm form,Model model) {
 		//ログイン情報以外のセッションを破棄
 		session.removeAttribute("mode");
 		session.removeAttribute("time");
+		session.removeAttribute("quizListHarf");
 		session.removeAttribute("quizList");
 		session.removeAttribute("categoryName");
 		session.removeAttribute("answerList");
 		session.removeAttribute("startTime");
 		session.removeAttribute("quizNum");
-		return "quizConfig";
+		session.removeAttribute("nowSize");
+		return "userHome";
 	}
 }
