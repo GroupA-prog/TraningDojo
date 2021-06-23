@@ -17,18 +17,18 @@
 	<br>
 	<br>
 	<c:if test="${not empty signUpErrMsg}">
-		<p>${fn:escapeXml(signUpErrMsg)}</p>
+		<p class="error">※${fn:escapeXml(signUpErrMsg)}</p>
 	</c:if>
 	<form:form action="/signUpDone" modelAttribute="signUpDone" method="post">
 		<p>
 			ログインID
-			<form:input path="loginId" />
-			<form:errors path="loginId" cssStyle="color: red"/>
+			<form:input path="loginId" /><br>
+			<form:errors path="loginId" class="error"/>
 		</p>
 		<p>
 			パスワード
-			<form:password path="password" />
-			<form:errors path="loginId" cssStyle="color: red"/>
+			<form:password path="password" /><br>
+			<form:errors path="loginId" class="error"/>
 		</p>
 		<br>
 		<form:button class="loginbtn">ログイン</form:button>
