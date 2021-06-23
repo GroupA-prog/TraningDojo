@@ -48,27 +48,30 @@ public class QuizTamayoseController{
 		String categoryName = categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName();
 		session.setAttribute("categoryName", categoryName);
 		session.setAttribute("mode", quizService.selectMode(form.getMode()));
-
+		session.setAttribute("quizNum", form.getQuizNum());
 		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
-		//モード分岐、制限時間・問題数（5問分け済み）を保存
+		//モード分岐、制限時間・問題（5問分け済み）を保存
 		if(form.getMode() == 1) {
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
+			System.out.println(quizList.get(0).get(0).getQuizStatment());
+			//System.out.println(quizList.get(0).get(0).getQuizSelect().get(0).getChoice());
 			session.setAttribute("quizList", quizList);
-			model.addAttribute("quiz",quizList.get(quizIndex));
+			session.setAttribute("quiz",quizList.get(quizIndex));
+
 		}else if(form.getMode() == 2){
 			quizList = quizService.findByRankCategory(form.getCategoryId());
 			session.setAttribute("time", form.getQuizNum()*2);
 			session.setAttribute("quizList", quizList);
-			model.addAttribute("quiz",quizList.get(quizIndex));
+			session.setAttribute("quiz",quizList.get(quizIndex));
+
 		}
 		//問題数・解答セッションを作成、保存
+		//nowSize修正あり
 		int nowSize = (1 + quizIndex) * 5;
-		int maxSize = quizService.ListSize(quizList);
-		List<List<Integer>>answerList = quizService.answerList(maxSize);
+		List<List<Integer>>answerList = quizService.answerList(form.getQuizNum());
 		model.addAttribute("nowSize", nowSize);
-		model.addAttribute("maxSize", maxSize);
 		session.setAttribute("answerList", answerList);
-		return "redirect:/quiz";
+		return "redirect:quiz";
 	}
 
 	@SuppressWarnings("unchecked")
@@ -151,6 +154,7 @@ public class QuizTamayoseController{
 		session.removeAttribute("categoryName");
 		session.removeAttribute("answerList");
 		session.removeAttribute("startTime");
+		session.removeAttribute("quizNum");
 		return "quizConfig";
 	}
 }

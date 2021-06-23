@@ -1,6 +1,9 @@
 html {
 	font-size: 20px;
 }
+body{
+	margin-left:35px;
+}
 
 .error {
 	content: "※";
@@ -47,10 +50,6 @@ html {
 	border-bottom: 4px solid #56A742;
 	border-radius: 20px;
 	font-size: 20px;
-}
-.return{
-	text-decoration: none;
-	color:red;
 }
 .error2{
 	margin-left: 150px;

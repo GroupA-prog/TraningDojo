@@ -67,30 +67,30 @@ function learningChangeCategory() {
 
 
 
-	var i = 0;
+/*	var i = 1;
 	option = document.createElement('option');
 	option.setAttribute('value', 1);
 	option.innerHTML = 1;
 	selectNum.appendChild(option);
+*/
 
-
-	if (i + 10 < num) {
-		while (i + 10 < num) {
-			i += 10;
-			option = document.createElement('option');
-			option.setAttribute('value', i);
-			option.innerHTML = i;
-			selectNum.appendChild(option);
-		}
-	} else {
-		if (num === 1) {
-		} else {
+	i = 0;
+	while (i < num) {
+		i += 10;
+		if (i > num) {
 			option = document.createElement('option');
 			option.setAttribute('value', num);
 			option.innerHTML = num;
 			selectNum.appendChild(option);
+			break;
 		}
+
+		option = document.createElement('option');
+		option.setAttribute('value', i);
+		option.innerHTML = i;
+		selectNum.appendChild(option);
 	}
+
 }
 
 let select = document.querySelector("#lea");
@@ -98,7 +98,7 @@ select.addEventListener('change', learningChangeCategory);
 window.onload = learningChangeCategory;
 
 
-function rankChangeCategory() {
+/*function rankChangeCategory() {
 
 	var categoryId = $("#ran").val();
 	let request = {
@@ -121,7 +121,7 @@ function rankChangeCategory() {
 
 
 
-}
+}*/
 
 
 
