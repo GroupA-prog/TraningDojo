@@ -9,6 +9,7 @@ public interface QuizService {
 	public List<List<Quiz>> findByRankCategory(Integer categoryId);
 	public List<List<Integer>> answerList(Integer quizNum);
 	public void answerUpdate(List<List<Integer>> answer,Integer quizIndex, List<Integer> choiceId);
+	public void choiceUpdate(List<Integer> choiceList, Integer choice1,Integer choice2,Integer choice3,Integer choice4,Integer choice5);
 	public List<Quiz> findByQuizTitle(Integer categoryId, String quizTitle);
 	public List<Integer> scoring(List<List<Quiz>> quizList,List<List<Integer>> answerList);
 	public String selectMode(Integer modeId);
