@@ -1,28 +1,28 @@
 .btn.login {
     width: 100%;
-    max-width: 140px;
+    max-width: 160px;
     padding: 15px 10px;
     display: inline-block;
     text-align: center;
     letter-spacing: 0.1em;
     color: #000;
-    background-color: #FF964E;
-    border: #FF964E;
-    border-bottom: 4px solid #fd4e4e;
+    background-color: #fd7e00;
+    border: #fd7e00;
+    border-bottom: 4px solid #B25D2C;
     border-radius: 20px;
     font-size:20px;
 }
 
 .btn.new-update {
     width: 100%;
-    max-width: 140px;
+    max-width: 160px;
     padding: 15px 10px;
     display: inline-block;
     text-align: center;
     letter-spacing: 0.1em;
     color: #000;
-    background-color: #8ac51c;
-    border: #8ac51c;
+    background-color: #5AFF19;
+    border: #5AFF19;
     border-bottom: 4px solid #56A742;
     border-radius: 20px;
     font-size:20px;

@@ -13,41 +13,56 @@
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
-	<p>ユーザー情報を入力してください</p>
-	<c:if test="${not empty errDuplicate}">
-		<p class="error">※${fn:escapeXml(errDuplicate)}</p>
-	</c:if>
-	<form:form action="/signUp" modelAttribute="signUp" method="post">
+	<div class="margin">
 		<p>
-			<span class="login">ログインID</span>
-			<form:input path="newLoginId" />
-			<br>
-		<div class="error2">
-			<form:errors path="newLoginId" class="error" />
-		</div>
-		<p>
-			<span class="pass">パスワード</span>
-			<form:password path="newPassword" />
-			<br>
-		<div class="error2">
-			<form:errors path="newPassword" class="error" />
-		</div>
-		<p>
-			ユーザーネーム
-			<form:input path="newUserName" />
-			<br>
-		<div class="error2">
-			<form:errors path="newUserName" class="error" />
-		</div>
-		<p>
-		<div class="btn3">
-			<form:button class="btn new-update">新規登録</form:button>
-		</div>
-	</form:form>
-	<br>
-	<p class="clear">
-		<a href="login" class="return">戻る</a>
-	</p>
+			<span class="font">ユーザー情報を入力してください</span>
+		</p>
+		<c:if test="${not empty errDuplicate}">
+			<p class="error">※${fn:escapeXml(errDuplicate)}</p>
+		</c:if>
+		<form:form action="/signUp" modelAttribute="signUp" method="post">
+			<p>
+				<span class="login">ログインID</span>
+				<form:input path="newLoginId" class="txt" />
+				<br>
+			<div class="error2">
+				<form:errors path="newLoginId" class="error" />
+			</div>
+			<p>
+				<span class="pass">パスワード</span>
+				<form:password path="newPassword" class="txt" />
+				<br>
+			<div class="error2">
+				<form:errors path="newPassword" class="error" />
+			</div>
+			<p>
+				ユーザーネーム
+				<form:input path="newUserName" class="txt" />
+				<br>
+			<div class="error2">
+				<form:errors path="newUserName" class="error" />
+			</div>
+			<p>
+			<div id="open">新規登録</div>
+			<div id="mask"></div>
+			<section id="modal">
+				<p>
+				ログインID<br>
+				ユーザーネーム<br>
+				パスワード(確認用)<br>
+				</p>
+				<div id="close">閉じる</div>
+			</section>
+			<script src="script.js"></script>
+			<div class="btn3">
+				<form:button class="btn new-update">新規登録</form:button>
+			</div>
+		</form:form>
+		<br>
+		<p class="clear">
+			<a href="login" class="return"><span class="font">戻る</span></a>
+		</p>
+	</div>
 
 </body>
 </html>
