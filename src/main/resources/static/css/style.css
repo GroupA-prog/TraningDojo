@@ -1,6 +1,6 @@
 .btn.login {
     width: 100%;
-    max-width: 120px;
+    max-width: 140px;
     padding: 15px 10px;
     display: inline-block;
     text-align: center;
@@ -10,11 +10,12 @@
     border: #FF964E;
     border-bottom: 4px solid #fd4e4e;
     border-radius: 20px;
+    font-size:20px;
 }
 
 .btn.new-update {
     width: 100%;
-    max-width: 120px;
+    max-width: 140px;
     padding: 15px 10px;
     display: inline-block;
     text-align: center;
@@ -24,6 +25,7 @@
     border: #8ac51c;
     border-bottom: 4px solid #56A742;
     border-radius: 20px;
+    font-size:20px;
 }
 
 .btn.warning {

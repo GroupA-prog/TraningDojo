@@ -12,7 +12,7 @@
 </head>
 <body>
 	<h1 class="DoneMsg">ご登録ありがとうございます</h1>
-	登録が完了しました
+	登録が完了しました。
 	<br> こちらからログインしてください
 	<br>
 	<br>
@@ -27,14 +27,14 @@
 				<br>
 				<form:errors path="loginId" class="error" />
 			<p>
-				パスワード
+				<span class="pass2">パスワード</span>
 				<form:password path="password" />
 				<br>
-				<form:errors path="password" class="error" />
+				<span class="pass2"><form:errors path="password" class="error" /></span>
 		</div>
 		<br>
 		<div class = "btn">
-		<form:button class="loginbtn" >ログイン</form:button>
+		<form:button class="btn login" >ログイン</form:button>
 		</div>
 	</form:form>
 </body>
