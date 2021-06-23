@@ -15,7 +15,7 @@ import jp.co.example.dto.entity.Category;
 public class QuizConfigDaoImpl implements QuizConfigDao {
 
 	private static final String rankCategoryName = "select category_id,category_name from category where parent_category_id is NULL;";
-	private static final String categoryNum = "WITH RECURSIVE category_list (category_id) AS (SELECT category_id FROM category WHERE category_id = :categoryId UNION ALL SELECT c.category_id FROM category c JOIN category_list cl ON cl.category_id = c.parent_category_id) SELECT count(*) FROM category_list JOIN quiz q ON cl.category_id = q.category_id;";
+	private static final String categoryNum = "WITH RECURSIVE category_list (category_id) AS (SELECT category_id FROM category WHERE category_id = :categoryId UNION ALL SELECT c.category_id FROM category c JOIN category_list cl ON cl.category_id = c.parent_category_id) SELECT count(*) FROM category_list cl JOIN quiz q ON cl.category_id = q.category_id;";
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
