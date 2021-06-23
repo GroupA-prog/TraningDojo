@@ -14,7 +14,6 @@
 
 <body>
 	<c:import url="header.jsp"></c:import>
-	<div id="modal-overlay"></div>
 	<div class="margin">
 		<p>
 			<span class="font">ユーザー情報を入力してください</span>
@@ -49,7 +48,7 @@
 			</div>
 			<p>
 			<div class="btn3">
-				<form:button class="btn new-update signup">新規登録</form:button>
+				<button type="button" class="btn new-update" id="reCheck">新規登録</button>
 			</div>
 		</form:form>
 		<br>

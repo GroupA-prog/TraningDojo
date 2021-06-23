@@ -63,7 +63,23 @@ public class LoginController {
 		if (service.existsUserByLoginId(form.getNewLoginId())) {
 			model.addAttribute("errDuplicate", "そのIDは使用できません");
 			return "signUp";
-		} else {
+		}
+
+		return "signUpConfirm";
+	}
+
+	@RequestMapping(value = "/signUp", params="confirm", method = RequestMethod.POST)
+	public String signUpConfirm(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
+			Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "signUpConfirm";
+		}
+
+		if (!form.getNewPassword().equals(form.getNewPasswordRe())) {
+			model.addAttribute("isNotMatchPassword", true);
+			return "signUpConfirm";
+		}else {
 			Login user = new Login(
 					form.getNewLoginId(),
 					form.getNewPassword(),
@@ -90,7 +106,7 @@ public class LoginController {
 			model.addAttribute("signUpErrMsg", "IDまたはパスワードが間違っています");
 			return "signUpDone";
 		} else {
-			session.setAttribute("userInfo", user);
+			session.setAttribute("loginUserInfo", user);
 			return "home";
 		}
 	}

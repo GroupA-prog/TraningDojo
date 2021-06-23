@@ -15,7 +15,6 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 	<header>
-		<a>研修道場</a>
 		<form action="/admin" method="GET">
 			<button type="submit" class="btn admin">管理者</button>
 		</form>
@@ -23,7 +22,7 @@
 			<button type="submit" class="btn warning">ログアウト</button>
 		</form>
 	</header>
-	<p>"${loginUserInfo.userName}"+"さんのホーム"</p>
+	<p>${loginUserInfo.userName}さんのホーム</p>
 
 
 	<form action="/quiz" method="GET">
@@ -39,9 +38,14 @@
 		<button type="submit" class="btn profile">プロフィール</button>
 	</form>
 
+	<span id="radar"></span>
 	<select name="radarCategory" id="radarCategory">
 		<option Label="選択してください">
+			<c:forEach var="categoryName" items="${parentCategory}">
+				<option value="${categoryName.categoryId}">${categoryName.categoryName}</option>
+			</c:forEach>
 	</select>
+
 	<script src="js/home.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.QuizForm;
 import jp.co.example.dto.entity.Category;
+import jp.co.example.service.HomeService;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.QuizConfigService;
 
@@ -21,6 +22,8 @@ public class SasakiController {
 	private ICategoryService categoryService;
 	@Autowired
 	private QuizConfigService quizConfigService;
+	@Autowired
+	private HomeService homeService;
 
 	@RequestMapping(value = "/quizConfig", method = RequestMethod.GET)
 	public String quizConfig(@ModelAttribute("quizConfig") QuizForm form, Model model) {
@@ -34,7 +37,11 @@ public class SasakiController {
 	}
 
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
-	public String userHome() {
+	public String userHome(@ModelAttribute("quizConfig") QuizForm form,Model model) {
+		List<Category> parentCategory = homeService.parentCategoryAll();
+		model.addAttribute("parentCategory",parentCategory);
+		System.out.print(parentCategory);
+
 		return "home";
 	}
 

@@ -46,6 +46,7 @@ window.onload = function() {
 				console.log($(this).attr('id'));
 				let request = { quizId: $(this).attr('id')};
 				AsyncCommunication('/getQuiz', request, function(data) {
+					console.log(data);
 					$('#editQuizCategoryId').val(data.categoryId);
 					$('#editQuizTitle').val(data.quizTitle);
 					$('#editProblemStatement').val(data.quizStatment);
