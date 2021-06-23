@@ -10,18 +10,10 @@
 <meta http-equiv="Refresh" content="3;URL=login">
 <title>ログアウト画面</title>
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
+<link rel="stylesheet" href="css/common.css" />
 </head>
 <body>
-	<header>
-		<h1>研修道場</h1>
-	</header>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<p>ご利用ありがとうございました</p>
+	<c:import url="header.jsp"></c:import>
+	<p class="logoutMsg">ご利用ありがとうございました</p>
 </body>
 </html>

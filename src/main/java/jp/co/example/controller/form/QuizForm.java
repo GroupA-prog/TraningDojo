@@ -1,7 +1,5 @@
 package jp.co.example.controller.form;
 
-import java.util.List;
-
 public class QuizForm{
 
 	private Integer quizId;
@@ -11,12 +9,47 @@ public class QuizForm{
 	private Integer correctAnswer;
 	private String commentary;
 	private Integer display;
-	private List<Integer> choiceId;
+	private Integer choiceId1;
+	private Integer choiceId2;
+	private Integer choiceId3;
+	private Integer choiceId4;
+	private Integer choiceId5;
 	private String choice;
 	private Integer mode;
 	private String categoryName;
 	private Integer quizNum;
 
+
+	public Integer getChoiceId1() {
+		return choiceId1;
+	}
+	public void setChoiceId1(Integer choiceId1) {
+		this.choiceId1 = choiceId1;
+	}
+	public Integer getChoiceId2() {
+		return choiceId2;
+	}
+	public void setChoiceId2(Integer choiceId2) {
+		this.choiceId2 = choiceId2;
+	}
+	public Integer getChoiceId3() {
+		return choiceId3;
+	}
+	public void setChoiceId3(Integer choiceId3) {
+		this.choiceId3 = choiceId3;
+	}
+	public Integer getChoiceId4() {
+		return choiceId4;
+	}
+	public void setChoiceId4(Integer choiceId4) {
+		this.choiceId4 = choiceId4;
+	}
+	public Integer getChoiceId5() {
+		return choiceId5;
+	}
+	public void setChoiceId5(Integer choiceId5) {
+		this.choiceId5 = choiceId5;
+	}
 	public Integer getQuizId() {
 		return quizId;
 	}
@@ -60,12 +93,6 @@ public class QuizForm{
 		this.display = display;
 	}
 
-	public List<Integer> getChoiceId() {
-		return choiceId;
-	}
-	public void setChoiceId(List<Integer> choiceId) {
-		this.choiceId = choiceId;
-	}
 	public String getChoice() {
 		return choice;
 	}

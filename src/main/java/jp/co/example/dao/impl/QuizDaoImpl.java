@@ -15,8 +15,8 @@ import jp.co.example.dto.entity.QuizJoinQuizSelect;
 @Repository
 public class QuizDaoImpl implements QuizDao{
 
-	private static final String SELECT_QUIZ = "SELECT * FROM (SELECT * FROM quiz WHERE display = 1 AND category_id = :categoryId ORDER BY random() LIMIT :quizNum) AS quiz JOIN quiz_select qs ON quiz.quiz_id = qs.quiz_id";
-	private static final String SELECT_RANK_CATEGORY = "SELECT * FROM (SELECT * FROM quiz WHERE display = 1 AND category_id = :categoryId ORDER BY random() LIMIT 10) AS quiz JOIN quiz_select qs ON quiz.quiz_id = qs.quiz_id";
+	private static final String SELECT_BY_STUDY_QUIZ = "WITH RECURSIVE category_list (category_id, category_name) AS (SELECT category_id, category_name FROM category WHERE category_id = :category_id UNION ALL SELECT c.category_id, c.category_name FROM category c INNER JOIN category_list cl ON c.parent_category_id = cl.category_id) SELECT max(q.quiz_id) AS quiz_id ,max(q.quiz_title) AS quiz_title,max(q.quiz_statment) AS quiz_statment,max(q.correct_answer) AS correct_answer,max(q.display) AS display,max(q.commentary) AS commentary,max(cl.category_name) AS category_name,max( CASE WHEN qs.quiz_choice_id = 1 THEN qs.choice ELSE NULL END) AS choice1,max( CASE WHEN qs.quiz_choice_id = 2 THEN qs.choice ELSE NULL END) AS choice2,max( CASE WHEN qs.quiz_choice_id = 3 THEN qs.choice ELSE NULL END) AS choice3,max( CASE WHEN qs.quiz_choice_id = 4 THEN qs.choice ELSE NULL END) AS choice4 FROM quiz q JOIN category_list cl ON q.category_id = cl.category_id JOIN quiz_select qs ON q.quiz_id = qs.quiz_id WHERE display = 1 GROUP BY q.quiz_id ORDER BY RANDOM() LIMIT :quiz_count";
+	private static final String SELECT_BY_RANK_QUIZ = "WITH RECURSIVE category_list (category_id, category_name) AS (SELECT category_id, category_name FROM category WHERE category_id = :category_id UNION ALL SELECT c.category_id, c.category_name FROM category c INNER JOIN category_list cl ON c.parent_category_id = cl.category_id) SELECT max(q.quiz_id) AS quiz_id ,max(q.quiz_title) AS quiz_title,max(q.quiz_statment) AS quiz_statment,max(q.correct_answer) AS correct_answer,max(q.display) AS display,max(q.commentary) AS commentary,max(cl.category_name) AS category_name,max( CASE WHEN qs.quiz_choice_id = 1 THEN qs.choice ELSE NULL END) AS choice1,max( CASE WHEN qs.quiz_choice_id = 2 THEN qs.choice ELSE NULL END) AS choice2,max( CASE WHEN qs.quiz_choice_id = 3 THEN qs.choice ELSE NULL END) AS choice3,max( CASE WHEN qs.quiz_choice_id = 4 THEN qs.choice ELSE NULL END) AS choice4 FROM quiz q JOIN category_list cl ON q.category_id = cl.category_id JOIN quiz_select qs ON q.quiz_id = qs.quiz_id WHERE display = 1 GROUP BY q.quiz_id ORDER BY RANDOM() LIMIT 10";
 	private static final String INSERT_QUIZ = "INSERT INTO quiz (category_id, quiz_title, quiz_statment, correct_answer, commentary, display) VALUES (:category_id, :quiz_title, :quiz_statment, :correct_answer, :commentary, :display);";
 	private static final String SELECT_BY_QUIZ_TITLE = "SELECT * FROM quiz WHERE category_id = :category_id AND quiz_title = :quiz_title;";
 	private static final String SELECT_BY_CATEGORYID = "SELECT * FROM quiz WHERE category_id = :category_id ORDER BY quiz_id;";
@@ -77,19 +77,19 @@ public class QuizDaoImpl implements QuizDao{
 	@Override
 	public List<Quiz> findByCategoryQuiz(Integer categoryId,Integer quizNum){
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("categoryId", categoryId);
-		param.addValue("quizNum", quizNum);
+		param.addValue("category_id", categoryId);
+		param.addValue("quiz_count", quizNum);
 
-		return jdbcTemplate.query(SELECT_QUIZ, param,
+		return jdbcTemplate.query(SELECT_BY_STUDY_QUIZ, param,
 				new BeanPropertyRowMapper<Quiz>(Quiz.class));
 	}
-	//ランキングモード（カテゴリあり）
+	//ランキングモード
 	@Override
 	public List<Quiz> findByRankCategory(Integer categoryId){
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("categoryId", categoryId);
 
-		return jdbcTemplate.query(SELECT_RANK_CATEGORY, param,
+		return jdbcTemplate.query(SELECT_BY_RANK_QUIZ, param,
 				new BeanPropertyRowMapper<Quiz>(Quiz.class));
 
 	}

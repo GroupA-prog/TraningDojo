@@ -10,3 +10,13 @@
   background: #4caf50;
   color: white;
 }
+
+.confirm {
+	text-align: center;
+	padding-top: 10%;
+}
+
+.signup {
+	margin: auto;
+	margin-right: 20px;
+}
