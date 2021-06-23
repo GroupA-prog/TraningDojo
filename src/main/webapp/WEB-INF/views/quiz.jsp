@@ -39,7 +39,7 @@
   <form:button name= "return">←前へ</form:button>>
 </c:if>
 
-<p>${nowSize}/${maxSize}</p>
+<p>${nowSize}/${quizNum}</p>
 
 <c:if test="${nextDisplay != 0}">
   <form:button name= "next">次へ→</form:button>>
