@@ -74,17 +74,18 @@ function learningChangeCategory() {
 	selectNum.appendChild(option);
 
 
-	if (i + 10 < num) {
-		while (i + 10 < num) {
-			i += 10;
-			option = document.createElement('option');
-			option.setAttribute('value', i);
-			option.innerHTML = i;
-			selectNum.appendChild(option);
-		}
-	} else {
-		if (num === 1) {
-		} else {
+
+	while (i + 10 < num) {
+		i += 10;
+		option = document.createElement('option');
+		option.setAttribute('value', i);
+		option.innerHTML = i;
+		selectNum.appendChild(option);
+	}
+	if (i + 10 >= num) {
+
+		if (num !== 1 && num !== 0) {
+
 			option = document.createElement('option');
 			option.setAttribute('value', num);
 			option.innerHTML = num;
