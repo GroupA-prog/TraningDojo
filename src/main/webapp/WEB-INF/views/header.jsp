@@ -14,7 +14,7 @@
 	<c:if test="${ not empty loginUserInfo }">
 		<nav>
 			<ul>
-				<c:if test="${ loginUserInfo.role == 2 }">
+				<c:if test="${ loginUserInfo.role == 1 }">
 					<li><a href="/admin">管理者</a></li>
 				</c:if>
 				<li><a href="/logout">ログアウト</a></li>
