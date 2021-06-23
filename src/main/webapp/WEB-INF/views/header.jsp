@@ -7,7 +7,7 @@
 <header class="title-continar">
 	<span id="site-title">
 		<c:choose>
-			<c:when test="${ not empty loginUserInfo }"><a href="/loginHome">研修道場</a></c:when>
+			<c:when test="${ not empty loginUserInfo }"><a href="userHome">研修道場</a></c:when>
 			<c:otherwise><a href="/login">研修道場</a></c:otherwise>
 		</c:choose>
 	</span>
