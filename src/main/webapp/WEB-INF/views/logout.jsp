@@ -14,13 +14,6 @@
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<p class="logoutMsg">ご利用ありがとうございました</p>
 </body>
 </html>

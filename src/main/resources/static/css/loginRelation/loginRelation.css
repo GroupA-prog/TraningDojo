@@ -5,6 +5,10 @@ body{
 	margin-left:35px;
 }
 
+.margin{
+	margin-left:35px;
+}
+
 .return{
 	text-decoration: none;
 	color:red;
@@ -28,6 +32,7 @@ body{
 }
 
 .logoutMsg {
+	margin-top:250px;
 	text-align: center;
 	font-size: 70px;
 	font-weight: 100;
@@ -48,11 +53,18 @@ body{
 	margin-right: 115px;
 }
 .btn2{
-	margin-left: 437px;
+	margin-left: 520px;
 }
 .btn3{
 	margin-left: 250px;
 }
 .clear{
 	clear: both;
+}
+.font{
+	font-size:25px;
+}
+.txt{
+	width:250px;
+	height:23px;
 }

@@ -90,7 +90,7 @@ public class LoginController {
 			model.addAttribute("signUpErrMsg", "IDまたはパスワードが間違っています");
 			return "signUpDone";
 		} else {
-			session.setAttribute("userInfo", user);
+			session.setAttribute("loginUserInfo", user);
 			return "home";
 		}
 	}

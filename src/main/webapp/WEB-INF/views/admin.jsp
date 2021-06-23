@@ -9,11 +9,8 @@
         <title>管理者画面</title>
         <link rel="stylesheet" href="css/admin/admin.css" />
         <link rel="stylesheet" href="css/common.css" />
-        <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-    </head>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+   </head>
     <body>
 	<c:import url="header.jsp" />
 	<main>
@@ -49,8 +46,7 @@
 						</label>
 					</div>
 					<div>
-						<label> クイズタイトル <br> <form:input
-								path="createQuizTitle" />
+						<label> クイズタイトル <br> <form:input path="createQuizTitle" />
 						</label>
 					</div>
 					<div>
@@ -92,8 +88,8 @@
 						解説 <br>
 						<form:textarea path="createCommentary" />
 					</div>
-					<button type="button" class="return">戻る</button>
-					<form:button name="quizCreate" class="update">登録</form:button>
+					<button type="button" class="return  btn-continar btn-return">戻る</button>
+					<form:button name="quizCreate" class="update btn-continar btn-regist">登録</form:button>
 				</div>
 				<div class="editQuizList">
 					<h3>クイズの編集</h3>
@@ -115,7 +111,7 @@
 
 							</tbody>
 						</table>
-						<button type="button" class="return">戻る</button>
+						<button type="button" class="return btn-continar btn-return">戻る</button>
 					</div>
 				</div>
 				<div class="editQuiz">
@@ -191,8 +187,8 @@
 						解説
 						<form:textarea path="editCommentary" />
 					</div>
-					<button type="button" class="returnQuizList">戻る</button>
-					<form:button name="quizEdit" class="update">更新</form:button>
+					<button type="button" class="returnQuizList  btn-continar btn-return">戻る</button>
+					<form:button name="quizEdit" class="update btn-continar btn-update">更新</form:button>
 				</div>
 				<div class="createCategory">
 					<h3>カテゴリの作成</h3>
@@ -213,11 +209,11 @@
 					</div>
 					<br>
 					<div>
-						<label> カテゴリ名 <br> <form:input path="categoryName" />
+						<label> カテゴリ名 <br> <form:input path="categoryName" cssClass="input-continar" />
 						</label>
 					</div>
-					<button type="button" class="return">戻る</button>
-					<form:button name="categoryCreate" class="update">登録</form:button>
+					<button type="button" class="return  btn-continar btn-return">戻る</button>
+					<form:button name="categoryCreate" class="update btn-continar btn-regist">登録</form:button>
 				</div>
 				<div class="editCategory">
 					<h3>カテゴリの編集</h3>
@@ -261,8 +257,8 @@
 								path="categoryDisplay" label="表示" value="1" />
 						</label>
 					</div>
-					<button type="button" class="return">戻る</button>
-					<form:button name="categoryEdit" class="update">更新</form:button>
+					<button type="button" class="return  btn-continar btn-return">戻る</button>
+					<form:button name="categoryEdit" class="update btn-continar btn-update">更新</form:button>
 				</div>
 				<div class="editUser">
 					<h3>ユーザーの編集</h3>
@@ -285,8 +281,8 @@
 							</form:select>
 						</label>
 					</div>
-					<button type="button" class="return">戻る</button>
-					<form:button name="userEdit" class="update">更新</form:button>
+					<button type="button" class="return  btn-continar btn-return">戻る</button>
+					<form:button name="userEdit" class="update btn-continar btn-update">更新</form:button>
 				</div>
 			</form:form>
 		</div>
