@@ -13,6 +13,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 </head>
 <body>
+	<c:import url="header.jsp"></c:import>
 	<header>
 		<a>研修道場</a>
 		<form action="/admin" method="GET">
@@ -22,7 +23,7 @@
 			<button type="submit" class="btn warning">ログアウト</button>
 		</form>
 	</header>
-	<p>"${}"+"さんのホーム"</p>
+	<p>"${loginUserInfo.userName}"+"さんのホーム"</p>
 
 
 	<form action="/quiz" method="GET">
