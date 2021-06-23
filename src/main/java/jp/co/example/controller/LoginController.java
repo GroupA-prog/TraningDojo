@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.example.controller.form.InsertForm;
 import jp.co.example.controller.form.LoginForm;
 import jp.co.example.dto.entity.Login;
+import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.LoginService;
 
 @Controller
@@ -38,7 +39,7 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			return "login";
 		}
-		Login user = service.authentication(form.getLoginId(), form.getPassword());
+		UserInfo user = service.authentication(form.getLoginId(), form.getPassword());
 		if (user == null) {
 			model.addAttribute("errMsg", "IDまたはパスワードが間違っています");
 			return "login";
@@ -101,7 +102,7 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			return "signUpDone";
 		}
-		Login user = service.authentication(form.getLoginId(), form.getPassword());
+		UserInfo user = service.authentication(form.getLoginId(), form.getPassword());
 		if (user == null) {
 			model.addAttribute("signUpErrMsg", "IDまたはパスワードが間違っています");
 			return "signUpDone";
