@@ -9,8 +9,10 @@
 <meta charset="UTF-8">
 <title>ログイン画面</title>
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
+<link rel="stylesheet" href="css/common.css" />
 </head>
 <body>
+	<c:import url="header.jsp"></c:import>
 	<c:if test="${not empty errMsg }">
 		<p class="error">※${fn:escapeXml(errMsg)}</p>
 	</c:if>
