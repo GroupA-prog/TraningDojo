@@ -30,11 +30,10 @@
 			onclick="changeBtn();" />
 		<label class="rankLabel">ランキング</label>
 
-		<br>
+
 		<h2>カテゴリを選んでください</h2>
-		<br>
 
-
+		<div class="category">
 		<form:select path="categoryId" value="categoryName"
 			class="learningNum" id="lea">
 			<form:options items="${categoryAll}" itemLabel="categoryName"
@@ -46,6 +45,7 @@
 			<form:options items="${categoryName}" itemLabel="categoryName"
 				itemValue="categoryId" />
 		</form:select>
+		</div>
 
 
 		<br>
