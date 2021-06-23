@@ -16,7 +16,8 @@
     </head>
     <body>
 	<c:import url="header.jsp" />
-	<div id="modal-overlay"></div>
+	<main>
+		<div id="modal-overlay"></div>
 		<div id="modal-content">
 			<form:form action="/admin" modelAttribute="admin">
 				<div class="createQuiz">
@@ -39,32 +40,26 @@
 					</c:if>
 
 					<div>
-						<label>
-							カテゴリの選択
-							<br>
-							<form:select path="quizCategoryId">
+						<label> カテゴリの選択 <br> <form:select
+								path="quizCategoryId">
 								<form:option label="選択してください" value="" />
-								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+								<form:options items="${ parentCategoryList }"
+									itemLabel="categoryName" itemValue="categoryId" />
 							</form:select>
 						</label>
 					</div>
 					<div>
-						<label>
-							クイズタイトル
-							<br>
-							<form:input path="createQuizTitle" />
+						<label> クイズタイトル <br> <form:input
+								path="createQuizTitle" />
 						</label>
 					</div>
 					<div>
-						<label>
-							問題文
-							<br>
-							<form:textarea path="createProblemStatement" />
+						<label> 問題文 <br> <form:textarea
+								path="createProblemStatement" />
 						</label>
 					</div>
 					<div>
-						選択肢
-						<br>
+						選択肢 <br>
 						<table>
 							<tr>
 								<th>1.</th>
@@ -85,8 +80,7 @@
 						</table>
 					</div>
 					<div>
-						解答
-						<br>
+						解答 <br>
 						<form:select path="createAnswer">
 							<form:option value="1">1.</form:option>
 							<form:option value="2">2.</form:option>
@@ -95,8 +89,7 @@
 						</form:select>
 					</div>
 					<div>
-						解説
-						<br>
+						解説 <br>
 						<form:textarea path="createCommentary" />
 					</div>
 					<button type="button" class="return">戻る</button>
@@ -106,12 +99,11 @@
 					<h3>クイズの編集</h3>
 					<hr>
 					<div>
-						<label>
-							カテゴリの選択
-							<br>
-							<form:select path="selectQuizCategoryId">
-								<form:option value="" label="選択してください"/>
-								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+						<label> カテゴリの選択 <br> <form:select
+								path="selectQuizCategoryId">
+								<form:option value="" label="選択してください" />
+								<form:options items="${ categoryList }" itemLabel="categoryName"
+									itemValue="categoryId" />
 							</form:select>
 						</label>
 						<table id="quizListTable">
@@ -143,26 +135,20 @@
 					</c:if>
 					<div>
 						<form:input path="quizId" hidden="true" />
-						<label>
-							カテゴリの選択
-							<br>
-							<form:select path="editQuizCategoryId">
-								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+						<label> カテゴリの選択 <br> <form:select
+								path="editQuizCategoryId">
+								<form:options items="${ categoryList }" itemLabel="categoryName"
+									itemValue="categoryId" />
 							</form:select>
 						</label>
 					</div>
 					<div>
-						<label>
-							クイズタイトル
-							<br>
-							<form:input path="editQuizTitle" />
+						<label> クイズタイトル <br> <form:input path="editQuizTitle" />
 						</label>
 					</div>
 					<div>
-						<label>
-							問題文
-							<br>
-							<form:textarea path="editProblemStatement" />
+						<label> 問題文 <br> <form:textarea
+								path="editProblemStatement" />
 						</label>
 					</div>
 					<div>
@@ -187,8 +173,7 @@
 						</table>
 					</div>
 					<div>
-						解答
-						<br>
+						解答 <br>
 						<form:select path="editAnswer">
 							<form:option value="1">1.</form:option>
 							<form:option value="2">2.</form:option>
@@ -197,11 +182,9 @@
 						</form:select>
 					</div>
 					<div>
-						<label>
-							非表示/表示
-							<br>
-							<form:radiobutton path="quizDisplay" label="非表示" value="0" />
-							<form:radiobutton path="quizDisplay" label="表示" value="1" />
+						<label> 非表示/表示 <br> <form:radiobutton
+								path="quizDisplay" label="非表示" value="0" /> <form:radiobutton
+								path="quizDisplay" label="表示" value="1" />
 						</label>
 					</div>
 					<div>
@@ -221,20 +204,16 @@
 						<p class="error">カテゴリ名を入力してください。</p>
 					</c:if>
 					<div>
-						<label>
-							親カテゴリの選択
-							<br>
-							<form:select path="categoryParentCategoryId">
-								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+						<label> 親カテゴリの選択 <br> <form:select
+								path="categoryParentCategoryId">
+								<form:options items="${ parentCategoryList }"
+									itemLabel="categoryName" itemValue="categoryId" />
 							</form:select>
 						</label>
 					</div>
 					<br>
 					<div>
-						<label>
-							カテゴリ名
-							<br>
-							<form:input path="categoryName" />
+						<label> カテゴリ名 <br> <form:input path="categoryName" />
 						</label>
 					</div>
 					<button type="button" class="return">戻る</button>
@@ -253,39 +232,33 @@
 						<p class="error">一項目以上変更してください。</p>
 					</c:if>
 					<div>
-						<label>
-							編集対象カテゴリの選択
-							<br>
-							<form:select path="editCategoryId">
+						<label> 編集対象カテゴリの選択 <br> <form:select
+								path="editCategoryId">
 								<form:option label="選択してください" value="" />
-								<form:options items="${ categoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+								<form:options items="${ categoryList }" itemLabel="categoryName"
+									itemValue="categoryId" />
 							</form:select>
 						</label>
 					</div>
 					<div>
-						<label>
-							親カテゴリの選択
-							<br>
-							<form:select path="editCategoryParentCategoryId">
+						<label> 親カテゴリの選択 <br> <form:select
+								path="editCategoryParentCategoryId">
 								<form:option label="選択してください" value="-1" />
-								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId"/>
+								<form:options items="${ parentCategoryList }"
+									itemLabel="categoryName" itemValue="categoryId" />
 							</form:select>
 						</label>
 					</div>
 					<br>
 					<div>
-						<label>
-							カテゴリ名の編集
-							<br>
-							<form:input path="editCategoryName" />
+						<label> カテゴリ名の編集 <br> <form:input
+								path="editCategoryName" />
 						</label>
 					</div>
 					<div>
-						<label>
-							非表示/表示
-							<br>
-							<form:radiobutton path="categoryDisplay" label="非表示" value="0" />
-							<form:radiobutton path="categoryDisplay" label="表示" value="1" />
+						<label> 非表示/表示 <br> <form:radiobutton
+								path="categoryDisplay" label="非表示" value="0" /> <form:radiobutton
+								path="categoryDisplay" label="表示" value="1" />
 						</label>
 					</div>
 					<button type="button" class="return">戻る</button>
@@ -298,20 +271,15 @@
 						<p class="error">ログインIDを選択してください。</p>
 					</c:if>
 					<div>
-						<label>
-							ログインID
-							<br>
-							<form:select path="loginId">
-								<form:option value="" label="選択してください"/>
-								<form:options items="${ userInfoList }" itemLabel="loginId" itemValue="loginId"/>
+						<label> ログインID <br> <form:select path="loginId">
+								<form:option value="" label="選択してください" />
+								<form:options items="${ userInfoList }" itemLabel="loginId"
+									itemValue="loginId" />
 							</form:select>
 						</label>
 					</div>
 					<div>
-						<label>
-							権限選択
-							<br>
-							<form:select path="role">
+						<label> 権限選択 <br> <form:select path="role">
 								<form:option value="1">管理者</form:option>
 								<form:option value="2">一般</form:option>
 							</form:select>
@@ -323,34 +291,32 @@
 			</form:form>
 		</div>
 
+		<div class="arrayContiner">
+			<ul class="items">
+				<li id="createQuiz" class="item">クイズ作成</li>
+				<li id="editQuiz" class="item">クイズ編集</li>
+			</ul>
+			<ul class="items">
+				<li id="createCategory" class="item">カテゴリ作成</li>
+				<li id="editCategory" class="item">カテゴリ編集</li>
+			</ul>
+			<ul class="items">
+				<li id="editUser" class="item">ユーザー編集</li>
+			</ul>
+		</div>
 
-	<main>
-            <div class="arrayContiner">
-                <ul class="items">
-                    <li id="createQuiz" class="item">クイズ作成</li>
-                    <li id="editQuiz" class="item">クイズ編集</li>
-                </ul>
-                <ul class="items">
-                    <li id="createCategory" class="item">カテゴリ作成</li>
-                    <li id="editCategory" class="item">カテゴリ編集</li>
-                </ul>
-                <ul class="items">
-                    <li id="editUser" class="item">ユーザー編集</li>
-                </ul>
-            </div>
-
-            <div class="description">
-                <h3>ボタン説明</h3>
-                <ul>
-                    <li>クイズ作成　 ... クイズで出題する問題を作成できます。</li>
-                    <li>クイズ編集　 ... 作成したクイズの表示/非表示、クイズの更新ができます。</li>
-                    <li>カテゴリ追加 ... 新しいクイズのカテゴリを作成できます。</li>
-                    <li>カテゴリ編集 ... カテゴリの表示/非表示、名前の変更が設定できます。</li>
-                    <li>ユーザー編集 ... ユーザーのアカウントに管理者権限を設定できます。</li>
-                </ul>
-            </div>
-        </main>
-        <script src="js/common.js"></script>
+		<div class="description">
+			<h3>ボタン説明</h3>
+			<ul>
+				<li>クイズ作成 ... クイズで出題する問題を作成できます。</li>
+				<li>クイズ編集 ... 作成したクイズの表示/非表示、クイズの更新ができます。</li>
+				<li>カテゴリ追加 ... 新しいクイズのカテゴリを作成できます。</li>
+				<li>カテゴリ編集 ... カテゴリの表示/非表示、名前の変更が設定できます。</li>
+				<li>ユーザー編集 ... ユーザーのアカウントに管理者権限を設定できます。</li>
+			</ul>
+		</div>
+	</main>
+	<script src="js/common.js"></script>
         <script src="js/admin.js"></script>
     </body>
 </html>
