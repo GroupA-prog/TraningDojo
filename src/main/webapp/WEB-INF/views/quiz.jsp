@@ -22,10 +22,9 @@
 <h1>${mode}:${categoryName}</h1>
 
 <c:forEach items="${quiz}" var="quiz">
-  <p>${quiz.quizStatement}</p>
-  <c:forEach items="${quiz.quizSelect}" var="select">
-    <form:radiobuttons path="choiceId" items="${select.choice}"/>
-  </c:forEach>
+  <p><c:out value="${quiz.quizStatement}" /></p>
+  <form:radiobuttons path="choiceId" items="${quiz.quizSelect}"
+  itemLabel="choice" itemValue="quizChoiceId"/>
 </c:forEach>
 
 <c:if test="${not empty time}">
