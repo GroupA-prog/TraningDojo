@@ -5,10 +5,18 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <header class="title-continar">
-	<span id="site-title">家計簿管理システム</span>
+	<span id="site-title">
+		<c:choose>
+			<c:when test="${ not empty loginUserInfo }"><a href="/loginHome">研修道場</a></c:when>
+			<c:otherwise><a href="/login">研修道場</a></c:otherwise>
+		</c:choose>
+	</span>
 	<c:if test="${ not empty loginUserInfo }">
 		<nav>
 			<ul>
+				<c:if test="${ loginUserInfo.role == 2 }">
+					<li><a href="/admin">管理者</a></li>
+				</c:if>
 				<li><a href="/logout">ログアウト</a></li>
 			</ul>
 		</nav>

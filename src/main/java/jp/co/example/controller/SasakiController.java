@@ -30,6 +30,12 @@ public class SasakiController {
 		model.addAttribute("categoryName", categoryName);
 
 		return "quizConfig";
+
+	}
+
+	@RequestMapping(value="/userHome",method=RequestMethod.GET)
+	public String userHome() {
+		return "home";
 	}
 
 

@@ -78,21 +78,13 @@ public class QuizServiceImpl implements QuizService{
 	    return parts;
 	}
 
-	//問題数を求めるメソッド
-	@Override
-	public int ListSize(List<List<Quiz>> quizList) {
-		int size = 0;
-		for(List<Quiz> quiz: quizList) {
-			size += quiz.size();
-		}
-		return size;
-	}
+
 
 	//answerList作成メソッド
 	@Override
-	public List<List<Integer>> answerList(Integer maxSize){
+	public List<List<Integer>> answerList(Integer quizNum){
 		List<Integer> answer = new ArrayList<Integer>();
-		for(int i = 0; i < maxSize; i++) {
+		for(int i = 0; i < quizNum; i++) {
 			answer.add(0);
 		}
 		List<List<Integer>>answerList = chopped(answer,5);
