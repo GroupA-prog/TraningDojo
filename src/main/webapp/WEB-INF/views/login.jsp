@@ -23,22 +23,23 @@
 			<form:errors path="loginId" class="error"/>
 		</p>
 		<p>
-			パスワード
+			<span class="pass2">パスワード</span>
 			<form:password path="password" /><br>
-			<form:errors path="password" class="error"/>
+			<span class="pass2"><form:errors path="password" class="error"/></span>
 		</p>
 		</div>
 		<br>
-		<button class="loginbtn" class = "btn">ログイン</button>
+		<button class="btn login" class = "btn">ログイン</button>
 	</form:form>
 	<br>
 	<br>
 	<div class="clear">
 	<form:form action="/signUp" modelAttribute="signUp" method="get">
+	<br>
 	アカウントをお持ちでない方は、こちらから登録してください<br>
 		<br>
 		<p class="btn2">
-			<button type="submit" class="signupbtn">新規登録</button>
+			<button type="submit" class="btn new-update">新規登録</button>
 		</p>
 	</form:form>
 	</div>

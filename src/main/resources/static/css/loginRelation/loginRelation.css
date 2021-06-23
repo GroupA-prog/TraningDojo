@@ -5,6 +5,23 @@ body{
 	margin-left:35px;
 }
 
+.return{
+	text-decoration: none;
+	color:red;
+}
+
+.login{
+	margin-left:36px;
+}
+
+.pass{
+	margin-left:39px;
+}
+
+.pass2{
+	margin-left:3px;
+}
+
 .error {
 	content: "※";
 	color: red;
@@ -22,35 +39,6 @@ body{
 	font-weight: 100;
 }
 
-.loginbtn {
-	width: 100%;
-	max-width: 120px;
-	padding: 15px 10px;
-	display: inline-block;
-	text-align: center;
-	letter-spacing: 0.1em;
-	color: #000;
-	background-color: #FF964E;
-	border: #FF964E;
-	border-bottom: 4px solid #fd4e4e;
-	border-radius: 20px;
-	font-size: 20px;
-}
-
-.signupbtn {
-	width: 100%;
-	max-width: 120px;
-	padding: 15px 10px;
-	display: inline-block;
-	text-align: center;
-	letter-spacing: 0.1em;
-	color: #000;
-	background-color: #8ac51c;
-	border: #8ac51c;
-	border-bottom: 4px solid #56A742;
-	border-radius: 20px;
-	font-size: 20px;
-}
 .error2{
 	margin-left: 150px;
 }
@@ -60,7 +48,7 @@ body{
 	margin-right: 115px;
 }
 .btn2{
-	margin-left: 400px;
+	margin-left: 437px;
 }
 .btn3{
 	margin-left: 250px;
