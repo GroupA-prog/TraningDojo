@@ -15,11 +15,7 @@
   crossorigin="anonymous"></script>
     </head>
     <body>
-	<!--
-        	<header>
-            <th>研修道場</th>
-        </header>
-          -->
+	<c:import url="header.jsp" />
 	<div id="modal-overlay"></div>
 		<div id="modal-content">
 			<form:form action="/admin" modelAttribute="admin">
@@ -104,7 +100,7 @@
 						<form:textarea path="createCommentary" />
 					</div>
 					<button type="button" class="return">戻る</button>
-					<form:button name="quizCreate" class="update">更新</form:button>
+					<form:button name="quizCreate" class="update">登録</form:button>
 				</div>
 				<div class="editQuizList">
 					<h3>クイズの編集</h3>
@@ -242,7 +238,7 @@
 						</label>
 					</div>
 					<button type="button" class="return">戻る</button>
-					<form:button name="categoryCreate" class="update">更新</form:button>
+					<form:button name="categoryCreate" class="update">登録</form:button>
 				</div>
 				<div class="editCategory">
 					<h3>カテゴリの編集</h3>

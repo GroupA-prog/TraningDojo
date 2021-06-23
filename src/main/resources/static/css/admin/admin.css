@@ -74,6 +74,17 @@ table td {
 	width: auto;
 }
 
+#quizListTable {
+
+}
+
+
+
+#quizListTable a {
+	cursor: pointer;
+	color: blue;
+}
+
 #createChoice1, #createChoice2, #createChoice3, #createChoice4 {
 	width: 100%;
 }
