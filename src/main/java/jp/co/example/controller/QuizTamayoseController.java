@@ -40,13 +40,14 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.POST)
 	public String quizPost(@ModelAttribute("quizConfig")QuizForm form,Model model) {
+		quizIndex = 0;
 		//クイズstart時刻取得・保持
 		QuizResult status = new QuizResult();
 		long millis = System.currentTimeMillis();
 		Timestamp start = new Timestamp(millis);
 		status.setStartTime(start);
 		//モード：カテゴリ名保存
-		status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
+
 		status.setMode(quizService.selectMode(form.getMode()));
 
 		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
@@ -60,12 +61,14 @@ public class QuizTamayoseController{
 				model.addAttribute("msg","問題数は必須です");
 				return "quizConfig";
 			}
+			status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
 			status.setQuizNum(form.getQuizNum());
 		}else if(form.getMode() == 2){
-			quizList = quizService.findByRankCategory(form.getCategoryId());
+			status.setCategoryName(categoryService.findByCategoryId(form.getRankCategoryId()).get(0).getCategoryName());
+			quizList = quizService.findByRankCategory(form.getRankCategoryId());
 			status.setTime(20);
 			System.out.println(quizList.size());
 			status.setQuizNum(10);
@@ -76,6 +79,9 @@ public class QuizTamayoseController{
 		//問題数・解答セッションを作成、保存
 		List<List<Integer>>userAnswer = quizService.answerList(status.getQuizNum());
 		status.setNowSize((1 + quizIndex) * 5);
+		if(status.getQuizNum() < status.getNowSize()) {
+			status.setNowSize(status.getQuizNum());
+		}
 		session.setAttribute("quizStatus", status);
 		session.setAttribute("userAnswer", userAnswer);
 		return "redirect:quiz";
@@ -161,6 +167,16 @@ public class QuizTamayoseController{
 		//履歴詳細に登録
 		quizService.insertHistoryDetail(correctList,historyId);
 		session.setAttribute("userAnswer", correctList);
+
+		//解答詳細用List準備
+		List<Quiz>quizAll = new ArrayList<Quiz>();
+		for(int i = 0;i < quizList.size();i++) {
+			quizAll.addAll(quizList.get(i));
+		}
+		for(int i = 0; i < quizAll.size(); i++) {
+			quizAll.get(i).setUserAnswer(correctList.get(i).getUserAnswer());
+		}
+		session.setAttribute("quizList", quizAll);
 		//モード判断
 		if(status.getModeId() == 1) {
 			return "answerDetail";
@@ -175,17 +191,8 @@ public class QuizTamayoseController{
 		session.removeAttribute("quizList");
 		session.removeAttribute("userAnswer");
 		session.removeAttribute("quizStatus");
-		return "userHome";
+		return "home";
 	}
 
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value="/answerDetail")
-	public String answerDetail(Model model) {
-		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		List<Quiz>quizAll = new ArrayList<Quiz>();
-		for(int i = 0;i < quizList.size();i++) {
-			quizAll.addAll(quizList.get(i));
-		}
-		session.setAttribute("quizList", quizAll);
-	}
+
 }

@@ -9,12 +9,20 @@ public class Quiz {
 	private Integer correctAnswer;
 	private Integer display;
 	private String commentary;
+	private Integer userAnswer;
 	private String categoryName;
 	private String choice1;
 	private String choice2;
 	private String choice3;
 	private String choice4;
 
+
+	public Integer getUserAnswer() {
+		return userAnswer;
+	}
+	public void setUserAnswer(Integer userAnswer) {
+		this.userAnswer = userAnswer;
+	}
 	private Integer categoryId;
 	private ArrayList<QuizSelect> quizSelect;
 

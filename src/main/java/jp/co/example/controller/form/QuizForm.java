@@ -18,8 +18,15 @@ public class QuizForm{
 	private Integer mode;
 	private String categoryName;
 	private Integer quizNum;
+	private Integer rankCategoryId;
 
 
+	public Integer getRankCategoryId() {
+		return rankCategoryId;
+	}
+	public void setRankCategoryId(Integer rankCategoryId) {
+		this.rankCategoryId = rankCategoryId;
+	}
 	public Integer getChoiceId1() {
 		return choiceId1;
 	}
