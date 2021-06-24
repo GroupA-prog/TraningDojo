@@ -47,7 +47,7 @@ public class QuizTamayoseController{
 		Timestamp start = new Timestamp(millis);
 		status.setStartTime(start);
 		//モード：カテゴリ名保存
-		status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
+
 		status.setMode(quizService.selectMode(form.getMode()));
 
 		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
@@ -61,12 +61,14 @@ public class QuizTamayoseController{
 				model.addAttribute("msg","問題数は必須です");
 				return "quizConfig";
 			}
+			status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
 			status.setQuizNum(form.getQuizNum());
 		}else if(form.getMode() == 2){
-			quizList = quizService.findByRankCategory(form.getCategoryId());
+			status.setCategoryName(categoryService.findByCategoryId(form.getRankCategoryId()).get(0).getCategoryName());
+			quizList = quizService.findByRankCategory(form.getRankCategoryId());
 			status.setTime(20);
 			System.out.println(quizList.size());
 			status.setQuizNum(10);
@@ -165,6 +167,7 @@ public class QuizTamayoseController{
 		//履歴詳細に登録
 		quizService.insertHistoryDetail(correctList,historyId);
 		session.setAttribute("userAnswer", correctList);
+
 		//解答詳細用List準備
 		List<Quiz>quizAll = new ArrayList<Quiz>();
 		for(int i = 0;i < quizList.size();i++) {
