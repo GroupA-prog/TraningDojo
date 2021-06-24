@@ -2,6 +2,8 @@ package jp.co.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +26,15 @@ public class SasakiController {
 	private QuizConfigService quizConfigService;
 	@Autowired
 	private HomeService homeService;
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping(value = "/quizConfig", method = RequestMethod.GET)
 	public String quizConfig(@ModelAttribute("quizConfig") QuizForm form, Model model) {
 		List<Category> categoryAll = categoryService.selectAll();
 		List<Category> categoryName = quizConfigService.categoryNameAll();
-		model.addAttribute("categoryAll", categoryAll);
-		model.addAttribute("categoryName", categoryName);
+		session.setAttribute("categoryAll", categoryAll);
+		session.setAttribute("categoryName", categoryName);
 
 		return "quizConfig";
 
@@ -39,7 +43,7 @@ public class SasakiController {
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
 	public String userHome(@ModelAttribute("quizConfig") QuizForm form,Model model) {
 		List<Category> parentCategory = homeService.parentCategoryAll();
-		model.addAttribute("parentCategory",parentCategory);
+		session.setAttribute("parentCategory",parentCategory);
 		System.out.print(parentCategory);
 
 		return "home";
