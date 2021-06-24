@@ -25,7 +25,7 @@
 	<p>${loginUserInfo.userName}さんのホーム</p>
 
 
-	<form action="/quiz" method="GET">
+	<form action="/quizConfig" method="GET">
 		<button type="submit" class="btn quiz">クイズ</button>
 	</form>
 	<form action="/ranking" method="GET">
