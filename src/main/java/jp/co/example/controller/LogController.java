@@ -126,7 +126,8 @@ public class LogController {
 
 		session.setAttribute("dispQuiz", dispQuiz);
 
-		for (int i = 0; i < dispQuiz.size(); i++) {
+		for (int i = 0; i <= dispQuiz.size(); i++) {
+			System.out.println(dispQuiz.get(i).getComment());
 			if (dispQuiz.get(i).getComment().equals("") || dispQuiz.get(i).getComment() == null) {
 				dispQuiz.get(i).setComment("コメントはまだありません。");
 			}
