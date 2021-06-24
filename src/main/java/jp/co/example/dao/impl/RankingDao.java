@@ -1,0 +1,176 @@
+package jp.co.example.dao.impl;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import jp.co.example.dao.IRankingDao;
+import jp.co.example.dto.entity.Ranking;
+import jp.co.example.dto.entity.RankingCategory;
+import jp.co.example.dto.entity.UserInfo;
+import jp.co.example.util.RankingComparator;
+
+@Repository
+public class RankingDao implements IRankingDao {
+	private static final String SELECT = "SELECT * FROM category WHERE parent_category_id IS NULL ORDER BY category_id";
+	private static final String SELECT_BY_CATEGORY_ID = "SELECT * FROM category WHERE category_id = :categoryId";
+	private static final String RANKING_USER_NUM = "select count(distinct user_id) from history where user_id IN (SELECT user_id FROM history where mode=2 AND category_id=:categoryId group by user_id)";
+	private static final String RANKING_USER_ID = "SELECT user_id FROM history where mode=2 AND category_id=:categoryId group by user_id";
+	private static final String USER_HISTORY_ID = "SELECT history_id FROM history where mode=2 AND category_id=:categoryId AND user_id = :userId ORDER BY history_date desc LIMIT 5";
+	private static final String CORRECT_NUM = "select count(*) from history_detail where history_id=:historyId AND correct=1";
+	private static final String SELECT_BY_USER_ID = "SELECT user_name FROM user_info WHERE user_id = :userId";
+
+	@Autowired
+	private NamedParameterJdbcTemplate jdbcTemplate;
+//	@Autowired
+//	private HttpSession session;
+
+
+	@Override
+	public List<RankingCategory> selectAll() {
+		List<RankingCategory> list = jdbcTemplate.query(SELECT, new BeanPropertyRowMapper<RankingCategory>(RankingCategory.class));
+		return list;
+	}
+
+	@Override
+	public RankingCategory selectByCategoryId(Integer categoryId) {
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("categoryId", categoryId);
+
+		List<RankingCategory> resultList = jdbcTemplate.query(SELECT_BY_CATEGORY_ID, param, new BeanPropertyRowMapper<RankingCategory>(RankingCategory.class));
+
+		RankingCategory categoryName = resultList.get(0);
+
+		return  categoryName;
+	}
+
+
+
+	// ランキングを作成するメソッド
+	@Override
+	public ArrayList<Ranking> makeRanking(Integer categoryId) {
+
+		// ランキング入れる用リスト
+		ArrayList<Ranking> rankingList = new ArrayList<Ranking>();
+
+		// ランキング登録済みユーザーIDのリスト
+		List<Integer> userList = rankingGetUserId(categoryId);
+
+		// ランキングスコア作成
+		for(int i=0; i<userList.size(); i++) {
+			int userId = userList.get(i);
+			int rank = 1;
+			UserInfo user = selectByUserName(userId);
+			String userName = user.getUserName();
+
+			List<Integer> userHistoryId = rankingGetHistoryId(categoryId, userId);	// 直近五回分のHistoryId
+			List<Double> scoreList = new ArrayList<Double>();	// 直近五回分の正答率を格納するためのリスト
+
+			// 一回ごとの正答率を計算し、それぞれの正答率をscoreListに格納する
+			for(int j=0; j<userHistoryId.size(); j++) {
+				scoreList.add(rateCalc(userHistoryId.get(j)));
+			}
+
+			// 五回分の正答率（scoreList）の平均を計算
+			double total = 0;
+			for(int k=0; k<scoreList.size(); k++) {
+				total += scoreList.get(k);
+			}
+			double rankScore = total/scoreList.size();
+
+			// ランキング用オブジェクト(個人データ）をrankingListに保存
+			Ranking userData = new Ranking(rank, userId, userName, rankScore);
+			rankingList.add(userData);
+
+		}
+
+		//ここから順位付けをする
+		//Comparatorクラスの条件(スコア降順）に従いソートする
+        Collections.sort(rankingList, new RankingComparator());
+
+        // ランク付け
+        int rank = 1;
+		for (int i = 1; i < rankingList.size(); i++) {
+			if (rankingList.get(i).getScore() != rankingList.get(i-1).getScore()) {
+				// 点数が前の人と違うなら、通し番号を設定
+				rank = i + 1;
+				rankingList.get(i).setRank(rank);
+			}else {
+				rankingList.get(i).setRank(rank);
+			}
+		}
+
+        return rankingList;
+
+	}
+
+
+	// 正答率の計算をするメソッド
+	public double rateCalc(Integer historyId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("historyId", historyId);
+		int correctCount = jdbcTemplate.queryForObject(CORRECT_NUM, param,Integer.class).intValue();
+		double score = correctCount / 10.0 * 100;
+		return score;
+	}
+
+	// ランキングに登録されているユーザーIDを取得
+	public List<Integer> rankingGetUserId(Integer categoryId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("categoryId", categoryId);
+		List<Integer> userList = jdbcTemplate.queryForList(RANKING_USER_ID, param, Integer.class);
+		return  userList;
+	}
+
+	// Userの直近五回のhistoryIDを取得（最大五個）
+	public List<Integer> rankingGetHistoryId(Integer categoryId, Integer userId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("categoryId", categoryId);
+		param.addValue("userId", userId);
+		List<Integer> historyList = jdbcTemplate.queryForList(USER_HISTORY_ID, param, Integer.class);
+		return  historyList;
+	}
+
+	// userIdからuserNameを取得する
+	public UserInfo selectByUserName(Integer userId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("userId", userId);
+		UserInfo user = jdbcTemplate.query(SELECT_BY_USER_ID, param, new BeanPropertyRowMapper<UserInfo>(UserInfo.class)).get(0);
+		return  user;
+	}
+
+
+	// 自分が何位なのかとスコアを調べるメソッド
+	@Override
+	public Ranking searchMyData(ArrayList<Ranking> rankingList, int loginUserId) {
+
+		for(int i=0; i<rankingList.size(); i++) {
+			Ranking data = rankingList.get(i);
+
+			if(data.getUserId() == loginUserId) {
+				int myRank = data.getRank();
+				Double myScore = data.getScore();
+				return new Ranking(myRank, myScore);
+			}
+		}
+		// 自分のデータがない時はnullを返す
+		return null;
+	}
+
+	// ランキング登録者数を数える → カテゴリごとに数える
+	@Override
+	public int rankingUserNum(Integer categoryId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("categoryId", categoryId);
+		int rankingUserNum = jdbcTemplate.queryForObject(RANKING_USER_NUM, param,Integer.class).intValue();
+		return rankingUserNum;
+	}
+
+}

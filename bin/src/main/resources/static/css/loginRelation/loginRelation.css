@@ -1,14 +1,70 @@
-.systemName{
-    color: white;
-    text-decoration: none;
+html {
+	font-size: 20px;
 }
-header{
-    background-color:blue;
-    height: 60px;
-    margin-left: auto;
-    padding: auto;
+body{
+	margin-left:35px;
 }
 
-body{
-    margin-left: 20px;
+.margin{
+	margin-left:35px;
+}
+
+.return{
+	text-decoration: none;
+	color:red;
+}
+
+.login{
+	margin-left:36px;
+}
+
+.pass{
+	margin-left:39px;
+}
+
+.pass2{
+	margin-left:3px;
+}
+
+.error {
+	content: "※";
+	color: red;
+}
+
+.logoutMsg {
+	margin-top:250px;
+	text-align: center;
+	font-size: 70px;
+	font-weight: 100;
+}
+
+.DoneMsg {
+	text-align: center;
+	font-size: 70px;
+	font-weight: 100;
+}
+
+.error2{
+	margin-left: 150px;
+}
+
+.btn {
+	float: left;
+	margin-right: 115px;
+}
+.btn2{
+	margin-left: 520px;
+}
+.btn3{
+	margin-left: 250px;
+}
+.clear{
+	clear: both;
+}
+.font{
+	font-size:25px;
+}
+.txt{
+	width:250px;
+	height:23px;
 }

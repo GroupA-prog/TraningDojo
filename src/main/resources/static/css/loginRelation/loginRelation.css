@@ -15,17 +15,24 @@ body{
 }
 
 .login{
-	margin-left:36px;
+	margin-left:113px;
+}
+
+.user{
+	margin-left:76px;
 }
 
 .pass{
-	margin-left:39px;
+	margin-left:116px;
 }
 
 .pass2{
 	margin-left:3px;
 }
 
+.passre{
+	margin-left:39px;
+}
 .error {
 	content: "※";
 	color: red;
@@ -50,7 +57,7 @@ body{
 
 .btn {
 	float: left;
-	margin-right: 115px;
+	margin-right: 37px;
 }
 .btn2{
 	margin-left: 520px;

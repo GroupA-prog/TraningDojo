@@ -3,18 +3,23 @@ package jp.co.example.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.example.dao.IUserInfoDao;
 import jp.co.example.dao.LoginDao;
 import jp.co.example.dto.entity.Login;
+import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.LoginService;
 @Service
 public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private LoginDao loginDao;
+	@Autowired
+	private IUserInfoDao userInfoDao;
 
 	@Override
-    public Login authentication(String loginId, String password) {
-        return loginDao.findByLoginIdAndPassword(loginId, password);
+    public UserInfo authentication(String loginId, String password) {
+        //return loginDao.findByLoginIdAndPassword(loginId, password);
+		return  userInfoDao.findByUserANDPass(loginId, password);
     }
 
 	@Override
