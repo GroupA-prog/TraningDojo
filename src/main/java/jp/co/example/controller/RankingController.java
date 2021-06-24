@@ -26,8 +26,14 @@ public class RankingController {
 	@Autowired
 	private HttpSession session;
 
+	UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+
 	@RequestMapping("/rankingCategory")
 	public String rankingCategory(@ModelAttribute("rankingCategoryForm") RankingForm form, Model model) {
+		if(loginUserInfo == null) {
+			return "login";
+		}
+
 		List<RankingCategory> categoryList = rs.selectAll();
 		model.addAttribute("categoryList", categoryList);
 
@@ -36,22 +42,39 @@ public class RankingController {
 
 
 	@RequestMapping("/rankingView")
-	public String rankingView(@RequestParam(name = "categoryId", defaultValue = "0") Integer categoryId, Model model) {
+	public String rankingView(@RequestParam(name = "categoryId") Integer categoryId, Model model) {
+		if(loginUserInfo == null) {
+			return "login";
+		}
 
 		RankingCategory categoryName = rs.selectByCategoryId(categoryId);
-
 		model.addAttribute("category", categoryName);
 
 		ArrayList<Ranking> rankingList = rs.makeRanking(categoryId);
-		model.addAttribute("rankingList", rankingList);
 
-		//自分のランキングデータ
-		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
-		Ranking myRankingData = rs.searchMyData(rankingList, loginUserInfo.getUserId());
-		model.addAttribute("myRankingData",myRankingData);
+		if(rankingList != null) {
+			model.addAttribute("rankingList", rankingList);
 
-		int rankingUserNum = rs.rankingUserNum(categoryId);
-		model.addAttribute("rankingUserNum", rankingUserNum);
+			// 10位の添え字を探す
+			int rank10 = rs.searchRankTen(rankingList);
+			if(rank10 != -1) {
+				// 10位があった時
+				model.addAttribute("rankViewNum", rank10);
+			}else {
+				model.addAttribute("rankViewNum", rankingList.size());
+			}
+
+
+			//自分のランキングデータ
+			Ranking myRankingData = rs.searchMyData(rankingList, loginUserInfo.getUserId());
+			if(myRankingData != null) {
+				model.addAttribute("myRankingData",myRankingData);
+			}
+
+			int rankingUserNum = rs.rankingUserNum(categoryId);
+			model.addAttribute("rankingUserNum", rankingUserNum);
+		}
+
 
 		return "rankingView";
 

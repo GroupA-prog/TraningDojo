@@ -16,4 +16,6 @@ public interface IRankingService {
 	public Ranking searchMyData(ArrayList<Ranking> rankingList, Integer userId);
 
 	public int rankingUserNum(Integer categoryId);
+
+	public int searchRankTen(ArrayList<Ranking> rankingList);
 }
