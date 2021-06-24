@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.example.dao.QuizDao;
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.dto.entity.QuizJoinQuizSelect;
+import jp.co.example.dto.entity.QuizResult;
 
 @Repository
 public class QuizDaoImpl implements QuizDao{
@@ -22,6 +23,9 @@ public class QuizDaoImpl implements QuizDao{
 	private static final String SELECT_BY_CATEGORYID = "SELECT * FROM quiz WHERE category_id = :category_id ORDER BY quiz_id;";
 	private static final String SELECT_BY_QUIZID = "SELECT * FROM quiz q INNER JOIN quiz_select qs ON q.quiz_id = qs.quiz_id WHERE q.quiz_id = :quiz_id ORDER BY qs.quiz_choice_id;";
 	private static final String UPDATE = "UPDATE quiz SET category_id = :category_id, quiz_title = :quiz_title, quiz_statment = :quiz_statment, correct_answer = :correct_answer, commentary = :commentary, display = :display WHERE quiz_id = :quiz_id;";
+	private static final String INSERT_HISTORY = "INSERT INTO history (history_date,user_id,mode,category_id) VALUES (:history_date,:user_id,:mode,:category_id);";
+	private static final String SELECT_BY_HISTORY_ID = "SELECT history_id FROM history WHERE history_date = :history_date AND user_id = :user_id;";
+	private static final String INSERT_HISTORY_DETAIL = "INSERT INTO history_detail (history_id,quiz_id,correct,user_answer) VALUES";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -87,10 +91,44 @@ public class QuizDaoImpl implements QuizDao{
 	@Override
 	public List<Quiz> findByRankCategory(Integer categoryId){
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("categoryId", categoryId);
+		param.addValue("category_id", categoryId);
 
 		return jdbcTemplate.query(SELECT_BY_RANK_QUIZ, param,
 				new BeanPropertyRowMapper<Quiz>(Quiz.class));
+	}
 
+	//履歴登録・履歴Id取得
+	@Override
+	public int insertHistory(QuizResult quizResult) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("history_date", quizResult.getStartTime());
+		param.addValue("user_id", quizResult.getUserId());
+		param.addValue("mode", quizResult.getModeId());
+		param.addValue("category_id", quizResult.getCategoryId());
+
+		jdbcTemplate.update(INSERT_HISTORY, param);
+
+		List<QuizResult>resultList = jdbcTemplate.query(SELECT_BY_HISTORY_ID,param,
+				new BeanPropertyRowMapper<QuizResult>(QuizResult.class));
+		QuizResult result = resultList.isEmpty() ? null : resultList.get(0);
+		return result.getHistoryId();
+	}
+
+	//履歴詳細登録
+	public void insertHistoryDetail(List<QuizResult>quizResult,Integer historyId) {
+		String sql = INSERT_HISTORY_DETAIL;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		for(int i = 0; i < quizResult.size();i++) {
+			if(quizResult.size()-1 == i) {
+				sql += "(:history_id"+i+",:quiz_id"+i+",:correct"+i+",:user_answer"+i+");";
+			}else {
+				sql += "(:history_id"+i+",:quiz_id"+i+",:correct"+i+",:user_answer"+i+"),";
+			}
+			param.addValue("history_id"+i+"", historyId);
+			param.addValue("quiz_id"+i+"", quizResult.get(i).getQuizId());
+			param.addValue("correct"+i+"", quizResult.get(i).getCorrect());
+			param.addValue("user_answer"+i+"", quizResult.get(i).getUserId());
+		}
+		jdbcTemplate.update(sql, param);
 	}
 }

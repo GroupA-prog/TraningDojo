@@ -26,6 +26,7 @@ btn.addEventListener('click', function() {
 	}
 	else {
 		alert('最後まで頑張って！');
+		return false;
 	}
 })
 

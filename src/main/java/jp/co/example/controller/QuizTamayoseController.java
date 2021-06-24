@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.example.controller.form.QuizForm;
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.dto.entity.QuizResult;
+import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.QuizService;
 
@@ -38,7 +39,7 @@ public class QuizTamayoseController{
 	}
 
 	@RequestMapping(value="/quiz",method=RequestMethod.POST)
-	public String quizPost(@ModelAttribute("quiz")QuizForm form,Model model) {
+	public String quizPost(@ModelAttribute("quizConfig")QuizForm form,Model model) {
 		//クイズstart時刻取得・保持
 		QuizResult status = new QuizResult();
 		long millis = System.currentTimeMillis();
@@ -51,9 +52,14 @@ public class QuizTamayoseController{
 		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
 		System.out.println(form.getQuizNum());
 		System.out.println(form.getCategoryId());
+		System.out.println(status.getCategoryName());
 		System.out.println(form.getMode());
 		//モード分岐、制限時間・問題（5問分け済み）を保存
 		if(form.getMode() == 1) {
+			if(form.getQuizNum() == 0) {
+				model.addAttribute("msg","問題数は必須です");
+				return "quizConfig";
+			}
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
@@ -61,6 +67,7 @@ public class QuizTamayoseController{
 		}else if(form.getMode() == 2){
 			quizList = quizService.findByRankCategory(form.getCategoryId());
 			status.setTime(20);
+			System.out.println(quizList.size());
 			status.setQuizNum(10);
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
@@ -137,18 +144,26 @@ public class QuizTamayoseController{
 		quizService.answerUpdate(answer,quizIndex,choiceList);
 		session.setAttribute("userAnswer", answer);
 		session.setAttribute("userAnswer", answer);
-		//モードをIDに変換
-		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
-		int modeId = quizService.selectModeId(status.getMode());
-		//カテゴリ名からIDを取得
-		status.setCategoryId(categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId());
 		//答え合わせ
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
 		List<QuizResult> correctList = new ArrayList<QuizResult>();
 		quizService.setQuiz(correctList,quizList,answer);
+		//モードをIDに変換
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
+		status.setModeId(quizService.selectModeId(status.getMode()));
+		//カテゴリ名からカテゴリIDを取得
+		status.setCategoryId(categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId());
+		//sessionからuserIdを取得
+		UserInfo userInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		status.setUserId(userInfo.getUserId());
+		//履歴に登録
+		int historyId = quizService.insertHistory(status);
+		//履歴詳細に登録
+		quizService.insertHistoryDetail(correctList,historyId);
+		session.setAttribute("userAnswer", correctList);
 		//モード判断
-		if(modeId == 1) {
-			return "answerDatail";
+		if(status.getModeId() == 1) {
+			return "answerDetail";
 		}
 		return "rankingView";
 	}
@@ -161,5 +176,16 @@ public class QuizTamayoseController{
 		session.removeAttribute("userAnswer");
 		session.removeAttribute("quizStatus");
 		return "userHome";
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/answerDetail")
+	public String answerDetail(Model model) {
+		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
+		List<Quiz>quizAll = new ArrayList<Quiz>();
+		for(int i = 0;i < quizList.size();i++) {
+			quizAll.addAll(quizList.get(i));
+		}
+		session.setAttribute("quizList", quizAll);
 	}
 }

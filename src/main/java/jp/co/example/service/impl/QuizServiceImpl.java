@@ -106,7 +106,11 @@ public class QuizServiceImpl implements QuizService{
 	@Override
 	public void answerUpdate(List<List<Integer>> answer,Integer quizIndex, List<Integer> choiceId){
 		for(int i = 0; i < choiceId.size();i++) {
-			answer.get(quizIndex).set(i,choiceId.get(i));
+			try{
+				answer.get(quizIndex).set(i,choiceId.get(i));
+			}catch(ArrayIndexOutOfBoundsException e){
+				break;
+			}
 		}
 	}
 
@@ -139,6 +143,17 @@ public class QuizServiceImpl implements QuizService{
 			}
 		}
 
+	}
+
+	//履歴登録・履歴Id取得メソッド
+	@Override
+	public int insertHistory(QuizResult quizResult) {
+		return quizDao.insertHistory(quizResult);
+	}
+
+	//履歴詳細登録メソッド
+	public void insertHistoryDetail(List<QuizResult>quizResult,Integer historyId) {
+		quizDao.insertHistoryDetail(quizResult,historyId);
 	}
 
 	public Quiz findByQuizId(Integer quizId) {
