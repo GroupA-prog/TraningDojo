@@ -1,7 +1,5 @@
 package jp.co.example.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +19,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
     public UserInfo authentication(String loginId, String password) {
         //return loginDao.findByLoginIdAndPassword(loginId, password);
-		List<UserInfo> list = userInfoDao.findByLoginId(loginId);
-		return list.isEmpty() ? null : list.get(0);
+		return  userInfoDao.findByUserANDPass(loginId, password);
     }
 
 	@Override

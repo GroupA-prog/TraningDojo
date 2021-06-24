@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.QuizForm;
 import jp.co.example.dto.entity.Quiz;
+import jp.co.example.dto.entity.QuizResult;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.QuizService;
 
@@ -39,14 +40,14 @@ public class QuizTamayoseController{
 	@RequestMapping(value="/quiz",method=RequestMethod.POST)
 	public String quizPost(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//クイズstart時刻取得・保持
+		QuizResult status = new QuizResult();
 		long millis = System.currentTimeMillis();
 		Timestamp start = new Timestamp(millis);
-		session.setAttribute("startTime", start);
+		status.setStartTime(start);
 		//モード：カテゴリ名保存
-		String categoryName = categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName();
-		session.setAttribute("categoryName", categoryName);
-		session.setAttribute("mode", quizService.selectMode(form.getMode()));
-		session.setAttribute("quizNum", form.getQuizNum());
+		status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
+		status.setMode(quizService.selectMode(form.getMode()));
+
 		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
 		System.out.println(form.getQuizNum());
 		System.out.println(form.getCategoryId());
@@ -56,24 +57,20 @@ public class QuizTamayoseController{
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
-
+			status.setQuizNum(form.getQuizNum());
 		}else if(form.getMode() == 2){
-
 			quizList = quizService.findByRankCategory(form.getCategoryId());
-			session.setAttribute("quizNum", 10);
-			session.setAttribute("time", 20);
+			status.setTime(20);
+			status.setQuizNum(10);
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
 
 		}
 		//問題数・解答セッションを作成、保存
-		//nowSize修正あり
-		int nowSize = (1 + quizIndex) * 5;
-		List<List<Integer>>answerList = quizService.answerList(form.getQuizNum());
-		System.out.println("解答ラン"+answerList.size());
-		System.out.println(answerList.get(0).size());
-		session.setAttribute("nowSize", nowSize);
-		session.setAttribute("answerList", answerList);
+		List<List<Integer>>userAnswer = quizService.answerList(status.getQuizNum());
+		status.setNowSize((1 + quizIndex) * 5);
+		session.setAttribute("quizStatus", status);
+		session.setAttribute("userAnswer", userAnswer);
 		return "redirect:quiz";
 	}
 
@@ -81,11 +78,11 @@ public class QuizTamayoseController{
 	@RequestMapping(value="/quiz",params="next",method=RequestMethod.POST)
 	public String quizPostNext(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
-		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("answerList");
+		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
 		quizService.answerUpdate(answer,quizIndex,choiceList);
-		session.setAttribute("answerList", answer);
+		session.setAttribute("userAnswer", answer);
 		//次の5問へセッションを更新
 		quizIndex++;
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
@@ -96,12 +93,12 @@ public class QuizTamayoseController{
 		}
 		model.addAttribute("returnDisplay",1);
 		//問題数の更新
-		int quizNum = (int) session.getAttribute("quizNum");
-		int nowSize = (1 + quizIndex) * 5;
-		if(quizNum < nowSize) {
-			nowSize = quizNum;
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
+		status.setNowSize((1 + quizIndex) * 5);
+		if(status.getQuizNum() < status.getNowSize()) {
+			status.setNowSize(status.getQuizNum());
 		}
-		session.setAttribute("nowSize", nowSize);
+		session.setAttribute("quizStatus",status);
 		return "quiz";
 	}
 
@@ -109,11 +106,11 @@ public class QuizTamayoseController{
 	@RequestMapping(value="/quiz",params="return",method=RequestMethod.POST)
 	public String quizPostReturn(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
-		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("answerList");
+		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
 		quizService.answerUpdate(answer,quizIndex,choiceList);
-		session.setAttribute("answerList", answer);
+		session.setAttribute("userAnswer", answer);
 		//前の5問へセッションを更新
 		quizIndex--;
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
@@ -123,8 +120,9 @@ public class QuizTamayoseController{
 			model.addAttribute("returnDisplay",1);
 		}
 		//問題数の更新
-		int nowSize = (1 + quizIndex) * 5;
-		session.setAttribute("nowSize", nowSize);
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
+		status.setNowSize((1 + quizIndex) * 5);
+		session.setAttribute("quizStatus", status);
 		return "quiz";
 	}
 
@@ -133,28 +131,21 @@ public class QuizTamayoseController{
 	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
 	public String quizPostFinish(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
-		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("answerList");
+		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
 		quizService.answerUpdate(answer,quizIndex,choiceList);
-		session.setAttribute("answerList", answer);
-		session.setAttribute("answerList", answer);
+		session.setAttribute("userAnswer", answer);
+		session.setAttribute("userAnswer", answer);
 		//モードをIDに変換
-		String mode = (String) session.getAttribute("mode");
-		int modeId = quizService.selectModeId(mode);
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
+		int modeId = quizService.selectModeId(status.getMode());
 		//カテゴリ名からIDを取得
-		String categoryName = (String) session.getAttribute("categoryName");
-		int categoryId = categoryService.findByCategoryName(categoryName).get(0).getCategoryId();
-		//ユーザーId、日付を取得
-
-		Timestamp startTime = (Timestamp) session.getAttribute("startTime");
+		status.setCategoryId(categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId());
 		//答え合わせ
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		List<Integer>correct = quizService.scoring(quizList,answer);
-
-			System.out.println(correct.size());
-
-
+		List<QuizResult> correctList = new ArrayList<QuizResult>();
+		quizService.setQuiz(correctList,quizList,answer);
 		//モード判断
 		if(modeId == 1) {
 			return "answerDatail";
@@ -165,15 +156,10 @@ public class QuizTamayoseController{
 	@RequestMapping(value="/retired",method=RequestMethod.GET)
 	public String retiredGet(@ModelAttribute("quizConfig")QuizForm form,Model model) {
 		//ログイン情報以外のセッションを破棄
-		session.removeAttribute("mode");
-		session.removeAttribute("time");
 		session.removeAttribute("quizListHarf");
 		session.removeAttribute("quizList");
-		session.removeAttribute("categoryName");
-		session.removeAttribute("answerList");
-		session.removeAttribute("startTime");
-		session.removeAttribute("quizNum");
-		session.removeAttribute("nowSize");
+		session.removeAttribute("userAnswer");
+		session.removeAttribute("quizStatus");
 		return "userHome";
 	}
 }

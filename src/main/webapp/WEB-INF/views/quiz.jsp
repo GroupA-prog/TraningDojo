@@ -19,18 +19,19 @@
 </header>
 
 <form:form action="quiz" modelAttribute="quiz">
-<h1>${mode}:${categoryName}</h1>
+<h1>${quizStatus.mode}:${quizStatus.categoryName}</h1>
 
 <c:forEach items="${quizListHarf}" var="quiz" varStatus="status">
-  <p><c:out value="${quiz.quizStatment}" /></p>
+  <p>${status.count}.<c:out value="${quiz.quizStatment}" /></p>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice1}" value="1"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice2}" value="2"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice3}" value="3"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice4}" value="4"/><br>
+  <form:radiobutton path="choiceId${status.count}" checked="checked" cssStyle="display:none" value="0"/><br>
   </c:forEach>
 
 
-<c:if test="${not empty time}">
+<c:if test="${not empty quizStatus.time}">
   <p>残り時間</p>
   <p>
     <span id="min"></span>分
@@ -42,13 +43,13 @@
   <form:button name= "return">←前へ</form:button>
 </c:if>
 
-<p>${nowSize}/${quizNum}</p>
+<p>${quizStatus.nowSize}/${quizStatus.quizNum}</p>
 
 <c:if test="${empty nextDisplay}">
   <form:button name= "next">次へ→</form:button>
 </c:if>
 
-<div><form:button name="finish">終了</form:button></div>
+<div><form:button name="finish" id="finish">終了</form:button></div>
 
 </form:form>
 <script src="js/quiz.js"></script>

@@ -10,7 +10,6 @@
 <meta http-equiv="Refresh" content="3;URL=login">
 <title>ログアウト画面</title>
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
-<link rel="stylesheet" href="css/common.css" />
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>

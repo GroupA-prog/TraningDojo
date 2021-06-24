@@ -11,6 +11,8 @@ public class EditUserForm {
 	private String reNewPassword;
 	@NotEmpty(message="※ユーザー名を入力してください")
 	private String newUserName;
+	@NotEmpty(message="※現在のパスワードを入力してください")
+	private String nowPassword;
 
 
 	public String getUserLoginId() {
@@ -37,10 +39,18 @@ public class EditUserForm {
 	public void setNewUserName(String newUserName) {
 		this.newUserName = newUserName;
 	}
+
+	public String getNowPassword() {
+		return nowPassword;
+	}
+	public void setNowPassword(String nowPassword) {
+		this.nowPassword = nowPassword;
+	}
 	@Override
 	public String toString() {
 		return "EditUserForm [userLoginId=" + userLoginId + ", newPassword=" + newPassword + ", reNewPassword="
-				+ reNewPassword + ", newUserName=" + newUserName + "]";
+				+ reNewPassword + ", newUserName=" + newUserName + ", nowPassword=" + nowPassword + "]";
 	}
+
 
 }

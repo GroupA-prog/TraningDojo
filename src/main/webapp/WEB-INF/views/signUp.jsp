@@ -9,10 +9,6 @@
 <meta charset="UTF-8">
 <title>新規登録画面</title>
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
-<link rel="stylesheet" href="css/common.css" />
-<script src="https://code.jquery.com/jquery-3.6.0.js"
-	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-	crossorigin="anonymous"></script>
 <body>
 	<c:import url="header.jsp"></c:import>
 	<div id="modal-overlay"></div>
