@@ -108,7 +108,7 @@ public class QuizServiceImpl implements QuizService{
 		for(int i = 0; i < choiceId.size();i++) {
 			try{
 				answer.get(quizIndex).set(i,choiceId.get(i));
-			}catch(ArrayIndexOutOfBoundsException e){
+			}catch(RuntimeException e){
 				break;
 			}
 		}
