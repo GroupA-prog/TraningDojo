@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/quiz/quiz.css">
+
 </head>
 <body>
 <header class="title-continar">
@@ -25,10 +27,17 @@
 
 <c:forEach items="${quizList}" var="quiz" varStatus="status">
   <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
-	<input type="radio" disabled><label>${quiz.choice1}</label>
-	<input type="radio" disabled><label>${quiz.choice2}</label>
-	<input type="radio" disabled><label>${quiz.choice3}</label>
-	<input type="radio" disabled><label>${quiz.choice4}</label>
+  <c:forEach items="${userAnswer}" var="answer">
+	<input type="radio" disabled <c:if test="${answer.userAnswer == 1}">checked</c:if>>
+	<label <c:if test="${answer.correct == 1}">class="correct"</c:if> >${quiz.choice1}</label>
+	<input type="radio" disabled <c:if test="${answer.userAnswer == 2}">checked</c:if>>
+	<label <c:if test="${answer.correct == 2}">class="correct"</c:if> >${quiz.choice2}</label>
+	<input type="radio" disabled <c:if test="${answer.userAnswer == 3}">checked</c:if>>
+	<label <c:if test="${answer.correct == 3}">class="correct"</c:if> >${quiz.choice3}</label>
+	<input type="radio" disabled <c:if test="${answer.userAnswer == 4}">checked</c:if>>
+	<label <c:if test="${answer.correct == 4}">class="correct"</c:if>>${quiz.choice4}</label>
+  </c:forEach>
+  <pre>${quiz.commentary}</pre>
 </c:forEach>
 
 </body>
