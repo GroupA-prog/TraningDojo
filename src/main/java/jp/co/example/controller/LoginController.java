@@ -79,6 +79,7 @@ public class LoginController {
 
 		if (!form.getNewPassword().equals(form.getNewPasswordRe())) {
 			model.addAttribute("isNotMatchPassword", true);
+			model.addAttribute("isNotMatchPasswordMsg","※パスワードが一致しません");
 			return "signUpConfirm";
 		}else {
 			Login user = new Login(
