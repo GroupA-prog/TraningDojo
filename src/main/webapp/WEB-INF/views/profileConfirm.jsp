@@ -14,44 +14,38 @@
 	<c:import url="header.jsp" />
 	<main>
 		<h1>ユーザー情報変更</h1>
-		<c:if test="${ isNotNowPassword }">
-			<p class="error">現在のパスワードが異なります</p>
-		</c:if>
-		<c:if test="${ updateCompleted }">
-			<h3>登録完了しました。</h3>
+		<c:if test="${ isNotMatchPassword }">
+			<p class="error">確認用パスワードが一致しません</p>
 		</c:if>
 		<form:form action="/profile" modelAttribute="editUserInfo">
 			<div>
 				<label>
 					<p>ログインID</p>
-					<form:errors path="userLoginId" cssClass="error"/><br>
-					<form:input path="userLoginId" readOnly="true" />
+					<form:input path="userLoginId" readonly="true" />
 				</label>
 				<br>
 				<label>
 					<p>パスワード</p>
-					<form:errors path="newPassword" cssClass="error" /><br>
-					<form:password path="newPassword" showPassword="true" />
+					<form:password path="newPassword" readonly="true" showPassword="true" />
 				</label>
 				<br>
 				<label>
 					<p>ユーザーネーム</p>
-					<form:errors path="newUserName" cssClass="error" /><br>
-					<form:input path="newUserName" />
+					<form:input path="newUserName" readonly="true"/>
 				</label>
 				<br>
 				<label>
-					<p>パスワード(現在のパスワード)</p>
-					<form:errors path="nowPassword" cssClass="error"/><br>
-					<form:password path="nowPassword" />
+					<p>新規パスワード(再入力)</p>
+					<form:errors path="reNewPassword" cssClass="error"/><br>
+					<form:password path="reNewPassword" />
 				</label>
-				<form:button name="confirm" >変更</form:button>
+				<form:button name="update" >変更</form:button>
 			</div>
 		</form:form>
 
 
 		<p class="clear">
-			<a href="login" class="return"><span class="font">戻る</span></a>
+			<a href="/profile" class="return"><span class="font">戻る</span></a>
 		</p>
 	</main>
 </body>
