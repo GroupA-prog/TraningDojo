@@ -40,6 +40,7 @@ public class QuizTamayoseController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.POST)
 	public String quizPost(@ModelAttribute("quizConfig")QuizForm form,Model model) {
+		quizIndex = 0;
 		//クイズstart時刻取得・保持
 		QuizResult status = new QuizResult();
 		long millis = System.currentTimeMillis();
@@ -76,6 +77,9 @@ public class QuizTamayoseController{
 		//問題数・解答セッションを作成、保存
 		List<List<Integer>>userAnswer = quizService.answerList(status.getQuizNum());
 		status.setNowSize((1 + quizIndex) * 5);
+		if(status.getQuizNum() < status.getNowSize()) {
+			status.setNowSize(status.getQuizNum());
+		}
 		session.setAttribute("quizStatus", status);
 		session.setAttribute("userAnswer", userAnswer);
 		return "redirect:quiz";
@@ -161,6 +165,12 @@ public class QuizTamayoseController{
 		//履歴詳細に登録
 		quizService.insertHistoryDetail(correctList,historyId);
 		session.setAttribute("userAnswer", correctList);
+		//解答詳細用List準備
+		List<Quiz>quizAll = new ArrayList<Quiz>();
+		for(int i = 0;i < quizList.size();i++) {
+			quizAll.addAll(quizList.get(i));
+		}
+		session.setAttribute("quizList", quizAll);
 		//モード判断
 		if(status.getModeId() == 1) {
 			return "answerDetail";
@@ -178,14 +188,5 @@ public class QuizTamayoseController{
 		return "userHome";
 	}
 
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value="/answerDetail")
-	public String answerDetail(Model model) {
-		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		List<Quiz>quizAll = new ArrayList<Quiz>();
-		for(int i = 0;i < quizList.size();i++) {
-			quizAll.addAll(quizList.get(i));
-		}
-		session.setAttribute("quizList", quizAll);
-	}
+
 }
