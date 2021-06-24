@@ -21,7 +21,7 @@
 			<p class="error">※${fn:escapeXml(errDuplicate)}</p>
 		</c:if>
 		<c:if test="${ isNotMatchPassword }">
-			<p><span class="error">${isNotMatchPasswordMsg}</span></p>
+			<p><span class="error">${fn:escapeXml(isNotMatchPasswordMsg)}</span></p>
 		</c:if>
 		<form:form action="/signUpConfirm" modelAttribute="signUp" method="post">
 			<p>
