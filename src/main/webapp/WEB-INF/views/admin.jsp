@@ -131,8 +131,7 @@
 					</c:if>
 					<div>
 						<form:input path="quizId" hidden="true" />
-						<label> カテゴリの選択 <br> <form:select
-								path="editQuizCategoryId">
+						<label> カテゴリの選択 <br> <form:select path="editQuizCategoryId">
 								<form:options items="${ categoryList }" itemLabel="categoryName"
 									itemValue="categoryId" />
 							</form:select>
@@ -202,8 +201,8 @@
 					<div>
 						<label> 親カテゴリの選択 <br> <form:select
 								path="categoryParentCategoryId">
-								<form:options items="${ parentCategoryList }"
-									itemLabel="categoryName" itemValue="categoryId" />
+								<form:option label="選択してください" value="" />
+								<form:options items="${ parentCategoryList }" itemLabel="categoryName" itemValue="categoryId" />
 							</form:select>
 						</label>
 					</div>

@@ -80,7 +80,7 @@ public class TsukayamaController {
 		}
 
 		userInfoService.updateUserInfo(form.getNewPassword(), form.getNewUserName(), loginUserInfo.getUserId());
-		redirect.addAttribute("updateCompleted", true);
+		redirect.addFlashAttribute("updateCompleted", true);
 
 		return "redirect:/profile";
 	}

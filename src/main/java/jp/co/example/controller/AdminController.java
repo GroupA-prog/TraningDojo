@@ -36,6 +36,10 @@ public class AdminController {
 	@RequestMapping(value="/admin")
 	public String adminGet(@ModelAttribute("admin") AdminForm form, Model model) {
 		/*ログインユーザーの情報が歩かないかの判断*/
+		UserInfo userInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (userInfo == null) {
+			return "redirect:/login";
+		}
 
 		List<Category> categoryList 			= categoryService.selectAll();
 		List<Category> parentCategoryList 	= categoryService.selectParentCategory();
