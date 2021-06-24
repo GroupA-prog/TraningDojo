@@ -24,7 +24,7 @@
 <h1>${quizStatus.categoryName}の解答</h1>
 
 <c:forEach items="${quizList}" var="quiz" varStatus="status">
-  <p>${status.count}.<c:out value="${quiz.quizStatment}" /></p><br>
+  <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
 	<input type="radio" disabled><label>${quiz.choice1}</label>
 	<input type="radio" disabled><label>${quiz.choice2}</label>
 	<input type="radio" disabled><label>${quiz.choice3}</label>
