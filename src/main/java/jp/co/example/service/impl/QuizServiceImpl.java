@@ -106,7 +106,11 @@ public class QuizServiceImpl implements QuizService{
 	@Override
 	public void answerUpdate(List<List<Integer>> answer,Integer quizIndex, List<Integer> choiceId){
 		for(int i = 0; i < choiceId.size();i++) {
-			answer.get(quizIndex).set(i,choiceId.get(i));
+			try{
+				answer.get(quizIndex).set(i,choiceId.get(i));
+			}catch(ArrayIndexOutOfBoundsException e){
+				break;
+			}
 		}
 	}
 

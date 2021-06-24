@@ -9,21 +9,31 @@
 <meta charset="UTF-8">
 <title>クイズ画面</title>
 <link rel="stylesheet" href="css/quiz/quiz.css">
+<link rel="stylesheet" href="css/common.css">
 </head>
 <body onload="countdown();">
 
-<header>
-  <h1>研修道場</h1>
-  <nav>
-    <button id="retired" >リタイア</button>
-  </nav>
+<header class="title-continar">
+	<span id="site-title">
+		<c:choose>
+			<c:when test="${ not empty loginUserInfo }"><a href="userHome">研修道場</a></c:when>
+			<c:otherwise><a href="/login">研修道場</a></c:otherwise>
+		</c:choose>
+	</span>
+	<c:if test="${ not empty loginUserInfo }">
+		<nav>
+			<ul>
+				<li><a id="retired">リタイア</a></li>
+			</ul>
+		</nav>
+	</c:if>
 </header>
 
 <form:form action="quiz" modelAttribute="quiz">
 <h1>${quizStatus.mode}:${quizStatus.categoryName}</h1>
 <div class="main">
 <c:forEach items="${quizListHarf}" var="quiz" varStatus="status">
-  <p>${status.count}.<c:out value="${quiz.quizStatment}" /></p><br>
+  <code>${status.count}.<c:out value="${quiz.quizStatment}" /></code><br>
   <div class="select">
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice1}" value="1"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice2}" value="2"/><br>
