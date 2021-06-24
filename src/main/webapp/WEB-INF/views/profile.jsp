@@ -23,25 +23,25 @@
 		<form:form action="/profile" modelAttribute="editUserInfo">
 			<div>
 				<label>
-					<p>ログインID</p>
+					<span>ログインID</span>
 					<form:errors path="userLoginId" cssClass="error"/><br>
 					<form:input path="userLoginId" readOnly="true" />
 				</label>
 				<br>
 				<label>
-					<p>パスワード</p>
+					<span>パスワード</span>
 					<form:errors path="newPassword" cssClass="error" /><br>
 					<form:password path="newPassword" showPassword="true" />
 				</label>
 				<br>
 				<label>
-					<p>ユーザーネーム</p>
+					<span>ユーザーネーム</span>
 					<form:errors path="newUserName" cssClass="error" /><br>
 					<form:input path="newUserName" />
 				</label>
 				<br>
 				<label>
-					<p>パスワード(現在のパスワード)</p>
+					<span>パスワード(現在のパスワード)</span>
 					<form:errors path="nowPassword" cssClass="error"/><br>
 					<form:password path="nowPassword" />
 				</label>
@@ -51,7 +51,7 @@
 
 
 		<p class="clear">
-			<a href="login" class="return"><span class="font">戻る</span></a>
+			<a href="/userHome" class="return"><span class="font">戻る</span></a>
 		</p>
 	</main>
 </body>

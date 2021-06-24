@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+
+/* 問題文・選択肢 */
+.main{
+	margin:0 auto;
+	text-align:center;
+}
+
+.main code{
+	width:50em;
+	background:#c0c0c0;
+
+}
+.main .select{
+	padding-top:2em;
+	width:54em;
+	background:#b0c4de;
+	margin:0 auto;
+}
+
+input,label{
+	cursor:pointer;
+}
+
+
+/* 前へ・〇/〇・次へ */
+.cont button,p{
+	display:inline-block;
+	padding:0 2em;
+}
+.cont {
+	margin:0 auto;
+	text-align:center;
+}
+
+#finish{
+	margin-left: 80%;
+}
+
+.timeLimit{
+	margin-right: 80%;
+}

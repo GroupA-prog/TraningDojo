@@ -16,7 +16,7 @@ btn.addEventListener('click', buttonClick);
 
 
 
-var btn = document.getElementByName('finish');
+var btn = document.getElementById('finish');
 
 btn.addEventListener('click', function() {
 	var result = window.confirm('解答を保存してクイズを終了しますか？');
@@ -26,6 +26,7 @@ btn.addEventListener('click', function() {
 	}
 	else {
 		alert('最後まで頑張って！');
+		return false;
 	}
 })
 
