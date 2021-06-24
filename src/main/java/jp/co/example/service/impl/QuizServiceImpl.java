@@ -141,6 +141,17 @@ public class QuizServiceImpl implements QuizService{
 
 	}
 
+	//履歴登録・履歴Id取得メソッド
+	@Override
+	public int insertHistory(QuizResult quizResult) {
+		return quizDao.insertHistory(quizResult);
+	}
+
+	//履歴詳細登録メソッド
+	public void insertHistoryDetail(List<QuizResult>quizResult,Integer historyId) {
+		quizDao.insertHistoryDetail(quizResult,historyId);
+	}
+
 	public Quiz findByQuizId(Integer quizId) {
 		List<QuizJoinQuizSelect> list = quizDao.findByQuizId(quizId);
 		Quiz quiz = new Quiz();

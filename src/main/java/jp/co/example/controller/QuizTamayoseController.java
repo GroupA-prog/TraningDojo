@@ -137,18 +137,25 @@ public class QuizTamayoseController{
 		quizService.answerUpdate(answer,quizIndex,choiceList);
 		session.setAttribute("userAnswer", answer);
 		session.setAttribute("userAnswer", answer);
-		//モードをIDに変換
-		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
-		int modeId = quizService.selectModeId(status.getMode());
-		//カテゴリ名からIDを取得
-		status.setCategoryId(categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId());
 		//答え合わせ
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
 		List<QuizResult> correctList = new ArrayList<QuizResult>();
 		quizService.setQuiz(correctList,quizList,answer);
+		//モードをIDに変換
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
+		status.setModeId(quizService.selectModeId(status.getMode()));
+		//カテゴリ名からカテゴリIDを取得
+		status.setCategoryId(categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId());
+		//sessionからuserIdを取得
+		status.setUserId(5);
+		System.out.println(correctList.size());
+		//履歴に登録
+		int historyId = quizService.insertHistory(status);
+		//履歴詳細に登録
+		quizService.insertHistoryDetail(correctList,historyId);
 		//モード判断
-		if(modeId == 1) {
-			return "answerDatail";
+		if(status.getModeId() == 1) {
+			return "quizConfig";
 		}
 		return "rankingView";
 	}
