@@ -16,13 +16,31 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<header>
-		<a>研修道場</a>
+	<header class="title-continar">
+		<span id="site-title"> <c:choose>
+				<c:when test="${ not empty loginUserInfo }">
+					<a href="userHome">研修道場</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/login">研修道場</a>
+				</c:otherwise>
+			</c:choose>
+		</span>
+		<c:if test="${ not empty loginUserInfo }">
+			<nav>
+				<ul>
+					<c:if test="${ loginUserInfo.role == 1 }">
+						<li><a href="/admin">管理者</a></li>
+					</c:if>
+					<li><a href="/logout">ログアウト</a></li>
+				</ul>
+			</nav>
+		</c:if>
 	</header>
 
 	<form:form action="/quiz" modelAttribute="quizConfig" method="POST">
 		<h1>モードを選んでください</h1>
-		<br>
+
 		<form:radiobutton class="learning" path="mode" value="1"
 			onclick="changeBtn();" checked="checked" />
 		<label class="learningLabel">学習</label>
@@ -34,23 +52,23 @@
 		<h2>カテゴリを選んでください</h2>
 
 		<div class="category">
-		<form:select path="categoryId" value="categoryName"
-			class="learningNum" id="lea">
-			<form:options items="${categoryAll}" itemLabel="categoryName"
-				itemValue="categoryId" />
-		</form:select>
+			<form:select path="categoryId" value="categoryName"
+				class="learningNum" id="lea">
+				<form:options items="${categoryAll}" itemLabel="categoryName"
+					itemValue="categoryId" />
+			</form:select>
 
 
-		<form:select path="categoryId" class="rankNum" id="ran">
-			<form:options items="${categoryName}" itemLabel="categoryName"
-				itemValue="categoryId" />
-		</form:select>
+			<form:select path="categoryId" class="rankNum" id="ran">
+				<form:options items="${categoryName}" itemLabel="categoryName"
+					itemValue="categoryId" />
+			</form:select>
 		</div>
 
 
-		<br>
+
 		<h3>問題数を選んでください</h3>
-		<br>
+
 		<form:select path="quizNum" class="num" id="num">
 			<form:option value="" label="選んでください"></form:option>
 		</form:select>
