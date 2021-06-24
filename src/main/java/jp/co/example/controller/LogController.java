@@ -16,6 +16,7 @@ import jp.co.example.controller.form.LogForm;
 import jp.co.example.dto.entity.Category;
 import jp.co.example.dto.entity.History;
 import jp.co.example.dto.entity.HistoryDetailDisp;
+import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.IHistoryDetailService;
 import jp.co.example.service.IHistoryService;
@@ -40,7 +41,8 @@ public class LogController {
 		//ユーザーがログインしているか確認
 		//sessionにログイン情報が保存されているか確認
 		/*to do:if文の条件式を変更する*/
-		if (false) {
+		UserInfo loginUserInfo = (UserInfo)session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
 			return "redirect:/login";
 		}
 
@@ -59,8 +61,8 @@ public class LogController {
 	public String logList(@ModelAttribute("logList") LogForm form, Model model) {
 		//ユーザーがログインしているか確認
 		//sessionにログイン情報が保存されているか確認
-		/*to do:if文の条件式を変更する*/
-		if (false) {
+		UserInfo loginUserInfo = (UserInfo)session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
 			return "redirect:/login";
 		}
 
@@ -73,8 +75,7 @@ public class LogController {
 		model.addAttribute("category", categoryList.get(0));
 
 		//表示のためにList<History>を取得
-		List<History> historyList = IHService.findByLoginIdAndCategoryId(1,
-				categoryId); /*to do:←1の部分はsessionに保存されているuserIdに変更する*/
+		List<History> historyList = IHService.findByLoginIdAndCategoryId(loginUserInfo.getUserId(),categoryId); /*to do:←1の部分はsessionに保存されているuserIdに変更する*/
 		//取得した履歴一覧をmodelに格納
 		model.addAttribute("history", historyList);
 
