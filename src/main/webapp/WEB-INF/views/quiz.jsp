@@ -33,7 +33,7 @@
 <h1>${quizStatus.mode}:${quizStatus.categoryName}</h1>
 <div class="main">
 <c:forEach items="${quizListHarf}" var="quiz" varStatus="status">
-  <code>${status.count}.<c:out value="${quiz.quizStatment}" /></code><br>
+  <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
   <div class="select">
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice1}" value="1"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice2}" value="2"/><br>
