@@ -26,7 +26,6 @@ public class RankingController {
 	@Autowired
 	private HttpSession session;
 
-	//UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 
 	@RequestMapping("/rankingCategory")
 	public String rankingCategory(@ModelAttribute("rankingCategoryForm") RankingForm form, Model model) {

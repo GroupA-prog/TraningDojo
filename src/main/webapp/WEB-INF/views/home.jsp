@@ -31,7 +31,7 @@
 	<form action="/ranking" method="GET">
 		<button type="submit" class="btn ranking">ランキング</button>
 	</form>
-	<form action="/history" method="GET">
+	<form action="/logCategory" method="GET">
 		<button type="submit" class="btn history">履歴</button>
 	</form>
 	<form action="/profile" method="GET">
@@ -45,7 +45,6 @@
 				<option value="${categoryName.categoryId}">${categoryName.categoryName}</option>
 			</c:forEach>
 	</select>
-
 	<script src="js/home.js"></script>
 </body>
 </html>
