@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.example.controller.form.RankingForm;
 import jp.co.example.dto.entity.Ranking;
 import jp.co.example.dto.entity.RankingCategory;
-import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.IRankingService;
 
 @Controller
@@ -26,7 +25,7 @@ public class RankingController {
 	@Autowired
 	private HttpSession session;
 
-	UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+	//UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 
 	@RequestMapping("/rankingCategory")
 	public String rankingCategory(@ModelAttribute("rankingCategoryForm") RankingForm form, Model model) {

@@ -59,7 +59,7 @@
 			</form:select>
 
 
-			<form:select path="categoryId" class="rankNum" id="ran">
+			<form:select path="rankCategoryId" class="rankNum" id="ran">
 				<form:options items="${categoryName}" itemLabel="categoryName"
 					itemValue="categoryId" />
 			</form:select>
@@ -71,7 +71,7 @@
 
 		<form:select path="quizNum" class="num" id="num">
 			<form:option value="" label="選んでください"></form:option>
-		</form:select>
+		</form:select>${msg}
 
 		<form:button class="btn quiz">START</form:button>
 	</form:form>
