@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jdk.internal.org.jline.reader.History;
 import jp.co.example.controller.form.LogForm;
 import jp.co.example.dto.entity.Category;
+import jp.co.example.dto.entity.History;
 import jp.co.example.dto.entity.HistoryDetailDisp;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.IHistoryDetailService;
