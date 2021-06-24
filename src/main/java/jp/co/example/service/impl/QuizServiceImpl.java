@@ -91,6 +91,16 @@ public class QuizServiceImpl implements QuizService{
 		return answerList;
 	}
 
+	//choiceList更新メソッド
+	@Override
+	public void choiceUpdate(List<Integer> choiceList, Integer choice1,Integer choice2,Integer choice3,Integer choice4,Integer choice5) {
+		choiceList.add(choice1);
+		choiceList.add(choice2);
+		choiceList.add(choice3);
+		choiceList.add(choice4);
+		choiceList.add(choice5);
+	}
+
 	//answerList更新メソッド
 	@Override
 	public void answerUpdate(List<List<Integer>> answer,Integer quizIndex, List<Integer> choiceId){

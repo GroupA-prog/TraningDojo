@@ -9,17 +9,20 @@
 <meta charset="UTF-8">
 <title>ホーム画面</title>
 <link rel="stylesheet" href="css/common.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 </head>
 <body>
+	<c:import url="header.jsp"></c:import>
 	<header>
-		<a>研修道場</a>
 		<form action="/admin" method="GET">
 			<button type="submit" class="btn admin">管理者</button>
 		</form>
 		<form action="/logout" method="GET">
-			<button  type="submit" class="btn warning">ログアウト</button>
+			<button type="submit" class="btn warning">ログアウト</button>
 		</form>
 	</header>
+	<p>${loginUserInfo.userName}さんのホーム</p>
 
 
 	<form action="/quiz" method="GET">
@@ -34,5 +37,15 @@
 	<form action="/profile" method="GET">
 		<button type="submit" class="btn profile">プロフィール</button>
 	</form>
+
+	<span id="radar"></span>
+	<select name="radarCategory" id="radarCategory">
+		<option Label="選択してください">
+			<c:forEach var="categoryName" items="${parentCategory}">
+				<option value="${categoryName.categoryId}">${categoryName.categoryName}</option>
+			</c:forEach>
+	</select>
+
+	<script src="js/home.js"></script>
 </body>
 </html>

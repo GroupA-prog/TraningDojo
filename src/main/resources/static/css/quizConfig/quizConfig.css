@@ -33,25 +33,42 @@
 h1 {
 	position: absolute;
 	top: 200px;
+	left: 20px;
+	font-size:40px;
 }
 
 .learning {
 	position: absolute;
-	top: 200px;
-	left: 500px;
+	top: 310px;
+	left: 20px;
 }
 .learningLabel{
 	position: absolute;
-	top: 200px;
-	left: 530px;
+	top: 300px;
+	left: 50px;
+	font-size:30px;
 }
 .rank{
 	position: absolute;
-	top: 200px;
-	left: 700px;
+	top: 310px;
+	left: 220px;
 }
 .rankLabel{
 	position: absolute;
-	top: 200px;
-	left: 730px;
+	top: 300px;
+	left: 250px;
+	font-size:30px;
+}
+
+h2{
+	position: absolute;
+	top: 350px;
+	left: 20px;
+	font-size:40px;
+}
+
+.category{
+	position: absolute;
+	top: 450px;
+	left: 20px;
 }

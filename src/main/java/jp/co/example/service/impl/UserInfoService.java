@@ -34,4 +34,14 @@ public class UserInfoService implements IUserInfoService {
 		return userInfoDao.updateRole(loginId, role);
 	}
 
+	@Override
+	public int  updateUserInfo(String password, String userName, Integer userId) {
+		return userInfoDao.updateUserInfo(password, userName, userId);
+	}
+
+	@Override
+	public UserInfo findByUserANDPass(String loginId, String pass) {
+		return userInfoDao.findByUserANDPass(loginId, pass);
+	}
+
 }

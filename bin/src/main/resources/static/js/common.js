@@ -34,7 +34,6 @@ function AsyncCommunication(url, requestObj, func) {
 	.then( res => {
 				console.log(res);
 				return res.json().then( data => {
-					console.log(data);
 					func(data);
 				});
 	})

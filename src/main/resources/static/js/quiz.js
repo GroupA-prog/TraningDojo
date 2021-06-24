@@ -1,4 +1,34 @@
-//制限時間
+
+
+function buttonClick() {
+	var result = window.confirm('本当に諦めるんですか？');
+	console.log(result);
+	if(result) {
+		window.location.href = 'retired';
+	}
+	else {
+		alert('最後まで頑張って！');
+	}
+}
+var btn = document.getElementById('retired');
+
+btn.addEventListener('click', buttonClick);
+
+
+
+var btn = document.getElementByName('finish');
+
+btn.addEventListener('click', function() {
+	var result = window.confirm('解答を保存してクイズを終了しますか？');
+
+	if(result) {
+		window.location.href = 'quiz';
+	}
+	else {
+		alert('最後まで頑張って！');
+	}
+})
+
 function countdown(){
 var time = window.sessionStorage.getItem(['time']);
 const now = new Date();
@@ -13,31 +43,3 @@ document.getElementById("sec").textContent=String(sec).padStart(2,"0");
 setTimeout(countdown,1000);
 }
 countdown();
-
-//リタイア
-var btn = document.getElementByName('retired');
-
-btn.addEventListener('click', function() {
-	var result = window.confirm('本当に諦めるんですか？');
-
-	if(result) {
-		window.location.href = 'retired';
-	}
-	else {
-		alert('最後まで頑張って！');
-	}
-})
-
-//終了
-var btn = document.getElementByName('finish');
-
-btn.addEventListener('click', function() {
-	var result = window.confirm('解答を保存してクイズを終了しますか？');
-
-	if(result) {
-		window.location.href = 'quiz';
-	}
-	else {
-		alert('最後まで頑張って！');
-	}
-})
