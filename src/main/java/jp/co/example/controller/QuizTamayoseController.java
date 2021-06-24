@@ -188,7 +188,7 @@ public class QuizTamayoseController{
 		session.removeAttribute("quizList");
 		session.removeAttribute("userAnswer");
 		session.removeAttribute("quizStatus");
-		return "userHome";
+		return "home";
 	}
 
 
