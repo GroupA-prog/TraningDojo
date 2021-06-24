@@ -20,22 +20,22 @@
 		<form:form action="/profile" modelAttribute="editUserInfo">
 			<div>
 				<label>
-					<p>ログインID</p>
+					<span>ログインID</span>
 					<form:input path="userLoginId" readonly="true" />
 				</label>
 				<br>
 				<label>
-					<p>パスワード</p>
+					<span>パスワード</span>
 					<form:password path="newPassword" readonly="true" showPassword="true" />
 				</label>
 				<br>
 				<label>
-					<p>ユーザーネーム</p>
+					<span>ユーザーネーム</span>
 					<form:input path="newUserName" readonly="true"/>
 				</label>
 				<br>
 				<label>
-					<p>新規パスワード(再入力)</p>
+					<span>新規パスワード(再入力)</span>
 					<form:errors path="reNewPassword" cssClass="error"/><br>
 					<form:password path="reNewPassword" />
 				</label>
