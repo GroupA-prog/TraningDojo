@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jp.co.example.dao.QuizDao;
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.dto.entity.QuizJoinQuizSelect;
+import jp.co.example.dto.entity.QuizResult;
 import jp.co.example.dto.entity.QuizSelect;
 import jp.co.example.service.QuizService;
 
@@ -109,24 +110,35 @@ public class QuizServiceImpl implements QuizService{
 		}
 	}
 
-	//答え合わせメソッド
+
+	//履歴用entity作成
 	@Override
-	public List<Integer> scoring(List<List<Quiz>> quizList,List<List<Integer>> answerList){
-		List<Integer> correct = new ArrayList<Integer>();
-		for(List<Quiz> quiz: quizList) {
+	public void setQuiz(List<QuizResult>correctList,List<List<Quiz>> quizList,List<List<Integer>>answerList) {
+
+		for(List<Quiz> quiz:quizList) {
 			for(Quiz q: quiz) {
-				for(List<Integer> answer: answerList) {
-					for(Integer a: answer) {
-						if(a == q.getCorrectAnswer()) {
-							correct.add(1);
-						}else {
-							correct.add(0);
-						}
-					}
-				}
+				QuizResult quizResult = new QuizResult();
+				quizResult.setQuizId(q.getQuizId());
+				quizResult.setCorrectAnswer(q.getCorrectAnswer());
+				correctList.add(quizResult);
 			}
 		}
-		return correct;
+		int i = 0;
+		for(List<Integer>answer:answerList) {
+			for(Integer a: answer) {
+				correctList.get(i).setUserAnswer(a);
+				i++;
+			}
+
+		}
+		for(QuizResult q: correctList) {
+			if(q.getCorrectAnswer() == q.getUserAnswer()) {
+				q.setCorrect(1);
+			}else {
+				q.setCorrect(0);
+			}
+		}
+
 	}
 
 	public Quiz findByQuizId(Integer quizId) {
