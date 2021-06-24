@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>クイズ画面</title>
+<link rel="stylesheet" href="css/quiz/quiz.css">
 </head>
 <body onload="countdown();">
 
@@ -20,36 +21,42 @@
 
 <form:form action="quiz" modelAttribute="quiz">
 <h1>${quizStatus.mode}:${quizStatus.categoryName}</h1>
-
+<div class="main">
 <c:forEach items="${quizListHarf}" var="quiz" varStatus="status">
-  <p>${status.count}.<c:out value="${quiz.quizStatment}" /></p>
+  <p>${status.count}.<c:out value="${quiz.quizStatment}" /></p><br>
+  <div class="select">
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice1}" value="1"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice2}" value="2"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice3}" value="3"/><br>
   <form:radiobutton path="choiceId${status.count}" label="${quiz.choice4}" value="4"/><br>
   <form:radiobutton path="choiceId${status.count}" checked="checked" cssStyle="display:none" value="0"/><br>
-  </c:forEach>
+  </div>
+</c:forEach>
+</div>
 
+<div class="timeLimit">
+  <c:if test="${not empty quizStatus.time}">
+    <p>残り時間</p>
+    <p>
+      <span id="min"></span>分
+      <span id="sec"></span>秒
+    </p>
+  </c:if>
+</div>
 
-<c:if test="${not empty quizStatus.time}">
-  <p>残り時間</p>
-  <p>
-    <span id="min"></span>分
-    <span id="sec"></span>秒
-  </p>
-</c:if>
+<div class="cont">
+  <c:if test="${not empty returnDisplay}">
+    <form:button name= "return">←前へ</form:button>
+  </c:if>
 
-<c:if test="${not empty returnDisplay}">
-  <form:button name= "return">←前へ</form:button>
-</c:if>
+  <p>${quizStatus.nowSize}/${quizStatus.quizNum}</p>
 
-<p>${quizStatus.nowSize}/${quizStatus.quizNum}</p>
+  <c:if test="${empty nextDisplay}">
+    <form:button name= "next">次へ→</form:button>
+  </c:if>
+</div>
 
-<c:if test="${empty nextDisplay}">
-  <form:button name= "next">次へ→</form:button>
-</c:if>
-
-<div><form:button name="finish" id="finish">終了</form:button></div>
+<form:button name="finish" id="finish">終了</form:button>
 
 </form:form>
 <script src="js/quiz.js"></script>

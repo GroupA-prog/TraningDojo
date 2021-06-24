@@ -15,8 +15,29 @@ public class QuizResult {
 	private String categoryName;
 	private Timestamp startTime;
 	private Integer categoryId;
+	private Integer modeId;
+	private Integer userId;
+	private Integer historyId;
 
 
+	public Integer getHistoryId() {
+		return historyId;
+	}
+	public void setHistoryId(Integer historyId) {
+		this.historyId = historyId;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getModeId() {
+		return modeId;
+	}
+	public void setModeId(Integer modeId) {
+		this.modeId = modeId;
+	}
 	public Integer getCategoryId() {
 		return categoryId;
 	}
