@@ -87,7 +87,7 @@ public class QuizDaoImpl implements QuizDao{
 	@Override
 	public List<Quiz> findByRankCategory(Integer categoryId){
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("categoryId", categoryId);
+		param.addValue("category_id", categoryId);
 
 		return jdbcTemplate.query(SELECT_BY_RANK_QUIZ, param,
 				new BeanPropertyRowMapper<Quiz>(Quiz.class));
