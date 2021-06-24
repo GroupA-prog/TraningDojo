@@ -41,3 +41,7 @@ input,label{
 .timeLimit{
 	margin-right: 80%;
 }
+
+.correct{
+	color:red;
+}

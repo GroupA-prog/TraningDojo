@@ -173,6 +173,9 @@ public class QuizTamayoseController{
 		for(int i = 0;i < quizList.size();i++) {
 			quizAll.addAll(quizList.get(i));
 		}
+		for(int i = 0; i < quizAll.size(); i++) {
+			quizAll.get(i).setUserAnswer(correctList.get(i).getUserAnswer());
+		}
 		session.setAttribute("quizList", quizAll);
 		//モード判断
 		if(status.getModeId() == 1) {
