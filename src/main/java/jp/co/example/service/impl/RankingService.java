@@ -43,4 +43,9 @@ public class RankingService implements IRankingService {
 		return rankingDao.rankingUserNum(categoryId);
 	}
 
+	@Override
+	public int searchRankTen(ArrayList<Ranking> rankingList) {
+		return rankingDao.searchRankTen(rankingList);
+	}
+
 }

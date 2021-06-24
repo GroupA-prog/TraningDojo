@@ -7,42 +7,64 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/ranking/ranking.css">
 <title>ランキング</title>
 </head>
 <body>
-<h2><c:out value="${category.categoryName}"></c:out>のランキング</h2>
-<div>
-	<h2>${fn:escapeXml(myRankingData.score)}%</h2>
-	<h2><span>${fn:escapeXml(myRankingData.rank)}</span>／${fn:escapeXml(rankingUserNum)}</h2>
-	<table>
-    <caption>ランキング</caption>
-    <thead>
-      <tr>
-        <th>順位</th>
-        <th>ユーザーネーム</th>
-        <th>正答率</th>
-      </tr>
-    </thead>
-    <tbody>
-      <c:forEach items="${rankingList}" var="ranking">
-        <tr>
-          <td>${fn:escapeXml(ranking.rank)}</td>
-          <td>${fn:escapeXml(ranking.userName)}</td>
-          <td>${fn:escapeXml(ranking.score)}%</td>
-        </tr>
-      </c:forEach>
-    </tbody>
+<c:import url="header.jsp"></c:import>
+<main>
+	<h2><span class="rankingCategoryName">${category.categoryName}</span> のランキング</h2>
 
-    <!-- ↓↓さきちゃんに解答詳細ページのファイル名を聞く↓↓ -->
+	<div id="ranking">
+		<c:choose>
+			<c:when test="${empty rankingList}">
+				<h2>ランキングデータがありません</h2>
+			</c:when>
+			<c:otherwise>
 
-    <c:if test="${not empty session.answerList}">
-			<a href="log_detail">解答の詳細を見る</a>
-    </c:if>
-  </table>
-</div>
-<!-- <c:if test="${empty session.answerList}">
-	<a href="rankingCategory">戻る</a>
-</c:if> -->
-<a href="rankingCategory">戻る</a>
+					<c:choose>
+						<c:when test="${empty myRankingData}">
+							<h2>あなたの記録はまだありません</h2>
+							<h2>挑戦してみましょう</h2>
+						</c:when>
+						<c:otherwise>
+							<h2>あなたの記録</h2>
+							<h1>${fn:escapeXml(myRankingData.score)}%</h1>
+							<h1><span id="myrank">${fn:escapeXml(myRankingData.rank)}</span>位 ／ ${fn:escapeXml(rankingUserNum)}位</h1>
+						</c:otherwise>
+					</c:choose>
+
+					<table>
+						<thead>
+							<tr>
+								<th>順位</th>
+								<th>ユーザーネーム</th>
+								<th>正答率</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${rankingList}" var="ranking" begin="0"	end="${rankViewNum}" step="1">
+								<tr>
+									<td>${fn:escapeXml(ranking.rank)}</td>
+									<td>${fn:escapeXml(ranking.userName)}</td>
+									<td>${fn:escapeXml(ranking.score)}%</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<c:if test="${not empty session.answerList}">
+						<a href="log_detail">解答の詳細を見る</a>
+					</c:if>
+			</c:otherwise>
+		</c:choose>
+	</div>
+
+	<c:if test="${empty session.answerList}">
+		<a href="rankingCategory" class="btn back">戻る</a>
+	</c:if>
+
+</main>
 </body>
 </html>

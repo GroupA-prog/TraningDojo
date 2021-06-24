@@ -17,4 +17,6 @@ public interface IRankingDao {
 
 	public int rankingUserNum(Integer categoryId);
 
+	public int searchRankTen(ArrayList<Ranking> rankingList);
+
 }
