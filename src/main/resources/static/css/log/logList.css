@@ -1,7 +1,5 @@
 @charset "UTF-8";
-.left {
-	padding-left: 1em;
-}
+
 table {
 	border-collapse: collapse;
 	border: solid 2px #152033 ; /*表全体を線で囲う*/
@@ -19,6 +17,9 @@ table tr:hover {
 	color: #ffffff;
 }
 
+tr {
+	background-color: #ffffff;
+}
 tr:nth-child(2n + 1){
 	background-color: #8eafed;
 }

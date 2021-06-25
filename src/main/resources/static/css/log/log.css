@@ -9,3 +9,7 @@ a {
 	font-size: 20px;
 	color: red;
 }
+
+.left {
+	padding-left: 1em;
+}
