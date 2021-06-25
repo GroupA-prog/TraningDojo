@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.link {
+	position: relative;
+	padding: 0.1em 0.3em;
+	display: inline-block;
+	transition: .3s;
+	color: #152033;
+}
+
+.link::before,
+.link::after {
+	position: absolute;
+	content: '';
+	width: 0;
+	height: 1px;
+	background-color: #152033;
+	transition: .3s;
+}
+
+.link::before {
+	top: 0;
+	left: 0;
+}
+
+.link::after {
+	bottom: 0;
+	right: 0;
+}
+
+.link:hover::before,
+.link:hover::after {
+	width: 100%;
+}
