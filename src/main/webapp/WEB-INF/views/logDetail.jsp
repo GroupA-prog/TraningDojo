@@ -27,7 +27,7 @@
 		</c:forEach>
 		<form:form action="logList" modelAttribute="logDetail">
 			<c:forEach var="list" items="${dispQuiz}">
-				<p id="${list.rowNumber}">Q${list.rowNumber}.${list.quizStatment}</p>
+				<pre><p id="${list.rowNumber}">Q${list.rowNumber}.${list.quizStatment}</p></pre>
 				<form:input type="hidden" path="historyDetailId"
 					value="${list.historyDetailId}"></form:input>
 				<div class="select">
