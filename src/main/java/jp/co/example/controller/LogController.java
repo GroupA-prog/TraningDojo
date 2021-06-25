@@ -86,8 +86,6 @@ public class LogController {
 		for (int i = 0; i < historyList.size(); i++) {
 			Timestamp updateTime = IHDService.findUpdateTimeByHistoryId(historyList.get(i).getHistoryId());
 
-			System.out.println(i + "番目の更新時間：" + updateTime);
-
 			updateTimeList.add(updateTime);
 		}
 		model.addAttribute("updateTimeList", updateTimeList);
@@ -127,7 +125,6 @@ public class LogController {
 		session.setAttribute("dispQuiz", dispQuiz);
 
 		for (int i = 0; i < dispQuiz.size(); i++) {
-			System.out.println(dispQuiz.get(i).getComment());
 			if (dispQuiz.get(i).getComment() == null || dispQuiz.get(i).getComment().equals("")) {
 				dispQuiz.get(i).setComment("コメントはまだありません。");
 			}
