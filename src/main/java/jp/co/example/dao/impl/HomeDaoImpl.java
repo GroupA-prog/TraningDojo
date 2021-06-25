@@ -36,7 +36,7 @@ public class HomeDaoImpl implements HomeDao {
 		param.addValue("user_id",user.getUserId());
 		param.addValue("select_category_id",categoryId);
 
-		return jdbcTemplate.query(answer_late_list, new BeanPropertyRowMapper<Home>(Home.class));
+		return jdbcTemplate.query(answer_late_list,param, new BeanPropertyRowMapper<Home>(Home.class));
 	}
 
 

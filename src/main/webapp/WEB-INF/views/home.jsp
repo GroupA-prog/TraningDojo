@@ -68,7 +68,9 @@
 			</c:forEach>
 	</select>
 	<div class="wrapper">
-		<span id="radar" class="radar">レーダーチャートを表示</span>
+		<span id="radar" class="radar">
+
+		</span>
 	</div>
 
 

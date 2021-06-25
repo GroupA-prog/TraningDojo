@@ -20,7 +20,9 @@ function changeCategory() {
 			console.log(res);
 			res.json().then(function(data) {
 				console.log(data);
-				num
+				num = data.length;
+
+
 
 				//レーダーチャートの個数決定
 				var chartNum;
@@ -36,11 +38,11 @@ function changeCategory() {
 
 
 					//レーダーチャートごとの項目数
-					if (categoryNum % chartNum == 0) {
-						itemNum = categoryNum / chartNum;
+					if (num % chartNum == 0) {
+						itemNum = num / chartNum;
 					} else {
-						var rem = categoryNum % chartNum;
-						itemNum = categoryNum / chartNum;
+						var rem = num % chartNum;
+						itemNum = num / chartNum;
 
 						var k = 1;
 						if (k <= rem) {
@@ -48,9 +50,17 @@ function changeCategory() {
 						}
 					}
 
+					radarCharts = 'radarChart'+i;
 
-					var ctx = document.getElementById("radarChart");
-					var radarChart = new chart(ctx, {
+					//jsp側のタグの作成
+					var radar = document.getElementById("radar");
+					var chart = document.createElement('canvas');
+					chart.setAttribute('id', radarCharts);
+					radar.appendChild(chart);
+
+
+					var ctx = document.getElementById(radarCharts);
+					var radarCharts = new chart(ctx, {
 
 						//グラフの種類
 						type: 'radar',
@@ -59,13 +69,13 @@ function changeCategory() {
 						data: {
 
 							//データ項目のラベル
-							labels: [],
+							labels: ['あ','い','う'],
 
 							//データセット
 							datasets: [
 								{
 									//グラフのデータ
-									data: [5, 6, 5, 6, 7]
+									data: [5, 6, 5]
 
 								}
 							]
@@ -88,11 +98,7 @@ function changeCategory() {
 						}
 					});
 
-					//jsp側のタグの作成
-					var radar = document.getElementById("radar");
-					var chart = document.createElement("canvas");
-					canvas.setAttribute('id', radarChart);
-					radar.appendChild(chart);
+
 
 					i++;
 				}
