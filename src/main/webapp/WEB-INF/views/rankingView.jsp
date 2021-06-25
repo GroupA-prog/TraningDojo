@@ -53,7 +53,7 @@
 								<c:forEach items="${rankingList}" var="ranking" begin="0" end="${rankViewNum}" step="1" >
 									<tr>
 										<c:choose>
-											<c:when test="${ranking.userId == 2}">
+											<c:when test="${ranking.userId == session.loginUserInfo.getUserId()}">
 												<td class="myData">${fn:escapeXml(ranking.rank)}</td>
 												<td class="myData">${fn:escapeXml(ranking.userName)}</td>
 												<td class="myData">${fn:escapeXml(ranking.score)}%</td>

@@ -195,6 +195,7 @@ public class RankingDao implements IRankingDao {
 	}
 
 	// 最後のrank=10の最後の添え字が何なのかを調べる
+	@Override
 	public int searchRankTen(ArrayList<Ranking> rankingList) {
 		int rank10 = -1;
 		for(int i=0; i<rankingList.size(); i++) {
