@@ -4,6 +4,7 @@ public class Home {
 
 	private Integer categoryId;
 
+
 	public Integer getCategoryId() {
 		return categoryId;
 	}
@@ -11,5 +12,9 @@ public class Home {
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
+
+
+
+
 
 }

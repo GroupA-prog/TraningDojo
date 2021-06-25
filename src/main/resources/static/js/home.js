@@ -20,6 +20,7 @@ function changeCategory() {
 			console.log(res);
 			res.json().then(function(data) {
 				console.log(data);
+
 			});
 
 		});
@@ -68,7 +69,7 @@ function changeCategory() {
 				datasets: [
 					{
 						//グラフのデータ
-						data: []
+						data: [5,6,5,6,7]
 
 					}
 				]
@@ -100,3 +101,6 @@ function changeCategory() {
 		i++;
 	}
 }
+
+let rc = document.querySelector("#radarCategory");
+rc.addEventListener('change', changeCategory);

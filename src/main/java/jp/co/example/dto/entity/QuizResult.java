@@ -18,8 +18,15 @@ public class QuizResult {
 	private Integer modeId;
 	private Integer userId;
 	private Integer historyId;
+	private Integer quizIndex;
 
 
+	public Integer getQuizIndex() {
+		return quizIndex;
+	}
+	public void setQuizIndex(Integer quizIndex) {
+		this.quizIndex = quizIndex;
+	}
 	public Integer getHistoryId() {
 		return historyId;
 	}

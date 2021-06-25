@@ -45,7 +45,7 @@ public class LoginController {
 			return "login";
 		} else {
 			session.setAttribute("loginUserInfo", user);
-			return "home";
+			return "redirect:/userHome";
 		}
 	}
 
