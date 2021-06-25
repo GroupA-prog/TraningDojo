@@ -20,20 +20,30 @@
 	<form:form action="log" modelAttribute="logDetail" method="get">
 		<h3>${category.categoryName}</h3>
 
-		<c:forEach var="history" items="${history}" varStatus="count">
+		<c:forEach var="history" items="${history}" varStatus="status">
 
 			<label> <a href="/logDetail?historyId=${history.historyId}">
 					${history.rowNumber}回目 </a>
 			</label>
 			<label> ${history.historyDate}</label>
 			<c:choose>
-				<c:when test="${history.mode} == 1"><label>　学習モード</label></c:when>
-				<c:otherwise><label>　ランキングモード</label></c:otherwise>
+				<c:when test="${history.mode} == 1">
+					<label> 学習モード</label>
+				</c:when>
+				<c:otherwise>
+					<label> ランキングモード</label>
+				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${not empty updateNull}"><label>　${updateNull}</label></c:when>
-				<c:otherwise><label>　${updateTime}</label></c:otherwise>
+				<c:when test="${empty updateTimeList[status.index]}">
+					<label>コメントは更新されていません</label>
+				</c:when>
+
+				<c:otherwise>
+					<label>${updateTimeList[status.index]}</label>
+				</c:otherwise>
 			</c:choose>
+
 			<br>
 			<br>
 		</c:forEach>
