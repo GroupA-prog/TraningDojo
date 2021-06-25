@@ -111,6 +111,7 @@ public class QuizController{
 		if(status.getQuizNum() < status.getNowSize()) {
 			status.setNowSize(status.getQuizNum());
 		}
+		status.setQuizIndex(quizIndex);
 		session.setAttribute("quizStatus", status);
 		session.setAttribute("userAnswer", userAnswer);
 		return "redirect:quiz";
@@ -125,9 +126,13 @@ public class QuizController{
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
 		quizService.answerUpdate(answer,quizIndex,choiceList);
 		session.setAttribute("userAnswer", answer);
+		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
+		for(int i = 0; i < quizList.get(quizIndex).size(); i++) {
+			quizList.get(quizIndex).get(i).setUserAnswer(answer.get(quizIndex).get(i));
+		}
 		//次の5問へセッションを更新
 		quizIndex++;
-		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
+
 		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
 		//次へ・前へボタン表示判断
 		if(quizIndex == (quizList.size() - 1)) {
@@ -140,6 +145,7 @@ public class QuizController{
 		if(status.getQuizNum() < status.getNowSize()) {
 			status.setNowSize(status.getQuizNum());
 		}
+		status.setQuizIndex(quizIndex);
 		session.setAttribute("quizStatus",status);
 		return "quiz";
 	}
@@ -153,9 +159,13 @@ public class QuizController{
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
 		quizService.answerUpdate(answer,quizIndex,choiceList);
 		session.setAttribute("userAnswer", answer);
+		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
+		for(int i = 0; i < quizList.get(quizIndex).size(); i++) {
+			quizList.get(quizIndex).get(i).setUserAnswer(answer.get(quizIndex).get(i));
+		}
 		//前の5問へセッションを更新
 		quizIndex--;
-		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
+
 		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
 		//戻るボタン表示判断
 		if(quizIndex != 0) {
@@ -164,6 +174,7 @@ public class QuizController{
 		//問題数の更新
 		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
 		status.setNowSize((1 + quizIndex) * 5);
+		status.setQuizIndex(quizIndex);
 		session.setAttribute("quizStatus", status);
 		return "quiz";
 	}
