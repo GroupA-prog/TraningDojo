@@ -41,61 +41,7 @@
     border-radius: 20px;
 }
 
-.btn.quiz {
-    width: 100%;
-    max-width: 120px;
-    padding: 15px 10px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #ed576c;
-    border: #ed576c;
-    border-bottom: 4px solid #b44252;
-    border-radius: 20px;
-}
 
-.btn.ranking {
-    width: 100%;
-    max-width: 120px;
-    padding: 15px 10px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #eb45eb;
-    border: #eb45eb;
-    border-bottom: 4px solid #b635b6;
-    border-radius: 20px;
-}
-
-.btn.history {
-    width: 100%;
-    max-width: 120px;
-    padding: 15px 10px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #577aed;
-    border: #577aed;
-    border-bottom: 4px solid rgb(65, 82, 179);
-    border-radius: 20px;
-}
-
-.btn.profile {
-    width: 100%;
-    max-width: 120px;
-    padding: 15px 10px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #39e439;
-    border: #39e439;
-    border-bottom: 4px solid rgb(27, 187, 61);
-    border-radius: 20px;
-}
 
 .btn.before-after {
     color: #000;

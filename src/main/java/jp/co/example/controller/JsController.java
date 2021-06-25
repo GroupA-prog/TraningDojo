@@ -1,5 +1,6 @@
 package jp.co.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.example.controller.form.QuizForm;
 import jp.co.example.dto.entity.Home;
+import jp.co.example.service.HomeService;
 import jp.co.example.service.QuizConfigService;
 
 @RestController
@@ -17,6 +19,8 @@ public class JsController {
 
 	@Autowired
 	private QuizConfigService quizConfigService;
+	@Autowired
+	private HomeService homeService;
 
 	@RequestMapping(path = "/numJs", method = RequestMethod.POST)
 	public int numJs(@RequestBody QuizForm form) {
@@ -26,9 +30,10 @@ public class JsController {
 	}
 
 	@RequestMapping(path = "/categoryJs", method = RequestMethod.POST)
-	public List<Home> categoryJs() {
-		
-
-		return ;
+	public List<Home> categoryJs(@RequestBody QuizForm form) {
+		List<Home> radarList = homeService.answerLateList(form.getCategoryId());
+		List<Home> list = new ArrayList<>();
+		list.addAll(radarList);
+		return list;
 	}
 }
