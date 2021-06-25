@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/ranking/ranking.css">
 <title>ランキング</title>
 </head>
@@ -65,10 +64,10 @@
 				</c:otherwise>
 			</c:choose>
 
-			<c:if test="${not empty session.answerList}">
-				<div class="answerBtn btn"><a href="log_detail"><span class="answerLink">解答の詳細を見る</span></a></div>
-			</c:if>
+			<!-- <c:if test="${not empty session.answerList}"> -->
 
+			<!-- </c:if> -->
+			<div class="answerBtn btn"><a href="log_detail"><span class="answerLink">解答の詳細を見る</span></a></div>
 
 		</div>
 
