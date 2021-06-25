@@ -1,6 +1,7 @@
 package jp.co.example.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -41,7 +42,7 @@ public class LogController {
 		//ユーザーがログインしているか確認
 		//sessionにログイン情報が保存されているか確認
 		/*to do:if文の条件式を変更する*/
-		UserInfo loginUserInfo = (UserInfo)session.getAttribute("loginUserInfo");
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if (loginUserInfo == null) {
 			return "redirect:/login";
 		}
@@ -61,7 +62,7 @@ public class LogController {
 	public String logList(@ModelAttribute("logList") LogForm form, Model model) {
 		//ユーザーがログインしているか確認
 		//sessionにログイン情報が保存されているか確認
-		UserInfo loginUserInfo = (UserInfo)session.getAttribute("loginUserInfo");
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if (loginUserInfo == null) {
 			return "redirect:/login";
 		}
@@ -75,24 +76,24 @@ public class LogController {
 		model.addAttribute("category", categoryList.get(0));
 
 		//表示のためにList<History>を取得
-		List<History> historyList = IHService.findByLoginIdAndCategoryId(loginUserInfo.getUserId(),categoryId); /*to do:←1の部分はsessionに保存されているuserIdに変更する*/
+		List<History> historyList = IHService.findByLoginIdAndCategoryId(loginUserInfo.getUserId(),
+				categoryId); /*to do:←1の部分はsessionに保存されているuserIdに変更する*/
 		//取得した履歴一覧をmodelに格納
 		model.addAttribute("history", historyList);
+
+		List<Timestamp> updateTimeList = new ArrayList<>();
 
 		for (int i = 0; i < historyList.size(); i++) {
 			Timestamp updateTime = IHDService.findUpdateTimeByHistoryId(historyList.get(i).getHistoryId());
 
-			System.out.println(i + "番目の更新時間" + updateTime);
+			System.out.println(i + "番目の更新時間：" + updateTime);
 
-			if(updateTime == null || updateTime.equals("")) {
-				model.addAttribute("updateNull", "まだコメントはありません");
-			}
-			model.addAttribute("updateTime", updateTime);
+			updateTimeList.add(updateTime);
 		}
+		model.addAttribute("updateTimeList", updateTimeList);
+
 		return "logList";
 	}
-
-
 
 	//logDetail.jsp
 	@RequestMapping(value = "/logDetail", method = RequestMethod.GET)
@@ -123,18 +124,18 @@ public class LogController {
 
 		//ページ内遷移のためにrowNumberをmodelに格納
 
-
 		session.setAttribute("dispQuiz", dispQuiz);
 
-		for (int i = 0; i <= dispQuiz.size(); i++) {
+		for (int i = 0; i < dispQuiz.size(); i++) {
 			System.out.println(dispQuiz.get(i).getComment());
-			if (dispQuiz.get(i).getComment().equals("") || dispQuiz.get(i).getComment() == null) {
+			if (dispQuiz.get(i).getComment() == null || dispQuiz.get(i).getComment().equals("")) {
 				dispQuiz.get(i).setComment("コメントはまだありません。");
 			}
 		}
 
 		for (int i = 0; i < dispQuiz.size(); i++) {
-			if (dispQuiz.get(i).getCommentary().equals("") || dispQuiz.get(i).getCommentary() == null || dispQuiz.get(i).getCommentary().equals("NULL")) {
+			if (dispQuiz.get(i).getCommentary() == null || dispQuiz.get(i).getCommentary().equals("")
+					|| dispQuiz.get(i).getCommentary().equals("NULL")) {
 				dispQuiz.get(i).setCommentary("解説はまだありません。");
 			}
 		}
@@ -145,20 +146,20 @@ public class LogController {
 		return "logDetail";
 	}
 
-//	//logDetail.jsp→logList.jsp
-//	@RequestMapping(valur="logList", params="back")
-//	public String logDetailBack(@ModelAttribute("logDetail") LogForm form, Model model) {
-//
-//	}
+	//	//logDetail.jsp→logList.jsp
+	//	@RequestMapping(valur="logList", params="back")
+	//	public String logDetailBack(@ModelAttribute("logDetail") LogForm form, Model model) {
+	//
+	//	}
 	@RequestMapping(value = "/logList", method = RequestMethod.POST)
 	public String updateComment(@ModelAttribute("commentUpdate") LogForm form, Model model) {
 		//画面遷移のためにsessionに保存されているcategoryIdを取得
-		Integer selectLogCategory = (Integer)session.getAttribute("logSelectCategoryId");
+		Integer selectLogCategory = (Integer) session.getAttribute("logSelectCategoryId");
 
 		Timestamp newUpdateTime = new Timestamp(System.currentTimeMillis());
 
 		for (int i = 0; i < form.getComment().size(); i++) {
-			if(form.getComment().get(i) != null && !form.getComment().get(i).equals("")) {
+			if (form.getComment().get(i) != null && !form.getComment().get(i).equals("")) {
 				IHDService.updateComment(form.getComment().get(i), form.getHistoryDetailId().get(i), newUpdateTime);
 			}
 		}
