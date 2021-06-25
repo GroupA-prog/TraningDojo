@@ -27,7 +27,7 @@
 			</label>
 			<label> ${history.historyDate}</label>
 			<c:choose>
-				<c:when test="${history.mode} == 1">
+				<c:when test="${history.mode == 1}">
 					<label> 学習モード</label>
 				</c:when>
 				<c:otherwise>
