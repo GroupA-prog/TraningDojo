@@ -226,6 +226,9 @@
 					<c:if test="${ isChanged }">
 						<p class="error">一項目以上変更してください。</p>
 					</c:if>
+					<c:if test="${ isNotParentCategory }">
+						<p class="error">その親カテゴリIDは指定できません。</p>
+					</c:if>
 					<div>
 						<label> 編集対象カテゴリの選択 <br> <form:select
 								path="editCategoryId">

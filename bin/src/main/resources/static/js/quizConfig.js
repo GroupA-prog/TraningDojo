@@ -3,10 +3,12 @@ var learning = document.getElementById("lea");
 var rank = document.getElementById("ran");
 var numDisp = document.getElementById("num");
 mode = document.getElementsByName("mode");
-
+error = document.getElementById("error");
+error.style.display = 'block';
 
 //モード切り替え
 function changeBtn() {
+	error.style.display = 'none';
 
 	if (mode[0].checked) {
 		learning.style.display = 'block';
@@ -18,6 +20,7 @@ function changeBtn() {
 		learning.style.display = 'none';
 		rank.style.display = 'block';
 		numDisp.style.display = 'none';
+
 	}
 
 
