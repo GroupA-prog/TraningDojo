@@ -17,8 +17,8 @@
 	<c:import url="header.jsp"></c:import>
 </header>
 <body>
-	<h3 class="left">${loginUserInfo.userName}さんの履歴
-		${category.categoryName}：${historyCount.rowNumber}回目</h3>
+	<h1 class="left">${loginUserInfo.userName}さんの履歴
+		${category.categoryName}：${historyCount.rowNumber}回目</h1>
 
 	<div class="main">
 		<c:forEach var="list" items="${dispQuiz}" varStatus="status">
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 				<p>解説</p>
-				<p>${fn:escapeXml(list.commentary)}</p>
+				<p class="commentary">${fn:escapeXml(list.commentary)}</p>
 				<p>コメント</p>
 				<form:textarea path="comment" placeholder="${list.comment}" rows="6" cols="60"></form:textarea>
 			</c:forEach>

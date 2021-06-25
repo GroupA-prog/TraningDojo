@@ -20,7 +20,7 @@
 </header>
 <body>
 	<form:form action="log" modelAttribute="logDetail" method="get">
-		<h3 class="left">${category.categoryName}</h3>
+		<h1 class="left">${category.categoryName}</h1>
 
 		<div class="left">
 		<table border="1" class="historyListTable left">
