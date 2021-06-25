@@ -14,28 +14,30 @@
 <body>
 <c:import url="header.jsp"></c:import>
 <main>
-	<h2><span class="rankingCategoryName">${category.categoryName}</span> のランキング</h2>
+	<div class="rankingCategoryName"><h2><span>${category.categoryName}</span> のランキング</h2></div>
 
 		<div id="contents">
-			<c:choose>
-				<c:when test="${empty rankingList}">
-					<h2>ランキングデータがありません</h2>
-				</c:when>
-				<c:otherwise>
+			<div id="ranking">
+				<c:choose>
+					<c:when test="${empty rankingList}">
+						<div class="noDataMsg"><h2>ランキングデータがありません</h2></div>
+					</c:when>
+					<c:otherwise>
 
-					<div id="ranking">
 						<c:choose>
 							<c:when test="${empty myRankingData}">
-								<h2>あなたの記録はまだありません</h2>
-								<h2>挑戦してみましょう</h2>
+								<div class="noMyDataMsg">
+									<h2>あなたの記録はまだありません</h2>
+									<h2>挑戦してみましょう</h2>
+								</div>
 							</c:when>
 							<c:otherwise>
-								<h2>あなたの記録</h2>
-								<h1>${fn:escapeXml(myRankingData.score)}%</h1>
-								<h1>
-									<span id="myrank">${fn:escapeXml(myRankingData.rank)}</span>位 ／
+								<h3>- あなたの記録 -</h3>
+								<h2>正答率： <span id="myScore">${fn:escapeXml(myRankingData.score)}</span>%</h2>
+								<h2>
+									<span id="myRank">${fn:escapeXml(myRankingData.rank)}</span>位 ／
 									${fn:escapeXml(rankingUserNum)}位
-								</h1>
+								</h2>
 							</c:otherwise>
 						</c:choose>
 
@@ -48,26 +50,32 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${rankingList}" var="ranking" begin="0"
-									end="${rankViewNum}" step="1">
+								<c:forEach items="${rankingList}" var="ranking" begin="0" end="${rankViewNum}" step="1" >
 									<tr>
-										<td>${fn:escapeXml(ranking.rank)}</td>
-										<td>${fn:escapeXml(ranking.userName)}</td>
-										<td>${fn:escapeXml(ranking.score)}%</td>
+										<c:choose>
+											<c:when test="${ranking.userId == 2}">
+												<td class="myData">${fn:escapeXml(ranking.rank)}</td>
+												<td class="myData">${fn:escapeXml(ranking.userName)}</td>
+												<td class="myData">${fn:escapeXml(ranking.score)}%</td>
+											</c:when>
+											<c:otherwise>
+												<td>${fn:escapeXml(ranking.rank)}</td>
+												<td>${fn:escapeXml(ranking.userName)}</td>
+												<td>${fn:escapeXml(ranking.score)}%</td>
+											</c:otherwise>
+										</c:choose>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
+					</c:otherwise>
+				</c:choose>
+			</div>
 
-					</div>
+			<%-- <c:if test="${not empty session.answerList}"> --%>
+				<div class="answerBtn btn"><a href="log_detail"><span class="answerLink">解答の詳細を見る</span></a></div>
+			<%-- </c:if> --%>
 
-				</c:otherwise>
-			</c:choose>
-
-			<!-- <c:if test="${not empty session.answerList}"> -->
-
-			<!-- </c:if> -->
-			<div class="answerBtn btn"><a href="log_detail"><span class="answerLink">解答の詳細を見る</span></a></div>
 
 		</div>
 
