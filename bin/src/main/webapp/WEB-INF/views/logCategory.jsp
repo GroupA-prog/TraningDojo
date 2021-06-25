@@ -8,14 +8,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/log/.css" />
+<link rel="stylesheet" href="css/common.css" />
 <title>履歴カテゴリ選択画面</title>
 </head>
+<header>
+	<c:import url="header.jsp"></c:import>
+</header>
 <body>
 	<h2>カテゴリを選択してください</h2>
 	<form:form action="log" modelAttribute="logList" method="get">
 		<c:forEach var="category" items="${categoryList}">
-			<a href="/logList?categoryId=${fn:escapeXml(category.categoryId)}">${fn:escapeXml(category.categoryName)}</a>
-
+			<input type="button" onclick="location.href='/logList?categoryId=${fn:escapeXml(category.categoryId)}'">${fn:escapeXml(category.categoryName)}</input>
 			<br>
 		</c:forEach>
 	</form:form>
