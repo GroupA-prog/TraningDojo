@@ -19,8 +19,8 @@ public class HistoryService implements IHistoryService{
 	}
 
 	//logDetail.jsp用
-	public List<History> findRowNumberByhistoryId(Integer historyId){
-		return iHDao.findRowNumberByhistoryId(historyId);
+	public List<History> findRowNumberByhistoryId(Integer userId, Integer categoryId, Integer historyId){
+		return iHDao.findRowNumberByhistoryId(userId, categoryId,historyId);
 	}
 
 }
