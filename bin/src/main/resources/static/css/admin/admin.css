@@ -97,6 +97,11 @@ table td {
 	color: blue;
 }
 
+#quizListTable a:hover {
+	cursor: pointer;
+	opacity: 0.5;
+}
+
 #createChoice1, #createChoice2, #createChoice3, #createChoice4 {
 	width: 100%;
 }

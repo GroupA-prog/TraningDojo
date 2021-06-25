@@ -43,8 +43,8 @@ public class RankingController {
 	@RequestMapping("/rankingView")
 	public String rankingView(@RequestParam(name = "categoryId") Integer categoryId, Model model) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
-		if (loginUserInfo == null) {
-			return "redirect:/login";
+		if(loginUserInfo == null) {
+			return "login";
 		}
 
 		model.addAttribute("loginUserId", loginUserInfo.getUserId());
