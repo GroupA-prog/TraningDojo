@@ -96,6 +96,9 @@ public class LogController {
 	//logDetail.jsp
 	@RequestMapping(value = "/logDetail", method = RequestMethod.GET)
 	public String logDetai(@ModelAttribute("logDetail") LogForm form, Model model) {
+		//sessionに保存されているユーザー情報を取得
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+
 		//logList.jspで選択した履歴IDを取得
 		Integer selectHistoryId = form.getHistoryId();
 
@@ -108,8 +111,9 @@ public class LogController {
 		model.addAttribute("category", categoryList.get(0));
 
 		//回数表示のためにList<History>を取得
-		List<History> historyCount = IHService.findRowNumberByhistoryId(selectHistoryId);
+		List<History> historyCount = IHService.findRowNumberByhistoryId(loginUserInfo.getUserId(), logSelectCategoryId, selectHistoryId);
 		//取得した履歴一覧をmodelに格納
+		System.out.println(historyCount.get(0));
 		model.addAttribute("historyCount", historyCount.get(0));
 
 		//問題数の取得
