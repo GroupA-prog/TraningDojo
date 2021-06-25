@@ -30,17 +30,77 @@ btn.addEventListener('click', function() {
 	}
 })
 
+function firstcountdown(){
+
+    const time = 1200000;
+	const startTime = Date.now();
+
+	const timeId = setInterval(() =>{
+		const currentTime = Date.now();
+
+		const diff = currentTime - startTime;
+		const diffsec = time - diff;
+
+		window.sessionStorage.setItem(['startTime'],['startTime']);
+		window.sessionStorage.setItem(['time'],['diffsec']);
+
+		const sec = Math.floor(diffsec/1000)%60;
+		const min = Math.floor(diffsec/1000/60);
+		console(sec);
+		alte(min);
+
+		document.getElementById("min").textContent=String(min).padStart(2,"0");
+		document.getElementById("sec").textContent=String(sec).padStart(2,"0");
+
+
+		if(diffsec <= 0){
+			clearInterval(timeId);
+			window.location.href = 'retired';
+		}
+	})
+}
+
+firstcountdown();
+
+
+
 function countdown(){
-var time = window.sessionStorage.getItem(['time']);
-const now = new Date();
-const timeUp = new Date(now.getFullYear(),now.getMonth(),now.getDate(),now.getHours(),now.getMinutes()+ time );
-const differ = timeUp.getTime()-now.getTime();
+	const time = window.sessionStorage.getItem(['time']);
+	const startTime = window.sessionStorage.getItem(['startTime']);
 
-const sec = Math.floor(differ/1000)%60;
-const min = Math.floor(differ/1000/60)%60;
+	const timeId = setInterval(() =>{
+		const currentTime = Date.now();
 
-document.getElementById("min").textContent=String(min).padStart(3,"0");
-document.getElementById("sec").textContent=String(sec).padStart(2,"0");
-setTimeout(countdown,1000);
+		const diff = currentTime - startTime;
+		const diffsec = time - diff;
+
+		window.sessionStorage.setItem(['startTime'],['startTime']);
+		window.sessionStorage.setItem(['time'],['diffsec']);
+
+		const sec = Math.floor(diffsec/1000)%60;
+		const min = Math.floor(diffsec/1000/60);
+
+		alte(sec);
+		alte(min);
+
+		document.getElementById("min").textContent=String(min).padStart(2,"0");
+		document.getElementById("sec").textContent=String(sec).padStart(2,"0");
+
+		if(diffsec <= 0){
+			clearInterval(timeId);
+			window.location.href = 'retired';
+		}
+	})
 }
 countdown();
+
+function rel() {
+  if (window.name != "any") {
+    firstcountdown();
+    window.name = "any";
+  }
+  countdown();
+}
+
+
+window.onload = rel;
