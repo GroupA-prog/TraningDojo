@@ -9,5 +9,5 @@ public interface IHistoryDao {
 	public List<History> findByLoginIdAndCategoryId(Integer userId, Integer categoryId);
 
 	//logDetail.jsp>>回数表示用
-	public List<History> findRowNumberByhistoryId(Integer historyId);
+	public List<History> findRowNumberByhistoryId(Integer userId, Integer categoryId, Integer historyId);
 }

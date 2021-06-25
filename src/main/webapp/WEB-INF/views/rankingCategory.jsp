@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>ランキングカテゴリ</title>
 <link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/ranking/ranking.css">
 </head>
 <body>

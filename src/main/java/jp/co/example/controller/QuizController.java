@@ -41,7 +41,7 @@ public class QuizController{
 	private HomeService homeService;
 
 	@RequestMapping(value = "/quizConfig", method = RequestMethod.GET)
-	public String quizConfig(@ModelAttribute("quizConfig") QuizForm form, Model model) {
+	public String quizConfigGet(@ModelAttribute("quizConfig") QuizForm form, Model model) {
 		List<Category> categoryAll = categoryService.selectAll();
 		List<Category> categoryName = quizConfigService.categoryNameAll();
 		session.setAttribute("categoryAll", categoryAll);
@@ -52,7 +52,7 @@ public class QuizController{
 	}
 
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
-	public String userHome(@ModelAttribute("quizConfig") QuizForm form,Model model) {
+	public String userHomeGet(@ModelAttribute("quizConfig") QuizForm form,Model model) {
 		List<Category> parentCategory = homeService.parentCategoryAll();
 		session.setAttribute("parentCategory",parentCategory);
 

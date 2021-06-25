@@ -17,7 +17,7 @@ public class HistoryDao implements IHistoryDao {
 	private static final String FIND_BY_LOGINID_CATEGORYID = "SELECT *, ROW_NUMBER() OVER(ORDER BY history_date) AS row_number FROM history WHERE user_id = :userId AND category_id = :categoryId";
 
 	//logDetail.jsp用
-	private static final String FIND_BY_COUNT_BY_HISTORYID = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY history_date) AS row_number FROM history WHERE user_id = 1 AND category_id = 1) AS rou_number_table WHERE history_id = :historyId";
+	private static final String FIND_BY_COUNT_BY_HISTORYID = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY history_date) AS row_number FROM history WHERE user_id = :userId AND category_id = :categoryId) AS rou_number_table WHERE history_id = :historyId";
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -32,10 +32,12 @@ public class HistoryDao implements IHistoryDao {
 		return jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<History>(History.class));
 	}
 
-	public List<History> findRowNumberByhistoryId(Integer historyId) {
+	public List<History> findRowNumberByhistoryId(Integer userId, Integer categoryId, Integer historyId) {
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		String sql = FIND_BY_COUNT_BY_HISTORYID;
 
+		param.addValue("userId", userId);
+		param.addValue("categoryId", categoryId);
 		param.addValue("historyId", historyId);
 
 		return jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<History>(History.class));

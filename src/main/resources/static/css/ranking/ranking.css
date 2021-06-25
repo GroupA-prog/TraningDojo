@@ -7,6 +7,9 @@ main {
 	text-align: center;
 	margin: 0 auto;
 }
+#ranking {
+	margin-top: 30px;
+}
 .btn {
 	position:relative;
 	border-radius: 10px;
@@ -36,6 +39,7 @@ main {
 }
 .answerBtn:hover {
 	top: 3px;
+	margin: 0 auto 3px auto;
 	border-bottom: 2px solid red;
 }
 .categoryBtn a, .answerBtn a {
@@ -56,18 +60,30 @@ main {
 	text-align: center;
 	transform: translateY(-50%);
 }
-.rankingCategoryName {
-	font-size: 35px;
-}
-#contents h1, #contents h2 {
+.rankingCategoryName h2 {
 	margin: 0;
 }
-#myrank, .back {
+.rankingCategoryName {
+	position: absolute;
+	top: 80px;
+	left: 50px;
+}
+.rankingCategoryName h2 span {
+	font-size: 35px;
+}
+#contents h2, #contents h3 {
+	margin: 0;
+	line-height: 2.5rem;
+}
+#myRank, .back {
 	color: red;
+}
+#myRank, #myScore {
+	font-size: 1.5em;
 }
 table {
 	width: 80%;
-	margin: 10px auto 20px auto;
+	margin: 3px auto 20px auto;
 	border-collapse: collapse;
 }
 table th, table td {
@@ -83,9 +99,24 @@ table th:first-child {
 	font-size: 30px;
 	position: fixed;
 	left: 5%;
-	bottom: 10%;
+	bottom: 5%;
 }
 .answerLink {
 	font-size: 20px;
 	color: black;
 }
+
+.noDataMsg{
+	margin-top: 30%;
+	margin-bottom: 20px;
+}
+.noMyDataMsg {
+	margin-top: 10%;
+	margin-bottom: 20px;
+}
+ .myData {
+ 	font-weight: bold;
+ 	background-color: yellow;
+ 	background-image:
+	 repeating-linear-gradient(-45deg,#fff, 3px, transparent 10px);
+ 	}

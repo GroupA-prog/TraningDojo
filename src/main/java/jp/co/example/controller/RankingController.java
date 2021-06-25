@@ -26,15 +26,11 @@ public class RankingController {
 	@Autowired
 	private HttpSession session;
 
-
-	//UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
-
-
 	@RequestMapping("/rankingCategory")
 	public String rankingCategory(@ModelAttribute("rankingCategoryForm") RankingForm form, Model model) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
-		if(loginUserInfo == null) {
-			return "login";
+		if (loginUserInfo == null) {
+			return "redirect:/login";
 		}
 
 		List<RankingCategory> categoryList = rs.selectAll();
@@ -48,8 +44,10 @@ public class RankingController {
 	public String rankingView(@RequestParam(name = "categoryId") Integer categoryId, Model model) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if(loginUserInfo == null) {
-			return "login";
+			return "redirect:/login";
 		}
+
+		model.addAttribute("loginUserId", loginUserInfo.getUserId());
 
 		RankingCategory categoryName = rs.selectByCategoryId(categoryId);
 		model.addAttribute("category", categoryName);
