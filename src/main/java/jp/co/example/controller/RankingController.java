@@ -44,7 +44,7 @@ public class RankingController {
 	public String rankingView(@RequestParam(name = "categoryId") Integer categoryId, Model model) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if(loginUserInfo == null) {
-			return "login";
+			return "redirect:/login";
 		}
 
 		model.addAttribute("loginUserId", loginUserInfo.getUserId());
