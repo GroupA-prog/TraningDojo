@@ -72,9 +72,9 @@
 				</c:choose>
 			</div>
 
-			<%-- <c:if test="${not empty session.answerList}"> --%>
+			<c:if test="${not empty session.answerList}">
 				<div class="answerBtn btn"><a href="log_detail"><span class="answerLink">解答の詳細を見る</span></a></div>
-			<%-- </c:if> --%>
+			</c:if>
 
 
 		</div>
