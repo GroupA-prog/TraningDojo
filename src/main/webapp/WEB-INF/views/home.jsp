@@ -38,7 +38,7 @@
 	<form action="/quizConfig" method="GET">
 		<button type="submit" class="btn quiz">クイズ</button>
 	</form>
-	<form action="/ranking" method="GET">
+	<form action="/rankingCategory" method="GET">
 		<button type="submit" class="btn ranking">ランキング</button>
 	</form>
 	<form action="/logCategory" method="GET">

@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.QuizForm;
+import jp.co.example.dto.entity.Category;
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.dto.entity.QuizResult;
 import jp.co.example.dto.entity.UserInfo;
+import jp.co.example.service.HomeService;
 import jp.co.example.service.ICategoryService;
+import jp.co.example.service.QuizConfigService;
 import jp.co.example.service.QuizService;
 
 @Controller
-public class QuizTamayoseController{
+public class QuizController{
 	public static int quizIndex = 0;
 	@Autowired
 	private QuizService quizService;
@@ -31,6 +34,31 @@ public class QuizTamayoseController{
 
 	@Autowired
 	private HttpSession session;
+
+	@Autowired
+	private QuizConfigService quizConfigService;
+	@Autowired
+	private HomeService homeService;
+
+	@RequestMapping(value = "/quizConfig", method = RequestMethod.GET)
+	public String quizConfig(@ModelAttribute("quizConfig") QuizForm form, Model model) {
+		List<Category> categoryAll = categoryService.selectAll();
+		List<Category> categoryName = quizConfigService.categoryNameAll();
+		session.setAttribute("categoryAll", categoryAll);
+		session.setAttribute("categoryName", categoryName);
+
+		return "quizConfig";
+
+	}
+
+	@RequestMapping(value="/userHome",method=RequestMethod.GET)
+	public String userHome(@ModelAttribute("quizConfig") QuizForm form,Model model) {
+		List<Category> parentCategory = homeService.parentCategoryAll();
+		session.setAttribute("parentCategory",parentCategory);
+
+		return "home";
+	}
+
 
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
@@ -47,14 +75,9 @@ public class QuizTamayoseController{
 		Timestamp start = new Timestamp(millis);
 		status.setStartTime(start);
 		//モード：カテゴリ名保存
-
 		status.setMode(quizService.selectMode(form.getMode()));
-
 		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
-		System.out.println(form.getQuizNum());
-		System.out.println(form.getCategoryId());
-		System.out.println(status.getCategoryName());
-		System.out.println(form.getMode());
+
 		//モード分岐、制限時間・問題（5問分け済み）を保存
 		if(form.getMode() == 1) {
 			if(form.getQuizNum() == 0) {
@@ -69,8 +92,14 @@ public class QuizTamayoseController{
 		}else if(form.getMode() == 2){
 			status.setCategoryName(categoryService.findByCategoryId(form.getRankCategoryId()).get(0).getCategoryName());
 			quizList = quizService.findByRankCategory(form.getRankCategoryId());
+			try {
+				List<Quiz>quiz = quizList.get(1);
+				quiz.get(4);
+			}catch (RuntimeException e) {
+				model.addAttribute("rankError","問題がありません");
+				return "quizConfig";
+			}
 			status.setTime(20);
-			System.out.println(quizList.size());
 			status.setQuizNum(10);
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
