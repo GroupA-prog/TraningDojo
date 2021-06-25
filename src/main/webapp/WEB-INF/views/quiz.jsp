@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/quiz/quiz.css">
 <link rel="stylesheet" href="css/common.css">
 </head>
-<body onload="countdown();">
+<body>
 
 <header class="title-continar">
 	<span id="site-title">
