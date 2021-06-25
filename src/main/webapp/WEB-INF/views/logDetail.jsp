@@ -13,40 +13,49 @@
 <link rel="stylesheet" href="css/common.css" />
 </head>
 <header>
-<c:import url="header.jsp"></c:import>
+	<c:import url="header.jsp"></c:import>
 </header>
 <body>
-	<h3>〇〇さんの履歴 ${category.categoryName}：${historyCount.rowNumber}回目</h3>
+	<h3 class="left">${loginUserInfo.userName}さんの履歴
+		${category.categoryName}：${historyCount.rowNumber}回目</h3>
 
-	<c:forEach var="list" items="${dispQuiz}">
-		<a href="#${list.rowNumber}">Q${list.rowNumber}</a>
-	</c:forEach>
-	<form:form action="logList" modelAttribute="logDetail">
-		<c:forEach var="list" items="${dispQuiz}">
-			<p id="${list.rowNumber}">Q${list.rowNumber}</p>
-			<p>${list.quizStatment}</p>
-			<form:input type="hidden" path="historyDetailId" value="${list.historyDetailId}"></form:input>
-			<input type="radio"
-				disabled ${list.checked1} class="${list.correct1}">1：${fn:escapeXml(list.choice1)}
-			<input type="radio"
-				disabled ${list.checked2} class="${list.correct2}">2：${fn:escapeXml(list.choice2)}
-			<input type="radio"
-				disabled ${list.checked3} class="${list.correct3}">3：${fn:escapeXml(list.choice3)}
-			<input type="radio"
-				disabled ${list.checked4} class="${list.correct4}">4：${fn:escapeXml(list.choice4)}
-			<p>解説</p>
-			<p>${fn:escapeXml(list.commentary)}</p>
-			<p>コメント</p>
-			<form:textarea path="comment" placeholder="${list.comment}" rows="4" cols="40"></form:textarea>
+	<div class="main">
+		<c:forEach var="list" items="${dispQuiz}" varStatus="status">
+			<a href="#${list.rowNumber}" class="jump">Q${list.rowNumber}</a>
 
 		</c:forEach>
+		<form:form action="logList" modelAttribute="logDetail">
+			<c:forEach var="list" items="${dispQuiz}">
+				<p id="${list.rowNumber}">Q${list.rowNumber}.${list.quizStatment}</p>
+				<form:input type="hidden" path="historyDetailId"
+					value="${list.historyDetailId}"></form:input>
+				<div class="select">
+					<div>
+						<label class="radio"><input type="radio" disabled ${list.checked1} class="test">1：<span id="${list.correct1}">${fn:escapeXml(list.choice1)}</span></label>
+					</div>
+					<div>
+						<label class="radio"><input type="radio" disabled ${list.checked2}>2：<span id="${list.correct2}">${fn:escapeXml(list.choice2)}</span></label>
+					</div>
+					<div>
+						<label class="radio"><input type="radio" disabled ${list.checked3}>3：<span id="${list.correct3}">${fn:escapeXml(list.choice3)}</span></label>
+					</div>
+					<div>
+						<label class="radio"><input type="radio" disabled ${list.checked4}>4：<span id="${list.correct4}">${fn:escapeXml(list.choice4)}</span></label>
+					</div>
+				</div>
+				<p>解説</p>
+				<p>${fn:escapeXml(list.commentary)}</p>
+				<p>コメント</p>
+				<form:textarea path="comment" placeholder="${list.comment}" rows="6" cols="60"></form:textarea>
+			</c:forEach>
+			<br>
+			<form:button type="submit" class="update">更新</form:button>
+		</form:form>
+	</div>
 
-		<form:button type="submit">更新</form:button>
-	</form:form>
-
-	<a href="logList?categoryId=${logSelectCategoryId}">戻る</a>
+	<a href="logList?categoryId=${logSelectCategoryId}" class="back">戻る</a>
 	<footer>
-		<a href="#" id="page-top">TOPへ</a>
+		<a href="#" id="page-top">↑</a>
 	</footer>
 </body>
 </html>
