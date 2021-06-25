@@ -10,4 +10,5 @@ public interface ICategoryDao {
 	public int update(Integer categoryId, String categoryName, Integer display, Integer parentCategoryId);
 	public List<Category> findByCategoryName(String categoryName);
 	public List<Category> findByCategoryId(Integer categoryId);
+	public List<Category> selectEditAll(Integer categoryId);
 }
