@@ -44,6 +44,8 @@ public class RankingDao implements IRankingDao {
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
+//	@Autowired
+//	private HttpSession session;
 
 
 	@Override
@@ -114,7 +116,9 @@ public class RankingDao implements IRankingDao {
 	        // ランク付け
 	        int rank = 1;
 			for (int i = 1; i < rankingList.size(); i++) {
-				if (rankingList.get(i).getScore() != rankingList.get(i-1).getScore()) {
+				double score1 = rankingList.get(i).getScore();
+				double score2 = rankingList.get(i-1).getScore();
+				if (score1 != score2) {
 					// 点数が前の人と違うなら、通し番号を設定
 					rank = i + 1;
 					rankingList.get(i).setRank(rank);
