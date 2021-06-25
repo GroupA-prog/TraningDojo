@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.left {
+	padding-left: 1em;
+}
+table {
+	border-collapse: collapse;
+	border: solid 2px #152033 ; /*表全体を線で囲う*/
+	text-align: center;
+}
+
+th {
+	color: #ffffff;
+	background-color: #2f72ed;
+	padding: 3px 10px;
+}
+
+table tr:hover {
+	background-color: #2f72ed;
+	color: #ffffff;
+}
+
+tr:nth-child(2n + 1){
+	background-color: #8eafed;
+}
+table td {
+	border: dashed 1px #152033;
+	padding: 3px 10px;
+}
+
+.count {
+	color: #152033;
+	display: block;
+}
+
+.count :hover {
+	color: #ffffff;
+}

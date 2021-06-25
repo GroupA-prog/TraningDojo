@@ -3,11 +3,6 @@ body {
 	/*透過　opacity: 0.5;*/
 }
 
-a {
-	text-decoration: none;
-}
-
-
 .left {
 	padding-left: 1em;
 }
@@ -98,8 +93,3 @@ textarea:focus {
 	border-radius: 10%;
 }
 
-.back {
-	padding-left: 1em;
-	font-size: 20px;
-	color: red;
-}

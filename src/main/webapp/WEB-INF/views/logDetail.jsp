@@ -11,6 +11,7 @@
 <title>履歴詳細画面</title>
 <link rel="stylesheet" href="css/log/logDetail.css" />
 <link rel="stylesheet" href="css/common.css" />
+<link rel="stylesheet" href="css/log/log.css" />
 </head>
 <header>
 	<c:import url="header.jsp"></c:import>
