@@ -30,58 +30,62 @@ btn.addEventListener('click', function() {
 	}
 })
 
-function firstcountdown(){
 
+function firstcountdown(){
     const time = 1200000;
 	const startTime = Date.now();
 
-	const timeId = setInterval(() =>{
-		const currentTime = Date.now();
+	let A = window.sessionStorage.getItem('startTime');
+	let B = window.sessionStorage.getItem('time');
+	if ( A == null || B == null ) {
+		window.sessionStorage.setItem('startTime', startTime);
+		window.sessionStorage.setItem('time', time);
+	}
 
-		const diff = currentTime - startTime;
-		const diffsec = time - diff;
+	window.sessionStorage.setItem('startTime',startTime);
+	window.sessionStorage.setItem('time',time);
 
-		window.sessionStorage.setItem(['startTime'],['startTime']);
-		window.sessionStorage.setItem(['time'],['diffsec']);
+	//console.log(window.sessionStorage.getItem('startTime'));
+	//console.log(window.sessionStorage.getItem('time'));
 
-		const sec = Math.floor(diffsec/1000)%60;
-		const min = Math.floor(diffsec/1000/60);
-		console(sec);
-		alte(min);
+	//const sec = Math.floor(time/1000)%60;
+	//const min = Math.floor(time/1000/60);
 
-		document.getElementById("min").textContent=String(min).padStart(2,"0");
-		document.getElementById("sec").textContent=String(sec).padStart(2,"0");
+	//document.getElementById("min").textContent=String(min).padStart(2,"0");
+	//document.getElementById("sec").textContent=String(sec).padStart(2,"0");
 
 
-		if(diffsec <= 0){
-			clearInterval(timeId);
-			window.location.href = 'retired';
-		}
-	})
 }
 
-firstcountdown();
+//firstcountdown();
 
 
 
 function countdown(){
-	const time = window.sessionStorage.getItem(['time']);
-	const startTime = window.sessionStorage.getItem(['startTime']);
+	let time = window.sessionStorage.getItem('time');
+	let startTime = window.sessionStorage.getItem('startTime');
+	console.log(time);
+	console.log(startTime);
 
+/*	if (startTime == null || time == null) {
+		startTime = Date.now();
+		time = 1200000;
+	}
+*/
 	const timeId = setInterval(() =>{
 		const currentTime = Date.now();
 
 		const diff = currentTime - startTime;
 		const diffsec = time - diff;
 
-		window.sessionStorage.setItem(['startTime'],['startTime']);
-		window.sessionStorage.setItem(['time'],['diffsec']);
+		window.sessionStorage.setItem('startTime',startTime);
+		window.sessionStorage.setItem('time',diffsec);
 
 		const sec = Math.floor(diffsec/1000)%60;
 		const min = Math.floor(diffsec/1000/60);
 
-		alte(sec);
-		alte(min);
+		//console.log(sec);
+		//console.log(min);
 
 		document.getElementById("min").textContent=String(min).padStart(2,"0");
 		document.getElementById("sec").textContent=String(sec).padStart(2,"0");
@@ -90,17 +94,21 @@ function countdown(){
 			clearInterval(timeId);
 			window.location.href = 'retired';
 		}
-	})
+	}, 500);
 }
-countdown();
+//countdown();
 
 function rel() {
   if (window.name != "any") {
     firstcountdown();
     window.name = "any";
   }
-  countdown();
+  //countdown();
 }
 
 
-window.onload = rel;
+window.onload = function() {
+
+	//firstcountdown();
+	countdown();
+};

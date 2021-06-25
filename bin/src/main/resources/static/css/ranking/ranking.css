@@ -1,0 +1,121 @@
+main {
+	margin-left: 5%;
+}
+#contents {
+	width: 60%;
+	text-align: center;
+	margin: 0 auto;
+}
+#ranking {
+	margin-top: 30px;
+}
+.btn {
+	position:relative;
+	border-radius: 10px;
+	padding: 10px;
+	font-weight: bolder;
+	text-align: center;
+}
+.categoryBtn {
+	width: 180px;
+	height:30px;
+	margin: 0 0 10px 10px;
+	background-color: skyblue;
+	font-size: 1.5em;
+	border-bottom: 5px solid blue;
+}
+.categoryBtn:hover {
+	top: 3px;
+	margin: 0 0 13px 10px;
+	border-bottom: 2px solid blue;
+}
+.answerBtn {
+	width: 180px;
+	height:30px;
+	margin: 0 auto;
+	background-color: orange;
+	border-bottom: 5px solid red;
+}
+.answerBtn:hover {
+	top: 3px;
+	margin: 0 auto 3px auto;
+	border-bottom: 2px solid red;
+}
+.categoryBtn a, .answerBtn a {
+   display: block;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   color: #333399;
+	text-decoration: none;
+}
+.categoryNameLink, .answerLink {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	text-align: center;
+	transform: translateY(-50%);
+}
+.rankingCategoryName h2 {
+	margin: 0;
+}
+.rankingCategoryName {
+	position: absolute;
+	top: 65px;
+	left: 50px;
+}
+.rankingCategoryName h2 span {
+	font-size: 35px;
+}
+
+#contents h2, #contents h3 {
+	margin: 0;
+}
+#myRank, .back {
+	color: red;
+}
+#myRank, #myScore {
+	font-size: 1.5em;
+}
+table {
+	width: 80%;
+	margin: 3px auto 20px auto;
+	border-collapse: collapse;
+}
+table th, table td {
+	border: 2px solid black;
+}
+table th {
+	background-color: skyblue;
+}
+table th:first-child {
+	letter-spacing: 0.5em;
+}
+.back {
+	font-size: 30px;
+	position: fixed;
+	left: 5%;
+	bottom: 5%;
+}
+.answerLink {
+	font-size: 20px;
+	color: black;
+}
+
+.noDataMsg{
+	margin-top: 30%;
+	margin-bottom: 20px;
+}
+.noMyDataMsg {
+	margin-top: 10%;
+	margin-bottom: 20px;
+}
+ .myData {
+ 	font-weight: bold;
+ 	background-color: yellow;
+ 	background-image:
+	 repeating-linear-gradient(-45deg,#fff, 3px, transparent 10px);
+ 	}

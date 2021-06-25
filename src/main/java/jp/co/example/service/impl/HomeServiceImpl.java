@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import jp.co.example.dao.HomeDao;
 import jp.co.example.dto.entity.Category;
+import jp.co.example.dto.entity.Home;
 import jp.co.example.service.HomeService;
 
 @Service
@@ -18,6 +19,10 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public List<Category> parentCategoryAll() {
 		return homeDao.parentCategoryAll();
+	}
+
+	public List<Home> answerLateList(Integer categoryId){
+		return homeDao.answerLateList(categoryId);
 	}
 
 }

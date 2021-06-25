@@ -16,45 +16,58 @@
 </head>
 <body>
 	<header class="title-continar">
-	<span id="site-title">
-		<c:choose>
-			<c:when test="${ not empty loginUserInfo }"><a href="userHome">研修道場</a></c:when>
-			<c:otherwise><a href="/login">研修道場</a></c:otherwise>
-		</c:choose>
-	</span>
-	<c:if test="${ not empty loginUserInfo }">
-		<nav>
-			<ul>
-				<c:if test="${ loginUserInfo.role == 1 }">
-					<li><a href="/admin">管理者</a></li>
-				</c:if>
-				<li><a href="/logout">ログアウト</a></li>
-			</ul>
-		</nav>
-	</c:if>
-</header>
+		<span id="site-title"> <c:choose>
+				<c:when test="${ not empty loginUserInfo }">
+					<a href="userHome">研修道場</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/login">研修道場</a>
+				</c:otherwise>
+			</c:choose>
+		</span>
+		<c:if test="${ not empty loginUserInfo }">
+			<nav>
+				<ul>
+					<c:if test="${ loginUserInfo.role == 1 }">
+						<li><a href="/admin">管理者</a></li>
+					</c:if>
+					<li><a href="/logout">ログアウト</a></li>
+				</ul>
+			</nav>
+		</c:if>
+	</header>
 	<h1 class="home">${loginUserInfo.userName}さんのホーム</h1>
 
 	<form action="/quizConfig" method="GET">
 		<button type="submit" class="btn quiz">クイズ</button>
 	</form>
+	<p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>
 	<form action="/rankingCategory" method="GET">
 		<button type="submit" class="btn ranking">ランキング</button>
 	</form>
+	<p class="rankEx">ランキングモードでの成績を確認できます</p>
 	<form action="/logCategory" method="GET">
 		<button type="submit" class="btn history">履歴</button>
 	</form>
+	<p class="hisEx">過去に解いた問題を確認できます</p>
 	<form action="/profile" method="GET">
 		<button type="submit" class="btn profile">プロフィール</button>
 	</form>
+	<p class="proEx">プロフィールを変更できます</p>
 
-	<span id="radar"></span>
-	<select name="radarCategory" id="radarCategory">
+	<h2 class="radarContent">レーダーチャート</h2>
+
+	<select name="radarCategory" id="radarCategory" class="radarCategory">
 		<option Label="選択してください">
 			<c:forEach var="categoryName" items="${parentCategory}">
-				<option value="${categoryName.categoryId}">${categoryName.categoryName}</option>
+				<option value="categoryId">${parentCategory.categoryName}</option>
 			</c:forEach>
 	</select>
+	<div class="wrapper">
+		<span id="radar" class="radar">レーダーチャートを表示</span>
+	</div>
+
+
 	<script src="js/home.js"></script>
 </body>
 </html>

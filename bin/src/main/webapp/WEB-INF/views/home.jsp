@@ -9,29 +9,39 @@
 <meta charset="UTF-8">
 <title>ホーム画面</title>
 <link rel="stylesheet" href="css/common.css" />
+<link rel="stylesheet" href="css/home/home.css" />
+<link rel="stylesheet" href="css/style.css" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 </head>
 <body>
-	<c:import url="header.jsp"></c:import>
-	<header>
-		<form action="/admin" method="GET">
-			<button type="submit" class="btn admin">管理者</button>
-		</form>
-		<form action="/logout" method="GET">
-			<button type="submit" class="btn warning">ログアウト</button>
-		</form>
-	</header>
-	<p>${loginUserInfo.userName}さんのホーム</p>
+	<header class="title-continar">
+	<span id="site-title">
+		<c:choose>
+			<c:when test="${ not empty loginUserInfo }"><a href="userHome">研修道場</a></c:when>
+			<c:otherwise><a href="/login">研修道場</a></c:otherwise>
+		</c:choose>
+	</span>
+	<c:if test="${ not empty loginUserInfo }">
+		<nav>
+			<ul>
+				<c:if test="${ loginUserInfo.role == 1 }">
+					<li><a href="/admin">管理者</a></li>
+				</c:if>
+				<li><a href="/logout">ログアウト</a></li>
+			</ul>
+		</nav>
+	</c:if>
+</header>
+	<h1 class="home">${loginUserInfo.userName}さんのホーム</h1>
 
-
-	<form action="/quiz" method="GET">
+	<form action="/quizConfig" method="GET">
 		<button type="submit" class="btn quiz">クイズ</button>
 	</form>
-	<form action="/ranking" method="GET">
+	<form action="/rankingCategory" method="GET">
 		<button type="submit" class="btn ranking">ランキング</button>
 	</form>
-	<form action="/history" method="GET">
+	<form action="/logCategory" method="GET">
 		<button type="submit" class="btn history">履歴</button>
 	</form>
 	<form action="/profile" method="GET">
@@ -45,7 +55,6 @@
 				<option value="${categoryName.categoryId}">${categoryName.categoryName}</option>
 			</c:forEach>
 	</select>
-
 	<script src="js/home.js"></script>
 </body>
 </html>

@@ -67,7 +67,7 @@
 
 
 
-		<h3>問題数を選んでください</h3>
+		<h3 id="numEx">問題数を選んでください</h3>
 
 		<form:select path="quizNum" class="num" id="num">
 			<form:option value="" label="選んでください"></form:option>
