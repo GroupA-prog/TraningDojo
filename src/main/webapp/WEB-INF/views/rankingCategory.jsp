@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>ランキングカテゴリ</title>
 <link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/ranking/ranking.css">
 </head>
 <body>
@@ -18,7 +17,7 @@
 	<h1>カテゴリを選択</h1>
 	<form:form action="rankingView" modelAttribute="rankingCategoryForm" method="get">
 		<c:forEach items="${categoryList}" var="category">
-			<div class="categoryBtn">
+			<div class="categoryBtn btn">
 				<a href="rankingView?categoryId=${category.categoryId}">
 					<span class="categoryNameLink"><c:out value="${category.categoryName}" /></span>
 				</a>

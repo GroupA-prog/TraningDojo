@@ -2,24 +2,42 @@ main {
 	margin-left: 5%;
 }
 
-#ranking {
+#contents {
 	width: 60%;
 	text-align: center;
 	margin: 0 auto;
 }
-.categoryBtn {
+.btn {
 	position:relative;
-	width: 180px;
-	height:30px;
 	border-radius: 10px;
 	padding: 10px;
-	margin: 0 0 10px 10px;
-	background-color: skyblue;
-	font-size: 1.5em;
 	font-weight: bolder;
 	text-align: center;
 }
-.categoryBtn a{
+.categoryBtn {
+	width: 180px;
+	height:30px;
+	margin: 0 0 10px 10px;
+	background-color: skyblue;
+	font-size: 1.5em;
+	border-bottom: 5px solid blue;
+}
+.categoryBtn:hover {
+	margin: 3px 0 13px 10px;
+	border-bottom: 2px solid blue;
+}
+.answerBtn {
+	width: 180px;
+	height:30px;
+	margin: 0 auto;
+	background-color: orange;
+	border-bottom: 5px solid red;
+}
+.answerBtn:hover {
+	margin: 3px auto 0 auto;
+	border-bottom: 2px solid red;
+}
+.categoryBtn a, .answerBtn a {
    display: block;
    position: absolute;
    top: 0;
@@ -29,8 +47,7 @@ main {
    color: #333399;
 	text-decoration: none;
 }
-
-.categoryNameLink {
+.categoryNameLink, .answerLink {
 	position: absolute;
 	width: 100%;
 	top: 50%;
@@ -41,27 +58,33 @@ main {
 .rankingCategoryName {
 	font-size: 35px;
 }
-#ranking h1, #ranking h2 {
+#contents h1, #contents h2 {
 	margin: 0;
 }
-#myrank {
+#myrank, .back {
 	color: red;
 }
 table {
 	width: 80%;
-	margin: 10px auto 0 auto;
+	margin: 10px auto 20px auto;
 	border-collapse: collapse;
 }
-
 table th, table td {
 	border: 2px solid black;
 }
 table th {
 	background-color: skyblue;
 }
+table th:first-child {
+	letter-spacing: 0.5em;
+}
 .back {
 	font-size: 30px;
 	position: fixed;
 	left: 5%;
 	bottom: 10%;
+}
+.answerLink {
+	font-size: 20px;
+	color: black;
 }
