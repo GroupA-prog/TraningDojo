@@ -173,6 +173,11 @@ public class AdminController {
 				return "admin";
 			}
 		}
+
+		if (form.getEditCategoryId().equals(form.getEditCategoryParentCategoryId())) {
+			model.addAttribute("isNotParentCategory",true);
+			return "admin";
+		}
 		//データの更新
 		categoryService.update(
 				form.getEditCategoryId(),
