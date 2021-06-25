@@ -34,10 +34,7 @@
 							<c:otherwise>
 								<h3>- あなたの記録 -</h3>
 								<h2>正答率： <span id="myScore">${fn:escapeXml(myRankingData.score)}</span>%</h2>
-								<h2>
-									<span id="myRank">${fn:escapeXml(myRankingData.rank)}</span>位 ／
-									${fn:escapeXml(rankingUserNum)}位
-								</h2>
+								<h2><span id="myRank">${fn:escapeXml(myRankingData.rank)}</span>位 ／${fn:escapeXml(rankingUserNum)}位</h2>
 							</c:otherwise>
 						</c:choose>
 
@@ -53,7 +50,7 @@
 								<c:forEach items="${rankingList}" var="ranking" begin="0" end="${rankViewNum}" step="1" >
 									<tr>
 										<c:choose>
-											<c:when test="${ranking.userId == session.loginUserInfo.getUserId()}">
+											<c:when test="${ranking.userId == loginUserId}">
 												<td class="myData">${fn:escapeXml(ranking.rank)}</td>
 												<td class="myData">${fn:escapeXml(ranking.userName)}</td>
 												<td class="myData">${fn:escapeXml(ranking.score)}%</td>
@@ -72,9 +69,9 @@
 				</c:choose>
 			</div>
 
-			<c:if test="${not empty session.answerList}">
+			<%-- <c:if test="${not empty session.answerList}"> --%>
 				<div class="answerBtn btn"><a href="log_detail"><span class="answerLink">解答の詳細を見る</span></a></div>
-			</c:if>
+			<%-- </c:if> --%>
 
 
 		</div>
