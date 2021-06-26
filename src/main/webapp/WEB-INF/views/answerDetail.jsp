@@ -36,6 +36,7 @@
 	<input type="radio" disabled <c:if test="${quiz.userAnswer == 4}">checked</c:if>>
 	<label <c:if test="${quiz.correctAnswer == 4}">class="correct"</c:if>>${quiz.choice4}</label><br>
   <c:if test="${not empty quiz.commentary}">
+    <p>解説</p>
     <pre>${quiz.commentary}</pre>
   </c:if>
 </c:forEach>

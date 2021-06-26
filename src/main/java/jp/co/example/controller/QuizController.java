@@ -17,7 +17,6 @@ import jp.co.example.controller.form.QuizForm;
 import jp.co.example.dto.entity.Category;
 import jp.co.example.dto.entity.Quiz;
 import jp.co.example.dto.entity.QuizResult;
-import jp.co.example.dto.entity.UserInfo;
 import jp.co.example.service.HomeService;
 import jp.co.example.service.ICategoryService;
 import jp.co.example.service.QuizConfigService;
@@ -52,7 +51,7 @@ public class QuizController{
 	}
 
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
-	public String userHomeGet(@ModelAttribute("login") QuizForm form,Model model) {
+	public String userHomeGet(@ModelAttribute("quizConfig") QuizForm form,Model model) {
 		List<Category> parentCategory = homeService.parentCategoryAll();
 		session.setAttribute("parentCategory",parentCategory);
 
@@ -183,6 +182,7 @@ public class QuizController{
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
 	public String quizPostFinish(@ModelAttribute("quiz")QuizForm form,Model model) {
+
 		//ユーザーの解答をセッションへ更新
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
@@ -200,8 +200,11 @@ public class QuizController{
 		//カテゴリ名からカテゴリIDを取得
 		status.setCategoryId(categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId());
 		//sessionからuserIdを取得
-		UserInfo userInfo = (UserInfo) session.getAttribute("loginUserInfo");
-		status.setUserId(userInfo.getUserId());
+
+		//UserInfo userInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		//status.setUserId(userInfo.getUserId());
+		status.setUserId(5);
+
 		//履歴に登録
 		int historyId = quizService.insertHistory(status);
 		//履歴詳細に登録
@@ -215,6 +218,11 @@ public class QuizController{
 		}
 		for(int i = 0; i < quizAll.size(); i++) {
 			quizAll.get(i).setUserAnswer(correctList.get(i).getUserAnswer());
+		}
+		for(Quiz q:quizAll) {
+			if(q.getCommentary().equals("NULL")) {
+				q.setCommentary("");
+			}
 		}
 		session.setAttribute("quizList", quizAll);
 		//モード判断
