@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import jp.co.example.controller.form.QuizForm;
+import jp.co.example.dto.CategoryIdDTO;
 import jp.co.example.dto.entity.Home;
 import jp.co.example.service.HomeService;
 import jp.co.example.service.QuizConfigService;
@@ -30,10 +31,11 @@ public class JsController {
 	}
 
 	@RequestMapping(path = "/categoryJs", method = RequestMethod.POST)
-	public List<Home> categoryJs(@RequestBody QuizForm form) {
+	public List<Home> categoryJs(@RequestBody CategoryIdDTO form) {
 		List<Home> radarList = homeService.answerLateList(form.getCategoryId());
 		List<Home> list = new ArrayList<>();
 		list.addAll(radarList);
+		System.out.print(form.getCategoryId());
 		return list;
 	}
 }

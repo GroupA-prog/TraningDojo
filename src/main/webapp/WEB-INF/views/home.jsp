@@ -13,6 +13,10 @@
 <link rel="stylesheet" href="css/style.css" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<header class="title-continar">
@@ -59,12 +63,14 @@
 
 	<select name="radarCategory" id="radarCategory" class="radarCategory">
 		<option Label="選択してください">
-			<c:forEach var="categoryName" items="${parentCategory}">
-				<option value="categoryId">${parentCategory.categoryName}</option>
+			<c:forEach var="category" items="${parentCategory}">
+				<option value="${category.categoryId}">${category.categoryName}</option>
 			</c:forEach>
 	</select>
 	<div class="wrapper">
-		<span id="radar" class="radar">レーダーチャートを表示</span>
+		<span id="radar" class="radar">
+
+		</span>
 	</div>
 
 

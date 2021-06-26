@@ -1,0 +1,101 @@
+body {
+	background-image: url("img/48207155_p2_master12002.jpg");
+	/*透過　opacity: 0.5;*/
+}
+
+
+/*問題文・選択肢*/
+.main {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.main .select {
+	display: block;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	width: 54em;
+	background: #b0c4de;
+	margin: 0 auto;
+}
+
+/*正解を赤文字*/
+.main .select #correct {
+	color: red;
+}
+
+/*ラジオボタン*/
+/*横並び*/
+label .radio {
+	display: block; /* ブロックを作るように */
+	margin: 5px 0; /* 前後のスペース */
+}
+/*色*/
+input[type="radio" i]:disabled {
+	background-color: #000000;
+}
+/*各クイズに飛ぶボタン*/
+.jump {
+	border: 1px solid;
+	border-color: #99ffff;
+	border-radius: 15%;
+	padding: 3px 6px;
+	background-color: #e0ffff;
+	color: #000000;
+}
+.jump:hover{
+	border: 1px solid;
+	border-color: #99ffff;
+	background-color: #99ffff ;
+}
+
+/*コメント入力*/
+textarea {
+	 border: 1px solid rgb(52, 89, 255);
+}
+textarea:focus {
+	border: 1px solid rgb(52, 89, 255);
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(52, 89, 255, .5);
+
+}
+
+/*ページ上部戻るボタン*/
+#page-top {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	font-size: 2rem;
+	font-weight: bold;
+	line-height: 2rem;
+	background: rgb(52, 89, 255);
+	color: #ffffff;
+	padding: 15px;
+	border-radius: 50%;
+}
+
+/*更新ボタン*/
+.update {
+	border: 1px solid rgb(52, 89, 255);
+	margin-right:70px;
+	margin-bottom: 13px;
+	position: fixed;
+	right: 10px;
+	bottom: 5px;
+	font-size: 1rem;
+	line-height: 1rem;
+	background:  #ffffff;
+	color:rgb(52, 89, 255);
+	padding: 10px;
+	border-radius: 10%;
+}
+
+/*解説*/
+.commentary {
+	display:block;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	width: 54em;
+	background: #c9e1ff;
+	margin: 0 auto;
+}
