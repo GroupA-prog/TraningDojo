@@ -37,10 +37,10 @@
 
     <pre>${quizStatus.quizIndex * 5 + status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
     <div class="select">
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice1}" value="1"/><br>
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice2}" value="2"/><br>
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice3}" value="3"/><br>
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice4}" value="4"/><br>
+	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice1}" value="1"/><br>
+	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice2}" value="2"/><br>
+	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice3}" value="3"/><br>
+	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice4}" value="4"/><br>
 	  <form:radiobutton path="choiceId${status.count}"  cssStyle="display:none" value="0"/><br>
     </div>
   </c:forEach>
@@ -71,8 +71,9 @@
 
 <input type="button" id="finish-btn" value="終了">
 
-<div id="modal-retired" class="modal-retired">
-  <div class="modal-retired-content">
+
+<div id="modal-retired" class="modal">
+  <div class="modal-content">
       <h2>解答を破棄して終了しますか？</h2>
 	    <input type="button" id="finish" onclick="location.href='retired'" value="はい">
 	    <input type="button" id="closeRetired" value="いいえ">
