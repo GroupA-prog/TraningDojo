@@ -20,41 +20,44 @@
 			<c:otherwise><a href="/login">研修道場</a></c:otherwise>
 		</c:choose>
 	</span>
-	<c:if test="${ not empty loginUserInfo }">
+	<%-- <c:if test="${ not empty loginUserInfo }">--%>
 		<nav>
 			<ul>
 				<li><a id="retired">リタイア</a></li>
 			</ul>
 		</nav>
-	</c:if>
+	<%-- </c:if>--%>
 </header>
 
 <form:form action="quiz" modelAttribute="quiz">
+
 <h1>${quizStatus.mode}:${quizStatus.categoryName}</h1>
 <div class="main">
-<c:forEach items="${quizListHarf}" var="quiz" varStatus="status">
-  <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
-  <div class="select">
-  <form:radiobutton path="choiceId${status.count}" label="${quiz.choice1}" value="1"/><br>
-  <form:radiobutton path="choiceId${status.count}" label="${quiz.choice2}" value="2"/><br>
-  <form:radiobutton path="choiceId${status.count}" label="${quiz.choice3}" value="3"/><br>
-  <form:radiobutton path="choiceId${status.count}" label="${quiz.choice4}" value="4"/><br>
-  <form:radiobutton path="choiceId${status.count}" checked="checked" cssStyle="display:none" value="0"/><br>
-  </div>
-</c:forEach>
+  <c:forEach items="${quizListHarf}" var="quiz" varStatus="status">
+
+    <pre>${quizStatus.quizIndex * 5 + status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
+    <div class="select">
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice1}" value="1"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice2}" value="2"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice3}" value="3"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice4}" value="4"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  cssStyle="display:none" value="0"/><br>
+    </div>
+  </c:forEach>
 </div>
 
-<div class="timeLimit">
-  <c:if test="${not empty quizStatus.time}">
-    <p>残り時間</p>
-    <p>
-      <span id="min"></span>分
-      <span id="sec"></span>秒
-    </p>
-  </c:if>
-</div>
 
-<div class="cont">
+<div class="pageCon">
+	<span class="timeLimit">
+	<c:if test="${not empty quizStatus.time}">
+	    <p>残り時間</p>
+	    <p>
+	      <span id="min"></span>分
+	      <span id="sec"></span>秒
+	    </p>
+	  </c:if>
+	</span>
+
   <c:if test="${not empty returnDisplay}">
     <form:button name= "return">←前へ</form:button>
   </c:if>
@@ -66,7 +69,24 @@
   </c:if>
 </div>
 
-<form:button name="finish" id="finish">終了</form:button>
+<input type="button" id="finish-btn" value="終了">
+
+<div id="modal-retired" class="modal-retired">
+  <div class="modal-retired-content">
+      <h2>解答を破棄して終了しますか？</h2>
+	    <input type="button" id="finish" onclick="location.href='retired'" value="はい">
+	    <input type="button" id="closeRetired" value="いいえ">
+  </div>
+</div>
+
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+      <h2>解答を保存して終了しますか？</h2>
+	    <form:button name="finish">はい</form:button>
+	    <input type="button" id="closeBtn" value="いいえ">
+  </div>
+</div>
 
 </form:form>
 <script src="js/quiz.js"></script>

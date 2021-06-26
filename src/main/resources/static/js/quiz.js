@@ -1,33 +1,28 @@
 
+var retired = document.getElementById('retired');
+var modalRetired = document.getElementById('modal-retired');
 
-function buttonClick() {
-	var result = window.confirm('本当に諦めるんですか？');
-	console.log(result);
-	if(result) {
-		window.location.href = 'retired';
-	}
-	else {
-		alert('最後まで頑張って！');
-	}
-}
-var btn = document.getElementById('retired');
+retired.addEventListener('click', function() {
+  modalRetired.style.display = 'block';
+})
+var closeRetired = document.getElementById('closeRetired')
 
-btn.addEventListener('click', buttonClick);
+closeRetired.addEventListener('click', function() {
+  modalRetired.style.display = 'none';
+})
 
 
-
-var btn = document.getElementById('finish');
+var btn = document.getElementById('finish-btn');
+var modal = document.getElementById('modal');
 
 btn.addEventListener('click', function() {
-	var result = window.confirm('解答を保存してクイズを終了しますか？');
+  modal.style.display = 'block';
+})
 
-	if(result) {
-		window.location.href = 'quiz';
-	}
-	else {
-		alert('最後まで頑張って！');
-		return false;
-	}
+var closeBtn = document.getElementById('closeBtn');
+
+closeBtn.addEventListener('click', function() {
+  modal.style.display = 'none';
 })
 
 

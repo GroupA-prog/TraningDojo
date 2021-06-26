@@ -2,7 +2,37 @@
 /*リタイアボタン*/
 nav li{
 	background-color:red;
-
+}
+.modal-retired {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.5);
+}
+.modal-retired-content{
+	background-color: white;
+	width: 500px;
+	height:200px;
+	border-radius:20px;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+	text-align:center;
+	padding-top:30px;
+}
+#closeRetired{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 10px;
+	background-color:blue;
+	color:white;
 }
 
 
@@ -52,7 +82,54 @@ input,label{
 	text-align:center;
 }
 
+/*制限時間*/
+.timeLimit{
+    color:white;
+}
+
+/*終了ボタン*/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.5);
+}
+.modal-content{
+	background-color: white;
+	width: 500px;
+	height:200px;
+	border-radius:20px;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+	text-align:center;
+	padding-top:30px;
+}
+
 #finish{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 20px;
+	margin-right:30px;
+	background-color:red;
+	color:white;
+}
+#closeBtn{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 10px;
+	background-color:blue;
+	color:white;
+}
+
+#finish-btn{
 	margin-left: 90%;
 	margin-bottom:5%;
 	font-size:30px;
@@ -62,7 +139,10 @@ input,label{
     color:#f39700;
     font-weight:bold;
 }
-#finish:hover{
+button:hover{
+	opacity:0.8;
+}
+input:hover{
 	opacity:0.8;
 }
 
@@ -70,15 +150,8 @@ button{
 	cursor:pointer;
 }
 
-/*制限時間*/
-.timeLimit{
-	margin-right: 80%;
-    color:white;
-}
 
-
-
-
+/*解答詳細*/
 .correct{
 	color:red;
 }
