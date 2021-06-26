@@ -30,7 +30,7 @@
 	<input type="radio" disabled <c:if test="${quiz.userAnswer == 1}">checked</c:if>>
 	<label <c:if test="${quiz.correctAnswer == 1}">class="correct"</c:if> >${quiz.choice1}</label><br>
 	<input type="radio" disabled <c:if test="${quiz.userAnswer == 2}">checked</c:if>>
-	<label <c:if test="${quiz.correctAnswer == 2}">class="correct"</c:if> >${quiz.choice2}</label>/br>
+	<label <c:if test="${quiz.correctAnswer == 2}">class="correct"</c:if> >${quiz.choice2}</label><br>
 	<input type="radio" disabled <c:if test="${quiz.userAnswer == 3}">checked</c:if>>
 	<label <c:if test="${quiz.correctAnswer == 3}">class="correct"</c:if> >${quiz.choice3}</label><br>
 	<input type="radio" disabled <c:if test="${quiz.userAnswer == 4}">checked</c:if>>
