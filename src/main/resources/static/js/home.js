@@ -161,6 +161,7 @@ function changeCategory() {
 
 								pointLabels: {       // 軸のラベル（"国語"など）
 									fontSize: 20,         // 文字の大きさ
+									fontColor: "red",
 								},
 
 								ticks: {

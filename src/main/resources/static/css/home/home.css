@@ -131,7 +131,8 @@
 	top: 150px;
 	right: 200px;
 	overflow-y: scroll;
-	background-color: #d0feff;
+	opacity: 1;
+
 }
 
 .radar {
@@ -141,10 +142,7 @@
 
 /*
 body{
-<<<<<<< HEAD
 	background-Color: #d0feff;
 }
-=======
 	background-color: #d0feff;
 }*/
->>>>>>> branch 'main' of https://github.com/GroupA-prog/TraningDojo.git
