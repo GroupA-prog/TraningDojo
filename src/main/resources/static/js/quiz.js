@@ -3,12 +3,12 @@ var retired = document.getElementById('retired');
 var modalRetired = document.getElementById('modal-retired');
 
 retired.addEventListener('click', function() {
-  modalRetired.style.display = 'block';
+	modalRetired.style.display = 'block';
 })
 var closeRetired = document.getElementById('closeRetired')
 
 closeRetired.addEventListener('click', function() {
-  modalRetired.style.display = 'none';
+	modalRetired.style.display = 'none';
 })
 
 
@@ -16,13 +16,13 @@ var btn = document.getElementById('finish-btn');
 var modal = document.getElementById('modal');
 
 btn.addEventListener('click', function() {
-  modal.style.display = 'block';
+	modal.style.display = 'block';
 })
 
 var closeBtn = document.getElementById('closeBtn');
 
 closeBtn.addEventListener('click', function() {
-  modal.style.display = 'none';
+	modal.style.display = 'none';
 })
 
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
         timer();
     } else {
         var end = new Date();
-        end.setMinutes(end.getMinutes() + 20);
+        end.setMinutes(end.getMinutes() + 1);
         $.cookie('end', end);
         $('.end').text($.cookie('end'));
         timer();
@@ -59,7 +59,8 @@ $(document).ready(function(){
                 $('.count').text(count);
             } else {
             	$.removeCookie('end');
-                window.location.href='userHome';
+                var timeup = document.getElementById('timeup');
+  				timeup.style.display = 'block';
             }
 
             //秒→時分秒への変換関数
@@ -75,6 +76,12 @@ $(document).ready(function(){
         });
     }
 });
+
+var time = document.getElementById('timebtn');
+time.addEventListener('click', function() {
+ 	window.location.href='userHome';
+ })
+
 //制限時間のcookieを破棄
 
 var finish = document.getElementsByName('finish');

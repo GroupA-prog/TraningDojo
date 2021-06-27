@@ -62,8 +62,16 @@ input,label{
 .timeLimit{
     color:white;
 }
+#timebtn{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 20px;
+	margin-top:20px;
+	background-color:red;
+	color:white;
+}
 
-/*終了ボタン*/
+/*モーダル*/
 .modal {
 	display: none;
 	position: fixed;
@@ -89,6 +97,7 @@ input,label{
 	padding-top:30px;
 }
 
+
 #finish{
 	border-radius:10px;
 	font-size:25px;
@@ -105,6 +114,7 @@ input,label{
 	color:white;
 }
 
+/*終了ボタン*/
 #finish-btn{
 	margin-left: 90%;
 	margin-bottom:5%;

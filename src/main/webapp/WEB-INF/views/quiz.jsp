@@ -74,6 +74,7 @@
 <input type="button" id="finish-btn" value="終了">
 
 
+<%--モーダルウィンドウ --%>
 <div id="modal-retired" class="modal">
   <div class="modal-content">
       <h2>解答を破棄して終了しますか？</h2>
@@ -90,6 +91,14 @@
 	    <input type="button" id="closeBtn" value="いいえ">
   </div>
 </div>
+
+<div id="timeup" class="modal">
+  <div class="modal-content">
+      <h2>TimeUp!!</h2>
+	    <input type="button" id="timebtn" value="OK">
+  </div>
+</div>
+
 
 </form:form>
 <script src="js/quiz.js"></script>
