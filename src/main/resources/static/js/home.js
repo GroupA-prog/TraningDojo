@@ -21,6 +21,7 @@ function changeCategory() {
 			res.json().then(function(data) {
 				console.log(data);
 				num = data.length;
+				categoryName = data[0][2];
 
 
 
