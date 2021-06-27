@@ -123,7 +123,7 @@ function changeCategory() {
 						data: {
 
 							//データ項目のラベル
-							labels: ['赤', '青', '黄', '白'],
+							labels: [name],
 
 							//データセット
 							datasets: [
@@ -139,7 +139,7 @@ function changeCategory() {
 									pointBorderWidth: 2,                  // 点の境界線の幅
 									pointBackgroundColor: "yellow",       // 点の塗りつぶし色
 									//グラフのデータ
-									data: [50, 85, 30, 100]
+									data: [ratio]
 
 								}
 							]
