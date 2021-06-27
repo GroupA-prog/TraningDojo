@@ -16,7 +16,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<header class="title-continar">
@@ -68,9 +69,7 @@
 			</c:forEach>
 	</select>
 	<div class="wrapper">
-		<span id="radar" class="radar">
-
-		</span>
+		<div id="radar" class="radar"></div>
 	</div>
 
 
