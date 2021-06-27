@@ -12,37 +12,52 @@
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
-	<div class="margin">
+	<div class="login-box">
 		<c:if test="${not empty errMsg }">
 			<p class="error">※${fn:escapeXml(errMsg)}</p>
 		</c:if>
 		<form:form action="/login" modelAttribute="login" method="post">
-			<p><span class="font">アカウントをお持ちの方はこちらからログインしてください</span></p>
+			<!--
+			<p>
+				<span class="font">アカウントをお持ちの方はこちらからログインしてください</span>
+			</p>-->
+			<p>ログイン</p>
 			<div class="btn">
 				<p>
-					ログインID
-					<form:input path="loginId" class="txt"/>
+					<!-- ログインID  -->
+					<form:input path="loginId" class="txt" placeholder="ログインID" />
 					<br>
-					<form:errors path="loginId" class="error" />
+						<span class="pass2">
+							<form:errors path="loginId" class="txt error" />
+						</span>
 				</p>
 				<p>
-					<span class="pass2">パスワード</span>
-					<form:password path="password" class="txt"/>
-					<br> <span class="pass2"><form:errors path="password"
-							class="error" /></span>
+					<!-- <span class="pass2">パスワード</span> -->
+					<form:password path="password" class="txt" placeholder="パスワード" />
+					<br>
+						<span class="pass2">
+							<form:errors path="password" class="txt error" />
+						</span>
 				</p>
+
+				<!--<br>  -->
+				<button class="btn login">ログイン</button>
+
 			</div>
-			<br>
-			<button class="btn login" class="btn">ログイン</button>
 		</form:form>
-		<br> <br>
+		<br> <!-- <br> -->
 		<div class="clear">
 			<form:form action="/signUp" modelAttribute="signUp" method="get">
 				<br>
-	<span class="font">アカウントをお持ちでない方は、こちらから登録してください</span><br>
+				<!-- <span class="font">アカウントをお持ちでない方は、こちらから登録してください</span> -->
+				<p>はじめての方はこちら<br>
+				<p>
+				<!--
+				<br> -->
+				<!-- <p class="btn2"> -->
+					<button type="submit" class="btn login">新規登録</button>
+				<!-- </p> -->
 				<br>
-				<p class="btn2">
-					<button type="submit" class="btn new-update">新規登録</button>
 				</p>
 			</form:form>
 		</div>

@@ -20,6 +20,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+	<!--
 	<header class="title-continar">
 		<span id="site-title"> <c:choose>
 				<c:when test="${ not empty loginUserInfo }">
@@ -41,38 +42,42 @@
 			</nav>
 		</c:if>
 	</header>
-	<h1 class="home">${loginUserInfo.userName}さんのホーム</h1>
+	 -->
+	<c:import url="header.jsp"></c:import>
+	<div id="background-image">
+		<h1 class="home">${loginUserInfo.userName}さんのホーム</h1>
 
-	<form action="/quizConfig" method="GET">
-		<button type="submit" class="btn quiz">クイズ</button>
-	</form>
-	<p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>
-	<form action="/rankingCategory" method="GET">
-		<button type="submit" class="btn ranking">ランキング</button>
-	</form>
-	<p class="rankEx">ランキングモードでの成績を確認できます</p>
-	<form action="/logCategory" method="GET">
-		<button type="submit" class="btn history">履歴</button>
-	</form>
-	<p class="hisEx">過去に解いた問題を確認できます</p>
-	<form action="/profile" method="GET">
-		<button type="submit" class="btn profile">プロフィール</button>
-	</form>
-	<p class="proEx">プロフィールを変更できます</p>
+		<form action="/quizConfig" method="GET">
+			<button type="submit" class="btn quiz">クイズ</button>
+		</form>
+		<p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>
+		<form action="/rankingCategory" method="GET">
+			<button type="submit" class="btn ranking">ランキング</button>
+		</form>
+		<p class="rankEx">ランキングモードでの成績を確認できます</p>
+		<form action="/logCategory" method="GET">
+			<button type="submit" class="btn history">履歴</button>
+		</form>
+		<p class="hisEx">過去に解いた問題を確認できます</p>
+		<form action="/profile" method="GET">
+			<button type="submit" class="btn profile">プロフィール</button>
+		</form>
+		<p class="proEx">プロフィールを変更できます</p>
 
-	<h2 class="radarContent">レーダーチャート</h2>
+		<h2 class="radarContent">レーダーチャート</h2>
 
-	<select name="radarCategory" id="radarCategory" class="radarCategory">
-		<option Label="選択してください">
-			<c:forEach var="category" items="${parentCategory}">
-				<option value="${category.categoryId}">${category.categoryName}</option>
-			</c:forEach>
-	</select>
-	<div class="wrapper">
-		<div id="radar" class="radar"></div>
+		<select name="radarCategory" id="radarCategory" class="radarCategory">
+			<option Label="選択してください">
+				<c:forEach var="category" items="${parentCategory}">
+					<option value="${category.categoryId}">${category.categoryName}</option>
+				</c:forEach>
+		</select>
+		<div class="wrapper">
+			<div id="radar" class="radar"></div>
+		</div>
+
+
+		<script src="js/home.js"></script>
 	</div>
-
-
-	<script src="js/home.js"></script>
 </body>
 </html>

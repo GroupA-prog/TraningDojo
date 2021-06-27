@@ -14,6 +14,7 @@
 	<c:import url="header.jsp"></c:import>
 	<h1 class="DoneMsg">ご登録ありがとうございます</h1>
 	<div class="margin">
+		<br>
 		<span class="font">登録が完了しました。 <br> こちらからログインしてください</span> <br> <br>
 		<c:if test="${not empty signUpErrMsg}">
 			<p class="error">※${fn:escapeXml(signUpErrMsg)}</p>
@@ -22,13 +23,13 @@
 			method="post">
 			<div class="btn">
 				<p>
-					ログインID
-					<form:input path="loginId" class="txt"/>
+					<!-- ログインID -->
+					<form:input path="loginId" class="txt" placeholder="ログインID"/>
 					<br>
 					<form:errors path="loginId" class="error" />
 				<p>
-					<span class="pass2">パスワード</span>
-					<form:password path="password" class="txt"/>
+					<!-- <span class="pass2">パスワード　</span> -->
+					<form:password path="password" class="txt" placeholder="パスワード"/>
 					<br> <span class="pass2"><form:errors path="password"
 							class="error" /></span>
 			</div>
@@ -36,6 +37,7 @@
 			<div class="btn">
 				<form:button class="btn login">ログイン</form:button>
 			</div>
+			<br>
 		</form:form>
 	</div>
 </body>

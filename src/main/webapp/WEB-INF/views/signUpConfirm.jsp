@@ -22,37 +22,42 @@
 			<p><span class="error">${fn:escapeXml(isNotMatchPasswordMsg)}</span></p>
 		</c:if>
 		<form:form action="/signUpConfirm" modelAttribute="signUp" method="post">
-			<p>
-				<span class="login">ログインID</span>
+			<p class="new-user-config">
+				<span class="login">　　ログインID　　　</span>
 				<form:input path="newLoginId" class="txt" readonly="true"/>
 				<br>
-			<div class="error2">
+			<!-- <div class="error2"> -->
 				<form:errors path="newLoginId" class="error" />
-			</div>
+			<!-- </div> -->
+			</p>
 			<p>
-				<span class="pass">パスワード</span>
+			<p class="new-user-config">
+				<span class="pass">　　パスワード　　　</span>
 				<form:password path="newPassword" class="txt" showPassword="true" readonly="true" />
 				<br>
-			<div class="error2">
+			<!-- <div class="error2"> -->
 				<form:errors path="newPassword" class="error" />
-			</div>
+			<!-- </div> -->
 			<p>
-				<span class="passre">パスワード(確認用)</span>
+			</p>
+			<p class="new-user-config">
+				<span class="passre">パスワード(確認用)　</span>
 				<form:password path="newPasswordRe" class="txt" />
-				<br>
+			</p>
 			<p>
-				<span class="user">ユーザーネーム</span>
+			<p class="new-user-config">
+				<span class="user">　ユーザーネーム　　 </span>
 				<form:input path="newUserName" class="txt" readonly="true" />
 				<br>
-			<div class="error2">
+			<!-- <div class="error2"> -->
 				<form:errors path="newUserName" class="error" />
-			</div>
+			<!-- </div> -->
 			<p>
-			<div class="btn3">
-				<form:button class="btn new-update signup">新規登録</form:button>
-			</div>
+			<p>
+			<!-- <div class="btn3"> -->
+				<form:button class="btn login">新規登録</form:button>
+			<!-- </div> -->
 		</form:form>
-		<br>
 		<p class="clear">
 			<a href="login" class="return"><span class="font">戻る</span></a>
 		</p>

@@ -1,18 +1,28 @@
 .btn.login {
-    width: 100%;
-    max-width: 160px;
-    padding: 15px 10px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #000;
-    background-color: #fd7e00;
-    border: #fd7e00;
-    border-bottom: 4px solid #B25D2C;
-    border-radius: 20px;
-    font-size:20px;
+	width: 100%;
+	max-width: 160px;
+	padding: 5px 5px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #ffffff;
+	background-color: #9ccdff;
+	border: 0px solid #66b3ff;
+	border-bottom : 5px solid #66b3ff;
+	font-size: 13px;
+	border-bottom: 5px solid #66b3ff;
 }
 
+.btn.login:active {
+	/*ボタンを押したとき*/
+	-webkit-transform: translateY(4px);
+	transform: translateY(4px); /*下に動く*/
+	border-bottom: none; /*線を消す*/
+}
+p {
+	color :#1f2933;
+}
+/*
 .btn.new-update {
     width: 100%;
     max-width: 160px;
@@ -27,91 +37,89 @@
     border-radius: 20px;
     font-size:20px;
 }
-
+*/
 .btn.warning {
-    width: 100%;
-    max-width: 100px;
-    padding: 10px 5px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #ff111d;
-    border: #ff111d;
-    border-radius: 20px;
+	width: 100%;
+	max-width: 100px;
+	padding: 10px 5px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #fff;
+	background-color: #ff111d;
+	border: #ff111d;
+	border-radius: 20px;
 }
 
-
-
 .btn.before-after {
-    color: #000;
-    background-color: #d9ebff;
-    border: #d9ebff;
+	color: #000;
+	background-color: #d9ebff;
+	border: #d9ebff;
 }
 
 .btn.end {
-    width: 100%;
-    max-width: 100px;
-    padding: 10px 5px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #000;
-    background-color: #F5E952;
-    border: #F5E952;
-    border-bottom: 4px solid #EBA13E;
-    border-radius: 20px;
+	width: 100%;
+	max-width: 100px;
+	padding: 10px 5px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #000;
+	background-color: #F5E952;
+	border: #F5E952;
+	border-bottom: 4px solid #EBA13E;
+	border-radius: 20px;
 }
 
 .btn.admin {
-    width: 100%;
-    max-width: 100px;
-    padding: 10px 5px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #000;
-    background-color: #929292;
-    border: #929292;
-    border-radius: 20px;
+	width: 100%;
+	max-width: 100px;
+	padding: 10px 5px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #000;
+	background-color: #929292;
+	border: #929292;
+	border-radius: 20px;
 }
 
 .btn.admin.function {
-    width: 100%;
-    max-width: 120px;
-    padding: 15px 10px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #ff714e;
-    border-radius: 20px;
+	width: 100%;
+	max-width: 120px;
+	padding: 15px 10px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #fff;
+	background-color: #ff714e;
+	border-radius: 20px;
 }
 
 .btn.admin.confirm {
-    width: 100%;
-    max-width: 80px;
-    padding: 8px 4px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #ff0000;
-    border-radius: 20px;
+	width: 100%;
+	max-width: 80px;
+	padding: 8px 4px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #fff;
+	background-color: #ff0000;
+	border-radius: 20px;
 }
 
 .btn.admin.back {
-    width: 100%;
-    max-width: 80px;
-    padding: 8px 4px;
-    display: inline-block;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #fff;
-    background-color: #0000ff;
-    border-radius: 20px;
+	width: 100%;
+	max-width: 80px;
+	padding: 8px 4px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #fff;
+	background-color: #0000ff;
+	border-radius: 20px;
 }
 
 .btn.back {
-    color: red;
+	color: red;
 }
