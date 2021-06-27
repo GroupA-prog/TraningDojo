@@ -26,84 +26,61 @@ closeBtn.addEventListener('click', function() {
 })
 
 
-function firstcountdown(){
-    const time = 1200000;
-	const startTime = Date.now();
+//制限時間
+$(document).ready(function(){
+ if($.cookie('end')){
+        var end = new Date($.cookie('end'));
+        $('.end').text($.cookie('end'));
+        timer();
+    } else {
+        var end = new Date();
+        end.setMinutes(end.getMinutes() + 20);
+        $.cookie('end', end);
+        $('.end').text($.cookie('end'));
+        timer();
+    }
 
-	let A = window.sessionStorage.getItem('startTime');
-	let B = window.sessionStorage.getItem('time');
-	if ( A == null || B == null ) {
-		window.sessionStorage.setItem('startTime', startTime);
-		window.sessionStorage.setItem('time', time);
-	}
+    //カウントダウン関数
+    function timer(){
 
-	window.sessionStorage.setItem('startTime',startTime);
-	window.sessionStorage.setItem('time',time);
+        //1秒ごとに実行
+        setInterval(function(){
 
-	//console.log(window.sessionStorage.getItem('startTime'));
-	//console.log(window.sessionStorage.getItem('time'));
+            //現在時刻を取得
+            var now = new Date();
+            $('.now').text(now);
 
-	//const sec = Math.floor(time/1000)%60;
-	//const min = Math.floor(time/1000/60);
+            //終了時間と現在時間の差を求め、時分秒形式に変換
+            var count = Math.floor((end - now) / 1000);
 
-	//document.getElementById("min").textContent=String(min).padStart(2,"0");
-	//document.getElementById("sec").textContent=String(sec).padStart(2,"0");
+            //0より大きければカウントダウン続行、小さければhomeへ遷移
+            if (count > 0) {
+                var count = toHms(count);
+                $('.count').text(count);
+            } else {
+            	$.removeCookie('end');
+                window.location.href='userHome';
+            }
 
+            //秒→時分秒への変換関数
+            function toHms(t) {
 
-}
+                var m = t % 3600 / 60 | 0;
+                var s = t % 60;
 
-//firstcountdown();
+			document.getElementById("min").textContent=String(m).padStart(2,"0");
+			document.getElementById("sec").textContent=String(s).padStart(2,"0");
 
+            }
+        });
+    }
+});
+//制限時間のcookieを破棄
 
-
-function countdown(){
-	let time = window.sessionStorage.getItem('time');
-	let startTime = window.sessionStorage.getItem('startTime');
-	console.log(time);
-	console.log(startTime);
-
-/*	if (startTime == null || time == null) {
-		startTime = Date.now();
-		time = 1200000;
-	}
-*/
-	const timeId = setInterval(() =>{
-		const currentTime = Date.now();
-
-		const diff = currentTime - startTime;
-		const diffsec = time - diff;
-
-		window.sessionStorage.setItem('startTime',startTime);
-		window.sessionStorage.setItem('time',diffsec);
-
-		const sec = Math.floor(diffsec/1000)%60;
-		const min = Math.floor(diffsec/1000/60);
-
-		//console.log(sec);
-		//console.log(min);
-
-		document.getElementById("min").textContent=String(min).padStart(2,"0");
-		document.getElementById("sec").textContent=String(sec).padStart(2,"0");
-
-		if(diffsec <= 0){
-			clearInterval(timeId);
-			window.location.href = 'retired';
-		}
-	}, 500);
-}
-//countdown();
-
-function rel() {
-  if (window.name != "any") {
-    firstcountdown();
-    window.name = "any";
-  }
-  //countdown();
-}
-
-
-window.onload = function() {
-
-	//firstcountdown();
-	countdown();
-};
+var finish = document.getElementsByName('finish');
+finish[0].addEventListener('click', function() {
+  $.removeCookie('end');
+})
+finish[1].addEventListener('click', function() {
+  $.removeCookie('end');
+});

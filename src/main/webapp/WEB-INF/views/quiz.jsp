@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>クイズ画面</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <link rel="stylesheet" href="css/quiz/quiz.css">
 <link rel="stylesheet" href="css/common.css">
 </head>
@@ -37,10 +39,10 @@
 
     <pre>${quizStatus.quizIndex * 5 + status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
     <div class="select">
-	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice1}" value="1"/><br>
-	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice2}" value="2"/><br>
-	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice3}" value="3"/><br>
-	  <form:radiobutton path="choiceId${quizStatus.quizIndex * 5 +status.count}"  label="${quiz.choice4}" value="4"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice1}" value="1"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice2}" value="2"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice3}" value="3"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice4}" value="4"/><br>
 	  <form:radiobutton path="choiceId${status.count}"  cssStyle="display:none" value="0"/><br>
     </div>
   </c:forEach>
@@ -75,7 +77,7 @@
 <div id="modal-retired" class="modal">
   <div class="modal-content">
       <h2>解答を破棄して終了しますか？</h2>
-	    <input type="button" id="finish" onclick="location.href='retired'" value="はい">
+	    <input type="button" name="finish" id="finish" onclick="location.href='retired'" value="はい">
 	    <input type="button" id="closeRetired" value="いいえ">
   </div>
 </div>
