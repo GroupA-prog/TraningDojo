@@ -18,7 +18,7 @@
 </header>
 <body>
 	<div class="left">
-		<h2>カテゴリを選択してください</h2>
+		<h1>カテゴリを選択してください</h1>
 		<form:form action="log" modelAttribute="logList" method="get">
 			<c:forEach var="category" items="${categoryList}">
 				<a href="/logList?categoryId=${fn:escapeXml(category.categoryId)}" class="link">${fn:escapeXml(category.categoryName)}</a>
