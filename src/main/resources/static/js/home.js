@@ -21,6 +21,9 @@ function changeCategory() {
 			res.json().then(function(data) {
 				console.log(data);
 				num = data.length;
+				categoryName = data[0][2];
+
+
 
 
 
@@ -29,11 +32,12 @@ function changeCategory() {
 				if (num % 5 == 0) {
 					chartNum = num / 5;
 				} else {
-					chartNum = (num + 5) / 5;
+					chartNum = parseInt((num + 5) / 5);
 				}
 
 				//レーダーチャート作成
 				var i = 1
+				var k = 1;
 				while (i <= chartNum) {
 
 
@@ -42,15 +46,16 @@ function changeCategory() {
 						itemNum = num / chartNum;
 					} else {
 						var rem = num % chartNum;
-						itemNum = num / chartNum;
+						itemNum = parseInt(num / chartNum);
 
-						var k = 1;
+
 						if (k <= rem) {
 							itemNum++;
+							k++;
 						}
 					}
 
-					radarCharts = 'radarChart'+i;
+					radarCharts = 'radarChart' + i;
 
 					//jsp側のタグの作成
 					var radar = document.getElementById("radar");
@@ -60,7 +65,7 @@ function changeCategory() {
 
 
 					var ctx = document.getElementById(radarCharts);
-					var radarCharts = new chart(ctx, {
+					radarCharts = new Chart(ctx, {
 
 						//グラフの種類
 						type: 'radar',
@@ -69,13 +74,13 @@ function changeCategory() {
 						data: {
 
 							//データ項目のラベル
-							labels: ['あ','い','う'],
+							labels: ['あ', 'い', 'う', 'え'],
 
 							//データセット
 							datasets: [
 								{
 									//グラフのデータ
-									data: [5, 6, 5]
+									data: [5, 6, 5, 6]
 
 								}
 							]
