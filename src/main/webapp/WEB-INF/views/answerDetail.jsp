@@ -40,6 +40,9 @@
     <pre>${quiz.commentary}</pre>
   </c:if>
 </c:forEach>
+<c:if test="${quizStatus.modeId == 2 }">
+  <a href="rankingView">戻る</a>
+</c:if>
 
 </body>
 </html>
