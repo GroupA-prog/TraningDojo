@@ -9,5 +9,5 @@ public interface HomeService {
 
 	public List<Category> parentCategoryAll();
 	public List<Home> answerLateList(Integer categoryId);
-
+	public List<Home> fullCategory(Integer categoryId);
 }

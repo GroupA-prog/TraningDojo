@@ -38,4 +38,11 @@ public class JsController {
 		System.out.print(form.getCategoryId());
 		return list;
 	}
+
+	@RequestMapping(path = "/fullCategoryJs", method = RequestMethod.POST)
+	public List<Home> fullCategoryJs(@RequestBody CategoryIdDTO form) {
+		List<Home> fullCategory = homeService.fullCategory(form.getCategoryId());
+
+		return fullCategory;
+	}
 }

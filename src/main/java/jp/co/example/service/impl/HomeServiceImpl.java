@@ -25,4 +25,7 @@ public class HomeServiceImpl implements HomeService {
 		return homeDao.answerLateList(categoryId);
 	}
 
+	public List<Home> fullCategory(Integer categoryId){
+		return homeDao.fullCategory(categoryId);
+	}
 }

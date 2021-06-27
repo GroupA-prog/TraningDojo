@@ -108,26 +108,30 @@
 
 .radarCategory {
 	position: absolute;
-	top: 200px;
-	right: 60px;
+	top: 105px;
+	right: 220px;
+	font-size: 20px;
 
 }
 
 .radarContent {
 	position: absolute;
 	top: 70px;
-	right: 400px;
+	right: 420px;
 	font-size: 30px;
 	color: red;
+
 
 }
 
 .wrapper {
 	position: absolute;
 	width: 500px;
-	top: 200px;
+	height: 350px;
+	top: 150px;
 	right: 200px;
 	overflow-y: scroll;
+	background-color: #d0feff;
 }
 
 .radar {
@@ -137,5 +141,10 @@
 
 /*
 body{
+<<<<<<< HEAD
+	background-Color: #d0feff;
+}
+=======
 	background-color: #d0feff;
 }*/
+>>>>>>> branch 'main' of https://github.com/GroupA-prog/TraningDojo.git

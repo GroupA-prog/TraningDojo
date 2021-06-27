@@ -8,5 +8,6 @@ import jp.co.example.dto.entity.Home;
 public interface HomeDao {
 	public List<Category> parentCategoryAll();
 	public List<Home> answerLateList(Integer categoryId);
+	public List<Home> fullCategory(Integer categoryId);
 
 }
