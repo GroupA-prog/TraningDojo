@@ -224,7 +224,8 @@ public class QuizController{
 		quizService.setQuiz(correctList,quizList,answer);
 		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
 		//カテゴリ名からカテゴリIDを取得
-		status.setCategoryId(categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId());
+		int categoryId = categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId();
+		status.setCategoryId(categoryId);
 		//sessionからuserIdを取得
 		UserInfo userInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		status.setUserId(userInfo.getUserId());
@@ -251,10 +252,10 @@ public class QuizController{
 		session.setAttribute("quizList", quizAll);
 		//モード判断
 		if(status.getModeId() == 1) {
-			return "redirect:answerDetail";
+			return "redirect:/answerDetail";
 		}
 
-		return "rankingView";
+		return "redirect:/rankingView?categoryId=" + categoryId;
 	}
 
 	@RequestMapping(value="/answerDetail")
