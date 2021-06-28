@@ -31,16 +31,16 @@
 	  </div>
 	  <h2 >解説</h2>
 	  <c:if test="${not empty quiz.commentary}">
-	    <pre>${quiz.commentary}</pre>
+	    <pre class="commentary">${quiz.commentary}</pre>
 	  </c:if>
 	  <c:if test="${empty quiz.commentary}">
-	    <pre id="commentary">解説はまだありません</pre>
+	    <pre class="commentary">解説はまだありません</pre>
 	  </c:if>
 	</c:forEach>
 </div>
 <c:if test="${quizStatus.modeId == 2 }">
   <a id="back" href="rankingView?categoryId=${quizStatus.categoryId}">戻る</a>
 </c:if>
-
+<input type="button" id="finish-btn" value="ホーム" onclick="location.href='userHome'">
 </body>
 </html>
