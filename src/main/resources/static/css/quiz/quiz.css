@@ -171,6 +171,10 @@ input:hover{
 }
 
 #commentary{
-	margin-bottom:auto;
 	margin-top:auto;
+}
+#back{
+	font-weight:bold;
+	color:red;
+	text-decoration: none;
 }
