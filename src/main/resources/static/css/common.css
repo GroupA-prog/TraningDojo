@@ -23,7 +23,7 @@
 	background-color: white;
 	display: none;
 	border-radius: 20px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 #modal-content::-webkit-scrollbar {

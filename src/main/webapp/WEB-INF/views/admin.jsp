@@ -104,7 +104,7 @@
 						</label>
 						<table id="quizListTable">
 							<thead>
-								<th>クイズID</th>
+								<th class="quizTh">クイズID</th>
 								<th>クイズタイトル</th>
 							</thead>
 							<tbody>
@@ -176,10 +176,11 @@
 							<form:option value="4">4.</form:option>
 						</form:select>
 					</div>
-					<div>
-						<label> 非表示/表示 <br> <form:radiobutton
-								path="quizDisplay" label="非表示" value="0" /> <form:radiobutton
-								path="quizDisplay" label="表示" value="1" />
+					<div class="radioBtn">
+						<p>非表示/表示</p>
+						<label>
+								<form:radiobutton path="quizDisplay" label="非表示" value="0" />
+								<form:radiobutton path="quizDisplay" label="表示" value="1" />
 						</label>
 					</div>
 					<div>
