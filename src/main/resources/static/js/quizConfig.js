@@ -3,13 +3,17 @@ var learning = document.getElementById("lea");
 var rank = document.getElementById("ran");
 var numDisp = document.getElementById("num");
 mode = document.getElementsByName("mode");
-error = document.getElementById("error");
-error.style.display = 'block';
+studyError = document.getElementById("studyError");
+studyError.style.display = 'block';
+rankError = document.getElementById("rankError");
+rankError.style.display = 'block'
 numEx = document.getElementById("numEx");
+
 
 //モード切り替え
 function changeBtn() {
-	error.style.display = 'none';
+	rankError.style.display = 'none';
+	studyError.style.display = 'none';
 
 	if (mode[0].checked) {
 		learning.style.display = 'block';
