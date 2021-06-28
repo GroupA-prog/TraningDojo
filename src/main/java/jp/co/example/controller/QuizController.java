@@ -103,7 +103,7 @@ public class QuizController{
 		//モード分岐、制限時間・問題（5問分け済み）を保存
 		if(form.getMode() == 1) {
 			if(form.getQuizNum() == 0) {
-				redirectAttributes.addFlashAttribute("msg","問題数は必須です");
+				redirectAttributes.addFlashAttribute("studyError","問題数は必須です");
 				return "redirect:quizConfig";
 			}
 			status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
@@ -118,7 +118,7 @@ public class QuizController{
 				List<Quiz>quiz = quizList.get(1);
 				quiz.get(4);
 			}catch (RuntimeException e) {
-				redirectAttributes.addFlashAttribute("msg","問題がありません");
+				redirectAttributes.addFlashAttribute("rankError","問題がありません");
 				return "redirect:quizConfig";
 			}
 			status.setTime(20);
