@@ -95,6 +95,9 @@ table th {
 table th:first-child {
 	letter-spacing: 0.5em;
 }
+td {
+	background-color: #fff;
+}
 .back {
 	font-size: 30px;
 	position: fixed;
