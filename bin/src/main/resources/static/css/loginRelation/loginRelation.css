@@ -1,12 +1,29 @@
-html {
+
+/*html {
 	font-size: 20px;
 }
+*/
+/*
 body{
 	margin-left:35px;
+	background-color: #d0feff;
 }
+*/
 
 .margin{
-	margin-left:35px;
+	/*margin-left:35px;*/
+	margin: 80px 350px;
+	border:  solid 1px rgb(105, 138, 171);
+	background-color: white;
+	text-align: center;
+}
+
+
+.login-box {
+	margin: 80px 350px;
+	border:  solid 1px rgb(105, 138, 171);
+	background-color: white;
+	text-align: center;
 }
 
 .return{
@@ -14,10 +31,13 @@ body{
 	color:red;
 }
 
+/*
 .login{
 	margin-left:113px;
 }
+*/
 
+/*
 .user{
 	margin-left:76px;
 }
@@ -27,13 +47,20 @@ body{
 }
 
 .pass2{
+	font-size: 8px;
 	margin-left:3px;
 }
+*/
 
+/*
 .passre{
 	margin-left:39px;
 }
-.error {
+*/
+
+.txt .error {
+
+	font-size: 5px;
 	content: "※";
 	color: red;
 }
@@ -47,30 +74,54 @@ body{
 
 .DoneMsg {
 	text-align: center;
-	font-size: 70px;
+	font-size: 25px;
 	font-weight: 100;
 }
 
 .error2{
-	margin-left: 150px;
+	/*margin-left: 150px;*/
+	text-align: center;
 }
-
+/*
 .btn {
 	float: left;
+	margin: auto;
 	margin-right: 37px;
+	text-align: center;
 }
+*/
+
 .btn2{
 	margin-left: 520px;
 }
 .btn3{
 	margin-left: 250px;
 }
+
+.new-user {
+	margin: auto;
+
+}
+.new-userName{
+	margin-left:16px;
+}
+/*
+.new-user-config {
+	margin:auto;
+}
+*/
+
+/*
 .clear{
 	clear: both;
+	text-align: center;
 }
+*/
+/*
 .font{
 	font-size:25px;
 }
+*/
 .txt{
 	width:250px;
 	height:23px;

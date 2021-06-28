@@ -147,11 +147,15 @@ public class QuizController{
 		//次の5問へセッションを更新
 		quizIndex++;
 		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
+		try {
 		form.setChoiceId1(answer.get(quizIndex).get(0));
 		form.setChoiceId2(answer.get(quizIndex).get(1));
 		form.setChoiceId3(answer.get(quizIndex).get(2));
 		form.setChoiceId4(answer.get(quizIndex).get(3));
 		form.setChoiceId5(answer.get(quizIndex).get(4));
+		}catch(RuntimeException e) {
+
+		}
 		//次へ・前へボタン表示判断
 		if(quizIndex == (quizList.size() - 1)) {
 			model.addAttribute("nextDisplay",1);

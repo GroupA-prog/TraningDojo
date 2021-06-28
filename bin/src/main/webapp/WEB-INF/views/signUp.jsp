@@ -11,46 +11,39 @@
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 <body>
 	<c:import url="header.jsp"></c:import>
-	<div id="modal-overlay"></div>
 	<div class="margin">
-		<p>
-			<span class="font">ユーザー情報を入力してください</span>
-		</p>
-		<c:if test="${not empty errDuplicate}">
-			<p class="error">※${fn:escapeXml(errDuplicate)}</p>
-		</c:if>
-		<form:form action="/signUp" modelAttribute="signUp"
-			method="post">
-			<p>
-				<span class="login">ログインID</span>
-				<form:input path="newLoginId" class="txt" />
+		<p>新規登録</p>
+		<div class="btn">
+			<c:if test="${not empty errDuplicate}">
+				<p class="error">※${fn:escapeXml(errDuplicate)}</p>
+			</c:if>
+			<form:form action="/signUp" modelAttribute="signUp" method="post">
+				<p>
+					<span class="new-user">　ログインID　　　</span>
+					<form:input path="newLoginId" class="txt" />
 				<br>
-			</p>
-			<div class="error2">
-				<form:errors path="newLoginId" class="error" />
-			</div>
-			<p>
-				<span class="pass">パスワード</span>
-				<form:password path="newPassword" class="txt" />
+					<span class="pass2">
+						<form:errors path="newLoginId" class="txt error" />
+					</span>
+				<!-- </div> -->
+				</p>
+				<p>
+					<span class="new-user">　パスワード　　　</span>
+					<form:password path="newPassword" class="txt" />
 				<br>
-			</p>
-			<div class="error2">
-				<form:errors path="newPassword" class="error" />
-			</div>
-			<p>
-				<span class="user">ユーザーネーム</span>
-				<form:input path="newUserName" class="txt" />
+					<form:errors path="newPassword" class="error" />
+				</p>
+				<p>
+					<span class="new-userName">ユーザーネーム　</span>
+					<form:input path="newUserName" class="txt" />
 				<br>
-			</p>
-			<div class="error2">
-				<form:errors path="newUserName" class="error" />
-			</div>
-			<p>
-			<div class="btn3">
-				<form:button class="btn new-update signup">新規登録</form:button>
-			</div>
-		</form:form>
-		<br>
+					<form:errors path="newUserName" class="error" />
+				</p>
+				<p>
+					<form:button class="btn login">新規登録</form:button>
+
+			</form:form>
+		</div>
 		<p class="clear">
 			<a href="login" class="return"><span class="font">戻る</span></a>
 		</p>
