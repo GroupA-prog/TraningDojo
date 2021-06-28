@@ -54,7 +54,7 @@
 						onmouseout="this.src='css/img/quiz.png'">
 				</button>
 			</form>
-			<p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>
+			<!--  <p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>-->
 			<form action="/rankingCategory" method="GET">
 				<button type="submit" class="btn ranking">
 					<img src="css/img/ranking.png" width="200px"
@@ -63,7 +63,7 @@
 				</button>
 			</form>
 
-			<p class="rankEx">ランキングモードでの成績を確認できます</p>
+			<!--  <p class="rankEx">ランキングモードでの成績を確認できます</p>-->
 		</div>
 		<br>
 		<div style="display: inline-flex">
@@ -74,7 +74,7 @@
 						onmouseout="this.src='css/img/log.png'">
 				</button>
 			</form>
-			<p class="hisEx">過去に解いた問題を確認できます</p>
+			<!--  <p class="hisEx">過去に解いた問題を確認できます</p>-->
 			<form action="/profile" method="GET">
 				<button type="submit" class="btn profile">
 					<img src="css/img/profile.png" width="200px"
@@ -82,7 +82,7 @@
 						onmouseout="this.src='css/img/profile.png'">
 				</button>
 			</form>
-			<p class="proEx">プロフィールを変更できます</p>
+			<!--  <p class="proEx">プロフィールを変更できます</p>-->
 		</div>
 
 
