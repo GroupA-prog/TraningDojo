@@ -29,7 +29,7 @@ nav li{
     padding:20px;
 }
 .main .select{
-	background:rgb(173 243 243 / 30%);
+	background:rgb(173 243 243 / 40%);
 	margin:0 auto;
 	font-size:20px;
     width:50em;
@@ -165,18 +165,12 @@ input:hover{
 
 
 /*ラジオボタン*/
-label ~ label {
-  margin-left: 30px;
-}/* ベースのラジオボタン */
-
-.select input[type=radio] {
-  display: none;
-}
+/* ベースのラジオボタン */
 
 .select label {
   position: relative;
   padding-left: 25px;
-  color: #138eb0;
+  color:block;
   z-index: 1;
 }
 
@@ -234,4 +228,9 @@ label ~ label {
 /*解答詳細*/
 .correct{
 	color:red;
+}
+
+#commentary{
+	margin-bottom:auto;
+	margin-top:auto;
 }
