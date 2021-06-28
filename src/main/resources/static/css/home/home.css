@@ -11,7 +11,7 @@
 	max-width: 120px;
 	top: 120px;
 	left: 200px;
-	padding: 15px 10px;
+	padding: 10px 10px;
 	display: inline-block;
 	text-align: center;
 	letter-spacing: 0.1em;
@@ -21,6 +21,16 @@
 	border-bottom: 4px solid #b44252;
 	border-radius: 20px;
 	font-weight: bold;
+}
+.btn.quiz:before {
+	content:"";
+	display:inline-block;
+	width:  15px;
+	height: 15px;
+	margin: -3px 5px 0 0;
+	background: url("./img/quiz.png");
+	background-size: contain;
+	vertical-align: middle;
 }
 
 .quizEx {
@@ -109,9 +119,12 @@
 .radarCategory {
 	position: absolute;
 	top: 105px;
-	right: 220px;
+	right: 60px;
 	font-size: 20px;
-
+	color: #fff;
+	background-color: #ff7fbf;
+	border:  #ff7fbf;
+	border-radius: 20px;
 }
 
 .radarContent {
@@ -126,19 +139,15 @@
 
 .wrapper {
 	position: absolute;
-	width: 500px;
-	height: 350px;
-	top: 150px;
-	right: 200px;
+	width: 530px;
+	height: 500px;
+	top: 105px;
+	right: 250px;
 	overflow-y: scroll;
 	opacity: 1;
 
 }
 
-.radar {
-
-	text-align: center;
-}
 
 /*
 body{

@@ -64,7 +64,6 @@
 		</form>
 		<p class="proEx">プロフィールを変更できます</p>
 
-		<h2 class="radarContent">レーダーチャート</h2>
 
 		<select name="radarCategory" id="radarCategory" class="radarCategory">
 			<option Label="選択してください">
