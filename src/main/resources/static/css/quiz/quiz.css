@@ -58,6 +58,11 @@ input,label{
 	text-align:center;
 }
 
+/*モード判断*/
+#mode{
+	display:none;
+}
+
 /*制限時間*/
 .timeLimit{
     color:white;
