@@ -69,14 +69,14 @@
 				</c:choose>
 			</div>
 
-			<c:if test="${not empty session.answerList}">
-				<div class="answerBtn btn"><a href="log_detail"><span class="answerLink">解答の詳細を見る</span></a></div>
+			<c:if test="${not empty quizList}">
+				<div class="answerBtn btn"><a href="answerDetail"><span class="answerLink">解答の詳細を見る</span></a></div>
 			</c:if>
 
 
 		</div>
 
-		<c:if test="${empty session.answerList}">
+		<c:if test="${empty quizList}">
 		<a href="rankingCategory" class="back">戻る</a>
 	</c:if>
 
