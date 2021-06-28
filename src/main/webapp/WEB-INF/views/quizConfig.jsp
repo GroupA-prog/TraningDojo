@@ -76,8 +76,9 @@
 		<form:select path="quizNum" class="num" id="num">
 			<form:option value="" label="選んでください"></form:option>
 		</form:select>
-		<a class="error" id="error">${msg}</a>
+		<p class="error" id="error">${studyError}</p>
 
+		<p class="error" id="error">${rankError}</p>
 		<form:button class="btn quiz">START</form:button>
 	</form:form>
 

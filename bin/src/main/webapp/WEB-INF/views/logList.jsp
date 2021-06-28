@@ -9,7 +9,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/log/.css" />
+
+<link rel="stylesheet" href="css/log/logList.css" />
+<link rel="stylesheet" href="css/log/log.css" />
 <link rel="stylesheet" href="css/common.css" />
 <title>履歴一覧画面</title>
 </head>
@@ -18,36 +20,47 @@
 </header>
 <body>
 	<form:form action="log" modelAttribute="logDetail" method="get">
-		<h3>${category.categoryName}</h3>
+		<h3 class="left">${category.categoryName}</h3>
 
-		<c:forEach var="history" items="${history}" varStatus="status">
-
-			<label> <a href="/logDetail?historyId=${history.historyId}">
-					${history.rowNumber}回目 </a>
-			</label>
-			<label> ${history.historyDate}</label>
-			<c:choose>
-				<c:when test="${history.mode == 1}">
-					<label> 学習モード</label>
-				</c:when>
-				<c:otherwise>
-					<label> ランキングモード</label>
-				</c:otherwise>
-			</c:choose>
-			<c:choose>
-				<c:when test="${empty updateTimeList[status.index]}">
-					<label>コメントは更新されていません</label>
-				</c:when>
-
-				<c:otherwise>
-					<label>${updateTimeList[status.index]}</label>
-				</c:otherwise>
-			</c:choose>
-
-			<br>
-			<br>
-		</c:forEach>
+		<div class="left">
+			<table border="1" class="historyListTable left">
+				<thead>
+					<tr>
+						<th></th>
+						<th>クイズ挑戦日</th>
+						<th>選択モード</th>
+						<th>コメント更新日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="history" items="${history}" varStatus="status">
+						<tr>
+							<td><label><b><a
+										href="/logDetail?historyId=${history.historyId}" class="count">${history.rowNumber}回目</b></a>
+							</label>
+							<td><label> ${history.historyDate}</label></td>
+							<td><c:choose>
+									<c:when test="${history.mode == 1}">
+										<label> 学習</label>
+									</c:when>
+									<c:otherwise>
+										<label> ランキング</label>
+									</c:otherwise>
+								</c:choose></td>
+							<td><c:choose>
+									<c:when test="${empty updateTimeList[status.index]}">
+										<label>コメントは更新されていません</label>
+									</c:when>
+									<c:otherwise>
+										<label>${updateTimeList[status.index]}</label>
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
+					</c:forEach>
+			</table>
 	</form:form>
-	<a href="logCategory">戻る</a>
+	</div>
+	<br>
+	<a href="logCategory" class="left back">戻る</a>
 </body>
 </html>

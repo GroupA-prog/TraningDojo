@@ -18,19 +18,18 @@
 <header class="title-continar">
 	<span id="site-title">
 		<c:choose>
-				<c:when test="${ not empty loginUserInfo }"><a href="#"><img src="css/img/logo (3).png" width="150px"></a></c:when>
-			<c:otherwise><a href="/login"><img src="css/img/logo (3).png"></a></c:otherwise>
+				<c:when test="${ not empty loginUserInfo }"><a href="#"><img src="css/img/logo (2).png" width="150px"></a></c:when>
+			<c:otherwise><a href="/login"><img src="css/img/logo (2).png"></a></c:otherwise>
 		</c:choose>
 	</span>
+
 	<%-- <c:if test="${ not empty loginUserInfo }">--%>
 		<nav>
 			<ul>
-	<c:if test="${not empty quizStatus.time}">
-	    <li>
-	      <span id="min"></span>分
-	      <span id="sec"></span>秒
-	    </li>
-	  </c:if>
+	  <c:if test="${not empty quizStatus.time}"><li>
+	      			<span id="min"></span>分
+	      			<span id="sec"></span>秒
+	  </li></c:if>
 				<li><a id="retired">リタイア</a></li>
 			</ul>
 		</nav>
@@ -43,7 +42,7 @@
 <div class="main">
   <c:forEach items="${quizListHarf}" var="quiz" varStatus="status">
 
-    <pre>${quizStatus.quizIndex * 5 + status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
+    <pre>Q${quizStatus.quizIndex * 5 + status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
     <div class="select">
 	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice1}" value="1"/><br>
 	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice2}" value="2"/><br>
@@ -55,7 +54,6 @@
 
 
 <div class="pageCon">
-
   <c:if test="${not empty returnDisplay}">
     <form:button name= "return">←前へ</form:button>
   </c:if>
@@ -91,7 +89,7 @@
 <div id="timeup" class="modal">
   <div class="modal-content">
       <h2>TimeUp!!</h2>
-	    <input type="button" id="timebtn" value="OK">
+		<form:button name="finish" id="timebtn">ok</form:button>
   </div>
 </div>
 <input id="mode" value="${quizStatus.modeId}"></input>

@@ -27,7 +27,7 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 
-	@RequestMapping("/login")
+	@RequestMapping(value={"/login","/"})
 	public String login(@ModelAttribute("login") LoginForm form, Model model) {
 		return "login";
 	}
