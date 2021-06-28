@@ -21,33 +21,42 @@
 		${category.categoryName}：${historyCount.rowNumber}回目</h1>
 
 	<div class="main">
-		<c:forEach var="list" items="${dispQuiz}" varStatus="status">
-			<a href="#${list.rowNumber}" class="jump">Q${list.rowNumber}</a>
-
-		</c:forEach>
+		<div class="f-container">
+			<c:forEach var="list" items="${dispQuiz}" varStatus="status">
+				<div class="item"><a href="#${list.rowNumber}" class="jump">Q${list.rowNumber}</a></div>
+			</c:forEach>
+		</div>
 		<form:form action="logList" modelAttribute="logDetail">
 			<c:forEach var="list" items="${dispQuiz}">
-				<pre><p id="${list.rowNumber}">Q${list.rowNumber}.${list.quizStatment}</p></pre>
+				<pre>
+					<p id="${list.rowNumber}">Q${list.rowNumber}.${list.quizStatment}</p>
+				</pre>
 				<form:input type="hidden" path="historyDetailId"
 					value="${list.historyDetailId}"></form:input>
 				<div class="select">
 					<div>
-						<label class="radio"><input type="radio" disabled ${list.checked1} class="test">1：<span id="${list.correct1}">${fn:escapeXml(list.choice1)}</span></label>
+						<label class="radio"><input type="radio"
+							disabled ${list.checked1} class="test">1：<span
+							id="${list.correct1}">${fn:escapeXml(list.choice1)}</span></label>
 					</div>
 					<div>
-						<label class="radio"><input type="radio" disabled ${list.checked2}>2：<span id="${list.correct2}">${fn:escapeXml(list.choice2)}</span></label>
+						<label class="radio"><input type="radio"disabled ${list.checked2}>2：<span
+							id="${list.correct2}">${fn:escapeXml(list.choice2)}</span></label>
 					</div>
 					<div>
-						<label class="radio"><input type="radio" disabled ${list.checked3}>3：<span id="${list.correct3}">${fn:escapeXml(list.choice3)}</span></label>
+						<label class="radio"><input type="radio"disabled ${list.checked3}>3：<span
+							id="${list.correct3}">${fn:escapeXml(list.choice3)}</span></label>
 					</div>
 					<div>
-						<label class="radio"><input type="radio" disabled ${list.checked4}>4：<span id="${list.correct4}">${fn:escapeXml(list.choice4)}</span></label>
+						<label class="radio"><input type="radio"disabled ${list.checked4}>4：<span
+							id="${list.correct4}">${fn:escapeXml(list.choice4)}</span></label>
 					</div>
 				</div>
 				<p>解説</p>
 				<p class="commentary">${fn:escapeXml(list.commentary)}</p>
 				<p>コメント</p>
-				<form:textarea path="comment" placeholder="${list.comment}" rows="6" cols="60"></form:textarea>
+				<form:textarea path="comment" placeholder="${list.comment}" rows="6"
+					cols="60"></form:textarea>
 			</c:forEach>
 			<br>
 			<form:button type="submit" class="update">更新</form:button>
