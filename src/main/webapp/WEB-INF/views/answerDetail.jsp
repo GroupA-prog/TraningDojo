@@ -31,10 +31,10 @@
 	  </div>
 	  <h2 >解説</h2>
 	  <c:if test="${not empty quiz.commentary}">
-	    <pre>${quiz.commentary}</pre>
+	    <pre class="commentary">${quiz.commentary}</pre>
 	  </c:if>
 	  <c:if test="${empty quiz.commentary}">
-	    <pre id="commentary">解説はまだありません</pre>
+	    <pre class="commentary">解説はまだありません</pre>
 	  </c:if>
 	</c:forEach>
 </div>
