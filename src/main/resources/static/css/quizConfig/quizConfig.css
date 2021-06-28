@@ -70,7 +70,7 @@ h3{
 
 .error{
 	position: absolute;
-	top: 480px;
+	top: 460px;
 	left: 570px;
 	font-size: 25px;
 }
@@ -80,20 +80,25 @@ h3{
 	top: 530px;
 	left: 610px;
     width: 100%;
-    max-width: 120px;
+    max-width: 150px;
     padding: 15px 10px;
     display: inline-block;
     text-align: center;
     letter-spacing: 0.1em;
     color: #fff;
-    background-color: #ed576c;
-    border: #ed576c;
-    border-bottom: 4px solid #b44252;
-    border-radius: 20px;
+    background-color: #ff9ca5;
+    border: #ff9ca5;
+    border-bottom: 5px solid #ff6673;
+}
+.btn.quiz:active {
+		-webkit-transform: translateY(4px);
+	transform: translateY(4px); /*下に動く*/
+	border-bottom: none; /*線を消す*/
 }
 
+/*
 body{
 	background-color: #d0feff;
-}
+}*/
 
 
