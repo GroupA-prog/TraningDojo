@@ -25,8 +25,8 @@
 
 	<%-- <c:if test="${ not empty loginUserInfo }">--%>
 		<nav>
-			<ul class="time">
-	  <c:if test="${not empty quizStatus.time}"><li>
+			<ul>
+	  <c:if test="${not empty quizStatus.time}"><li class="time">
 	      			<span id="min"></span>分
 	      			<span id="sec"></span>秒
 	  </li></c:if>
