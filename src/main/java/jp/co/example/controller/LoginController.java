@@ -32,16 +32,6 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping("/userHome")
-	public String userHome(@ModelAttribute("login") LoginForm form, Model model) {
-		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
-		if (loginUserInfo == null) {
-			return "redirect:/login";
-		} else {
-			return "home";
-		}
-
-	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@Validated @ModelAttribute("login") LoginForm form, BindingResult bindingResult,
