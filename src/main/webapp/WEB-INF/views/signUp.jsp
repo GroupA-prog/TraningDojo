@@ -11,11 +11,7 @@
 <link rel="stylesheet" href="css/loginRelation/putTogether.css" />
 <body>
 	<c:import url="header.jsp"></c:import>
-	<!-- <div id="modal-overlay"></div> -->
 	<div class="margin">
-		<!--  <p>
-			<span class="font">ユーザー情報を入力してください</span>
-		</p>-->
 		<p>新規登録</p>
 		<div class="btn">
 			<c:if test="${not empty errDuplicate}">
@@ -25,7 +21,6 @@
 				<p>
 					<span class="new-user">　ログインID　　　</span>
 					<form:input path="newLoginId" class="txt" />
-				<!-- <div class="error2"> -->
 				<br>
 					<span class="pass2">
 						<form:errors path="newLoginId" class="txt error" />
@@ -35,25 +30,17 @@
 				<p>
 					<span class="new-user">　パスワード　　　</span>
 					<form:password path="newPassword" class="txt" />
-
-				<!-- <div class="error2"> -->
 				<br>
 					<form:errors path="newPassword" class="error" />
-				<!-- </div> -->
 				</p>
 				<p>
-					<span class="new-user">ユーザーネーム　</span>
+					<span class="new-userName">ユーザーネーム　</span>
 					<form:input path="newUserName" class="txt" />
-
-				<!-- <div class="error2"> -->
 				<br>
 					<form:errors path="newUserName" class="error" />
-				<!-- /div> -->
 				</p>
 				<p>
-				<!-- <div class="btn3"> -->
 					<form:button class="btn login">新規登録</form:button>
-				<!-- </div> -->
 
 			</form:form>
 		</div>
