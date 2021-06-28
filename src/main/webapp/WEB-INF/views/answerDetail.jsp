@@ -13,33 +13,31 @@
 
 </head>
 <body>
-<header class="title-continar">
-	<span id="site-title">
-		<c:choose>
-			<c:when test="${ not empty loginUserInfo }"><a href="userHome">研修道場</a></c:when>
-			<c:otherwise><a>研修道場</a></c:otherwise>
-		</c:choose>
-	</span>
-</header>
-
+<c:import url="header.jsp"></c:import>
 
 <h1>${quizStatus.categoryName}の解答</h1>
-
-<c:forEach items="${quizList}" var="quiz" varStatus="status">
-  <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
-	<input type="radio" disabled <c:if test="${quiz.userAnswer == 1}">checked</c:if>>
-	<label <c:if test="${quiz.correctAnswer == 1}">class="correct"</c:if> >${quiz.choice1}</label><br>
-	<input type="radio" disabled <c:if test="${quiz.userAnswer == 2}">checked</c:if>>
-	<label <c:if test="${quiz.correctAnswer == 2}">class="correct"</c:if> >${quiz.choice2}</label><br>
-	<input type="radio" disabled <c:if test="${quiz.userAnswer == 3}">checked</c:if>>
-	<label <c:if test="${quiz.correctAnswer == 3}">class="correct"</c:if> >${quiz.choice3}</label><br>
-	<input type="radio" disabled <c:if test="${quiz.userAnswer == 4}">checked</c:if>>
-	<label <c:if test="${quiz.correctAnswer == 4}">class="correct"</c:if>>${quiz.choice4}</label><br>
-  <c:if test="${not empty quiz.commentary}">
-    <p>解説</p>
-    <pre>${quiz.commentary}</pre>
-  </c:if>
-</c:forEach>
+<div class="main">
+	<c:forEach items="${quizList}" var="quiz" varStatus="status">
+	  <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
+	  <div class="select">
+			<input type="radio" disabled <c:if test="${quiz.userAnswer == 1}">checked</c:if>>
+			<label <c:if test="${quiz.correctAnswer == 1}">class="correct"</c:if> >${quiz.choice1}</label><br>
+			<input type="radio" disabled <c:if test="${quiz.userAnswer == 2}">checked</c:if>>
+			<label <c:if test="${quiz.correctAnswer == 2}">class="correct"</c:if> >${quiz.choice2}</label><br>
+			<input type="radio" disabled <c:if test="${quiz.userAnswer == 3}">checked</c:if>>
+			<label <c:if test="${quiz.correctAnswer == 3}">class="correct"</c:if> >${quiz.choice3}</label><br>
+			<input type="radio" disabled <c:if test="${quiz.userAnswer == 4}">checked</c:if>>
+			<label <c:if test="${quiz.correctAnswer == 4}">class="correct"</c:if>>${quiz.choice4}</label><br>
+	  </div>
+	  <pre>解説</pre>
+	  <c:if test="${not empty quiz.commentary}">
+	    <pre>${quiz.commentary}</pre>
+	  </c:if>
+	  <c:if test="${not empty quiz.commentary}">
+	    <pre>解説はまだありません</pre>
+	  </c:if>
+	</c:forEach>
+</div>
 <c:if test="${quizStatus.modeId == 2 }">
   <a href="rankingView">戻る</a>
 </c:if>
