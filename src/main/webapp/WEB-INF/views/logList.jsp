@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/log/logList.css" />
 <link rel="stylesheet" href="css/log/log.css" />
 <link rel="stylesheet" href="css/common.css" />
+
 <title>履歴一覧画面</title>
 </head>
 <header>
@@ -22,8 +23,11 @@
 	<form:form action="log" modelAttribute="logDetail" method="get">
 		<h3 class="left">${category.categoryName}</h3>
 
+		<c:if test="${empty history }">
+			<p>履歴はまだありません
+		</c:if>
 		<div class="left">
-			<table border="1" class="historyListTable left">
+			<table border="0" class="historyListTable left">
 				<thead>
 					<tr>
 						<th></th>
@@ -34,32 +38,39 @@
 				</thead>
 				<tbody>
 					<c:forEach var="history" items="${history}" varStatus="status">
+
 						<tr>
-							<td><label><b><a
-										href="/logDetail?historyId=${history.historyId}" class="count">${history.rowNumber}回目</b></a>
-							</label>
-							<td><label> ${history.historyDate}</label></td>
+							<td><a href="/logDetail?historyId=${history.historyId}"
+								class="count">${history.rowNumber}回目</a></td>
+							<td><a href="/logDetail?historyId=${history.historyId}"
+								class="count">${history.historyDate}</a></td>
 							<td><c:choose>
 									<c:when test="${history.mode == 1}">
-										<label> 学習</label>
+										<a href="/logDetail?historyId=${history.historyId}"
+											class="count">学習</a>
 									</c:when>
 									<c:otherwise>
-										<label> ランキング</label>
+										<a href="/logDetail?historyId=${history.historyId}"
+											class="count">ランキング</a>
 									</c:otherwise>
 								</c:choose></td>
 							<td><c:choose>
 									<c:when test="${empty updateTimeList[status.index]}">
-										<label>コメントは更新されていません</label>
+										<a href="/logDetail?historyId=${history.historyId}"
+											class="count">コメントは更新されていません</a>
 									</c:when>
 									<c:otherwise>
-										<label>${updateTimeList[status.index]}</label>
+										<a href="/logDetail?historyId=${history.historyId}"
+											class="count">${updateTimeList[status.index]}</a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>
+
 					</c:forEach>
 			</table>
+		</div>
 	</form:form>
-	</div>
+
 	<br>
 	<a href="logCategory" class="left back">戻る</a>
 </body>

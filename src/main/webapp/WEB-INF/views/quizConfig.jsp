@@ -16,7 +16,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-<!--
+	<!--
 	<header class="title-continar">
 		<span id="site-title"> <c:choose>
 				<c:when test="${ not empty loginUserInfo }">
@@ -39,17 +39,18 @@
 		</c:if>
 	</header>
 	 -->
-	 <c:import url="header.jsp"></c:import>
+	<c:import url="header.jsp"></c:import>
 
 	<form:form action="/quiz" modelAttribute="quizConfig" method="POST">
 		<h1>モードを選んでください</h1>
 
-		<form:radiobutton class="learning" path="mode" value="1"
-			onclick="changeBtn();" checked="checked" />
-		<label class="learningLabel">学習</label>
-		<form:radiobutton class="rank" path="mode" value="2"
-			onclick="changeBtn();" />
-		<label class="rankLabel">ランキング</label>
+
+		<label class="learningLabel"><form:radiobutton
+				class="learning" path="mode" value="1" onclick="changeBtn();"
+				checked="checked" />学習</label>
+
+		<label class="rankLabel"><form:radiobutton class="rank"
+				path="mode" value="2" onclick="changeBtn();" />ランキング</label>
 
 
 		<h2>カテゴリを選んでください</h2>
@@ -75,9 +76,9 @@
 		<form:select path="quizNum" class="num" id="num">
 			<form:option value="" label="選んでください"></form:option>
 		</form:select>
-		<p class="error" id="error">${studyError}</p>
+		<p class="error" id="error">${studyError}</p><br>
 
-		<p class="error" id="error">${rankError}</p>
+		<p class="error" id="error">${rankError}</p><br>
 		<form:button class="btn quiz">START</form:button>
 	</form:form>
 

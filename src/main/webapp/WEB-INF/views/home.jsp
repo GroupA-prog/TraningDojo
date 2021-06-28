@@ -85,6 +85,8 @@
 			<!--  <p class="proEx">プロフィールを変更できます</p>-->
 		</div>
 
+		<h3>チャートの表示切替</h3>
+
 
 		<select name="radarCategory" id="radarCategory" class="radarCategory">
 			<option Label="選択してください">
@@ -92,9 +94,14 @@
 					<option value="${category.categoryId}">${category.categoryName}</option>
 				</c:forEach>
 		</select>
+
+
 		<div class="wrapper">
+			<h4>正答率レーダー</h4>
 			<div id="radar" class="radar"></div>
 		</div>
+
+		<p></p>
 
 
 		<script src="js/home.js"></script>

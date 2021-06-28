@@ -24,7 +24,8 @@
 }
 
 .item:hover {
-	opacity: 0.6;
+	/*opacity: 0.6;*/
+	background-color: #FF3333;
 }
 
 .items {
@@ -39,7 +40,7 @@
 }
 
 select {
-	overflow: scroll;
+	overflow: auto;
 }
 
 /*モーダル内のdiv要素を非表示*/
@@ -87,9 +88,42 @@ table td {
 }
 
 #quizListTable {
-
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
 }
 
+#quizListTable tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+
+
+#quizListTable th {
+  text-align: center;
+  width: 25%;
+  padding: 15px 0;
+}
+
+
+#quizListTable .quizTh {
+  text-align: center;
+  width: 10%;
+  padding: 15px 0;
+}
+
+
+#quizListTable td {
+  text-align: left;
+  width: 25%;
+  padding: 15px 0;
+}
+
+#quizListTable .quizNo {
+  text-align: center;
+  width: 10%;
+  padding: 15px 0;
+}
 
 
 #quizListTable a {
@@ -101,6 +135,43 @@ table td {
 	cursor: pointer;
 	opacity: 0.5;
 }
+
+
+select {
+	width: 100%;
+	height: 3em;
+	border: solid 1px #3399FF;
+	font-size: 1em;
+}
+
+select:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
+}
+
+input[type="text"] {
+	width: 100%;
+	height: 1.5em;
+	border: solid 1px #3399FF;
+	font-size: 1em;
+	padding: 0.2em;
+}
+
+input[type="text"]:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
+}
+
+
+#createProblemStatement, #editProblemStatement {
+	border: solid 1px #3399FF;
+}
+
+#createProblemStatement:focus, #editProblemStatement:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
+}
+
 
 #createChoice1, #createChoice2, #createChoice3, #createChoice4 {
 	width: 100%;
@@ -114,6 +185,16 @@ table td {
 	resize: none;
 	width: 100%;
 	height: 200px;
+	border: solid 1px #3399FF;
+}
+
+#createCommentary:focus, #editCommentary:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
+}
+
+#createAnswer option {
+	text-align: center;
 }
 
 
@@ -130,8 +211,8 @@ table td {
 
 
 .btn-regist, .btn-update {
-	background-color: #f26964;
-    border:  solid 2px #f26964;
+	background-color: #FF0033;
+    border:  solid 2px #FF0033;
     color: white;
     font-weight: bold;
     font-size: 1em;

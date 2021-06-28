@@ -1,38 +1,48 @@
 @charset "UTF-8";
 
 table {
-	border-collapse: collapse;
-	border: solid 2px #152033 ; /*表全体を線で囲う*/
 	text-align: center;
+	border: none;
 }
 
 th {
-	color: #ffffff;
-	background-color: #2f72ed;
-	padding: 3px 10px;
+	color: #152033;
+	background-color: #ebebff;
+	padding: 10px 15px;
+	font-weight: 4;
 }
 
 table tr:hover {
-	background-color: #2f72ed;
-	color: #ffffff;
+	background-color: #ebebff;
+	color: #152033;
 }
 
 tr {
 	background-color: #ffffff;
 }
-tr:nth-child(2n + 1){
-	background-color: #8eafed;
+
+tr:nth-child(even) {
+	background-color: #eaffff;
 }
+
 table td {
-	border: dashed 1px #152033;
-	padding: 3px 10px;
+	/*border: dashed 1px #152033;*/
+	padding: 5px 10px;
 }
 
 .count {
 	color: #152033;
 	display: block;
+	position:relative;
 }
 
-.count :hover {
-	color: #ffffff;
+
+.historyListTable thead th:first-child {
+	border-radius: 10px 0 0 0;
+}
+.historyListTable thead th:last-child {
+	border-radius: 0 10px  0 0;
+}
+.historyListTable tr:first-child th:first-child {
+    border: none;
 }
