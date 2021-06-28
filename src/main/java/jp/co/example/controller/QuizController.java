@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.example.controller.form.QuizForm;
 import jp.co.example.dto.entity.Category;
@@ -75,7 +76,7 @@ public class QuizController{
 	}
 
 	@RequestMapping(value="/quiz",method=RequestMethod.POST)
-	public String quizPost(@ModelAttribute("quizConfig")QuizForm form,Model model) {
+	public String quizPost(@ModelAttribute("quizConfig")QuizForm form,RedirectAttributes redirectAttributes) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if (loginUserInfo == null) {
 			return "redirect:/login";
@@ -94,7 +95,7 @@ public class QuizController{
 		//モード分岐、制限時間・問題（5問分け済み）を保存
 		if(form.getMode() == 1) {
 			if(form.getQuizNum() == 0) {
-				model.addAttribute("msg","問題数は必須です");
+				redirectAttributes.addFlashAttribute("studyError","問題数は必須です");
 				return "redirect:quizConfig";
 			}
 			status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
@@ -109,7 +110,7 @@ public class QuizController{
 				List<Quiz>quiz = quizList.get(1);
 				quiz.get(4);
 			}catch (RuntimeException e) {
-				model.addAttribute("rankError","問題がありません");
+				redirectAttributes.addFlashAttribute("rankError","問題がありません");
 				return "redirect:quizConfig";
 			}
 			status.setTime(20);
