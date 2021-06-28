@@ -20,43 +20,44 @@
 </header>
 <body>
 	<form:form action="log" modelAttribute="logDetail" method="get">
-		<h1 class="left">${category.categoryName}</h1>
+		<h3 class="left">${category.categoryName}</h3>
 
 		<div class="left">
-		<table border="1" class="historyListTable left">
-			<thead>
-				<tr>
-					<th></th>
-					<th>クイズ挑戦日</th>
-					<th>選択モード</th>
-					<th>コメント更新日</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="history" items="${history}" varStatus="status">
+			<table border="1" class="historyListTable left">
+				<thead>
 					<tr>
-						<td><label><b><a href="/logDetail?historyId=${history.historyId}" class="count">${history.rowNumber}回目</b></a>
-						</label>
-						<td><label> ${history.historyDate}</label></td>
-						<td><c:choose>
-								<c:when test="${history.mode == 1}">
-									<label> 学習</label>
-								</c:when>
-								<c:otherwise>
-									<label> ランキング</label>
-								</c:otherwise>
-							</c:choose></td>
-						<td><c:choose>
-								<c:when test="${empty updateTimeList[status.index]}">
-									<label>コメントは更新されていません</label>
-								</c:when>
-								<c:otherwise>
-									<label>${updateTimeList[status.index]}</label>
-								</c:otherwise>
-							</c:choose></td>
+						<th></th>
+						<th>クイズ挑戦日</th>
+						<th>選択モード</th>
+						<th>コメント更新日</th>
 					</tr>
-				</c:forEach>
-		</table>
+				</thead>
+				<tbody>
+					<c:forEach var="history" items="${history}" varStatus="status">
+						<tr>
+							<td><label><b><a
+										href="/logDetail?historyId=${history.historyId}" class="count">${history.rowNumber}回目</b></a>
+							</label>
+							<td><label> ${history.historyDate}</label></td>
+							<td><c:choose>
+									<c:when test="${history.mode == 1}">
+										<label> 学習</label>
+									</c:when>
+									<c:otherwise>
+										<label> ランキング</label>
+									</c:otherwise>
+								</c:choose></td>
+							<td><c:choose>
+									<c:when test="${empty updateTimeList[status.index]}">
+										<label>コメントは更新されていません</label>
+									</c:when>
+									<c:otherwise>
+										<label>${updateTimeList[status.index]}</label>
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
+					</c:forEach>
+			</table>
 	</form:form>
 	</div>
 	<br>

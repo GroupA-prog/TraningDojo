@@ -67,8 +67,10 @@ body {
 html {
 	padding: 0 0;
 	background-image: url("img/background.png");
-	background-size: cover;
+	background-size: 100%;
 	background-position:0px 64px;
+	background-repeat: no-repeat;
+
 }
 
 .title-continar {
@@ -78,6 +80,7 @@ html {
 	border-bottom-color: rgba(105, 138, 171, 0.5);
 	border-bottom-width: 1px;
 	background-color: white;
+	height: 63px;
 	/*background:linear-gradient(#5000cc, white);*/
 }
 
