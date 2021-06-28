@@ -37,7 +37,7 @@ public class AdminController {
 	public String adminGet(@ModelAttribute("admin") AdminForm form, Model model) {
 		/*ログインユーザーの情報が歩かないかの判断*/
 		UserInfo userInfo = (UserInfo) session.getAttribute("loginUserInfo");
-		if (userInfo == null) {
+		if (userInfo == null || userInfo.getRole() == 2) {
 			return "redirect:/login";
 		}
 
