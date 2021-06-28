@@ -42,7 +42,7 @@
 				<!-- </div> -->
 				</p>
 				<p>
-					<span class="new-user">ユーザーネーム　</span>
+					<span class="new-userName">ユーザーネーム　</span>
 					<form:input path="newUserName" class="txt" />
 
 				<!-- <div class="error2"> -->
