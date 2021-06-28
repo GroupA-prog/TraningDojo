@@ -26,6 +26,7 @@ public class TsukayamaController {
 	@Autowired
 	private IUserInfoService userInfoService;
 
+	// プロフィール画面に遷移する時
 	@RequestMapping(value="/profile")
 	public String getProfile(@ModelAttribute("editUserInfo") EditUserForm form, BindingResult bindingResult, Model model) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
@@ -33,7 +34,21 @@ public class TsukayamaController {
 		return "profile";
 	}
 
+	// 入力画面の戻るボタン押下時
+	@RequestMapping(value="/profile", params="returnUserHome")
+	public String getProfile(Model model) {
+		return "home";
+	}
 
+	// 確認画面の戻るボタン押下時
+	@RequestMapping(value="/profile", params="returnProfile")
+	public String returnProfile(@ModelAttribute("editUserInfo") EditUserForm form, BindingResult bindingResult, Model model) {
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		form.setUserLoginId(loginUserInfo.getLoginId());
+		return "profile";
+	}
+
+	// 確認画面へ遷移する時
 	@RequestMapping(value="/profile", params="confirm", method=RequestMethod.POST)
 	public String getProfilePostConfirm(@Validated @ModelAttribute("editUserInfo") EditUserForm form, BindingResult bindingResult, Model model) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
