@@ -1,0 +1,21 @@
+.update-box {
+	margin: 50px 350px;
+	border:  solid 1px rgb(105, 138, 171);
+	background-color: white;
+	text-align: center;
+}
+
+.input_area {
+	margin-bottom: 20px;
+}
+
+.form_btn {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+.form_btn button:first-child {
+	margin-right: 20px;
+}
+.btn login {
+	color: black;
+}
