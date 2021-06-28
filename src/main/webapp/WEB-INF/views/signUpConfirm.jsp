@@ -26,18 +26,14 @@
 				<span class="login">　　ログインID　　　</span>
 				<form:input path="newLoginId" class="txt" readonly="true"/>
 				<br>
-			<!-- <div class="error2"> -->
 				<form:errors path="newLoginId" class="error" />
-			<!-- </div> -->
 			</p>
 			<p>
 			<p class="new-user-config">
 				<span class="pass">　　パスワード　　　</span>
 				<form:password path="newPassword" class="txt" showPassword="true" readonly="true" />
 				<br>
-			<!-- <div class="error2"> -->
 				<form:errors path="newPassword" class="error" />
-			<!-- </div> -->
 			<p>
 			</p>
 			<p class="new-user-config">
@@ -49,14 +45,10 @@
 				<span class="user">　ユーザーネーム　　 </span>
 				<form:input path="newUserName" class="txt" readonly="true" />
 				<br>
-			<!-- <div class="error2"> -->
 				<form:errors path="newUserName" class="error" />
-			<!-- </div> -->
 			<p>
 			<p>
-			<!-- <div class="btn3"> -->
 				<form:button class="btn login">新規登録</form:button>
-			<!-- </div> -->
 		</form:form>
 		<p class="clear">
 			<a href="login" class="return"><span class="font">戻る</span></a>

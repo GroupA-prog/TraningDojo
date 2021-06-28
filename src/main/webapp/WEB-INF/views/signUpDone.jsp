@@ -23,12 +23,10 @@
 			method="post">
 			<div class="btn">
 				<p>
-					<!-- ログインID -->
 					<form:input path="loginId" class="txt" placeholder="ログインID"/>
 					<br>
 					<form:errors path="loginId" class="error" />
 				<p>
-					<!-- <span class="pass2">パスワード　</span> -->
 					<form:password path="password" class="txt" placeholder="パスワード"/>
 					<br> <span class="pass2"><form:errors path="password"
 							class="error" /></span>
