@@ -87,6 +87,7 @@ public class LoginController {
 					form.getNewPassword(),
 					form.getNewUserName());
 			service.insert(user);
+			session.setAttribute("transitionDirectly","No");
 			return "redirect:/signUpDone";
 		}
 	}
@@ -94,7 +95,11 @@ public class LoginController {
 	@RequestMapping(value = "/signUpDone")
 	public String signUpDone(@ModelAttribute("signUpDone") LoginForm form, Model model) {
 //		System.out.println("cccc");
-		return "signUpDone";
+		if(session.getAttribute("transitionDirectly")=="No") {
+			session.removeAttribute("transitionDirectly");
+			return "signUpDone";
+		}
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value = "/signUpDone", method = RequestMethod.POST)
