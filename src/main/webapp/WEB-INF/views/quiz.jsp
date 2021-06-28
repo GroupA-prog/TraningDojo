@@ -18,10 +18,11 @@
 <header class="title-continar">
 	<span id="site-title">
 		<c:choose>
-			<c:when test="${ not empty loginUserInfo }"><a href="userHome">研修道場</a></c:when>
-			<c:otherwise><a href="/login">研修道場</a></c:otherwise>
+				<c:when test="${ not empty loginUserInfo }"><a href="userHome"><img src="css/img/logo (2).png" width="150px"></a></c:when>
+			<c:otherwise><a href="/login"><img src="css/img/logo (2).png"></a></c:otherwise>
 		</c:choose>
 	</span>
+
 	<%-- <c:if test="${ not empty loginUserInfo }">--%>
 		<nav>
 			<ul>
@@ -43,7 +44,6 @@
 	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice2}" value="2"/><br>
 	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice3}" value="3"/><br>
 	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice4}" value="4"/><br>
-	  <form:radiobutton path="choiceId${status.count}"  cssStyle="display:none" value="0"/><br>
     </div>
   </c:forEach>
 </div>
@@ -71,7 +71,7 @@
   </c:if>
 </div>
 
-<input type="button" id="finish-btn" value="終了">
+<div class="finish"><input type="button" id="finish-btn" value="終了"></div>
 
 
 <%--モーダルウィンドウ --%>

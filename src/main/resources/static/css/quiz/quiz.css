@@ -14,7 +14,6 @@ nav li{
 
 /* 問題文・選択肢 */
 body{
-	background-color:#a3ffd1;
 }
 
 .main{
@@ -25,13 +24,13 @@ body{
 .main pre{
 	white-space: pre-wrap;
     width:100%;
-	background:#c0c0c0;
+	background:rgb(247 221 223 / 50%);
 	font-size:30px;
-    margin-top:5em
+    margin-top:5em;
+    padding:20px;
 }
 .main .select{
-	padding-top:2em;
-	background:#b0c4de;
+	background:rgb(173 243 243 / 30%);
 	margin:0 auto;
 	font-size:20px;
     width:50em;
@@ -40,7 +39,9 @@ body{
 input,label{
 	cursor:pointer;
 }
-
+input{
+	margin:15px 0px;
+}
 
 /* 前へ・〇/〇・次へ */
 .pageCon button,p{
@@ -49,12 +50,13 @@ input,label{
 }
 .pageCon #next,#return{
 	padding:4px 12px;
+	border-radius:20px;
 }
 .pageCon p{
 	text-align:center;
 }
 .pageCon {
-	margin:0 auto;
+	margin:30px;;
 	text-align:center;
 }
 
@@ -62,7 +64,6 @@ input,label{
 #mode{
 	display:none;
 }
-
 /*制限時間*/
 .timeLimit{
     color:white;
@@ -120,14 +121,16 @@ input,label{
 }
 
 /*終了ボタン*/
+.finish{
+	text-align:center;
+}
 #finish-btn{
-	margin-left: 90%;
 	margin-bottom:5%;
 	font-size:30px;
 	padding:0 1em;
 	border-radius:10px;
-    background-color:#522886;
-    color:#f39700;
+    background-color:#00008b;
+    color:white;
     font-weight:bold;
 }
 button:hover{

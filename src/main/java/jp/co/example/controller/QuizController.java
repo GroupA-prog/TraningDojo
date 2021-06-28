@@ -42,6 +42,10 @@ public class QuizController{
 
 	@RequestMapping(value = "/quizConfig", method = RequestMethod.GET)
 	public String quizConfigGet(@ModelAttribute("quizConfig") QuizForm form, Model model) {
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
+			return "redirect:/login";
+		}
 		List<Category> categoryAll = categoryService.selectAll();
 		List<Category> categoryName = quizConfigService.categoryNameAll();
 		session.setAttribute("categoryAll", categoryAll);
@@ -53,6 +57,10 @@ public class QuizController{
 
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
 	public String userHomeGet(@ModelAttribute("quizConfig") QuizForm form,Model model) {
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
+			return "redirect:/login";
+		}
 		List<Category> parentCategory = homeService.parentCategoryAll();
 		session.setAttribute("parentCategory",parentCategory);
 
@@ -68,6 +76,10 @@ public class QuizController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.POST)
 	public String quizPost(@ModelAttribute("quizConfig")QuizForm form,Model model) {
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
+			return "redirect:/login";
+		}
 		quizIndex = 0;
 		//クイズstart時刻取得・保持
 		QuizResult status = new QuizResult();
@@ -233,9 +245,18 @@ public class QuizController{
 		session.setAttribute("quizList", quizAll);
 		//モード判断
 		if(status.getModeId() == 1) {
-			return "answerDetail";
+			return "redirect:answerDetail";
 		}
 		return "rankingView";
+	}
+
+	@RequestMapping(value="/answerDetail")
+	public String answerDetailGet(Model model) {
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
+			return "redirect:/login";
+		}
+		return "answerDetail";
 	}
 
 	@RequestMapping(value="/retired",method=RequestMethod.GET)
