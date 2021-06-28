@@ -85,7 +85,7 @@ function changeCategory() {
 					var radar = document.getElementById("radar");
 					var chart = document.createElement('canvas');
 					chart.setAttribute('id', radarCharts);
-					chart.setAttribute('style', 'position: relative; height:500px; width:500px;');
+					chart.setAttribute('style', 'position: relative; height:550px; width:550px;');
 					radar.appendChild(chart);
 
 
@@ -159,7 +159,7 @@ function changeCategory() {
 									//最大値を指定
 									max: 100,
 
-									stepSize: 20,        // 目盛の間隔
+									stepSize: 10,        // 目盛の間隔
 									fontSize: 12,        // 目盛り数字の大きさ
 									fontColor: "green"  // 目盛り数字の色
 

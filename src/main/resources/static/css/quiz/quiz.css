@@ -13,8 +13,7 @@ nav li{
 
 
 /* 問題文・選択肢 */
-body{
-}
+
 
 .main{
 	margin:0 auto;
@@ -54,6 +53,7 @@ input{
 }
 .pageCon p{
 	text-align:center;
+	font-size:20px;
 }
 .pageCon {
 	margin:30px;;
@@ -65,9 +65,6 @@ input{
 	display:none;
 }
 /*制限時間*/
-.timeLimit{
-    color:white;
-}
 #timebtn{
 	border-radius:10px;
 	font-size:25px;
@@ -75,6 +72,10 @@ input{
 	margin-top:20px;
 	background-color:red;
 	color:white;
+}
+#min,#sec{
+	color:white;
+	font-weight:bold;
 }
 
 /*モーダル*/
