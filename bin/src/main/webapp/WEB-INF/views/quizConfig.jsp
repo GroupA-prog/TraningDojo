@@ -16,6 +16,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<!--
 	<header class="title-continar">
 		<span id="site-title"> <c:choose>
 				<c:when test="${ not empty loginUserInfo }">
@@ -37,6 +38,8 @@
 			</nav>
 		</c:if>
 	</header>
+	 -->
+	 <c:import url="header.jsp"></c:import>
 
 	<form:form action="/quiz" modelAttribute="quizConfig" method="POST">
 		<h1>モードを選んでください</h1>
@@ -67,7 +70,7 @@
 
 
 
-		<h3>問題数を選んでください</h3>
+		<h3 id="numEx">問題数を選んでください</h3>
 
 		<form:select path="quizNum" class="num" id="num">
 			<form:option value="" label="選んでください"></form:option>

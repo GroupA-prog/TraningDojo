@@ -1,22 +1,40 @@
 @charset "UTF-8";
+/*リタイアボタン*/
+nav li{
+	background-color:red;
+}
+#closeRetired{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 10px;
+	background-color:blue;
+	color:white;
+}
 
 
 /* 問題文・選択肢 */
-.main{
-	margin:0 auto;
-	text-align:center;
+body{
+	background-color:#a3ffd1;
 }
 
-.main code{
-	width:50em;
-	background:#c0c0c0;
+.main{
+	margin:0 auto;
+	text-align:cent
+}
 
+.main pre{
+	white-space: pre-wrap;
+    width:100%;
+	background:#c0c0c0;
+	font-size:30px;
+    margin-top:5em
 }
 .main .select{
 	padding-top:2em;
-	width:54em;
 	background:#b0c4de;
 	margin:0 auto;
+	font-size:20px;
+    width:50em;
 }
 
 input,label{
@@ -25,23 +43,106 @@ input,label{
 
 
 /* 前へ・〇/〇・次へ */
-.cont button,p{
+.pageCon button,p{
 	display:inline-block;
 	padding:0 2em;
 }
-.cont {
+.pageCon #next,#return{
+	padding:4px 12px;
+}
+.pageCon p{
+	text-align:center;
+}
+.pageCon {
 	margin:0 auto;
 	text-align:center;
 }
 
-#finish{
-	margin-left: 80%;
+/*モード判断*/
+#mode{
+	display:none;
 }
 
+/*制限時間*/
 .timeLimit{
-	margin-right: 80%;
+    color:white;
+}
+#timebtn{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 20px;
+	margin-top:20px;
+	background-color:red;
+	color:white;
 }
 
+/*モーダル*/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.5);
+}
+.modal-content{
+	background-color: white;
+	width: 500px;
+	height:200px;
+	border-radius:20px;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+	text-align:center;
+	padding-top:30px;
+}
+
+
+#finish{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 20px;
+	margin-right:30px;
+	background-color:red;
+	color:white;
+}
+#closeBtn{
+	border-radius:10px;
+	font-size:25px;
+	padding:0px 10px;
+	background-color:blue;
+	color:white;
+}
+
+/*終了ボタン*/
+#finish-btn{
+	margin-left: 90%;
+	margin-bottom:5%;
+	font-size:30px;
+	padding:0 1em;
+	border-radius:10px;
+    background-color:#522886;
+    color:#f39700;
+    font-weight:bold;
+}
+button:hover{
+	opacity:0.8;
+}
+input:hover{
+	opacity:0.8;
+}
+
+button{
+	cursor:pointer;
+}
+
+
+/*解答詳細*/
 .correct{
 	color:red;
 }
