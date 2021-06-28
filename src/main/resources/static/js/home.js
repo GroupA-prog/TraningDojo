@@ -62,7 +62,6 @@ function changeCategory() {
 						}
 					}
 
-					var itemNum2 = 0;
 					itemNum2 += itemNum;
 
 					var name = [];
