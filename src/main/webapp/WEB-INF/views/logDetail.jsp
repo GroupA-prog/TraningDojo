@@ -59,7 +59,7 @@
 				<p>コメント</p>
 				<form:textarea path="comment" placeholder="${list.comment}" rows="6"
 					cols="60"></form:textarea>
-				<hr>
+				<div class="hr"></div>
 			</c:forEach>
 			<br>
 			<form:button type="submit" class="update">更新</form:button>

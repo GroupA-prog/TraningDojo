@@ -201,8 +201,3 @@ function changeCategory() {
 let rc = document.querySelector("#radarCategory");
 rc.addEventListener('change', changeCategory);
 
-$('#radarCategory').change(function () {
-    var select_option = $(this).find('option:selected');
-    $(this).next('.size_select_label').text(select_option.text());
-    $(this).blur(); //フォーカスを外す
-  });
