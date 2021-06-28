@@ -57,8 +57,6 @@ public class QuizController{
 
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
 	public String userHomeGet(@ModelAttribute("quizConfig") QuizForm form,Model model) {
-
-
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if (loginUserInfo == null) {
 			return "redirect:/login";
@@ -97,7 +95,7 @@ public class QuizController{
 		if(form.getMode() == 1) {
 			if(form.getQuizNum() == 0) {
 				model.addAttribute("msg","問題数は必須です");
-				return "quizConfig";
+				return "redirect:quizConfig";
 			}
 			status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
@@ -112,9 +110,10 @@ public class QuizController{
 				quiz.get(4);
 			}catch (RuntimeException e) {
 				model.addAttribute("rankError","問題がありません");
-				return "quizConfig";
+				return "redirect:quizConfig";
 			}
 			status.setTime(20);
+
 			status.setQuizNum(10);
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
@@ -249,6 +248,7 @@ public class QuizController{
 		if(status.getModeId() == 1) {
 			return "redirect:answerDetail";
 		}
+
 		return "rankingView";
 	}
 
