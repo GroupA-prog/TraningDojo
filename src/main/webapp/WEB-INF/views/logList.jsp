@@ -23,9 +23,6 @@
 	<form:form action="log" modelAttribute="logDetail" method="get">
 		<h3 class="left">${category.categoryName}</h3>
 
-		<c:if test="${empty history }">
-			<p>履歴はまだありません
-		</c:if>
 		<div class="left">
 			<table border="0" class="historyListTable left">
 				<thead>
