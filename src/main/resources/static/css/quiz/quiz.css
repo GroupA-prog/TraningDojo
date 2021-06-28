@@ -9,6 +9,7 @@ nav li{
 	padding:0px 10px;
 	background-color:blue;
 	color:white;
+	border-bottom:2px solid rgba(0,0,0,2);
 }
 
 /* 問題文・選択肢 */
@@ -71,6 +72,7 @@ input{
 	margin-top:20px;
 	background-color:red;
 	color:white;
+	border-bottom:2px solid rgba(0,0,0,2);
 }
 #min,#sec{
 	color:red;
@@ -115,6 +117,7 @@ input{
 	margin-right:30px;
 	background-color:red;
 	color:white;
+	border-bottom:2px solid rgba(0,0,0,2);
 }
 #closeBtn{
 	border-radius:10px;
@@ -122,6 +125,7 @@ input{
 	padding:0px 10px;
 	background-color:blue;
 	color:white;
+	border-bottom:2px solid rgba(0,0,0,2);
 }
 
 /*終了ボタン*/
@@ -136,17 +140,29 @@ input{
     background-color:#00008b;
     color:white;
     font-weight:bold;
-}
-button:hover{
-	opacity:0.8;
-}
-input:hover{
-	opacity:0.8;
+    border-bottom:2px solid rgba(0,0,0,2);
 }
 
 button{
 	cursor:pointer;
 }
+
+button:hover{
+	opacity:0.8;
+}
+#closeRetired:active,#timebtn:active,
+#finish:active,#closeBtn:active,
+#finish-btn:active{
+	-webkit-transform: translate(0,2px);
+	-moz-transform: translate(0,2px);
+	transform: translate(0,2px);
+	border-bottom:none;
+}
+input:hover{
+	opacity:0.8;
+}
+
+
 
 /*ラジオボタン*/
 label ~ label {
