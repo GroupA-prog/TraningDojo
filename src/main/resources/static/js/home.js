@@ -25,7 +25,7 @@ function changeCategory() {
 			res.json().then(function(data) {
 				console.log(data);
 				num = data.length;
-				var gradesData = data;
+				/*var gradesData = data;*/
 
 				/*let request = {
 					categoryId: radarCategory,
@@ -46,10 +46,12 @@ function changeCategory() {
 
 				//レーダーチャートの個数決定
 				var chartNum;
+				console.log(num);
 				if (num % 5 == 0) {
 					chartNum = num / 5;
 				} else {
 					chartNum = parseInt((num + 5) / 5);
+					console.log(chartNum);
 				}
 
 				//レーダーチャート作成
@@ -63,6 +65,7 @@ function changeCategory() {
 					//レーダーチャートごとの項目数
 					if (num % chartNum == 0) {
 						itemNum = num / chartNum;
+						console.log(itemNum);
 					} else {
 						var rem = num % chartNum;
 						itemNum = parseInt(num / chartNum);
@@ -76,9 +79,14 @@ function changeCategory() {
 
 					var name = [];
 					var ratio = [];
+
+
 					while (m < itemNum) {
-						name.push(gradesData[m].categoryName);
-						ratio.push(gradesData[m].ratio);
+
+
+						name.push(data[m].categoryName);
+						ratio.push(data[m].ratio);
+						console.log(name);
 						m++
 					}
 
@@ -94,6 +102,7 @@ function changeCategory() {
 							ratio.push(gradesData[m].ratio);
 							m++
 							console.log(name);
+							console.log(ratio);
 						} else {
 							name.push(categoryName[n].categoryName);
 							ratio.push(0);
@@ -102,14 +111,13 @@ function changeCategory() {
 
 					}*/
 
-					radarCharts = 'radarChart' + i;
+					radarCharts = 'レーダー' + i;
 
 					//jsp側のタグの作成
 					var radar = document.getElementById("radar");
 					var chart = document.createElement('canvas');
 					chart.setAttribute('id', radarCharts);
-					chart.setAttribute('width', 100);
-					chart.setAttribute('height', 100);
+					chart.setAttribute('style', 'position: relative; height:500px; width:500px;');
 					radar.appendChild(chart);
 
 
@@ -123,12 +131,12 @@ function changeCategory() {
 						data: {
 
 							//データ項目のラベル
-							labels: [name],
+							labels: name,
+
 
 							//データセット
 							datasets: [
 								{
-									label: radarCharts,
 
 									backgroundColor: "rgba(255,0,0,0.2)", // 線の下の塗りつぶしの色
 									borderColor: "red",                   // 線の色
@@ -139,7 +147,7 @@ function changeCategory() {
 									pointBorderWidth: 2,                  // 点の境界線の幅
 									pointBackgroundColor: "yellow",       // 点の塗りつぶし色
 									//グラフのデータ
-									data: [ratio]
+									data: ratio
 
 								}
 							]
@@ -147,17 +155,27 @@ function changeCategory() {
 						options: {
 
 							//レスポンシブ指定
-							responsive: true,
+							responsive: false,
 
 							// タイトル
 							title: {
 								display: true,
-								fontSize: 20,
-								text: radarCharts
+								fontSize: 30,
+								text: radarCharts,
+								fontColor: "red",
+							},
+
+							legend: {
+								display: false
 							},
 
 
 							scale: {
+
+								label: {
+									display: false,
+
+								},
 
 								pointLabels: {       // 軸のラベル（"国語"など）
 									fontSize: 20,         // 文字の大きさ
