@@ -161,7 +161,7 @@ function changeCategory() {
 
 									stepSize: 20,        // 目盛の間隔
 									fontSize: 12,        // 目盛り数字の大きさ
-									fontColor: "purple"  // 目盛り数字の色
+									fontColor: "green"  // 目盛り数字の色
 
 
 								},
@@ -174,7 +174,7 @@ function changeCategory() {
 								// 補助線（目盛の線）
 								gridLines: {
 									display: true,
-									color: "lime"
+									color: "purple"
 								},
 							}
 						}
