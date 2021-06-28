@@ -7,7 +7,7 @@
 <header class="title-continar">
 	<span id="site-title">
 		<c:choose>
-				<c:when test="${ not empty loginUserInfo }"><a href="userHome"><img src="css/img/logo (2).png" width="150px"></a></c:when>
+				<c:when test="${ not empty loginUserInfo }"><a href="userHome"><img src="css/img/logo (3).png" width="150px"></a></c:when>
 			<c:otherwise><a href="/login"><img src="css/img/logo (3).png"></a></c:otherwise>
 		</c:choose>
 	</span>
