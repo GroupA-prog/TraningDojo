@@ -41,6 +41,6 @@
 <c:if test="${quizStatus.modeId == 2 }">
   <a id="back" href="rankingView?categoryId=${quizStatus.categoryId}">戻る</a>
 </c:if>
-
+<input type="button" id="finish-btn" value="ホーム" onclick="location.href='userHome'">
 </body>
 </html>
