@@ -11,7 +11,7 @@
 	max-width: 120px;
 	top: 120px;
 	left: 200px;
-	padding: 15px 10px;
+	padding: 10px 10px;
 	display: inline-block;
 	text-align: center;
 	letter-spacing: 0.1em;
@@ -21,6 +21,16 @@
 	border-bottom: 4px solid #b44252;
 	border-radius: 20px;
 	font-weight: bold;
+}
+.btn.quiz:before {
+	content:"";
+	display:inline-block;
+	width:  15px;
+	height: 15px;
+	margin: -3px 5px 0 0;
+	background: url("./img/quiz.png");
+	background-size: contain;
+	vertical-align: middle;
 }
 
 .quizEx {
