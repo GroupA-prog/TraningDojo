@@ -1,81 +1,97 @@
-.btn.admin {
-	position: absolute;
-}
-
-.btn.warning {
-	position: absolute;
-}
-
-.btn.quiz {
-	position: absolute;
-}
-
-.btn.ranking {
-	position: absolute;
-}
-
-.btn.history {
-	position: absolute;
-}
-
-.btn.profile {
-	position: absolute;
-}
-
 .learningNum {
 	display: block;
+	font-size: 25px;
 }
 
 .rankNum {
 	display: none;
+	font-size: 25px;
 }
 
 h1 {
 	position: absolute;
-	top: 20px;
-	left: 480px;
+	top: 50px;
+	left: 450px;
 	font-size:40px;
 }
 
 .learning {
 	position: absolute;
-	top: 130px;
+	top: 150px;
 	left: 480px;
 }
 .learningLabel{
 	position: absolute;
-	top: 120px;
+	top: 140px;
 	left: 510px;
 	font-size:30px;
+
 }
 .rank{
 	position: absolute;
-	top: 130px;
+	top: 150px;
 	left: 680px;
 }
 .rankLabel{
 	position: absolute;
-	top: 120px;
+	top: 140px;
 	left: 710px;
 	font-size:30px;
 }
 
 h2{
 	position: absolute;
-	top: 350px;
-	left: 20px;
+	top: 200px;
+	left: 430px;
 	font-size:40px;
 }
 
 .category{
 	position: absolute;
-	top: 450px;
-	left: 20px;
+	top: 300px;
+	left: 460px;
 }
 
 h3{
 	position: absolute;
-	top: 180px;
-
+	top: 350px;
+	left: 450px;
 	font-size:40px;
 }
+
+.num{
+	position: absolute;
+	top: 450px;
+	left: 570px;
+	font-size: 25px;
+}
+
+.error{
+	position: absolute;
+	top: 480px;
+	left: 570px;
+	font-size: 25px;
+}
+
+.btn.quiz {
+	position: absolute;
+	top: 530px;
+	left: 610px;
+    width: 100%;
+    max-width: 120px;
+    padding: 15px 10px;
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background-color: #ed576c;
+    border: #ed576c;
+    border-bottom: 4px solid #b44252;
+    border-radius: 20px;
+}
+
+body{
+	background-color: #d0feff;
+}
+
+

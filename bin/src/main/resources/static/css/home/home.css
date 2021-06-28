@@ -1,3 +1,124 @@
-.home{
+.home {
+	position: absolute;
 	font-size: 25px;
+	left: 100px;
+	color: #1f2933;
 }
+
+
+.btn.quiz {
+	margin: 60px 0 0 30px;
+	padding: 10px 10px;
+	display: inline-block;
+	text-align: center;
+
+}
+/*
+.btn.quiz:before {
+	content:"";
+	display:inline-block;
+	width:  15px;
+	height: 15px;
+	margin: -3px 5px 0 0;
+	background: url("../img/quiz.png") no-repeat;
+	background-size: contain;
+	vertical-align: middle;
+}
+*/
+.quizEx {
+	position: absolute;
+	top: 170px;
+	left: 75px;
+	font-weight: bold;
+}
+
+.btn.ranking {
+		margin: 60px 0 0 30px;
+	padding: 10px 10px;
+	display: inline-block;
+	text-align: center;
+}
+
+.rankEx {
+	position: absolute;
+	top: 300px;
+	left: 110px;
+	font-weight: bold;
+}
+
+.btn.history {
+		margin: 10px 0 0 30px;
+	padding: 10px 10px;
+	display: inline-block;
+	text-align: center;
+}
+
+.hisEx {
+	position: absolute;
+	top: 430px;
+	left: 140px;
+	font-weight: bold;
+}
+
+.btn.profile {
+		margin: 10px 0 0 30px;
+	padding: 10px 10px;
+	display: inline-block;
+	text-align: center;
+}
+
+.proEx {
+	position: absolute;
+	top: 560px;
+	left: 155px;
+	font-weight: bold;
+}
+
+.radarCategory {
+	position: absolute;
+	top: 105px;
+	right: 60px;
+	font-size: 20px;
+	color: #fff;
+	background-color: #ff7fbf;
+	border:  #ff7fbf;
+	border-radius: 20px;
+}
+
+.radarContent {
+	position: absolute;
+	top: 70px;
+	right: 420px;
+	font-size: 30px;
+	color: red;
+
+
+}
+
+.wrapper {
+	position: absolute;
+	width: 530px;
+	height: 500px;
+	top: 105px;
+	right: 250px;
+	overflow-y: scroll;
+	opacity: 1;
+
+}
+
+button {
+	border: none;
+	background: transparent;
+}
+
+.radar {
+
+	text-align: center;
+}
+
+/*
+body{
+	background-Color: #d0feff;
+}
+	background-color: #d0feff;
+}*/

@@ -61,6 +61,18 @@ textarea:focus {
 }
 
 /*ページ上部戻るボタン*/
+.f-container{
+	margin: auto;
+	display:flex;
+	flex-wrap: wrap;
+	width: 42%;
+}
+
+.item {
+	padding: 5px;
+	width: 46px;
+	height: 24px;
+}
 #page-top {
 	position: fixed;
 	right: 10px;
