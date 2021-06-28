@@ -57,6 +57,8 @@ public class QuizController{
 
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
 	public String userHomeGet(@ModelAttribute("quizConfig") QuizForm form,Model model) {
+
+
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if (loginUserInfo == null) {
 			return "redirect:/login";
