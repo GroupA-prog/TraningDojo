@@ -170,7 +170,7 @@ input:hover{
 .select label {
   position: relative;
   padding-left: 25px;
-  color: #138eb0;
+  color:block;
   z-index: 1;
 }
 
