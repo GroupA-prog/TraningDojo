@@ -35,7 +35,7 @@ window.onload = function() {
 			console.log(data);
 			$('#quizListTable').find('tbody tr').remove();
 			data.forEach(function(d) {
-				let tag = '<tr><td>' + d.quizId + '</td><td><a id="' + d.quizId + '">' + d.quizTitle + '</a></td></tr>';
+				let tag = '<tr><td class="quizNo">' + d.quizId + '</td><td><a id="' + d.quizId + '">' + d.quizTitle + '</a></td></tr>';
 				$('#quizListTable').append(tag);
 			});
 			//クイズ編集情報をセット
