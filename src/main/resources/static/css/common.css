@@ -62,12 +62,13 @@ header {
 */
 body {
 	margin: 0 0;
-	padding: 0 0;
 }
 
 html {
+	padding: 0 0;
 	background-image: url("img/background.png");
 	background-size: cover;
+	background-position:0px 64px;
 }
 
 .title-continar {
