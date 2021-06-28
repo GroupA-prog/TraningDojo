@@ -57,8 +57,6 @@ public class QuizController{
 
 	@RequestMapping(value="/userHome",method=RequestMethod.GET)
 	public String userHomeGet(@ModelAttribute("quizConfig") QuizForm form,Model model) {
-
-
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
 		if (loginUserInfo == null) {
 			return "redirect:/login";
@@ -97,7 +95,7 @@ public class QuizController{
 		if(form.getMode() == 1) {
 			if(form.getQuizNum() == 0) {
 				model.addAttribute("msg","問題数は必須です");
-				return "quizConfig";
+				return "redirect:quizConfig";
 			}
 			status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
@@ -112,9 +110,10 @@ public class QuizController{
 				quiz.get(4);
 			}catch (RuntimeException e) {
 				model.addAttribute("rankError","問題がありません");
-				return "quizConfig";
+				return "redirect:quizConfig";
 			}
 			status.setTime(20);
+
 			status.setQuizNum(10);
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(quizIndex));
@@ -148,11 +147,15 @@ public class QuizController{
 		//次の5問へセッションを更新
 		quizIndex++;
 		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
+		try {
 		form.setChoiceId1(answer.get(quizIndex).get(0));
 		form.setChoiceId2(answer.get(quizIndex).get(1));
 		form.setChoiceId3(answer.get(quizIndex).get(2));
 		form.setChoiceId4(answer.get(quizIndex).get(3));
 		form.setChoiceId5(answer.get(quizIndex).get(4));
+		}catch(RuntimeException e) {
+
+		}
 		//次へ・前へボタン表示判断
 		if(quizIndex == (quizList.size() - 1)) {
 			model.addAttribute("nextDisplay",1);
@@ -249,6 +252,7 @@ public class QuizController{
 		if(status.getModeId() == 1) {
 			return "redirect:answerDetail";
 		}
+
 		return "rankingView";
 	}
 

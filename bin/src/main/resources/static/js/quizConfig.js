@@ -5,6 +5,7 @@ var numDisp = document.getElementById("num");
 mode = document.getElementsByName("mode");
 error = document.getElementById("error");
 error.style.display = 'block';
+numEx = document.getElementById("numEx");
 
 //モード切り替え
 function changeBtn() {
@@ -14,13 +15,13 @@ function changeBtn() {
 		learning.style.display = 'block';
 		rank.style.display = 'none';
 		numDisp.style.display = 'block';
-
+		numEx.style.display = 'block';
 	}
 	if (mode[1].checked) {
 		learning.style.display = 'none';
 		rank.style.display = 'block';
 		numDisp.style.display = 'none';
-
+		numEx.style.display = 'none';
 	}
 
 
