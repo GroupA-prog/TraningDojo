@@ -18,7 +18,7 @@
 <header class="title-continar">
 	<span id="site-title">
 		<c:choose>
-				<c:when test="${ not empty loginUserInfo }"><a href="#"><img src="css/img/logo (2).png" width="150px"></a></c:when>
+				<c:when test="${ not empty loginUserInfo }"><a href="#"><img src="css/img/logo (3).png" width="150px"></a></c:when>
 			<c:otherwise><a href="/login"><img src="css/img/logo (3).png"></a></c:otherwise>
 		</c:choose>
 	</span>
@@ -61,7 +61,7 @@
   <p>${quizStatus.nowSize}/${quizStatus.quizNum}</p>
 
   <c:if test="${empty nextDisplay}">
-    <form:button name= "next">次へ→</form:button>
+    <form:button name= "next" class="next-btn">次へ→</form:button>
   </c:if>
 </div>
 

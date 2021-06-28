@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*リタイアボタン*/
 nav li{
-	background-color:rgb(254, 94, 7);
+	/*background-color:#ffdecc ;*/
 }
 #closeRetired{
 	border-radius:10px;
@@ -47,9 +47,14 @@ input{
 	display:inline-block;
 	padding:0 2em;
 }
+
+
 .pageCon #next,#return{
 	padding:4px 12px;
-	border-radius:20px;
+	border-radius:10px;
+}
+button #next {
+	border:1px #000;
 }
 .pageCon p{
 	text-align:center;
@@ -120,12 +125,18 @@ input{
 	border-bottom:2px solid rgba(0,0,0,2);
 }
 #closeBtn{
-	border-radius:10px;
-	font-size:25px;
-	padding:0px 10px;
-	background-color:blue;
-	color:white;
-	border-bottom:2px solid rgba(0,0,0,2);
+	width: 100%;
+	max-width: 160px;
+	padding: 5px 5px;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.1em;
+	color: #ffffff;
+	background-color: #9ccdff;
+	border: 0px solid #66b3ff;
+	border-bottom : 5px solid #66b3ff;
+	font-size: 13px;
+	font-weight: 900;
 }
 
 /*終了ボタン*/
