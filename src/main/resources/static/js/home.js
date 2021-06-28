@@ -85,7 +85,7 @@ function changeCategory() {
 					var radar = document.getElementById("radar");
 					var chart = document.createElement('canvas');
 					chart.setAttribute('id', radarCharts);
-					chart.setAttribute('style', 'position: relative; height:550px; width:550px;');
+					chart.setAttribute('style', 'position: relative; height:450px; width:550px;');
 					radar.appendChild(chart);
 
 
@@ -127,7 +127,7 @@ function changeCategory() {
 
 							// タイトル
 							title: {
-								display: true,
+								display: false,
 								fontSize: 30,
 								text: radarCharts,
 								fontColor: "red",
@@ -200,3 +200,9 @@ function changeCategory() {
 
 let rc = document.querySelector("#radarCategory");
 rc.addEventListener('change', changeCategory);
+
+$('#radarCategory').change(function () {
+    var select_option = $(this).find('option:selected');
+    $(this).next('.size_select_label').text(select_option.text());
+    $(this).blur(); //フォーカスを外す
+  });
