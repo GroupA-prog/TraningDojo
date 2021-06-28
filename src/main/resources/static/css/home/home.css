@@ -5,34 +5,26 @@
 	color: red;
 }
 
+
 .btn.quiz {
-	position: absolute;
-	width: 100%;
-	max-width: 120px;
-	top: 120px;
-	left: 200px;
+	margin: 60px 0 0 30px;
 	padding: 10px 10px;
 	display: inline-block;
 	text-align: center;
-	letter-spacing: 0.1em;
-	color: #fff;
-	background-color: #ed576c;
-	border: #ed576c;
-	border-bottom: 4px solid #b44252;
-	border-radius: 20px;
-	font-weight: bold;
+
 }
+/*
 .btn.quiz:before {
 	content:"";
 	display:inline-block;
 	width:  15px;
 	height: 15px;
 	margin: -3px 5px 0 0;
-	background: url("./img/quiz.png");
+	background: url("../img/quiz.png") no-repeat;
 	background-size: contain;
 	vertical-align: middle;
 }
-
+*/
 .quizEx {
 	position: absolute;
 	top: 170px;
@@ -41,21 +33,10 @@
 }
 
 .btn.ranking {
-	position: absolute;
-	width: 100%;
-	max-width: 120px;
-	top: 250px;
-	left: 200px;
-	padding: 15px 10px;
+		margin: 60px 0 0 30px;
+	padding: 10px 10px;
 	display: inline-block;
 	text-align: center;
-	letter-spacing: 0.1em;
-	color: #fff;
-	background-color: #eb45eb;
-	border: #eb45eb;
-	border-bottom: 4px solid #b635b6;
-	border-radius: 20px;
-	font-weight: bold;
 }
 
 .rankEx {
@@ -66,22 +47,10 @@
 }
 
 .btn.history {
-	position: absolute;
-	width: 100%;
-	max-width: 120px;
-	max-width: 120px;
-	top: 380px;
-	left: 200px;
-	padding: 15px 10px;
+		margin: 10px 0 0 30px;
+	padding: 10px 10px;
 	display: inline-block;
 	text-align: center;
-	letter-spacing: 0.1em;
-	color: #fff;
-	background-color: #577aed;
-	border: #577aed;
-	border-bottom: 4px solid rgb(65, 82, 179);
-	border-radius: 20px;
-	font-weight: bold;
 }
 
 .hisEx {
@@ -92,21 +61,10 @@
 }
 
 .btn.profile {
-	position: absolute;
-	width: 100%;
-	max-width: 120px;
-	top: 510px;
-	left: 200px;
-	padding: 15px 10px;
+		margin: 10px 0 0 30px;
+	padding: 10px 10px;
 	display: inline-block;
 	text-align: center;
-	letter-spacing: 0.1em;
-	color: #fff;
-	background-color: #39e439;
-	border: #39e439;
-	border-bottom: 4px solid rgb(27, 187, 61);
-	border-radius: 20px;
-	font-weight: bold;
 }
 
 .proEx {
@@ -148,6 +106,15 @@
 
 }
 
+button {
+	border: none;
+	background: transparent;
+}
+
+.radar {
+
+	text-align: center;
+}
 
 /*
 body{

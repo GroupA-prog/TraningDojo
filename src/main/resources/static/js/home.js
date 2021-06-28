@@ -25,24 +25,7 @@ function changeCategory() {
 			res.json().then(function(data) {
 				console.log(data);
 				num = data.length;
-				/*var gradesData = data;*/
 
-				/*let request = {
-					categoryId: radarCategory,
-				};
-				fetch("/fullCategoryJs", {
-					method: "POST",
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(request)
-				})
-					.then(function(res) {
-						console.log(res);
-						res.json().then(function(data) {
-							console.log(data);
-							num = data.length;
-							var categoryName = data;*/
 
 				//レーダーチャートの個数決定
 				var chartNum;
@@ -58,9 +41,11 @@ function changeCategory() {
 				var i = 1;
 				var k = 1;
 				var m = 0;
-				var n = 0;
+				var itemNum2 = 0;
+
 				while (i <= chartNum) {
 
+					var itemNum;
 
 					//レーダーチャートごとの項目数
 					if (num % chartNum == 0) {
@@ -77,41 +62,24 @@ function changeCategory() {
 						}
 					}
 
+					itemNum2 += itemNum;
+
 					var name = [];
 					var ratio = [];
-
-
-					while (m < itemNum) {
+					console.log(name);
+					while (m < itemNum2) {
 
 
 						name.push(data[m].categoryName);
 						ratio.push(data[m].ratio);
 						console.log(name);
 						m++
+						console.log(m);
 					}
 
-					/*var itemNum2;
-					itemNum2 += itemNum;
 
-					var name = [];
-					var ratio = [];
-					while (m < itemNum2) {
 
-						if (categoryName[n].categoryName === gradesData[m].categoryName) {
-							name.push(gradesData[m].categoryName);
-							ratio.push(gradesData[m].ratio);
-							m++
-							console.log(name);
-							console.log(ratio);
-						} else {
-							name.push(categoryName[n].categoryName);
-							ratio.push(0);
-						}
-						n++;
-
-					}*/
-
-					radarCharts = 'レーダー' + i;
+					radarCharts = 'radar' + i;
 
 					//jsp側のタグの作成
 					var radar = document.getElementById("radar");
