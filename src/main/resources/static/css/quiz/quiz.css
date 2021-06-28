@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*リタイアボタン*/
 nav li{
-	background-color:red;
+	background-color:rgb(254, 94, 7);
 }
 #closeRetired{
 	border-radius:10px;
@@ -10,7 +10,6 @@ nav li{
 	background-color:blue;
 	color:white;
 }
-
 
 /* 問題文・選択肢 */
 
@@ -74,8 +73,12 @@ input{
 	color:white;
 }
 #min,#sec{
-	color:white;
+	color:red;
 	font-weight:bold;
+}
+
+.time{
+	background-color:silver;
 }
 
 /*モーダル*/
