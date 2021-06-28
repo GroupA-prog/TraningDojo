@@ -39,7 +39,7 @@
 	</c:forEach>
 </div>
 <c:if test="${quizStatus.modeId == 2 }">
-  <a href="rankingView">戻る</a>
+  <a href="rankingView?categoryId=${quizStatus.categoryId}">戻る</a>
 </c:if>
 
 </body>

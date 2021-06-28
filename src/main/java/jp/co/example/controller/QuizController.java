@@ -249,6 +249,7 @@ public class QuizController{
 				q.setCommentary("");
 			}
 		}
+		session.setAttribute("quizStatus", status);
 		session.setAttribute("quizList", quizAll);
 		//モード判断
 		if(status.getModeId() == 1) {
