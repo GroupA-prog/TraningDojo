@@ -46,23 +46,44 @@
 	<c:import url="header.jsp"></c:import>
 	<div id="background-image">
 		<h1 class="home">${loginUserInfo.userName}さんのホーム</h1>
+		<div style="display: inline-flex">
+			<form action="/quizConfig" method="GET">
+				<button type="submit" class="btn quiz">
+					<img src="css/img/quiz.png" width="200px"
+						onmouseover="this.src='css/img/quiz_hover.png'"
+						onmouseout="this.src='css/img/quiz.png'">
+				</button>
+			</form>
+			<!--  <p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>-->
+			<form action="/rankingCategory" method="GET">
+				<button type="submit" class="btn ranking">
+					<img src="css/img/ranking.png" width="200px"
+						onmouseover="this.src='css/img/ranking_hover.png'"
+						onmouseout="this.src='css/img/ranking.png'">
+				</button>
+			</form>
 
-		<form action="/quizConfig" method="GET">
-			<button type="submit" class="btn quiz">クイズ</button>
-		</form>
-		<p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>
-		<form action="/rankingCategory" method="GET">
-			<button type="submit" class="btn ranking">ランキング</button>
-		</form>
-		<p class="rankEx">ランキングモードでの成績を確認できます</p>
-		<form action="/logCategory" method="GET">
-			<button type="submit" class="btn history">履歴</button>
-		</form>
-		<p class="hisEx">過去に解いた問題を確認できます</p>
-		<form action="/profile" method="GET">
-			<button type="submit" class="btn profile">プロフィール</button>
-		</form>
-		<p class="proEx">プロフィールを変更できます</p>
+			<p class="rankEx">ランキングモードでの成績を確認できます</p>
+		</div>
+		<br>
+		<div style="display: inline-flex">
+			<form action="/logCategory" method="GET">
+				<button type="submit" class="btn history">
+					<img src="css/img/log.png" width="200px"
+						onmouseover="this.src='css/img/log_hover.png'"
+						onmouseout="this.src='css/img/log.png'">
+				</button>
+			</form>
+			<p class="hisEx">過去に解いた問題を確認できます</p>
+			<form action="/profile" method="GET">
+				<button type="submit" class="btn profile">
+					<img src="css/img/profile.png" width="200px"
+						onmouseover="this.src='css/img/profile_hover.png'"
+						onmouseout="this.src='css/img/profile.png'">
+				</button>
+			</form>
+			<p class="proEx">プロフィールを変更できます</p>
+		</div>
 
 		<h2 class="radarContent">レーダーチャート</h2>
 
