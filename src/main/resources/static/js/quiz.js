@@ -161,7 +161,6 @@ if(value == '2'){
 	            } else {
 	            	$.removeCookie('end');
 	                var timeup = document.getElementById('timeup');
-	                fadeIn(timeup,400);
 	  				timeup.style.display = 'block';
 	            }
 
