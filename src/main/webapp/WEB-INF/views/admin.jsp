@@ -78,10 +78,10 @@
 					<div>
 						解答 <br>
 						<form:select path="createAnswer">
-							<form:option value="1">1.</form:option>
-							<form:option value="2">2.</form:option>
-							<form:option value="3">3.</form:option>
-							<form:option value="4">4.</form:option>
+							<form:option value="1">1</form:option>
+							<form:option value="2">2</form:option>
+							<form:option value="3">3</form:option>
+							<form:option value="4">4</form:option>
 						</form:select>
 					</div>
 					<div>

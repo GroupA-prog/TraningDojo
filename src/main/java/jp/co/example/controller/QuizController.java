@@ -76,6 +76,10 @@ public class QuizController{
 
 	@RequestMapping(value="/quiz",method=RequestMethod.GET)
 	public String quizGet(@ModelAttribute("quiz")QuizForm form,Model model) {
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
+			return "redirect:/login";
+		}
 		return "quiz";
 	}
 
