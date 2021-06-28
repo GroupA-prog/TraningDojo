@@ -86,6 +86,8 @@
 		</div>
 
 		<h3>チャートの表示切替</h3>
+
+
 		<select name="radarCategory" id="radarCategory" class="radarCategory">
 			<option Label="選択してください">
 				<c:forEach var="category" items="${parentCategory}">
@@ -94,8 +96,8 @@
 		</select>
 
 
-
 		<div class="wrapper">
+			<h4>正答率レーダー</h4>
 			<div id="radar" class="radar"></div>
 		</div>
 

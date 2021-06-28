@@ -24,7 +24,8 @@
 }
 
 .item:hover {
-	opacity: 0.6;
+	/*opacity: 0.6;*/
+	background-color: #FF3333;
 }
 
 .items {
@@ -139,15 +140,36 @@ table td {
 select {
 	width: 100%;
 	height: 3em;
-	border: solid 1px black;
+	border: solid 1px #3399FF;
 	font-size: 1em;
 }
 
-input {
+select:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
+}
+
+input[type="text"] {
 	width: 100%;
-	height: 2em;
-	border: solid 1px black;
+	height: 1.5em;
+	border: solid 1px #3399FF;
 	font-size: 1em;
+	padding: 0.2em;
+}
+
+input[type="text"]:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
+}
+
+
+#createProblemStatement, #editProblemStatement {
+	border: solid 1px #3399FF;
+}
+
+#createProblemStatement:focus, #editProblemStatement:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
 }
 
 
@@ -163,6 +185,16 @@ input {
 	resize: none;
 	width: 100%;
 	height: 200px;
+	border: solid 1px #3399FF;
+}
+
+#createCommentary:focus, #editCommentary:focus {
+	outline: none;
+	border: solid 2px rgba(0,0,255, 0.7);
+}
+
+#createAnswer option {
+	text-align: center;
 }
 
 
@@ -179,8 +211,8 @@ input {
 
 
 .btn-regist, .btn-update {
-	background-color: #f26964;
-    border:  solid 2px #f26964;
+	background-color: #FF0033;
+    border:  solid 2px #FF0033;
     color: white;
     font-weight: bold;
     font-size: 1em;
