@@ -28,9 +28,11 @@
 		</div>
 		<form:form action="logList" modelAttribute="logDetail">
 			<c:forEach var="list" items="${dispQuiz}">
-				<pre>
-					<p id="${list.rowNumber}">Q${list.rowNumber}.${list.quizStatment}</p>
-				</pre>
+				<div class="statement">
+					<pre>
+						<p id="${list.rowNumber}">Q${list.rowNumber}.${list.quizStatment}</p>
+					</pre>
+				</div>
 				<form:input type="hidden" path="historyDetailId"
 					value="${list.historyDetailId}"></form:input>
 				<div class="select">
@@ -57,6 +59,7 @@
 				<p>コメント</p>
 				<form:textarea path="comment" placeholder="${list.comment}" rows="6"
 					cols="60"></form:textarea>
+				<hr>
 			</c:forEach>
 			<br>
 			<form:button type="submit" class="update">更新</form:button>
