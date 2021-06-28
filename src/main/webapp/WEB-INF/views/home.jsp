@@ -54,7 +54,7 @@
 						onmouseout="this.src='css/img/quiz.png'">
 				</button>
 			</form>
-			<!--  <p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>-->
+			<p class="quizEx">学習・ランキングの二種類のモードで学習できます</p>
 			<form action="/rankingCategory" method="GET">
 				<button type="submit" class="btn ranking">
 					<img src="css/img/ranking.png" width="200px"

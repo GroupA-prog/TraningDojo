@@ -28,9 +28,20 @@ public class LoginController {
 	private LoginService service;
 
 	@RequestMapping("/login")
-    public String login(@ModelAttribute("login") LoginForm form, Model model) {
-        return "login";
-    }
+	public String login(@ModelAttribute("login") LoginForm form, Model model) {
+		return "login";
+	}
+
+	@RequestMapping("/userHome")
+	public String userHome(@ModelAttribute("login") LoginForm form, Model model) {
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo == null) {
+			return "redirect:/login";
+		} else {
+			return "home";
+		}
+
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@Validated @ModelAttribute("login") LoginForm form, BindingResult bindingResult,
@@ -50,14 +61,14 @@ public class LoginController {
 	}
 
 	@RequestMapping("/signUp")
-    public String signUp(@ModelAttribute("signUp") InsertForm form, Model model) {
-        return "signUp";
-    }
+	public String signUp(@ModelAttribute("signUp") InsertForm form, Model model) {
+		return "signUp";
+	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public String signUp(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
-//		System.out.println("aaaa");
+		//		System.out.println("aaaa");
 		if (bindingResult.hasErrors()) {
 			return "signUp";
 		}
@@ -69,7 +80,7 @@ public class LoginController {
 		return "signUpConfirm";
 	}
 
-	@RequestMapping(value = "/signUpConfirm",method = RequestMethod.POST)
+	@RequestMapping(value = "/signUpConfirm", method = RequestMethod.POST)
 	public String signUpConfirm(@Validated @ModelAttribute("signUp") InsertForm form, BindingResult bindingResult,
 			Model model) {
 
@@ -79,23 +90,23 @@ public class LoginController {
 
 		if (!form.getNewPassword().equals(form.getNewPasswordRe())) {
 			model.addAttribute("isNotMatchPassword", true);
-			model.addAttribute("isNotMatchPasswordMsg","※パスワードが一致しません");
+			model.addAttribute("isNotMatchPasswordMsg", "※パスワードが一致しません");
 			return "signUpConfirm";
-		}else {
+		} else {
 			Login user = new Login(
 					form.getNewLoginId(),
 					form.getNewPassword(),
 					form.getNewUserName());
 			service.insert(user);
-			session.setAttribute("transitionDirectly","No");
+			session.setAttribute("transitionDirectly", "No");
 			return "redirect:/signUpDone";
 		}
 	}
 
 	@RequestMapping(value = "/signUpDone")
 	public String signUpDone(@ModelAttribute("signUpDone") LoginForm form, Model model) {
-//		System.out.println("cccc");
-		if(session.getAttribute("transitionDirectly")=="No") {
+		//		System.out.println("cccc");
+		if (session.getAttribute("transitionDirectly") == "No") {
 			session.removeAttribute("transitionDirectly");
 			return "signUpDone";
 		}
