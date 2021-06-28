@@ -64,7 +64,11 @@ public class QuizController{
 		}
 		List<Category> parentCategory = homeService.parentCategoryAll();
 		session.setAttribute("parentCategory",parentCategory);
-
+		//クイズ画面で作ったセッションを破棄
+		session.removeAttribute("quizListHarf");
+		session.removeAttribute("quizList");
+		session.removeAttribute("userAnswer");
+		session.removeAttribute("quizStatus");
 		return "home";
 	}
 
@@ -270,12 +274,7 @@ public class QuizController{
 
 	@RequestMapping(value="/retired",method=RequestMethod.GET)
 	public String retiredGet(@ModelAttribute("quizConfig")QuizForm form,Model model) {
-		//ログイン情報以外のセッションを破棄
-		session.removeAttribute("quizListHarf");
-		session.removeAttribute("quizList");
-		session.removeAttribute("userAnswer");
-		session.removeAttribute("quizStatus");
-		return "home";
+		return "redirect:userHome";
 	}
 
 
