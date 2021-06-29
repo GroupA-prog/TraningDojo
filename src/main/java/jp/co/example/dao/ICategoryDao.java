@@ -6,6 +6,7 @@ import jp.co.example.dto.entity.Category;
 
 public interface ICategoryDao {
 	public List<Category> selectAll();
+	public List<Category> selectAllDisplay();
 	public int insert(String categoryName, Integer display, Integer parentCategoryId);
 	public int update(Integer categoryId, String categoryName, Integer display, Integer parentCategoryId);
 	public List<Category> findByCategoryName(String categoryName);

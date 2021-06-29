@@ -6,6 +6,7 @@ import jp.co.example.dto.entity.Category;
 
 public interface ICategoryService {
 	public List<Category> selectAll();
+	public List<Category> selectAllDisplay();
 	public List<Category> selectParentCategory();
 	public int insert(String categoryName, Integer display, Integer parentCategoryId);
 	public int update(Integer categoryId, String categoryName, Integer display, Integer parentCategoryId);
