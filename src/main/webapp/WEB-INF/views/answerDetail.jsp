@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>解答詳細画面</title>
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/quiz/quiz.css">
 
