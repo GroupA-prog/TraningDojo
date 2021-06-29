@@ -18,8 +18,8 @@
 <header class="title-continar">
 	<span id="site-title">
 		<c:choose>
-				<c:when test="${ not empty loginUserInfo }"><a href="#"><img src="css/img/logo (2).png" width="150px"></a></c:when>
-			<c:otherwise><a href="/login"><img src="css/img/logo (2).png"></a></c:otherwise>
+				<c:when test="${ not empty loginUserInfo }"><a href="#"><img src="css/img/logo (3).png" width="150px"></a></c:when>
+			<c:otherwise><a href="/login"><img src="css/img/logo (3).png"></a></c:otherwise>
 		</c:choose>
 	</span>
 
@@ -44,10 +44,10 @@
 
     <pre>Q${quizStatus.quizIndex * 5 + status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
     <div class="select">
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice1}" value="1"/><br>
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice2}" value="2"/><br>
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice3}" value="3"/><br>
-	  <form:radiobutton path="choiceId${status.count}"  label="${quiz.choice4}" value="4"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="1.${quiz.choice1}" value="1"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="2.${quiz.choice2}" value="2"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="3.${quiz.choice3}" value="3"/><br>
+	  <form:radiobutton path="choiceId${status.count}"  label="4.${quiz.choice4}" value="4"/><br>
     </div>
   </c:forEach>
 </div>
@@ -61,7 +61,7 @@
   <p>${quizStatus.nowSize}/${quizStatus.quizNum}</p>
 
   <c:if test="${empty nextDisplay}">
-    <form:button name= "next">次へ→</form:button>
+    <form:button name= "next" class="next-btn">次へ→</form:button>
   </c:if>
 </div>
 

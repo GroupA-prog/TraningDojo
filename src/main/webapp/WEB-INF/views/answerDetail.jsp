@@ -21,26 +21,26 @@
 	  <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
 	  <div class="select">
 			<input type="radio" disabled <c:if test="${quiz.userAnswer == 1}">checked</c:if>>
-			<label <c:if test="${quiz.correctAnswer == 1}">class="correct"</c:if> >${quiz.choice1}</label><br>
+			<label <c:if test="${quiz.correctAnswer == 1}">class="correct"</c:if> >1.${quiz.choice1}</label><br>
 			<input type="radio" disabled <c:if test="${quiz.userAnswer == 2}">checked</c:if>>
-			<label <c:if test="${quiz.correctAnswer == 2}">class="correct"</c:if> >${quiz.choice2}</label><br>
+			<label <c:if test="${quiz.correctAnswer == 2}">class="correct"</c:if> >2.${quiz.choice2}</label><br>
 			<input type="radio" disabled <c:if test="${quiz.userAnswer == 3}">checked</c:if>>
-			<label <c:if test="${quiz.correctAnswer == 3}">class="correct"</c:if> >${quiz.choice3}</label><br>
+			<label <c:if test="${quiz.correctAnswer == 3}">class="correct"</c:if> >3.${quiz.choice3}</label><br>
 			<input type="radio" disabled <c:if test="${quiz.userAnswer == 4}">checked</c:if>>
-			<label <c:if test="${quiz.correctAnswer == 4}">class="correct"</c:if>>${quiz.choice4}</label><br>
+			<label <c:if test="${quiz.correctAnswer == 4}">class="correct"</c:if>>4.${quiz.choice4}</label><br>
 	  </div>
-	  <h2 id="commentary">解説</h2>
+	  <h2 >解説</h2>
 	  <c:if test="${not empty quiz.commentary}">
-	    <pre>${quiz.commentary}</pre>
+	    <pre class="commentary">${quiz.commentary}</pre>
 	  </c:if>
 	  <c:if test="${empty quiz.commentary}">
-	    <pre>解説はまだありません</pre>
+	    <pre class="commentary">解説はまだありません</pre>
 	  </c:if>
 	</c:forEach>
 </div>
 <c:if test="${quizStatus.modeId == 2 }">
-  <a href="rankingView?categoryId=${quizStatus.categoryId}">戻る</a>
+  <a id="back" href="rankingView?categoryId=${quizStatus.categoryId}">戻る</a>
 </c:if>
-
+<input type="button" id="finish-btn" value="ホーム" onclick="location.href='userHome'">
 </body>
 </html>

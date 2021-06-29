@@ -30,6 +30,10 @@ public class TsukayamaController {
 	@RequestMapping(value="/profile")
 	public String getProfile(@ModelAttribute("editUserInfo") EditUserForm form, BindingResult bindingResult, Model model) {
 		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+
+		if (loginUserInfo == null)
+			return "redirect:/";
+
 		form.setUserLoginId(loginUserInfo.getLoginId());
 		return "profile";
 	}
@@ -69,6 +73,8 @@ public class TsukayamaController {
 			}
 		}
 
+
+
 		if ( userInfoService.findByUserANDPass(loginUserInfo.getLoginId(),form.getNowPassword()) == null) {
 			model.addAttribute("isNotNowPassword",true);
 			return "profile";
@@ -85,6 +91,7 @@ public class TsukayamaController {
 		System.out.println(form);
 		if (bindingResult.hasErrors()) {
 			if (bindingResult.getFieldError("reNewPassword") != null) {
+				model.addAttribute("errorReNewPassword", true);
 				return "profileConfirm";
 			}
 		}
