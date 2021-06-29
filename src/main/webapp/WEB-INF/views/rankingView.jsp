@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@
 							</c:when>
 							<c:otherwise>
 								<h3>- あなたの記録 -</h3>
-								<h2>正答率： <span id="myScore">${fn:escapeXml(myRankingData.score)}</span>%</h2>
+								<h2>正答率： <span id="myScore"><fmt:formatNumber value="${fn:escapeXml(myRankingData.score)}" pattern="###.0" /></span>%</h2>
 								<h2><span id="myRank">${fn:escapeXml(myRankingData.rank)}</span>位 ／${fn:escapeXml(rankingUserNum)}位</h2>
 							</c:otherwise>
 						</c:choose>
@@ -53,12 +54,12 @@
 											<c:when test="${ranking.userId == loginUserId}">
 												<td class="myData">${fn:escapeXml(ranking.rank)}</td>
 												<td class="myData">${fn:escapeXml(ranking.userName)}</td>
-												<td class="myData">${fn:escapeXml(ranking.score)}%</td>
+												<td class="myData"><fmt:formatNumber value="${fn:escapeXml(ranking.score)}" pattern="###.0" />%</td>
 											</c:when>
 											<c:otherwise>
 												<td>${fn:escapeXml(ranking.rank)}</td>
 												<td>${fn:escapeXml(ranking.userName)}</td>
-												<td>${fn:escapeXml(ranking.score)}%</td>
+												<td><fmt:formatNumber value="${fn:escapeXml(ranking.score)}" pattern="###.0" />%</td>
 											</c:otherwise>
 										</c:choose>
 									</tr>

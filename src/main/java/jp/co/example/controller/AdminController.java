@@ -37,8 +37,11 @@ public class AdminController {
 	public String adminGet(@ModelAttribute("admin") AdminForm form, Model model) {
 		/*ログインユーザーの情報が歩かないかの判断*/
 		UserInfo userInfo = (UserInfo) session.getAttribute("loginUserInfo");
-		if (userInfo == null || userInfo.getRole() == 2) {
+		if (userInfo == null) {
 			return "redirect:/login";
+		}
+		if (userInfo.getRole().equals(2)) {
+			return "redirect:/userHome";
 		}
 
 		List<Category> categoryList 			= categoryService.selectAll();
@@ -192,6 +195,12 @@ public class AdminController {
 	public String adminPostUserEdit(@ModelAttribute("admin") AdminForm form, Model model) {
 		if ( userInfoService.findByLoginId(form.getLoginId()) == null) {
 			model.addAttribute("isChoiceLoginId", true);
+			return "admin";
+		}
+
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo.getLoginId().equals(form.getLoginId())) {
+			model.addAttribute("isNotChangedRole", true);
 			return "admin";
 		}
 

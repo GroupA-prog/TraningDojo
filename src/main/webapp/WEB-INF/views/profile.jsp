@@ -32,7 +32,7 @@
 					</label>
 					<br>
 					<label>
-						<span>パスワード</span><br>
+						<span>新規パスワード</span>
 						<form:errors path="newPassword" cssClass="error" /><br>
 						<form:password path="newPassword" showPassword="true" class="input_area" />
 					</label>

@@ -269,6 +269,9 @@
 					<c:if test="${ isChoiceLoginId }">
 						<p class="error">ログインIDを選択してください。</p>
 					</c:if>
+					<c:if test="${ isNotChangedRole }">
+						<p class="error">自身の権限内容を変更できません</p>
+					</c:if>
 					<div>
 						<label> ログインID <br> <form:select path="loginId">
 								<form:option value="" label="選択してください" />

@@ -21,6 +21,11 @@ public class CategoryService implements ICategoryService {
 		return categoryDao.selectAll();
 	}
 
+	@Override
+	public List<Category> selectAllDisplay() {
+		return categoryDao.selectAllDisplay();
+	}
+
 	public List<Category> selectParentCategory() {
 		List<Category> list = categoryDao.selectAll();
 		return list;

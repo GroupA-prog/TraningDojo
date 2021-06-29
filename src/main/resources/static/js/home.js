@@ -75,9 +75,8 @@ function changeCategory() {
 						console.log(name);
 						m++
 						console.log(m);
+
 					}
-
-
 
 					radarCharts = 'radar' + i;
 
@@ -124,6 +123,8 @@ function changeCategory() {
 
 							//レスポンシブ指定
 							responsive: false,
+
+							gaugeColor:'red',
 
 							// タイトル
 							title: {
