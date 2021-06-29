@@ -20,6 +20,13 @@ nav li {
 	font-weight: 900;
 }
 
+#closeRetired:active {
+	-webkit-transform: translateY(4px);
+	transform: translateY(4px); /*下に動く*/
+	border-bottom: none; /*線を消す*/
+	border-radius: 10px;
+}
+
 /* 問題文・選択肢 */
 .main {
 	margin: 0 auto;
@@ -91,6 +98,13 @@ button #next {
 	border-radius: 10px
 }
 
+#timebtn:active {
+	-webkit-transform: translate(0, 2px);
+	-moz-transform: translate(0, 2px);
+	transform: translate(0, 2px);
+	border-bottom: none;
+}
+
 #min, #sec {
 	color: red;
 	font-weight: bold;
@@ -142,6 +156,12 @@ button #next {
 	font-weight: 900;
 }
 
+#finish:active {
+	transform: translateY(4px); /*下に動く*/
+	border-bottom: none; /*線を消す*/
+	border-radius: 10px;
+}
+
 #closeBtn {
 	width: 100px;
 	height: 40px;
@@ -157,6 +177,12 @@ button #next {
 	border-bottom: 5px solid #66b3ff;
 	font-size: 13px;
 	font-weight: 900;
+	border-radius: 10px;
+}
+
+#closeBtn:active {
+	transform: translateY(4px); /*下に動く*/
+	border-bottom: none; /*線を消す*/
 	border-radius: 10px;
 }
 
@@ -182,7 +208,6 @@ button #next {
 }
 
 #finish-btn:active {
-	-webkit-transform: translateY(4px);
 	transform: translateY(4px); /*下に動く*/
 	border-bottom: none; /*線を消す*/
 	border-radius: 10px;
@@ -196,39 +221,13 @@ button:hover {
 	opacity: 0.8;
 }
 
-#closeRetired:active{
-	-webkit-transform: translate(0, 2px);
-	-moz-transform: translate(0, 2px);
-	transform: translate(0, 2px);
-	border-bottom: none;
-}
-
+/*
 #finish-btn:active{
 	-webkit-transform: translate(0, 2px);
 	-moz-transform: translate(0, 2px);
 	transform: translate(0, 2px);
 	border-bottom: none;
-}
-
-#closeBtn:active{
-	-webkit-transform: translate(0, 2px);
-	-moz-transform: translate(0, 2px);
-	transform: translate(0, 2px);
-	border-bottom: none;
-}
-#finish:active{
-	-webkit-transform: translate(0, 2px);
-	-moz-transform: translate(0, 2px);
-	transform: translate(0, 2px);
-	border-bottom: none;
-}
-#timebtn:active{
-	-webkit-transform: translate(0, 2px);
-	-moz-transform: translate(0, 2px);
-	transform: translate(0, 2px);
-	border-bottom: none;
-}
-
+}*/
 input:hover {
 	opacity: 0.8;
 }
@@ -248,6 +247,7 @@ input:hover {
 	color: red;
 	text-decoration: none;
 }
-h1,h2{
-	text-align:center;
+
+h1, h2 {
+	text-align: center;
 }
