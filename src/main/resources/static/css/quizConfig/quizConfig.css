@@ -89,6 +89,7 @@ h3{
     background-color: #ff9ca5;
     border: #ff9ca5;
     border-bottom: 5px solid #ff6673;
+    border-radius: 10px;
 }
 .btn.quiz:active {
 		-webkit-transform: translateY(4px);
