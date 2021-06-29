@@ -17,6 +17,7 @@
 	width: 54em;
 	background: #b0c4de;
 	margin: 0 auto;
+	border-radius: 10px;
 }
 
 .statement {
@@ -31,6 +32,7 @@
 	border: 2px solid #ccc;
 	padding: 5px 0 5px 50px;
 	text-align: left;
+	border-radius: 10px;
 }
 .statement:first-child {
 	margin-top: 10px;
@@ -57,22 +59,24 @@ input[type="radio" i]:disabled {
 /*各クイズに飛ぶボタン*/
 .jump {
 	border: 1px solid;
-	border-color: #99ffff;
+	border-color: #7acccc;
 	border-radius: 15%;
 	padding: 3px 6px;
-	background-color: #e0ffff;
+	background-color: #99ffff;
 	color: #000000;
 }
 .jump:hover{
 	border: 1px solid;
-	border-color: #99ffff;
-	background-color: #99ffff ;
+	color: white;
+	border-color: #7acccc;
+	background-color: #7acccc;
 }
 
 /*コメント入力*/
 textarea {
 	 border: 1px solid rgb(52, 89, 255);
 	 margin-bottom: 50px;
+	border-radius: 10px;
 }
 textarea:focus {
 	border: 1px solid rgb(52, 89, 255);
@@ -131,6 +135,7 @@ textarea:focus {
 	width: 54em;
 	background: #c9e1ff;
 	margin: 0 auto;
+	border-radius: 10px;
 }
 
 /* 問題の間のライン */
@@ -148,5 +153,5 @@ textarea:focus {
 	position: fixed;
 	left: 50px;
 	bottom: 30px;
-	font-weight: 1000;
+	font-weight: 500;
 }
