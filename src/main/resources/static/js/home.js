@@ -121,6 +121,8 @@ function changeCategory() {
 						},
 						options: {
 
+							scaleLineColor: "red",
+
 							//レスポンシブ指定
 							responsive: false,
 
