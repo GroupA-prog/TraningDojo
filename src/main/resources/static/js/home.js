@@ -124,8 +124,6 @@ function changeCategory() {
 							//レスポンシブ指定
 							responsive: false,
 
-							gaugeColor:'red',
-
 							// タイトル
 							title: {
 								display: false,

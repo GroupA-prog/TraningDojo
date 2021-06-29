@@ -127,7 +127,7 @@ public class QuizDaoImpl implements QuizDao{
 			param.addValue("history_id"+i+"", historyId);
 			param.addValue("quiz_id"+i+"", quizResult.get(i).getQuizId());
 			param.addValue("correct"+i+"", quizResult.get(i).getCorrect());
-			param.addValue("user_answer"+i+"", quizResult.get(i).getUserId());
+			param.addValue("user_answer"+i+"", quizResult.get(i).getUserAnswer());
 		}
 		jdbcTemplate.update(sql, param);
 	}
