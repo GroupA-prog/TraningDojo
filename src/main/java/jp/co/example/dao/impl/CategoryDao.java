@@ -14,6 +14,7 @@ import jp.co.example.dto.entity.Category;
 @Repository
 public class CategoryDao implements ICategoryDao {
 	private static final String SELECT_All = "WITH RECURSIVE category_list(category_id, category_name) AS ( SELECT category_id, CAST(category_name AS TEXT) FROM category WHERE parent_category_id IS NULL UNION ALL SELECT c.category_id, concat(cl.category_name,'->', c.category_name) FROM category c JOIN category_list cl ON cl.category_id = c.parent_category_id ) SELECT * FROM category_list ORDER BY category_name;";
+	private static final String SELECT_ALL_DISPLAY = "WITH RECURSIVE category_list(category_id, category_name) AS ( SELECT category_id, CAST(category_name AS TEXT) FROM category WHERE parent_category_id IS NULL AND display = 1 UNION ALL SELECT c.category_id, concat(cl.category_name,'->', c.category_name) FROM category c JOIN category_list cl ON cl.category_id = c.parent_category_id WHERE c.display = 1 ) SELECT * FROM category_list ORDER BY category_name;";
 	private static final String SELECT_BY_EDIT_CATEGORY = "WITH RECURSIVE category_list(category_id, category_name) AS ( SELECT category_id, CAST(category_name AS TEXT) FROM category WHERE parent_category_id IS NULL UNION ALL SELECT c.category_id, concat(cl.category_name,'->', c.category_name) FROM category c JOIN category_list cl ON cl.category_id = c.parent_category_id ) SELECT * FROM category_list WHERE category_id <> :category_id ORDER BY category_name;";
 	private static final String INSERT = "INSERT INTO category (category_name, display, parent_category_id) VALUES (:category_name, :display, CASE WHEN :parent_category_id = -1 THEN NULL ELSE :parent_category_id END);";
 	private static final String UPDATE = "UPDATE category SET category_name = :category_name, display = :display, parent_category_id = CASE WHEN :parent_category_id = -1 THEN NULL ELSE :parent_category_id END WHERE category_id = :category_id;";
@@ -27,6 +28,11 @@ public class CategoryDao implements ICategoryDao {
 	@Override
 	public List<Category> selectAll() {
 		return jdbcTemplate.query(SELECT_All, new BeanPropertyRowMapper<Category>(Category.class));
+	}
+
+	@Override
+	public List<Category> selectAllDisplay() {
+		return jdbcTemplate.query(SELECT_ALL_DISPLAY, new BeanPropertyRowMapper<Category>(Category.class));
 	}
 
 	public int insert(String categoryName, Integer display, Integer parentCategoryId) {
