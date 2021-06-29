@@ -75,9 +75,8 @@ function changeCategory() {
 						console.log(name);
 						m++
 						console.log(m);
+
 					}
-
-
 
 					radarCharts = 'radar' + i;
 

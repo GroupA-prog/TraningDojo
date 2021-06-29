@@ -80,6 +80,7 @@ $('.return').click(function() {
 		$('.editCategory').fadeOut('slow');
 		$('.editUser').fadeOut('slow');
 		$('#modal-overlay, #modal-content').fadeOut("slow");
+		$('.error').remove();
 });
 
 $('.returnQuizList').click(function() {
