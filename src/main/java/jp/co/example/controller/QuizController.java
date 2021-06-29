@@ -132,6 +132,7 @@ public class QuizController{
 		status.setNowSize((1 + status.getQuizIndex()) * 5);
 		if(status.getQuizNum() < status.getNowSize()) {
 			status.setNowSize(status.getQuizNum());
+			redirectAttributes.addFlashAttribute("next",1);
 		}
 		session.setAttribute("quizStatus", status);
 		session.setAttribute("userAnswer", userAnswer);

@@ -60,7 +60,7 @@
 
   <p>${quizStatus.nowSize}/${quizStatus.quizNum}</p>
 
-  <c:if test="${empty nextDisplay}">
+  <c:if test="${empty nextDisplay && empty next}">
     <form:button name= "next" class="next-btn">次へ→</form:button>
   </c:if>
 </div>
