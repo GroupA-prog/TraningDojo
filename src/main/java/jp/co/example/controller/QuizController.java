@@ -222,6 +222,7 @@ public class QuizController{
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
+		System.out.print(status.getQuizIndex());
 		quizService.answerUpdate(answer,status.getQuizIndex(),choiceList);
 		session.setAttribute("userAnswer", answer);
 		//答え合わせ
