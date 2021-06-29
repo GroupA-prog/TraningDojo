@@ -133,7 +133,6 @@ public class QuizController{
 		if(status.getQuizNum() < status.getNowSize()) {
 			status.setNowSize(status.getQuizNum());
 		}
-		status.setQuizIndex(status.getQuizIndex());
 		session.setAttribute("quizStatus", status);
 		session.setAttribute("userAnswer", userAnswer);
 		return "redirect:quiz";
@@ -176,7 +175,6 @@ public class QuizController{
 		if(status.getQuizNum() < status.getNowSize()) {
 			status.setNowSize(status.getQuizNum());
 		}
-		status.setQuizIndex(status.getQuizIndex());
 		session.setAttribute("quizStatus",status);
 		return "quiz";
 	}
@@ -225,7 +223,6 @@ public class QuizController{
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
 		System.out.print(status.getQuizIndex());
 		quizService.answerUpdate(answer,status.getQuizIndex(),choiceList);
-		session.setAttribute("userAnswer", answer);
 		session.setAttribute("userAnswer", answer);
 		//答え合わせ
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
