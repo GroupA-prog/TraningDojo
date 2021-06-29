@@ -198,6 +198,12 @@ public class AdminController {
 			return "admin";
 		}
 
+		UserInfo loginUserInfo = (UserInfo) session.getAttribute("loginUserInfo");
+		if (loginUserInfo.getLoginId().equals(form.getLoginId())) {
+			model.addAttribute("isNotChangedRole", true);
+			return "admin";
+		}
+
 		userInfoService.updateRole(form.getLoginId(), form.getRole());
 		return "redirect:/admin";
 	}
