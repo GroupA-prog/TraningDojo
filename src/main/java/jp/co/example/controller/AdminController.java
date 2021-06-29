@@ -40,6 +40,9 @@ public class AdminController {
 		if (userInfo == null) {
 			return "redirect:/login";
 		}
+		if (userInfo.getRole().equals(2)) {
+			return "redirect:/userHome";
+		}
 
 		List<Category> categoryList 			= categoryService.selectAll();
 		List<Category> parentCategoryList 	= categoryService.selectParentCategory();

@@ -39,8 +39,10 @@
 					<br>
 					<label>
 						<span>新規パスワード(再入力)</span>
-						<form:errors path="reNewPassword" cssClass="error"/><br>
 						<form:password path="reNewPassword" class="input_area" />
+						<c:if test="${ errorReNewPassword }">
+							<br><form:errors path="reNewPassword" cssClass="error"/><br>
+						</c:if>
 					</label>
 					<div class="form_btn">
 						<form:button name="returnProfile" class="btn login">戻る</form:button>
