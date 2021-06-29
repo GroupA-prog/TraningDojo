@@ -196,8 +196,33 @@ button:hover {
 	opacity: 0.8;
 }
 
-#closeRetired:active, #timebtn:active, #finish:active, #closeBtn:active,
-	#finish-btn:active {
+#closeRetired:active{
+	-webkit-transform: translate(0, 2px);
+	-moz-transform: translate(0, 2px);
+	transform: translate(0, 2px);
+	border-bottom: none;
+}
+
+#finish-btn:active{
+	-webkit-transform: translate(0, 2px);
+	-moz-transform: translate(0, 2px);
+	transform: translate(0, 2px);
+	border-bottom: none;
+}
+
+#closeBtn:active{
+	-webkit-transform: translate(0, 2px);
+	-moz-transform: translate(0, 2px);
+	transform: translate(0, 2px);
+	border-bottom: none;
+}
+#finish:active{
+	-webkit-transform: translate(0, 2px);
+	-moz-transform: translate(0, 2px);
+	transform: translate(0, 2px);
+	border-bottom: none;
+}
+#timebtn:active{
 	-webkit-transform: translate(0, 2px);
 	-moz-transform: translate(0, 2px);
 	transform: translate(0, 2px);

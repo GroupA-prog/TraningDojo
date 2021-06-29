@@ -26,7 +26,6 @@ import jp.co.example.service.QuizService;
 
 @Controller
 public class QuizController{
-	public static int quizIndex = 0;
 	@Autowired
 	private QuizService quizService;
 
@@ -89,9 +88,9 @@ public class QuizController{
 		if (loginUserInfo == null) {
 			return "redirect:/login";
 		}
-		quizIndex = 0;
 		//クイズstart時刻取得・保持
 		QuizResult status = new QuizResult();
+		status.setQuizIndex(0);
 		long millis = System.currentTimeMillis();
 		Timestamp start = new Timestamp(millis);
 		status.setStartTime(start);
@@ -109,7 +108,7 @@ public class QuizController{
 			status.setCategoryName(categoryService.findByCategoryId(form.getCategoryId()).get(0).getCategoryName());
 			quizList = quizService.findByCategoryQuiz(form.getCategoryId(), form.getQuizNum());
 			session.setAttribute("quizList", quizList);
-			session.setAttribute("quizListHarf",quizList.get(quizIndex));
+			session.setAttribute("quizListHarf",quizList.get(status.getQuizIndex()));
 			status.setQuizNum(form.getQuizNum());
 		}else if(form.getMode() == 2){
 			status.setCategoryName(categoryService.findByCategoryId(form.getRankCategoryId()).get(0).getCategoryName());
@@ -125,16 +124,16 @@ public class QuizController{
 
 			status.setQuizNum(10);
 			session.setAttribute("quizList", quizList);
-			session.setAttribute("quizListHarf",quizList.get(quizIndex));
+			session.setAttribute("quizListHarf",quizList.get(status.getQuizIndex()));
 
 		}
 		//問題数・解答セッションを作成、保存
 		List<List<Integer>>userAnswer = quizService.answerList(status.getQuizNum());
-		status.setNowSize((1 + quizIndex) * 5);
+		status.setNowSize((1 + status.getQuizIndex()) * 5);
 		if(status.getQuizNum() < status.getNowSize()) {
 			status.setNowSize(status.getQuizNum());
 		}
-		status.setQuizIndex(quizIndex);
+		status.setQuizIndex(status.getQuizIndex());
 		session.setAttribute("quizStatus", status);
 		session.setAttribute("userAnswer", userAnswer);
 		return "redirect:quiz";
@@ -144,39 +143,40 @@ public class QuizController{
 	@RequestMapping(value="/quiz",params="next",method=RequestMethod.POST)
 	public String quizPostNext(@ModelAttribute("quiz")QuizForm form,Model model) {
 		//ユーザーの解答をセッションへ更新
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
-		quizService.answerUpdate(answer,quizIndex,choiceList);
+		quizService.answerUpdate(answer,status.getQuizIndex(),choiceList);
 		session.setAttribute("userAnswer", answer);
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		for(int i = 0; i < quizList.get(quizIndex).size(); i++) {
-			quizList.get(quizIndex).get(i).setUserAnswer(answer.get(quizIndex).get(i));
+		for(int i = 0; i < quizList.get(status.getQuizIndex()).size(); i++) {
+			quizList.get(status.getQuizIndex()).get(i).setUserAnswer(answer.get(status.getQuizIndex()).get(i));
 		}
 		//次の5問へセッションを更新
-		quizIndex++;
-		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
+		status.setQuizIndex(status.getQuizIndex()+1);
+		session.setAttribute("quizListHarf",quizList.get(status.getQuizIndex()) );
 		try {
-		form.setChoiceId1(answer.get(quizIndex).get(0));
-		form.setChoiceId2(answer.get(quizIndex).get(1));
-		form.setChoiceId3(answer.get(quizIndex).get(2));
-		form.setChoiceId4(answer.get(quizIndex).get(3));
-		form.setChoiceId5(answer.get(quizIndex).get(4));
+		form.setChoiceId1(answer.get(status.getQuizIndex()).get(0));
+		form.setChoiceId2(answer.get(status.getQuizIndex()).get(1));
+		form.setChoiceId3(answer.get(status.getQuizIndex()).get(2));
+		form.setChoiceId4(answer.get(status.getQuizIndex()).get(3));
+		form.setChoiceId5(answer.get(status.getQuizIndex()).get(4));
 		}catch(RuntimeException e) {
 
 		}
 		//次へ・前へボタン表示判断
-		if(quizIndex == (quizList.size() - 1)) {
+		if(status.getQuizIndex() == (quizList.size() - 1)) {
 			model.addAttribute("nextDisplay",1);
 		}
 		model.addAttribute("returnDisplay",1);
 		//問題数の更新
-		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
-		status.setNowSize((1 + quizIndex) * 5);
+
+		status.setNowSize((1 + status.getQuizIndex()) * 5);
 		if(status.getQuizNum() < status.getNowSize()) {
 			status.setNowSize(status.getQuizNum());
 		}
-		status.setQuizIndex(quizIndex);
+		status.setQuizIndex(status.getQuizIndex());
 		session.setAttribute("quizStatus",status);
 		return "quiz";
 	}
@@ -184,32 +184,32 @@ public class QuizController{
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="return",method=RequestMethod.POST)
 	public String quizPostReturn(@ModelAttribute("quiz")QuizForm form,Model model) {
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
 		//ユーザーの解答をセッションへ更新
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
-		quizService.answerUpdate(answer,quizIndex,choiceList);
+		quizService.answerUpdate(answer,status.getQuizIndex(),choiceList);
 		session.setAttribute("userAnswer", answer);
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
-		for(int i = 0; i < quizList.get(quizIndex).size(); i++) {
-			quizList.get(quizIndex).get(i).setUserAnswer(answer.get(quizIndex).get(i));
+		for(int i = 0; i < quizList.get(status.getQuizIndex()).size(); i++) {
+			quizList.get(status.getQuizIndex()).get(i).setUserAnswer(answer.get(status.getQuizIndex()).get(i));
 		}
 		//前の5問へセッションを更新
-		quizIndex--;
-		session.setAttribute("quizListHarf",quizList.get(quizIndex) );
-		form.setChoiceId1(answer.get(quizIndex).get(0));
-		form.setChoiceId2(answer.get(quizIndex).get(1));
-		form.setChoiceId3(answer.get(quizIndex).get(2));
-		form.setChoiceId4(answer.get(quizIndex).get(3));
-		form.setChoiceId5(answer.get(quizIndex).get(4));
+		status.setQuizIndex(status.getQuizIndex() - 1);
+		session.setAttribute("quizListHarf",quizList.get(status.getQuizIndex()) );
+		form.setChoiceId1(answer.get(status.getQuizIndex()).get(0));
+		form.setChoiceId2(answer.get(status.getQuizIndex()).get(1));
+		form.setChoiceId3(answer.get(status.getQuizIndex()).get(2));
+		form.setChoiceId4(answer.get(status.getQuizIndex()).get(3));
+		form.setChoiceId5(answer.get(status.getQuizIndex()).get(4));
 		//戻るボタン表示判断
-		if(quizIndex != 0) {
+		if(status.getQuizIndex() != 0) {
 			model.addAttribute("returnDisplay",1);
 		}
 		//問題数の更新
-		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
-		status.setNowSize((1 + quizIndex) * 5);
-		status.setQuizIndex(quizIndex);
+		status.setNowSize((1 + status.getQuizIndex()) * 5);
+		status.setQuizIndex(status.getQuizIndex());
 		session.setAttribute("quizStatus", status);
 		return "quiz";
 	}
@@ -218,19 +218,18 @@ public class QuizController{
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/quiz",params="finish",method=RequestMethod.POST)
 	public String quizPostFinish(@ModelAttribute("quiz")QuizForm form,Model model) {
-
+		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
 		//ユーザーの解答をセッションへ更新
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
-		quizService.answerUpdate(answer,quizIndex,choiceList);
+		quizService.answerUpdate(answer,status.getQuizIndex(),choiceList);
 		session.setAttribute("userAnswer", answer);
 		session.setAttribute("userAnswer", answer);
 		//答え合わせ
 		List<List<Quiz>>quizList = (List<List<Quiz>>) session.getAttribute("quizList");
 		List<QuizResult> correctList = new ArrayList<QuizResult>();
 		quizService.setQuiz(correctList,quizList,answer);
-		QuizResult status = (QuizResult) session.getAttribute("quizStatus");
 		//カテゴリ名からカテゴリIDを取得
 		int categoryId = categoryService.findByCategoryName(status.getCategoryName()).get(0).getCategoryId();
 		status.setCategoryId(categoryId);
