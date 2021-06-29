@@ -47,7 +47,7 @@ public class QuizController{
 		if (loginUserInfo == null) {
 			return "redirect:/login";
 		}
-		List<Category> categoryAll = categoryService.selectAll();
+		List<Category> categoryAll = categoryService.selectAllDisplay();
 		List<Category> categoryName = quizConfigService.categoryNameAll();
 		session.setAttribute("categoryAll", categoryAll);
 		session.setAttribute("categoryName", categoryName);
