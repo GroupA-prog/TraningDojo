@@ -179,10 +179,10 @@ if(value == '2'){
 	});
 }
 
-var time = document.getElementById('timebtn');
+/*var time = document.getElementById('timebtn');
 time.addEventListener('click', function() {
  	window.location.href='userHome';
- })
+ })*/
 
 
 //制限時間のcookieを破棄
