@@ -222,7 +222,6 @@ public class QuizController{
 		List<List<Integer>>answer = (List<List<Integer>>) session.getAttribute("userAnswer");
 		List<Integer> choiceList = new ArrayList<Integer>();
 		quizService.choiceUpdate(choiceList,form.getChoiceId1(),form.getChoiceId2(),form.getChoiceId3(),form.getChoiceId4(),form.getChoiceId5());
-		System.out.print(status.getQuizIndex());
 		quizService.answerUpdate(answer,status.getQuizIndex(),choiceList);
 		session.setAttribute("userAnswer", answer);
 		//答え合わせ
@@ -238,8 +237,6 @@ public class QuizController{
 
 		//履歴に登録
 		int historyId = quizService.insertHistory(status);
-		//正答数を取得
-		status.setCorrect(quizService.findByCorrect(historyId));
 		//履歴詳細に登録
 		quizService.insertHistoryDetail(correctList,historyId);
 		session.setAttribute("userAnswer", correctList);
