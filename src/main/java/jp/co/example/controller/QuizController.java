@@ -97,9 +97,9 @@ public class QuizController{
 		//モード：カテゴリ名保存
 		status.setMode(quizService.selectMode(form.getMode()));
 		status.setModeId(form.getMode());
-		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
-
 		//モード分岐、制限時間・問題（5問分け済み）を保存
+		List<List<Quiz>> quizList = new ArrayList<List<Quiz>>();
+		//学習モード
 		if(form.getMode() == 1) {
 			if(form.getQuizNum() == 0) {
 				redirectAttributes.addFlashAttribute("studyError","問題数は必須です");
@@ -110,7 +110,7 @@ public class QuizController{
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(status.getQuizIndex()));
 			status.setQuizNum(form.getQuizNum());
-		}else if(form.getMode() == 2){
+		}else if(form.getMode() == 2){//ランキングモード
 			status.setCategoryName(categoryService.findByCategoryId(form.getRankCategoryId()).get(0).getCategoryName());
 			quizList = quizService.findByRankCategory(form.getRankCategoryId());
 			try {
@@ -121,7 +121,6 @@ public class QuizController{
 				return "redirect:quizConfig";
 			}
 			status.setTime(20);
-
 			status.setQuizNum(10);
 			session.setAttribute("quizList", quizList);
 			session.setAttribute("quizListHarf",quizList.get(status.getQuizIndex()));
@@ -156,6 +155,7 @@ public class QuizController{
 		//次の5問へセッションを更新
 		status.setQuizIndex(status.getQuizIndex()+1);
 		session.setAttribute("quizListHarf",quizList.get(status.getQuizIndex()) );
+		//解答を初期値にセット
 		try {
 		form.setChoiceId1(answer.get(status.getQuizIndex()).get(0));
 		form.setChoiceId2(answer.get(status.getQuizIndex()).get(1));
@@ -238,6 +238,8 @@ public class QuizController{
 
 		//履歴に登録
 		int historyId = quizService.insertHistory(status);
+		//正答数を取得
+		status.setCorrect(quizService.findByCorrect(historyId));
 		//履歴詳細に登録
 		quizService.insertHistoryDetail(correctList,historyId);
 		session.setAttribute("userAnswer", correctList);

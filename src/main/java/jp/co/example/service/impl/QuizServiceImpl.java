@@ -194,5 +194,7 @@ public class QuizServiceImpl implements QuizService{
 		return quizDao.updateQuiz(quizId, categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
 	}
 
-
+	@Override
+	public int findByCorrect(Integer historyId) {
+		return quizDao.findByCorrect(historyId);
 }

@@ -26,6 +26,7 @@ public class QuizDaoImpl implements QuizDao{
 	private static final String INSERT_HISTORY = "INSERT INTO history (history_date,user_id,mode,category_id) VALUES (:history_date,:user_id,:mode,:category_id);";
 	private static final String SELECT_BY_HISTORY_ID = "SELECT history_id FROM history WHERE history_date = :history_date AND user_id = :user_id;";
 	private static final String INSERT_HISTORY_DETAIL = "INSERT INTO history_detail (history_id,quiz_id,correct,user_answer) VALUES";
+	private static final String SELECT_BY_CORRECT = "SELECT COUNT(correct) FROM history_detail WHERE history_id = :history_id";
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -115,6 +116,7 @@ public class QuizDaoImpl implements QuizDao{
 	}
 
 	//履歴詳細登録
+	@Override
 	public void insertHistoryDetail(List<QuizResult>quizResult,Integer historyId) {
 		String sql = INSERT_HISTORY_DETAIL;
 		MapSqlParameterSource param = new MapSqlParameterSource();
@@ -130,5 +132,15 @@ public class QuizDaoImpl implements QuizDao{
 			param.addValue("user_answer"+i+"", quizResult.get(i).getUserAnswer());
 		}
 		jdbcTemplate.update(sql, param);
+	}
+
+	//正誤取得
+	@Override
+	public int findByCorrect(Integer historyId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("history_id", historyId);
+		List<QuizResult>resultList = jdbcTemplate.query(SELECT_BY_CORRECT, param, new BeanPropertyRowMapper<QuizResult>(QuizResult.class));
+		QuizResult result = resultList.isEmpty() ? null : resultList.get(0);
+		return result.getCorrect();
 	}
 }
