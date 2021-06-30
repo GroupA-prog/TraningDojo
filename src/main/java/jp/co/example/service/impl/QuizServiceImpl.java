@@ -198,3 +198,4 @@ public class QuizServiceImpl implements QuizService{
 	public int findByCorrect(Integer historyId) {
 		return quizDao.findByCorrect(historyId);
 }
+}
