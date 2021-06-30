@@ -139,8 +139,7 @@ public class QuizDaoImpl implements QuizDao{
 	public int findByCorrect(Integer historyId) {
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("history_id", historyId);
-		List<QuizResult>resultList = jdbcTemplate.query(SELECT_BY_CORRECT, param, new BeanPropertyRowMapper<QuizResult>(QuizResult.class));
-		QuizResult result = resultList.isEmpty() ? null : resultList.get(0);
-		return result.getCorrect();
+		List<Integer>resultList = jdbcTemplate.query(SELECT_BY_CORRECT, param, new BeanPropertyRowMapper<Integer>(Integer.class));
+		return resultList.get(0);
 	}
 }
