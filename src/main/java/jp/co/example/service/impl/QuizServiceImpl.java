@@ -193,8 +193,4 @@ public class QuizServiceImpl implements QuizService{
 	public int updateQuiz(Integer quizId, Integer categoryId, String quizTitle, String quizStatment, Integer correctAnswer, String commentary, Integer display) {
 		return quizDao.updateQuiz(quizId, categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
 	}
-
-	@Override
-	public int findByCorrect(Integer historyId) {
-		return quizDao.findByCorrect(historyId);
 }

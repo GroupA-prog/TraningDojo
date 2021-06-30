@@ -238,8 +238,6 @@ public class QuizController{
 
 		//履歴に登録
 		int historyId = quizService.insertHistory(status);
-		//正答数を取得
-		status.setCorrect(quizService.findByCorrect(historyId));
 		//履歴詳細に登録
 		quizService.insertHistoryDetail(correctList,historyId);
 		session.setAttribute("userAnswer", correctList);

@@ -16,7 +16,6 @@
 <c:import url="header.jsp"></c:import>
 
 <h1>${quizStatus.categoryName}の解答</h1>
-<h1>${quizStatus.correct}/${quizStatus.quizNum}</h1>
 <div class="main">
 	<c:forEach items="${quizList}" var="quiz" varStatus="status">
 	  <pre>${status.count}.<c:out value="${quiz.quizStatment}" /></pre><br>
