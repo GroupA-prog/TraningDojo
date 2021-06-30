@@ -277,6 +277,4 @@ public class QuizController{
 	public String retiredGet(@ModelAttribute("quizConfig")QuizForm form,Model model) {
 		return "redirect:userHome";
 	}
-
-
 }

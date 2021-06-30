@@ -194,4 +194,3 @@ public class QuizServiceImpl implements QuizService{
 		return quizDao.updateQuiz(quizId, categoryId, quizTitle, quizStatment, correctAnswer, commentary, display);
 	}
 }
-}
