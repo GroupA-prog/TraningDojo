@@ -89,7 +89,7 @@
 <div id="timeup" class="modal">
   <div class="modal-content">
       <h2>TimeUp!!</h2>
-		<form:button name="finish" id="timebtn">ok</form:button>
+		<form:button name="finish">ok</form:button>
   </div>
 </div>
 <input id="mode" value="${quizStatus.modeId}"></input>
